@@ -1,5 +1,5 @@
 package parser;
 
-abstract class ActionCommand extends Command {
+public abstract class ActionCommand extends Command {
 
 }
