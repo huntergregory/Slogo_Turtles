@@ -1,10 +1,9 @@
 package control.frontendapi;
 
-public class MoveCall extends FrontendAPICall {
-
+public class ForwardCall extends FrontendAPICall {
     private double distance;
 
-    public MoveCall(double distance) {
+    public ForwardCall(double distance) {
         this.distance = distance;
     }
 
