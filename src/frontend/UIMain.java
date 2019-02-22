@@ -4,6 +4,9 @@ import control.backendapi.ParseCall;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import parser.ParserException;
 
@@ -11,7 +14,17 @@ public class UIMain extends Application {
 
     private static UIMain instance;
 
+    public static final String TITLE = "SLogo";
+    public static final int SIZE = 1000;
+    public static final Paint BACKGROUND = Color.WHITE;
+
+    private Group root;
+    private Scene myScene;
+
+    private UISidePanel myUISidePanel;
+
     public UIMain() {
+
 
     }
 
@@ -22,10 +35,23 @@ public class UIMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         instance = this;
-        stage.setTitle("Test");
-        Group root = new Group();
-        stage.setScene(new Scene(root, 300, 200));
+        myScene = setupGame(SIZE, SIZE, BACKGROUND);
+        stage.setScene(myScene);
+        stage.setTitle(TITLE);
         stage.show();
+    }
+
+    private Scene setupGame (int width, int height, Paint background) {
+        root = new Group();
+        var scene = new Scene(root, width, height, background);
+        scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+        return scene;
+    }
+
+    private void handleKeyInput (KeyCode code) {
+        if (code == KeyCode.ENTER) {
+
+        }
     }
 
     // Method for testing structure
@@ -43,15 +69,15 @@ public class UIMain extends Application {
 
 
     // Frontend internal api
-    public int getX() {
-        return 3;
+    public double getX() {
+        return 3.0;
     }
 
-    public int getY() {
-        return 7;
+    public double getY() {
+        return 7.0;
     }
 
-    public void setXY(int x, int y) {
+    public void setXY(double x, double y) {
         System.out.println("Setting x and y");
     }
 }
