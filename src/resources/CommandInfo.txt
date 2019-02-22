@@ -1,4 +1,6 @@
 #
+# Note: -1 for number of parameters means 1 or more params required
+#
 # Turtle Commands
 #
 Forward=ForwardCommand:1
@@ -79,3 +81,7 @@ Turtles=TurtlesCommand:0
 Tell=TellCommand:0
 Ask=AskCommand:0
 AskWith=AskWithCommand:0
+#
+# Custom Commands
+#
+ListStart=ListCommand:-1
