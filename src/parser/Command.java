@@ -1,4 +1,4 @@
-package Parser;
+package parser;
 
 abstract class Command {
 
@@ -9,4 +9,5 @@ abstract class Command {
     private boolean isValidCommand() {
         return false;
     }
+
 }
