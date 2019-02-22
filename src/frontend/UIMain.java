@@ -33,7 +33,7 @@ public class UIMain extends Application {
     }
 
     private void handleException(Exception e) {
-        // TODO: Handle exception with a display
+        // TODO: Handle exception with some display
     }
 
 
