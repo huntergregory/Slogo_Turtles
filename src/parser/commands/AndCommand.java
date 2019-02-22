@@ -11,6 +11,6 @@ public class AndCommand extends TwoParamEvalCommand {
 
     @Override
     public double execute() {
-        return myExpression1.execute() && myExpression2.execute();
+        return (myExpression1.execute() != 0 && myExpression2.execute() != 0) ? 1 : 0;
     }
 }
