@@ -14,7 +14,7 @@ public final class CommandParser {
 
     private static CommandParser instance;
 
-    private static final String COMMENT_CHAR = "#";
+    private static final String COMMENT_REGEX = "^#.*";
     private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
     private static final String WHITESPACE_REGEX = "\\s+";
 
@@ -67,7 +67,7 @@ public final class CommandParser {
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
             String currentLine = scan.nextLine().toLowerCase().strip();
-            if (currentLine.startsWith(COMMENT_CHAR)) {
+            if (currentLine.matches(COMMENT_REGEX)) {
                 continue;
             }
 
