@@ -10,6 +10,7 @@ public final class CommandParser {
 
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
+    private List<String> myCommandHistory;
 
     private static CommandParser instance;
 
@@ -20,6 +21,7 @@ public final class CommandParser {
     private CommandParser() {
         myChunkIndex = 0;
         myCommandQueue = new LinkedList<>();
+        myCommandHistory = new ArrayList<>();
     }
 
     public static CommandParser getInstance() {
@@ -28,9 +30,15 @@ public final class CommandParser {
         return instance;
     }
 
-
     public void parseAndRun(String program) throws ParserException {
-        parseProgram(program);
+        myCommandHistory.add(program);
+        try {
+            parseProgram(program);
+        }
+        catch (ParserException e) { // Only store valid commands in history (ones that don't produce parsing exceptions)
+            myCommandHistory.remove(myCommandHistory.size() - 1);
+            throw e;
+        }
         runProgram();
     }
 
@@ -87,7 +95,7 @@ public final class CommandParser {
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
     }
 
-    public Queue<Command> getCommandQueue() {
-        return myCommandQueue;
+    public List<String> getCommandHistory() {
+        return myCommandHistory;
     }
 }
