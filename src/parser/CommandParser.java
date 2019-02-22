@@ -2,61 +2,71 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 
-public class CommandParser {
+public final class CommandParser {
 
-//    private Map<String, Integer> myCommandMap; // Assume this is initialized properly with command names -> num of params
-//    private Queue<Command> myCommandQueue;
-//
-//    // Loops until overall input is empty
-//    public void parse(String program) throws ParserException {
-//        // Account for more than one space between terms
-//        program = program.trim();
-//        // Check if empty input (above call necessary in case all whitespace)
-//        if (program.isEmpty()) {
-//            throw new ParserException("Empty input string!");
-//        }
-//        while (!program.trim().isEmpty()) {
-//            Command nextCommand = makeCommand(program); // Get next command
-//            // Add to commandQueue
-//            myCommandQueue.add(nextCommand);
-//        }
-//    }
-//
-//    // Loops until individual command hierarchy is satisfied
-//    private Command makeCommand(String input) {
-//        // Account for more than one space between terms
-//        input = input.trim();
-//        // Isolate next chunk
-//        String chunk = input.split(" ")[0];
-//        // Check if a number, if so, return
-//        if (isNumeric(chunk)) {
-//            return new EvalCommand("VAL", Double.parseDouble(chunk));
-//        } // Creates dummy VAL command that acts as container for a number (execute() returns its double)
-//        // This VAL type can act as the model for user-defined variables potentially
-//        // Else, check if valid Command type
-//        if (!myCommandMap.keySet().contains(chunk)) {
-//            throw new ParserException("Invalid command!");
-//        }
-//        // If valid, check parameter count
-//        int numParams = myCommandMap.get(chunk);
-//        // Get parameters, add to list
-//        List<Command> paramList = new ArrayList<>(numParams);
-//        for (int i = 0; i < numParams; i++) { // Recursively identify parameters
-//            input = input.substring(input.indexOf(" ") + 1); // Remove processed chunk
-//            paramList.set(i, makeCommand(input));
-//        }
-//        input = input.substring(input.indexOf(" ") + 1); // Remove final param chunk
-//        // Make new Command with found parameters, passed as List
-//        Command newCommand = Command.createCommand(chunk, paramList);
-//        // Return command
-//        return newCommand;
-//    }
-//
-//    // Checks to see if String chunk is a number
-//    private boolean isNumeric(String input) {
-//        return false;
-//    }
+    private static Queue<Command> myCommandQueue;
+    private static int myChunkIndex;
+    private static final String COMMENT_CHAR = "#";
+    private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
+
+    private CommandParser() {
+        myChunkIndex = 0;
+        myCommandQueue = new PriorityQueue<>();
+    }
+
+    // Loops until overall input is empty
+    public static void parse(String program) throws ParserException {
+        if (program.isEmpty()) {
+            throw new ParserException("Empty input string!");
+        }
+        String translatedInput = translateInput(program);
+        String[] programChunks = translatedInput.split("\\s+");
+        myChunkIndex = 0;
+        while (myChunkIndex < programChunks.length) {
+            Command nextCommand = makeCommand(programChunks); // Get next command
+            myCommandQueue.add(nextCommand);
+        }
+    }
+
+    private static String translateInput(String input) throws ParserException {
+        StringBuilder newInput = new StringBuilder();
+        Scanner scan = new Scanner(input);
+        while (scan.hasNextLine()) {
+            String currentLine = scan.nextLine().toLowerCase();
+            if (currentLine.strip().startsWith(COMMENT_CHAR)) {
+                continue;
+            }
+            String[] currentChunks = currentLine.split("\\s+");
+            for (String s : currentChunks) {
+                newInput.append(InTranslator.getSymbol(s));
+                newInput.append(" ");
+            }
+        }
+        return newInput.toString();
+    }
+
+    // Loops until individual command hierarchy is satisfied
+    private static Command makeCommand(String[] input) throws ParserException {
+        String currentChunk = input[myChunkIndex];
+        if (currentChunk.matches(NUMBER_REGEX)) {
+            //return CommandFactory.getInstance().createCommand("VAL", Double.parseDouble(currentChunk));
+            // TODO proper number handling
+        }
+        int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
+        List<Command> paramList = new ArrayList<>(numParams);
+        for (int i = 0; i < numParams; i++) {
+            myChunkIndex++;
+            paramList.set(i, makeCommand(input));
+        }
+        myChunkIndex++;
+        return CommandFactory.getInstance().createCommand(currentChunk, paramList);
+    }
+
+    public static Queue<Command> getCommandQueue() {
+        return myCommandQueue;
+    }
 }
