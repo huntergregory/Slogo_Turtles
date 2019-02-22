@@ -4,15 +4,15 @@ import java.io.File;
 import java.util.*;
 import java.util.regex.Pattern;
 
-final class InTranslator {
+final class InputTranslator {
 
     private static List<Map.Entry<String, Pattern>> mySymbols;
-    public static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
-    public static final String RESOURCES_PREFIX = "resources/languages/";
+    private static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
+    private static final String RESOURCES_PREFIX = "resources/languages/";
 
-    private static InTranslator instance;
+    private static InputTranslator instance;
 
-    private InTranslator() {
+    private InputTranslator() {
         mySymbols = new ArrayList<>();
         // import properties files, store
         File[] langList = LANGUAGE_FOLDER.listFiles();
@@ -25,9 +25,9 @@ final class InTranslator {
         addPatterns("Syntax.properties"); // Saves basic syntax for last
     }
 
-    public static InTranslator getInstance() {
+    static InputTranslator getInstance() {
         if (instance == null)
-            instance = new InTranslator();
+            instance = new InputTranslator();
         return instance;
     }
 
@@ -41,7 +41,7 @@ final class InTranslator {
     }
 
 
-    public String getSymbol(String symbol) throws ParserException {
+    String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : mySymbols) {
             if (entry.getValue().matcher(symbol).matches()) {
                 if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable")) {

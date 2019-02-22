@@ -9,8 +9,8 @@ public final class CommandParser {
 
     private static CommandParser instance;
 
-    public static final String COMMENT_CHAR = "#";
-    public static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
+    private static final String COMMENT_CHAR = "#";
+    private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
 
     private CommandParser() {
         myChunkIndex = 0;
@@ -59,7 +59,7 @@ public final class CommandParser {
 
             String[] currentChunks = currentLine.split("\\s+");
             for (String s : currentChunks) {
-                chunks.add(InTranslator.getInstance().getSymbol(s));
+                chunks.add(InputTranslator.getInstance().getSymbol(s));
             }
         }
         return chunks;
