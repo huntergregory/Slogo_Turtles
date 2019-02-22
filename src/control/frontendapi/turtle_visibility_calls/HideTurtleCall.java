@@ -1,8 +1,7 @@
-package control.frontendapi;
+package control.frontendapi.turtle_visibility_calls;
 
-public class HideTurtleCall extends FrontendAPICall {
-    @Override
-    public double call() {
-        return 0; //TODO: FIX
+public class HideTurtleCall extends VisibilityCall {
+    HideTurtleCall() {
+        super(false);
     }
 }

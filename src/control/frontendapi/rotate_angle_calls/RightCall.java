@@ -1,10 +1,7 @@
-package control.frontendapi.rotate_calls;
+package control.frontendapi.rotate_angle_calls;
 
-import control.frontendapi.FrontendAPICall;
-
-public class RightCall extends FrontendAPICall {
-    @Override
-    public double call() {
-        return 0; //TODO: FIX
+public class RightCall extends RotateAngleCall {
+    public RightCall(double angle) {
+        super(-angle);
     }
 }
