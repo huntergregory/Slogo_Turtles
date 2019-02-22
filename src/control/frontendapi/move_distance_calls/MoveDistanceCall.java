@@ -12,7 +12,7 @@ public class MoveDistanceCall extends FrontendAPICall  {
     @Override
     public double call() {
         move();
-        return myDistance;
+        return Math.abs(myDistance);
     }
 
     private void move() {
