@@ -1,4 +1,4 @@
-package control;
+package control.backendapi;
 
 import parser.CommandParser;
 import parser.ParserException;

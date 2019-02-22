@@ -1,6 +1,6 @@
 package parser;
 
-abstract class Command {
+public abstract class Command {
 
     // Execute constructed command
     public abstract double execute();

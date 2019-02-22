@@ -1,6 +1,6 @@
-package parser.ActionCommands;
+package parser.commands;
 
-import control.HomeCall;
+import control.frontendapi.HomeCall;
 import parser.ActionCommand;
 
 public class HomeCommand extends ActionCommand {

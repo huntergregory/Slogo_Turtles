@@ -8,6 +8,7 @@ final class InTranslator {
 
     private static List<Map.Entry<String, Pattern>> mySymbols;
     public static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
+    public static final String RESOURCES_PREFIX = "resources/languages/";
 
     private static InTranslator instance;
 
@@ -19,9 +20,9 @@ final class InTranslator {
             if (lang.getName().equals("Syntax.properties")) {
                 continue;
             }
-            addPatterns(lang.getPath());
+            addPatterns(lang.getName());
         }
-        addPatterns(LANGUAGE_FOLDER + "/Syntax.properties"); // Saves basic syntax for last
+        addPatterns("Syntax.properties"); // Saves basic syntax for last
     }
 
     public static InTranslator getInstance() {
@@ -30,8 +31,8 @@ final class InTranslator {
         return instance;
     }
 
-    private void addPatterns(String file) {
-        ResourceBundle resources = ResourceBundle.getBundle(file);
+    private void addPatterns(String filename) {
+        ResourceBundle resources = ResourceBundle.getBundle(RESOURCES_PREFIX + filename.replace(".properties", ""));
         for (String key : Collections.list(resources.getKeys())) {
             String regex = resources.getString(key);
             mySymbols.add(new AbstractMap.SimpleEntry<>(key,

@@ -1,8 +1,8 @@
-package control;
+package control.backendapi;
 
 import parser.ParserException;
 
-abstract public class APICall {
+public abstract class BackendAPICall {
 
     public abstract double call() throws ParserException;
 

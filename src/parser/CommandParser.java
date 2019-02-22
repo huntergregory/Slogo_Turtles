@@ -1,10 +1,6 @@
 package parser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public final class CommandParser {
 
@@ -18,7 +14,7 @@ public final class CommandParser {
 
     private CommandParser() {
         myChunkIndex = 0;
-        myCommandQueue = new PriorityQueue<>();
+        myCommandQueue = new LinkedList<>();
     }
 
     public static CommandParser getInstance() {
@@ -74,7 +70,7 @@ public final class CommandParser {
     private Command makeCommand(List<String> input) throws ParserException {
         String currentChunk = input.get(myChunkIndex);
         if (currentChunk.matches(NUMBER_REGEX)) {
-            //return CommandFactory.getInstance().createCommand("VAL", Double.parseDouble(currentChunk));
+            return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
             // TODO proper number handling
         }
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);

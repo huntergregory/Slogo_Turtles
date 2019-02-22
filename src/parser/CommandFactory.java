@@ -1,5 +1,7 @@
 package parser;
 
+import parser.commands.ConstantCommand;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -43,7 +45,7 @@ public class CommandFactory {
         Class clazz = null;
         try {
 
-            clazz = Class.forName(commandClassNames.get(commandName));
+            clazz = Class.forName("parser.commands." + commandClassNames.get(commandName));
             Constructor constructor = clazz.getConstructor(List.class);
             return (Command)constructor.newInstance(args);
 
@@ -53,11 +55,14 @@ public class CommandFactory {
             throw new ParserException("Class " + clazz.getName() +
                     " does not have correct constructor");
         } catch (Exception e) {
-            throw new ParserException("Error instantiating class " + clazz.getName());
+            throw new ParserException("Error instantiating class for command " + commandName + "\n" + e);
         }
 
     }
 
+    public Command createConstantCommand(double value) {
+        return new ConstantCommand(value);
+    }
 
     private void initClassMaps() throws ParserException {
 

@@ -1,5 +1,5 @@
 package parser;
 
-abstract class EvalCommand extends Command {
+public abstract class EvalCommand extends Command {
 
 }
