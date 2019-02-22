@@ -14,8 +14,7 @@ Frontend should not just implement things in new method.
 - Have class for each external frontend api thing
 - Have internal frontend api
 
-Front
-External
+Front External
 - move
 - go home
 
