@@ -26,7 +26,7 @@ public class UIMain extends Application {
 
     private void parseButtonPressed() {
         try {
-            new ParseCall("Stuff here").call();
+            new ParseCall("fd 50").call();
         } catch (ParserException e) {
             handleException(e);
         }
@@ -48,6 +48,10 @@ public class UIMain extends Application {
 
     public void setXY(int x, int y) {
         System.out.println("Setting x and y");
+    }
+
+    public static void main(String args[]) {
+        UIMain.getInstance().parseButtonPressed();
     }
 
 }

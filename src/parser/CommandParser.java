@@ -87,7 +87,4 @@ public final class CommandParser {
         return myCommandQueue;
     }
 
-    public static void main(String args[]) throws ParserException {
-        CommandParser.getInstance().parse("FD 50");
-    }
 }
