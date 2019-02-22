@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 final class InTranslator {
 
     private static List<Map.Entry<String, Pattern>> mySymbols;
-    private static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
+    public static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
+
+    private static InTranslator instance;
 
     private InTranslator() {
         mySymbols = new ArrayList<>();
@@ -22,7 +24,13 @@ final class InTranslator {
         addPatterns(LANGUAGE_FOLDER + "/Syntax.properties"); // Saves basic syntax for last
     }
 
-    private static void addPatterns(String file) {
+    public static InTranslator getInstance() {
+        if (instance == null)
+            instance = new InTranslator();
+        return instance;
+    }
+
+    private void addPatterns(String file) {
         ResourceBundle resources = ResourceBundle.getBundle(file);
         for (String key : Collections.list(resources.getKeys())) {
             String regex = resources.getString(key);
@@ -32,7 +40,7 @@ final class InTranslator {
     }
 
 
-    static String getSymbol(String symbol) throws ParserException {
+    public String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : mySymbols) {
             if (entry.getValue().matcher(symbol).matches()) {
                 if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable")) {

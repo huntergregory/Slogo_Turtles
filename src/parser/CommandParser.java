@@ -37,10 +37,9 @@ public final class CommandParser {
         if (program.isEmpty()) {
             throw new ParserException("Empty input string!");
         }
-        String translatedInput = translateInput(program);
-        String[] programChunks = translatedInput.split("\\s+");
+        List<String> programChunks = getChunks(program);
         myChunkIndex = 0;
-        while (myChunkIndex < programChunks.length) {
+        while (myChunkIndex < programChunks.size()) {
             Command nextCommand = makeCommand(programChunks); // Get next command
             myCommandQueue.add(nextCommand);
         }
@@ -52,35 +51,37 @@ public final class CommandParser {
         }
     }
 
-    private String translateInput(String input) throws ParserException {
-        StringBuilder newInput = new StringBuilder();
+    private List<String> getChunks(String input) throws ParserException {
+        List<String> chunks = new ArrayList<>();
+
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
-            String currentLine = scan.nextLine().toLowerCase();
-            if (currentLine.strip().startsWith(COMMENT_CHAR)) {
+            String currentLine = scan.nextLine().toLowerCase().strip();
+            if (currentLine.startsWith(COMMENT_CHAR)) {
                 continue;
             }
+
             String[] currentChunks = currentLine.split("\\s+");
             for (String s : currentChunks) {
-                newInput.append(InTranslator.getSymbol(s));
-                newInput.append(" ");
+                chunks.add(InTranslator.getInstance().getSymbol(s));
             }
         }
-        return newInput.toString();
+        return chunks;
     }
 
+
     // Loops until individual command hierarchy is satisfied
-    private Command makeCommand(String[] input) throws ParserException {
-        String currentChunk = input[myChunkIndex];
+    private Command makeCommand(List<String> input) throws ParserException {
+        String currentChunk = input.get(myChunkIndex);
         if (currentChunk.matches(NUMBER_REGEX)) {
             //return CommandFactory.getInstance().createCommand("VAL", Double.parseDouble(currentChunk));
             // TODO proper number handling
         }
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
-        List<Command> paramList = new ArrayList<>(numParams);
+        List<Command> paramList = new ArrayList<>();
         for (int i = 0; i < numParams; i++) {
             myChunkIndex++;
-            paramList.set(i, makeCommand(input));
+            paramList.add(makeCommand(input));
         }
         myChunkIndex++;
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
