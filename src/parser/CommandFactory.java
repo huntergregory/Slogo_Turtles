@@ -2,6 +2,7 @@ package parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,17 +32,31 @@ public class CommandFactory {
         return instance;
     }
 
-    /*
+    /**
      * Create an instance of a command
      *
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    //public static Command createCommand(String commandName, List<Command> args) {
-//
-  //      Class clazz = Class.forName(commandName)
+    public Command createCommand(String commandName, List<Command> args) throws ParserException {
 
-    //}
+        Class clazz = null;
+        try {
+
+            clazz = Class.forName(commandClassNames.get(commandName));
+            Constructor constructor = clazz.getConstructor(List.class);
+            return (Command)constructor.newInstance(args);
+
+        } catch (ClassNotFoundException e) {
+            throw new ParserException("Class " + commandClassNames.get(commandName) + " not found");
+        } catch (NoSuchMethodException e) {
+            throw new ParserException("Class " + clazz.getName() +
+                    " does not have correct constructor");
+        } catch (Exception e) {
+            throw new ParserException("Error instantiating class " + clazz.getName());
+        }
+
+    }
 
 
     private void initClassMaps() throws ParserException {
@@ -71,14 +86,14 @@ public class CommandFactory {
         } catch (NumberFormatException e) {
             throw new ParserException("Invalid Command Info file format, did not receive integer");
         }
-        int one = 2;
     }
 
+    /**
+     * Get the number of parameters required for a command
+     * @param command The name of the command
+     * @return The number of parameters required for the given command
+     */
     public int getParamCount(String command) {
         return commandParamCounts.get(command);
-    }
-
-    public static void main(String args[]) throws ParserException {
-        CommandFactory.getInstance();
     }
 }
