@@ -1,6 +1,6 @@
 package parser.commands;
 
-import control.frontendapi.MoveCall;
+import control.frontendapi.move_distance_calls.ForwardCall;
 import parser.ActionCommand;
 import parser.Command;
 
@@ -17,7 +17,7 @@ public class ForwardCommand extends ActionCommand {
     @Override
     public double execute() {
         System.out.println("Executing Forward with distance " + distance.execute());
-        new MoveCall(distance.execute()).call();
+        new ForwardCall(distance.execute()).call();
         return 0;
     }
 
