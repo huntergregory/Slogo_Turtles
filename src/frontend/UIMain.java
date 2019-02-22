@@ -2,6 +2,8 @@ package frontend;
 
 import control.backendapi.ParseCall;
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import parser.ParserException;
 
@@ -9,22 +11,25 @@ public class UIMain extends Application {
 
     private static UIMain instance;
 
-    private UIMain() {
+    public UIMain() {
 
     }
 
     public static UIMain getInstance() {
-        if (instance == null)
-            instance = new UIMain();
         return instance;
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        instance = this;
+        stage.setTitle("Test");
+        Group root = new Group();
+        stage.setScene(new Scene(root, 300, 200));
+        stage.show();
     }
 
-    private void parseButtonPressed() {
+    // Method for testing structure
+    public void parseButtonPressed() {
         try {
             new ParseCall("fd 50").call();
         } catch (ParserException e) {
@@ -49,9 +54,4 @@ public class UIMain extends Application {
     public void setXY(int x, int y) {
         System.out.println("Setting x and y");
     }
-
-    public static void main(String args[]) {
-        UIMain.getInstance().parseButtonPressed();
-    }
-
 }
