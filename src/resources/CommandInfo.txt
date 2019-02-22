@@ -1,7 +1,7 @@
 #
 # Turtle Commands
 #
-Forward=ForwardCommand:0
+Forward=ForwardCommand:1
 Backward=BackwardCommand:0
 Left=LeftCommand:0
 Right=RightCommand:0

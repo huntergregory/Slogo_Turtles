@@ -8,18 +8,27 @@ import java.util.Scanner;
 
 public final class CommandParser {
 
-    private static Queue<Command> myCommandQueue;
-    private static int myChunkIndex;
-    private static final String COMMENT_CHAR = "#";
-    private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
+    private Queue<Command> myCommandQueue;
+    private int myChunkIndex;
+
+    private static CommandParser instance;
+
+    public static final String COMMENT_CHAR = "#";
+    public static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
 
     private CommandParser() {
         myChunkIndex = 0;
         myCommandQueue = new PriorityQueue<>();
     }
 
+    public static CommandParser getInstance() {
+        if (instance == null)
+            instance = new CommandParser();
+        return instance;
+    }
+
     // Loops until overall input is empty
-    public static void parse(String program) throws ParserException {
+    public void parse(String program) throws ParserException {
         if (program.isEmpty()) {
             throw new ParserException("Empty input string!");
         }
@@ -32,7 +41,7 @@ public final class CommandParser {
         }
     }
 
-    private static String translateInput(String input) throws ParserException {
+    private String translateInput(String input) throws ParserException {
         StringBuilder newInput = new StringBuilder();
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
@@ -50,7 +59,7 @@ public final class CommandParser {
     }
 
     // Loops until individual command hierarchy is satisfied
-    private static Command makeCommand(String[] input) throws ParserException {
+    private Command makeCommand(String[] input) throws ParserException {
         String currentChunk = input[myChunkIndex];
         if (currentChunk.matches(NUMBER_REGEX)) {
             //return CommandFactory.getInstance().createCommand("VAL", Double.parseDouble(currentChunk));
@@ -66,7 +75,11 @@ public final class CommandParser {
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
     }
 
-    public static Queue<Command> getCommandQueue() {
+    public Queue<Command> getCommandQueue() {
         return myCommandQueue;
+    }
+
+    public static void main(String args[]) throws ParserException {
+        CommandParser.getInstance().parse("FD 50");
     }
 }
