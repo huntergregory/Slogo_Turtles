@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public final class CommandParser {
+public class CommandParser {
 
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;

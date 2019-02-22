@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-final class InputTranslator {
+class InputTranslator {
 
     private static List<Map.Entry<String, Pattern>> mySymbols;
     private static final File LANGUAGE_FOLDER = new File(System.getProperty("user.dir") + "/src/resources/languages");
