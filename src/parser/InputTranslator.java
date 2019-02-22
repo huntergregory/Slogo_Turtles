@@ -1,7 +1,12 @@
 package parser;
 
 import java.io.File;
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 final class InputTranslator {
@@ -12,23 +17,35 @@ final class InputTranslator {
 
     private static InputTranslator instance;
 
-    private InputTranslator() {
+    private InputTranslator() throws ParserException {
         mySymbols = new ArrayList<>();
-        // import properties files, store
-        File[] langList = LANGUAGE_FOLDER.listFiles();
-        for (File lang : langList) {
-            if (lang.getName().equals("Syntax.properties")) {
-                continue;
-            }
-            addPatterns(lang.getName());
-        }
-        addPatterns("Syntax.properties"); // Saves basic syntax for last
+        populateEntries();
     }
 
-    static InputTranslator getInstance() {
+    static InputTranslator getInstance() throws ParserException {
         if (instance == null)
             instance = new InputTranslator();
         return instance;
+    }
+
+    private void populateEntries() throws ParserException {
+        File[] langList = LANGUAGE_FOLDER.listFiles(); // Import properties files, store entries
+        if (langList != null) {
+            for (File lang : langList) {
+                if (lang.getName().equals("Syntax.properties")) {
+                    continue;
+                }
+                addPatterns(lang.getName());
+            }
+            try {
+                addPatterns("Syntax.properties"); // Saves basic syntax for last
+            } catch (NullPointerException e) {
+                throw new ParserException("No syntax properties file found");
+            }
+        }
+        else {
+            throw new ParserException("Languages directory is empty");
+        }
     }
 
     private void addPatterns(String filename) {
@@ -40,7 +57,6 @@ final class InputTranslator {
         }
     }
 
-
     String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : mySymbols) {
             if (entry.getValue().matcher(symbol).matches()) {
@@ -50,6 +66,6 @@ final class InputTranslator {
                 return symbol; // Returns original input if constant or name of user defined variable
             }
         }
-        throw new ParserException("Invalid syntax.");
+        throw new ParserException("Invalid syntax");
     }
 }

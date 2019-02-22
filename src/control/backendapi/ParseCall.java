@@ -13,7 +13,7 @@ public class ParseCall extends BackendAPICall {
 
     @Override
     public double call() throws ParserException {
-        CommandParser.getInstance().parse(program);
+        CommandParser.getInstance().parseAndRun(program);
         return 0;
     }
 }

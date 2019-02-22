@@ -1,6 +1,10 @@
 package parser;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Scanner;
 
 public final class CommandParser {
 
@@ -11,6 +15,7 @@ public final class CommandParser {
 
     private static final String COMMENT_CHAR = "#";
     private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
+    private static final String WHITESPACE_REGEX = "\\s+";
 
     private CommandParser() {
         myChunkIndex = 0;
@@ -23,15 +28,16 @@ public final class CommandParser {
         return instance;
     }
 
-    // Loops until overall input is empty
-    public void parse(String program) throws ParserException {
+
+    public void parseAndRun(String program) throws ParserException {
         parseProgram(program);
         runProgram();
     }
 
+    // Loops until overall input is empty
     private void parseProgram(String program) throws ParserException {
         if (program.isEmpty()) {
-            throw new ParserException("Empty input string!");
+            throw new ParserException("Empty input string");
         }
         List<String> programChunks = getChunks(program);
         myChunkIndex = 0;
@@ -57,7 +63,7 @@ public final class CommandParser {
                 continue;
             }
 
-            String[] currentChunks = currentLine.split("\\s+");
+            String[] currentChunks = currentLine.split(WHITESPACE_REGEX);
             for (String s : currentChunks) {
                 chunks.add(InputTranslator.getInstance().getSymbol(s));
             }
@@ -65,13 +71,11 @@ public final class CommandParser {
         return chunks;
     }
 
-
     // Loops until individual command hierarchy is satisfied
     private Command makeCommand(List<String> input) throws ParserException {
         String currentChunk = input.get(myChunkIndex);
         if (currentChunk.matches(NUMBER_REGEX)) {
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
-            // TODO proper number handling
         }
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
         List<Command> paramList = new ArrayList<>();
@@ -86,5 +90,4 @@ public final class CommandParser {
     public Queue<Command> getCommandQueue() {
         return myCommandQueue;
     }
-
 }
