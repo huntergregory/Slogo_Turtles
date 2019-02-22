@@ -15,7 +15,7 @@ public abstract class MoveToPositionCall extends FrontendAPICall {
 
     @Override
     public double call() {
-        ui.setXY(myNewX, myNewY);
+        ui.setPosition(myNewX, myNewY);
         if (myEraseLines)
             ui.eraseLines();
         return getCartesianDistance();

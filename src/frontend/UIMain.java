@@ -68,16 +68,41 @@ public class UIMain extends Application {
     }
 
 
-    // Frontend internal api
+    /*************      Frontend internal api      *********************/
+
     public double getX() {
-        return 3.0;
+        return 3.0; //TODO: FIX
     }
 
     public double getY() {
-        return 7.0;
+        return 7.0; //TODO: FIX
     }
 
-    public void setXY(double x, double y) {
-        System.out.println("Setting x and y");
+    public void setPosition(double x, double y) {
+        System.out.println("Setting x and y"); //TODO: FIX
+    }
+
+    public double getHeading() {
+        return 69; //TODO: FIX
+    }
+
+    public void setHeading(double heading) {
+        System.out.println("Setting heading"); //TODO: FIX
+    }
+
+    public boolean getPenIsDown() {
+        return false; //TODO: FIX
+    }
+
+    public void setPenIsDown(boolean down) {
+        System.out.println("Setting penIsDown"); //TODO: FIX
+    }
+
+    public boolean getTurtleIsShowing() {
+        return false; //TODO: FIX
+    }
+
+    public void setTurtleIsShowing(boolean showing) {
+        System.out.println("Setting turtleIsShowing"); //TODO: FIX
     }
 }

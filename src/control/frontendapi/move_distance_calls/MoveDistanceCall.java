@@ -19,6 +19,6 @@ public class MoveDistanceCall extends FrontendAPICall  {
         double heading = ui.getHeading();
         double newY = Math.sin(heading) * myDistance;
         double newX = Math.cos(heading) * myDistance;
-        ui.setXY(newX, newY);
+        ui.setPosition(newX, newY);
     }
 }
