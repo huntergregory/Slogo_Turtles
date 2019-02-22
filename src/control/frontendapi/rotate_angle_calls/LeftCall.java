@@ -1,4 +1,6 @@
-package control.frontendapi;
+package control.frontendapi.rotate_calls;
+
+import control.frontendapi.FrontendAPICall;
 
 public class LeftCall extends FrontendAPICall {
     @Override

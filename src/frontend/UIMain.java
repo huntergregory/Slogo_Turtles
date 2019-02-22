@@ -105,4 +105,8 @@ public class UIMain extends Application {
     public void setTurtleIsShowing(boolean showing) {
         System.out.println("Setting turtleIsShowing"); //TODO: FIX
     }
+
+    public void eraseLines() {
+        System.out.println("Erasing lines"); //TODO: FIX
+    }
 }
