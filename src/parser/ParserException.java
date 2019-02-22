@@ -1,7 +1,7 @@
 package parser;
 
 class ParserException extends Exception {
-    public ParserException(String message) {
+    ParserException(String message) {
         super(message);
     }
 }
