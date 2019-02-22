@@ -193,18 +193,36 @@ interface BackendExternal {
 
 ```java
 
+// Parser class
+public class CommandParser {
+    // Loops until overall input is empty
+    public Command parse(String program);
+    // Loops until individual command hierarchy is satisfied
+    private Command makeCommand(String input);
+    // Checks to see if String chunk is a number
+    private boolean isNumeric(String input);
+}
+
+public class TextFileParser {
+    private void generateParamNumMap();
+    private void generateFormalNameMap();
+}
+
 // Class to represent a command to be executed
 abstract class Command {
+    // Execute constructed command
     abstract double execute();
+    // Check if command is valid
+    private checkIfValidCommand();
 }
 
 // A command that involves some action of the front end
-abstract class ActionCommand {
+abstract class ActionCommand extends Command {
 
 }
 
 // A command that evaluates some expression or gets some data
-abstract class EvalCommand {
+abstract class EvalCommand extends Command {
 
 }
 ```

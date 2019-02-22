@@ -1,0 +1,81 @@
+#
+# Turtle Commands
+#
+Forward=ForwardCommand:1
+Backward=BackwardCommand:0
+Left=LeftCommand:0
+Right=RightCommand:0
+SetHeading=SetHeadingCommand:0
+SetTowards=SetTowardsCommand:0
+SetPosition=SetPositionCommand:0
+PenDown=PenDownCommand:0
+PenUp=PenUpCommand:0
+ShowTurtle=ShowTurtleCommand:0
+HideTurtle=HideTurtleCommand:0
+Home=HomeCommand:0
+ClearScreen=ClearScreenCommand:0
+#
+# Turtle Queries
+#
+XCoordinate=XCoordinateCommand:0
+YCoordinate=YCoordinateCommand:0
+Heading=HeadingCommand:0
+IsPenDown=IsPenDownCommand:0
+IsShowing=IsShowingCommand:0
+#
+# Math Operations
+#
+Sum=SumCommand:0
+Difference=DifferenceCommand:0
+Product=ProductCommand:0
+Quotient=QuotientCommand:0
+Remainder=RemainderCommand:0
+Minus=MinusCommand:0
+Random=RandomCommand:0
+Sine=SineCommand:0
+Cosine=CosineCommand:0
+Tangent=TangentCommand:0
+ArcTangent=ArcTangentCommand:0
+NaturalLog=NaturalLogCommand:0
+Power=PowerCommand:0
+Pi=PiCommand:0
+#
+# Boolean Operations
+#
+LessThan=LessThanCommand:0
+GreaterThan=GreaterThanCommand:0
+Equal=EqualCommand:0
+NotEqual=NotEqualCommand:0
+And=AndCommand:0
+Or=OrCommand:0
+Not=NotCommand:0
+#
+# Variables, Control, and User-Defined Commands
+#
+MakeVariable=MakeVariableCommand:0
+Repeat=RepeatCommand:0
+DoTimes=DoTimesCommand:0
+For=ForCommand:0
+If=IfCommand:0
+IfElse=IfElseCommand:0
+MakeUserInstruction=MakeUserInstructionCommand:0
+#
+# Display Commands
+#
+SetBackground=SetBackgroundCommand:0
+SetPenColor=SetPenColorCommand:0
+SetPenSize=SetPenSizeCommand:0
+SetShape=SetShapeCommand:0
+SetPalette=SetPaletteCommand:0
+GetPenColor=GetPenColorCommand:0
+GetShape=GetShapeCommand:0
+Stamp=StampCommand:0
+ClearStamps=ClearStampsCommand:0
+#
+# Multiple Turtle Commands
+#
+ID=IDCommand:0
+Turtles=TurtlesCommand:0
+Tell=TellCommand:0
+Ask=AskCommand:0
+AskWith=AskWithCommand:0
