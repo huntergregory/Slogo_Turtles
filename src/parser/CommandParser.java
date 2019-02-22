@@ -29,6 +29,11 @@ public final class CommandParser {
 
     // Loops until overall input is empty
     public void parse(String program) throws ParserException {
+        parseProgram(program);
+        runProgram();
+    }
+
+    private void parseProgram(String program) throws ParserException {
         if (program.isEmpty()) {
             throw new ParserException("Empty input string!");
         }
@@ -38,6 +43,12 @@ public final class CommandParser {
         while (myChunkIndex < programChunks.length) {
             Command nextCommand = makeCommand(programChunks); // Get next command
             myCommandQueue.add(nextCommand);
+        }
+    }
+
+    private void runProgram() {
+        while (myCommandQueue.size() > 0) {
+            myCommandQueue.remove().execute();
         }
     }
 
