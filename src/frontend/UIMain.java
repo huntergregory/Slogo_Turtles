@@ -10,6 +10,8 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import parser.ParserException;
 
+import java.util.ArrayList;
+
 public class UIMain extends Application {
 
     private static UIMain instance;
@@ -18,13 +20,13 @@ public class UIMain extends Application {
     public static final int SIZE = 1000;
     public static final Paint BACKGROUND = Color.WHITE;
 
-    private Group root;
+    private Group myRoot;
     private Scene myScene;
+    private ArrayList<Turtle> myTurtles;
 
     private UISidePanel myUISidePanel;
 
     public UIMain() {
-
 
     }
 
@@ -36,16 +38,23 @@ public class UIMain extends Application {
     public void start(Stage stage) throws Exception {
         instance = this;
         myScene = setupGame(SIZE, SIZE, BACKGROUND);
+        initializeTurtles();
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
     }
 
     private Scene setupGame (int width, int height, Paint background) {
-        root = new Group();
-        var scene = new Scene(root, width, height, background);
+        myRoot = new Group();
+        var scene = new Scene(myRoot, width, height, background);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
+    }
+
+    //must be called after setupGame to prevent null pointer on myRoot
+    private void initializeTurtles() {
+        myTurtles = new ArrayList<>();
+        myTurtles.add(new Turtle(SIZE, SIZE, 0, 0, myRoot.getChildren()));
     }
 
     private void handleKeyInput (KeyCode code) {
