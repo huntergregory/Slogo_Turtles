@@ -2,10 +2,10 @@ package control.frontendapi.move_distance_calls;
 
 import control.frontendapi.FrontendAPICall;
 
-public class MoveDistanceCall extends FrontendAPICall  {
+public abstract class MoveDistanceCall extends FrontendAPICall  {
     private double myDistance;
 
-    MoveDistanceCall(double distance) {
+    protected MoveDistanceCall(double distance) {
         myDistance = distance;
     }
 

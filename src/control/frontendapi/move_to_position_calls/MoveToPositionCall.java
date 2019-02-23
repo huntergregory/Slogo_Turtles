@@ -7,7 +7,7 @@ public abstract class MoveToPositionCall extends FrontendAPICall {
     private double myNewY;
     private boolean myEraseLines;
 
-    public MoveToPositionCall(double newX, double newY, boolean eraseLines) {
+    protected MoveToPositionCall(double newX, double newY, boolean eraseLines) {
         myNewX = newX;
         myNewY = newY;
         myEraseLines = eraseLines;
