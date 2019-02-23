@@ -91,8 +91,6 @@ public class CommandParser {
             populateUntilListEnd(paramList, input);
         else
             populateNParameters(paramList, numParams, input);
-
-
         myChunkIndex++;
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
     }
