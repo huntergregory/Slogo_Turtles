@@ -5,7 +5,7 @@ import control.frontendapi.FrontendAPICall;
 public abstract class RotateAngleCall extends FrontendAPICall {
     private double myAngle;
 
-    public RotateAngleCall(double angle) {
+    protected RotateAngleCall(double angle) {
         myAngle = angle;
     }
 

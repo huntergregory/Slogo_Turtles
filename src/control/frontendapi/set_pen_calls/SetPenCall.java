@@ -5,7 +5,7 @@ import control.frontendapi.FrontendAPICall;
 public class SetPenCall extends FrontendAPICall {
     private boolean myWillBeDown;
 
-    SetPenCall(boolean down) {
+    protected SetPenCall(boolean down) {
         myWillBeDown = down;
     }
 

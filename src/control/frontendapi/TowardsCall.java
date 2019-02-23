@@ -5,7 +5,7 @@ public class TowardsCall extends FrontendAPICall {
     private double myX;
     private double myY;
 
-    public TowardsCall(double x, double y) {
+    protected TowardsCall(double x, double y) {
         myX = x;
         myY = y;
     }

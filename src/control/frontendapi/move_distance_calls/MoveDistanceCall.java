@@ -5,7 +5,7 @@ import control.frontendapi.FrontendAPICall;
 public abstract class MoveDistanceCall extends FrontendAPICall  {
     private double myDistance;
 
-    MoveDistanceCall(double distance) {
+    protected MoveDistanceCall(double distance) {
         myDistance = distance;
     }
 
