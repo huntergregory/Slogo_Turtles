@@ -1,6 +1,7 @@
 package frontend;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -31,7 +32,7 @@ public class Turtle {
         setBoundaries(screenWidth, screenHeight, topLeftX, topLeftY);
         myPen = new Pen(list);
         myImageView = new ImageView();
-        //TODO: change image to a turtle
+        myImageView.setImage(new Image("tan_turtle.png"));
         myX = 0; myY = 0; myHeading = 0;
         myIsShowing = true;
     }
