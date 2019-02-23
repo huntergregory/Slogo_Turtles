@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public final class CommandParser {
+public class CommandParser {
 
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
@@ -87,12 +87,29 @@ public final class CommandParser {
         }
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
         List<Command> paramList = new ArrayList<>();
-        for (int i = 0; i < numParams; i++) {
-            myChunkIndex++;
-            paramList.add(makeCommand(input));
-        }
+        if (numParams == -1) // -1 means a list should be created, until an end bracket
+            populateUntilListEnd(paramList, input);
+        else
+            populateNParameters(paramList, numParams, input);
         myChunkIndex++;
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
+    }
+
+    private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {
+        for (int i = 0; i < num; i++) {
+            myChunkIndex++;
+            paramList.add(makeCommand(chunkList));
+        }
+    }
+
+    private void populateUntilListEnd(List<Command> paramList, List<String> chunkList) throws ParserException {
+        while (!chunkList.get(myChunkIndex).equals("ListEnd")) {
+            if (myChunkIndex == chunkList.size() - 1)
+                throw new ParserException("Unterminated List");
+
+            paramList.add(makeCommand(chunkList));
+            myChunkIndex++;
+        }
     }
 
     public List<String> getCommandHistory() {
