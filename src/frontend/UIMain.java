@@ -51,7 +51,7 @@ public class UIMain extends Application {
         return 7;
     }
 
-    public void setXY(int x, int y) {
+    public void setPosition(double x, double y) {
         System.out.println("Setting x and y");
     }
 }
