@@ -1,4 +1,4 @@
-package parser.commands;
+package parser.commands.boolean_commands;
 
 import parser.Command;
 import parser.EvalCommand;

@@ -1,10 +1,10 @@
-package parser.commands;
+package parser.commands.math_commands;
 
 import parser.Command;
 
 import java.util.List;
 
-public class SumCommand extends TwoParamEvalCommand {
+public class SumCommand extends TwoParamMathCommand {
 
     public SumCommand(List<Command> params) {
         super(params);

@@ -1,6 +1,6 @@
 package parser;
 
-import parser.commands.ConstantCommand;
+import parser.commands.math_commands.ConstantCommand;
 
 import java.io.File;
 import java.io.IOException;

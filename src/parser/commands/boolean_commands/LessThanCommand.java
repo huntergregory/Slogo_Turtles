@@ -1,10 +1,10 @@
-package parser.commands;
+package parser.commands.boolean_commands;
 
 import parser.Command;
 
 import java.util.List;
 
-public class LessThanCommand extends TwoParamEvalCommand {
+public class LessThanCommand extends TwoParamBoolCommand {
 
     public LessThanCommand(List<Command> params) {
         super(params);

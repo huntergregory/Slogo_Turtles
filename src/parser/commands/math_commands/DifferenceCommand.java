@@ -1,10 +1,10 @@
-package parser.commands;
+package parser.commands.math_commands;
 
 import parser.Command;
 
 import java.util.List;
 
-public class DifferenceCommand extends TwoParamEvalCommand {
+public class DifferenceCommand extends TwoParamMathCommand {
 
     public DifferenceCommand(List<Command> params) {
         super(params);

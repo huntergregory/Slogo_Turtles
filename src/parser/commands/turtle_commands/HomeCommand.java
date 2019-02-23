@@ -1,4 +1,4 @@
-package parser.commands;
+package parser.commands.turtle_commands;
 
 import control.frontendapi.move_to_position_calls.HomeCall;
 import parser.ActionCommand;

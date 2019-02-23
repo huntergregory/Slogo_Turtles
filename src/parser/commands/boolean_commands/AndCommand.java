@@ -1,9 +1,9 @@
-package parser.commands;
+package parser.commands.boolean_commands;
 
 import parser.Command;
 import java.util.List;
 
-public class AndCommand extends TwoParamEvalCommand {
+public class AndCommand extends TwoParamBoolCommand {
 
     public AndCommand(List<Command> params) {
         super(params);

@@ -1,4 +1,4 @@
-package parser.commands;
+package parser.commands.math_commands;
 
 import parser.EvalCommand;
 

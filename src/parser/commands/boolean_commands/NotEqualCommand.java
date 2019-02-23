@@ -1,9 +1,9 @@
-package parser.commands;
+package parser.commands.boolean_commands;
 
 import parser.Command;
 import java.util.List;
 
-public class NotEqualCommand extends TwoParamEvalCommand {
+public class NotEqualCommand extends TwoParamBoolCommand {
 
     public NotEqualCommand(List<Command> params) {
         super(params);
