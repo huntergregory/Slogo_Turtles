@@ -11,6 +11,9 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -32,7 +35,8 @@ public class UIMain extends Application {
     public static final int SIZE = 600;
     public static final Paint BACKGROUND = Color.WHITE;
 
-    private Group myRoot;
+    private BorderPane myRoot;
+    private Pane myTurtlePaneRoot;
     private Scene myScene;
     private ArrayList<Turtle> myTurtles;
 
@@ -54,12 +58,18 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        new TurtleTester().testTowards(); //TODO: Remove when done testing
+        new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (int width, int height, Paint background) {
-        myRoot = new Group();
+        myRoot = new BorderPane();
+        myTurtlePaneRoot = new Pane();
+        myTurtlePaneRoot.getStyleClass().add("pane");
+        myTurtlePaneRoot.setMaxSize(400, 400); //TODO: FIX magic numbers
+        //TODO: add terminal and stuff on right, set sizes of terminal and stuff and min size for turtlePane (center)
+        myRoot.setCenter(myTurtlePaneRoot);
         var scene = new Scene(myRoot, width, height, background);
+        scene.getStylesheets().add("style.css");
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
     }
@@ -67,7 +77,7 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
+        var turtle = new ImageTurtle(400, 400, 0, 0, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
         myTurtles.add(turtle);
     }
 

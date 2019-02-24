@@ -1,0 +1,9 @@
+/* This style affects all the pane's children too */
+.pane {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}

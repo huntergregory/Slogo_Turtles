@@ -16,7 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
-//TODO: Test more angle calculations
+//TODO: make angle always in range [0, 360) and update Calls related to angles if necessary
 public class TurtleTester {
     private void test(EventHandler<ActionEvent> handler) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), handler));
