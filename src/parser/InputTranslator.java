@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class InputTranslator {
 
     private static List<Map.Entry<String, Pattern>> myCurrentLanguage;
-    private static final String RESOURCES_DIRECTORY = "resources/languages/";
+    private static final String RESOURCES_DIRECTORY = "languages/";
 
     private static InputTranslator instance;
 
@@ -44,7 +44,7 @@ public class InputTranslator {
         for (String key : Collections.list(resources.getKeys())) {
             String translation = resources.getString(key);
             myCurrentLanguage.add(new AbstractMap.SimpleEntry<>(key,
-                    Pattern.compile(translation, Pattern.CASE_INSENSITIVE))); //TODO check to see if toLowerCase is necessary
+                    Pattern.compile(translation, Pattern.CASE_INSENSITIVE)));
         }
     }
 
@@ -67,19 +67,15 @@ public class InputTranslator {
         return false;
     }
 
-    public boolean isComment(String text) {
+    boolean isComment(String text) {
         return matches("Comment", text);
     }
 
-    public boolean isVariable(String text) {
+    boolean isVariable(String text) {
         return matches("Variable", text);
     }
 
-    public boolean isWhitespace(String text) {
-        return matches("Whitespace", text);
-    }
-
-    public boolean isConstant(String text) {
+    boolean isConstant(String text) {
         return matches("Constant", text);
     }
 }

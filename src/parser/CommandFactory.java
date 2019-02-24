@@ -3,8 +3,11 @@ package parser;
 import parser.commands.math_commands.ConstantCommand;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +70,8 @@ class CommandFactory {
     private void initClassMaps() throws ParserException {
 
         File file = new File(getClass().getClassLoader().getResource(COMMAND_INFO_FILENAME).getFile());
+        String path = URLDecoder.decode(file.getAbsolutePath(), StandardCharsets.UTF_8);
+        file = new File(path);
 
         try (Scanner scan = new Scanner(file)) {
 
