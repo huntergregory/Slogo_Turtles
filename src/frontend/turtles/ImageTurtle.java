@@ -15,7 +15,11 @@ public class ImageTurtle extends Turtle {
     @Override
     protected void initializeNode() {
         var image = new Image(getClass().getClassLoader().getResourceAsStream(IMAGE_NAME));
-        myNode = new ImageView(image);
+        var view = new ImageView(image);
+        view.setPreserveRatio(false);
+        view.setFitWidth(Turtle.WIDTH);
+        view.setFitHeight(Turtle.HEIGHT);
+        myNode = view;
     }
 
     @Override

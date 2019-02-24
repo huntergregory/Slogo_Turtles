@@ -9,6 +9,9 @@ import javafx.scene.Node;
  * @author Hunter Gregory
  */
 public abstract class Turtle {
+    public static double WIDTH = 20;
+    public static double HEIGHT = 20;
+
     protected Node myNode; //must be accessed by subclass
 
     private ObservableList myModifiableList;
