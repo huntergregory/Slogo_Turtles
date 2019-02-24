@@ -26,6 +26,11 @@ import parser.ParserException;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * Coordinate system is positive in the right and downwards direction.
+ * A heading of 0 points upwards.
+ */
 public class UIMain extends Application {
 
     private static UIMain instance;
@@ -84,10 +89,10 @@ public class UIMain extends Application {
             double amt = amounts[testIndex];
             System.out.println("Setting new heading: " + new SetHeadingCall(headings[testIndex]).call());
             if (testIndex == 2) {
-                System.out.println("Going backwards by " + amt + " :" + new BackCall(amt).call());
+                System.out.println("Going backwards by " + amt + ": " + new BackCall(amt).call());
             }
             else {
-                System.out.println("Going forwards by " + amt + " :" + new ForwardCall(amt).call());
+                System.out.println("Going forwards by " + amt + ": " + new ForwardCall(amt).call());
             }
             testIndex ++;
         }

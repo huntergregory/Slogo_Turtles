@@ -36,14 +36,14 @@ public abstract class Turtle {
     public Turtle(double displayWidth, double displayHeight, double topLeftX, double topLeftY, ObservableList list) {
         myDisplayWidth = displayWidth;
         myDisplayHeight = displayHeight;
-        myTopLeftX = topLeftX;  //TODO: ObservableList given is for the TurtleDisplay, minX and y are unnecessary
+        myTopLeftX = topLeftX;  //TODO: If ObservableList given is for the TurtleDisplay, these are unnecessary
         myTopLeftY = topLeftY;
         myModifiableList = list;
         initializeNode();
         myModifiableList.add(myNode);
         myPen = new Pen(myModifiableList);
         setPosition(0, 0);
-        moveAboveLines();
+        eraseLines(); // a dot of a line is added if not called
         setHeading(0);
         myIsShowing = true;
     }
@@ -69,12 +69,12 @@ public abstract class Turtle {
 
 
     public void setPosition(double newX, double newY) {
-        double oldDisplayX = getOriginAdjustedX();
-        double oldDisplayY = getOriginAdjustedY();
+        double oldDisplayX = getOriginAdjustedTurtleX();
+        double oldDisplayY = getOriginAdjustedTurtleY();
         setX(newX);
         setY(newY);
-        double newDisplayX = getOriginAdjustedX();
-        double newDisplayY = getOriginAdjustedY();
+        double newDisplayX = getOriginAdjustedTurtleX();
+        double newDisplayY = getOriginAdjustedTurtleY();
         setNodePosition(newDisplayX, newDisplayY);
         myPen.draw(oldDisplayX + Turtle.WIDTH / 2,
                 oldDisplayY + Turtle.HEIGHT / 2,
@@ -138,31 +138,42 @@ public abstract class Turtle {
     }
 
 
+    private double getOriginX() {
+        return myDisplayWidth / 2;
+    }
 
-    private double getOriginAdjustedX() {
-        double centerX = myDisplayWidth / 2 - Turtle.WIDTH / 2;
+    private double getOriginY() {
+        return myDisplayHeight / 2;
+    }
+
+    private double getOriginAdjustedTurtleX() {
+        double centerX = getOriginX() - Turtle.WIDTH / 2;
         return myX + centerX;
 
     }
 
-    private double getOriginAdjustedY() {
-        double centerY = myDisplayHeight / 2 - Turtle.HEIGHT / 2;
+    private double getOriginAdjustedTurtleY() {
+        double centerY = getOriginY()- Turtle.HEIGHT / 2;
         return myY + centerY;
     }
 
     private void setX(double x) {
-        myX = getInBoundsNum(x, myTopLeftX, myDisplayWidth - Turtle.WIDTH);
+        myX = getInBoundsNum(x, -getOriginX(), getOriginX() - Turtle.WIDTH);
     }
 
     private void setY(double y) {
-        myY = getInBoundsNum(y, myTopLeftY, myDisplayHeight - Turtle.HEIGHT);
+        myY = getInBoundsNum(y, -getOriginY(), getOriginY() - Turtle.HEIGHT);
     }
 
     private double getInBoundsNum(double num, double min, double max) {
-        if (num < min)
+        if (num < min) {
+            System.out.println("X position was out of bounds on the left or top");
             return min;
-        if (num > max)
+        }
+        if (num > max) {
+            System.out.println("X position was out of bounds on the right or bottom");
             return max;
+        }
         return num;
     }
 }
