@@ -19,4 +19,10 @@ public class ListCommand extends Command {
         return commands.get(commands.size() - 1).execute();
     }
 
+
+    public Command getParam(int index) {
+        return commands.get(index);
+    }
+
+
 }

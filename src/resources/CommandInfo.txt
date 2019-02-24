@@ -57,9 +57,9 @@ Not=boolean_commands.NotCommand:1
 MakeVariable=control_commands.MakeVariableCommand:2
 Repeat=control_commands.RepeatCommand:2
 DoTimes=control_commands.DoTimesCommand:2
-For=control_commands.ForCommand:0
-If=control_commands.IfCommand:0
-IfElse=control_commands.IfElseCommand:0
+For=control_commands.ForCommand:2
+If=control_commands.IfCommand:2
+IfElse=control_commands.IfElseCommand:3
 MakeUserInstruction=control_commands.MakeUserInstructionCommand:0
 #
 # Display Commands

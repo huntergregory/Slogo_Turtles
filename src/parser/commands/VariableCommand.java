@@ -21,6 +21,6 @@ public class VariableCommand extends Command {
 
     @Override
     public double runCommand() {
-        return 0;
+        return getVariable(name);
     }
 }

@@ -86,7 +86,7 @@ public class CommandParser {
         if (InputTranslator.getInstance().isConstant(currentChunk)) {
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
         } else if (InputTranslator.getInstance().isVariable(currentChunk)) {
-            return new VariableCommand(currentChunk);
+            return new VariableCommand(currentChunk.substring(1));
         }
 
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
@@ -107,16 +107,23 @@ public class CommandParser {
     }
 
     private void populateUntilListEnd(List<Command> paramList, List<String> chunkList) throws ParserException {
-        while (!chunkList.get(myChunkIndex).equals("ListEnd")) {
+        while (!chunkList.get(myChunkIndex + 1).equals("ListEnd")) {
             if (myChunkIndex == chunkList.size() - 1)
                 throw new ParserException("Unterminated List");
 
-            paramList.add(makeCommand(chunkList));
             myChunkIndex++;
+            paramList.add(makeCommand(chunkList));
         }
+        if (myChunkIndex < chunkList.size() - 1)
+            myChunkIndex++;
     }
 
     public List<String> getCommandHistory() {
         return myCommandHistory;
+    }
+
+    public static void main(String args[]) throws ParserException {
+        CommandParser.getInstance().parseAndRun("set :bule 7 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
+        //System.out.println(GlobalVariables.getInstance().getVariable("potato"));
     }
 }

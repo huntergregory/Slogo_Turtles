@@ -8,11 +8,12 @@ import java.util.List;
 
 public class DoTimesCommand extends Command {
 
-    private ArgumentsCommand varParams;
+    private ListCommand varParams;
     private Command body;
 
     public DoTimesCommand(List<Command> params) {
-        varParams = (ArgumentsCommand)params.get(0);
+        super(params);
+        varParams = (ListCommand)params.get(0);
         body = params.get(1);
     }
 

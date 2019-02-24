@@ -11,13 +11,14 @@ public class ForwardCommand extends ActionCommand {
     private Command distance;
 
     public ForwardCommand(List<Command> params) {
+        super(params);
         this.distance = params.get(0);
     }
 
     @Override
     public double runCommand() {
         System.out.println("Executing Forward with distance " + distance.execute());
-        new ForwardCall(distance.execute()).call();
+        //new ForwardCall(distance.execute()).call();
         return 0;
     }
 
