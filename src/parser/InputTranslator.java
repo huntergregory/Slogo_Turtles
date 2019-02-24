@@ -59,4 +59,27 @@ public class InputTranslator {
         }
         throw new ParserException("Invalid syntax");
     }
+
+    private boolean matches(String property, String text) {
+        for (Map.Entry<String, Pattern> entry: myCurrentLanguage)
+            if (entry.getKey().equals(property))
+                return entry.getValue().matcher(text).matches();
+        return false;
+    }
+
+    public boolean isComment(String text) {
+        return matches("Comment", text);
+    }
+
+    public boolean isVariable(String text) {
+        return matches("Variable", text);
+    }
+
+    public boolean isWhitespace(String text) {
+        return matches("Whitespace", text);
+    }
+
+    public boolean isConstant(String text) {
+        return matches("Constant", text);
+    }
 }

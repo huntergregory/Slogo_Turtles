@@ -1,5 +1,7 @@
 package parser;
 
+import parser.commands.VariableCommand;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,11 +14,9 @@ public class CommandParser {
     private int myChunkIndex;
     private List<String> myCommandHistory;
 
-    private static CommandParser instance;
-
-    private static final String COMMENT_REGEX = "^#.*";
-    private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
     private static final String WHITESPACE_REGEX = "\\s+";
+
+    private static CommandParser instance;
 
     private CommandParser() {
         myChunkIndex = 0;
@@ -67,7 +67,7 @@ public class CommandParser {
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
             String currentLine = scan.nextLine().toLowerCase().strip();
-            if (currentLine.matches(COMMENT_REGEX)) {
+            if (InputTranslator.getInstance().isComment(currentLine)) {
                 continue;
             }
 
@@ -82,9 +82,13 @@ public class CommandParser {
     // Loops until individual command hierarchy is satisfied
     private Command makeCommand(List<String> input) throws ParserException {
         String currentChunk = input.get(myChunkIndex);
-        if (currentChunk.matches(NUMBER_REGEX)) {
+
+        if (InputTranslator.getInstance().isConstant(currentChunk)) {
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
+        } else if (InputTranslator.getInstance().isVariable(currentChunk)) {
+            return new VariableCommand(currentChunk);
         }
+
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
         List<Command> paramList = new ArrayList<>();
         if (numParams == -1) // -1 means a list should be created, until an end bracket

@@ -11,7 +11,7 @@ public class ConstantCommand extends EvalCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return this.value;
     }
 

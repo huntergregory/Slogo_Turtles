@@ -10,7 +10,7 @@ public class OrCommand extends TwoParamBoolCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return (myExpression1.execute() != 0 || myExpression2.execute() != 0) ? 1 : 0;
     }
 }

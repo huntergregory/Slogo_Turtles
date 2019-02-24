@@ -14,5 +14,5 @@ abstract class TwoParamBoolCommand extends EvalCommand {
         this.myExpression2 = params.get(1);
     }
 
-    abstract public double execute();
+    abstract public double runCommand();
 }
