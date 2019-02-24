@@ -13,7 +13,7 @@ public class MakeVariableCommand extends EvalCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return myContents.execute();
     }
 }

@@ -18,7 +18,7 @@ public class RepeatCommand extends EvalCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         for (int i = 0; i < myTotalIter.execute() - 1; i++) {
             myList.execute();
         }

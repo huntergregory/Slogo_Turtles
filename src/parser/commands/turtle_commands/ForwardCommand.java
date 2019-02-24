@@ -15,7 +15,7 @@ public class ForwardCommand extends ActionCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         System.out.println("Executing Forward with distance " + distance.execute());
         new ForwardCall(distance.execute()).call();
         return 0;

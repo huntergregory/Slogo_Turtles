@@ -14,7 +14,7 @@ public class NotCommand extends EvalCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return (myExpression.execute() == 0) ? 1 : 0;
     }
 }

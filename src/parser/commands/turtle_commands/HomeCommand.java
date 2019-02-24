@@ -5,7 +5,7 @@ import parser.ActionCommand;
 
 public class HomeCommand extends ActionCommand {
     @Override
-    public double execute() {
+    public double runCommand() {
         return new HomeCall().call();
     }
 }

@@ -11,7 +11,7 @@ public class SumCommand extends TwoParamMathCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return myExpression1.execute() + myExpression2.execute();
     }
 }

@@ -11,7 +11,7 @@ public class LessThanCommand extends TwoParamBoolCommand {
     }
 
     @Override
-    public double execute() {
+    public double runCommand() {
         return (myExpression1.execute() < myExpression2.execute()) ? 1 : 0;
     }
 }
