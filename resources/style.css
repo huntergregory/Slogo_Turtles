@@ -9,10 +9,10 @@
 
 .turtle {
     -fx-background-color: transparent;
-    -fx-effect: dropshadow(three-pass-box, black, 4, 0, 2, 2);
+    -fx-effect: dropshadow(three-pass-box, black, 1, 0, 2, 2);
 }
 
 .line {
     -fx-background-color: transparent;
-    -fx-effect: dropshadow(three-pass-box, black, 6, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 0);
 }
