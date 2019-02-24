@@ -1,6 +1,7 @@
 package frontend;
 
 import control.backendapi.ParseCall;
+import frontend.turtles.Turtle;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -54,7 +55,8 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        myTurtles.add(new Turtle(SIZE, SIZE, 0, 0, myRoot.getChildren()));
+        var turtle = new Turtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
+        myTurtles.add(turtle);
     }
 
     private void handleKeyInput (KeyCode code) {

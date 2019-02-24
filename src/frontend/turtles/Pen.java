@@ -1,5 +1,6 @@
-package frontend;
+package frontend.turtles;
 
+import frontend.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 
