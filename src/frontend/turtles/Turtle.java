@@ -9,8 +9,9 @@ import javafx.scene.Node;
  * @author Hunter Gregory
  */
 public abstract class Turtle {
-    public static double WIDTH = 20;
-    public static double HEIGHT = 20;
+    public static final double WIDTH = 20;
+    public static final double HEIGHT = 20;
+    public static final String CSS_TAG = "turtle";
 
     protected Node myNode; //must be accessed by subclass
 
@@ -38,9 +39,12 @@ public abstract class Turtle {
         myDisplayHeight = displayHeight;
         myTopLeftX = topLeftX;  //TODO: If ObservableList given is for the TurtleDisplay, these are unnecessary
         myTopLeftY = topLeftY;
+
         myModifiableList = list;
         initializeNode();
+        myNode.getStyleClass().add(CSS_TAG);
         myModifiableList.add(myNode);
+
         myPen = new Pen(myModifiableList);
         setPosition(0, 0);
         eraseLines(); // a dot of a line is added if not called
@@ -48,10 +52,10 @@ public abstract class Turtle {
         myIsShowing = true;
     }
 
-
+    /**
+     * Turtle class depends on the implementation assigning a nonnull Node to myNode.
+     */
     abstract protected void initializeNode();
-
-    abstract protected void setNodePosition(double x, double y);
 
 
     /**
@@ -75,7 +79,7 @@ public abstract class Turtle {
         setY(newY);
         double newDisplayX = getOriginAdjustedTurtleX();
         double newDisplayY = getOriginAdjustedTurtleY();
-        setNodePosition(newDisplayX, newDisplayY);
+        myNode.relocate(newDisplayX, newDisplayY);
         myPen.draw(oldDisplayX + Turtle.WIDTH / 2,
                 oldDisplayY + Turtle.HEIGHT / 2,
                 newDisplayX + Turtle.WIDTH / 2,

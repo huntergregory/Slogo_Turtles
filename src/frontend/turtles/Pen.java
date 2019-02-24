@@ -11,6 +11,7 @@ public class Pen {
     private ArrayList<Line> myLines;
     private boolean myIsDown;
     private LineStroke myStroke;
+    public static final String CSS_TAG = "line";
 
     protected Pen(ObservableList list) {
         myModifiableList = list;
@@ -23,7 +24,7 @@ public class Pen {
         if (!myIsDown)
             return;
         Line line = new Line(oldX, oldY, newX, newY);
-        line.getStyleClass().add("line");
+        line.getStyleClass().add(CSS_TAG);
         addStroke(line);
         myLines.add(line);
         myModifiableList.add(line);

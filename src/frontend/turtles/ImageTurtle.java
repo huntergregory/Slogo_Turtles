@@ -22,11 +22,4 @@ public class ImageTurtle extends Turtle {
         view.getStyleClass().add("turtle");
         myNode = view;
     }
-
-    @Override
-    protected void setNodePosition(double x, double y) {
-        var view = (ImageView) myNode;
-        view.setX(x);
-        view.setY(y);
-    }
 }
