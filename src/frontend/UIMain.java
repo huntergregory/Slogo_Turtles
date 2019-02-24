@@ -19,7 +19,7 @@ public class UIMain extends Application {
     private static UIMain instance;
 
     public static final String TITLE = "SLogo";
-    public static final int SIZE = 1000;
+    public static final int SIZE = 600;
     public static final Paint BACKGROUND = Color.WHITE;
 
     private Group myRoot;
