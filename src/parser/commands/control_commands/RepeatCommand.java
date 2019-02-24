@@ -9,7 +9,7 @@ public class RepeatCommand extends EvalCommand {
 
     private Command myTotalIter;
     private Command myList;
-    private Command myCurrentIter; // :repcount
+    private Command myCurrentIter; // :repcount, TODO make an iterable command? i.e. each execution it iterates itself?
 
     public RepeatCommand(List<Command> params) {
         myTotalIter = params.get(0);
