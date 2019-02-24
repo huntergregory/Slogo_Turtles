@@ -78,12 +78,13 @@ public abstract class Turtle {
                 oldDisplayY + Turtle.HEIGHT / 2.0,
                 newDisplayX + Turtle.WIDTH / 2.0,
                 newDisplayY + Turtle.HEIGHT / 2.0);
+        moveAboveLines();
     }
 
     /**
      * Call after setPosition if you want Turtles to be drawn above lines drawn.
      */
-    public void moveAboveLines() {
+    private void moveAboveLines() {
         myModifiableList.remove(myNode);
         myModifiableList.add(myNode);
     }

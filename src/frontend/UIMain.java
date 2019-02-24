@@ -115,8 +115,6 @@ public class UIMain extends Application {
 
     public void setPosition(double x, double y) {
         myTurtles.get(0).setPosition(x,y);
-        for (Turtle turtle : myTurtles)
-            turtle.moveAboveLines();
     }
 
     public double getHeading() {
