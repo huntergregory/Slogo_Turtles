@@ -10,6 +10,7 @@ abstract class TwoParamBoolCommand extends EvalCommand {
     Command myExpression2;
 
     TwoParamBoolCommand(List<Command> params) {
+        super(params);
         this.myExpression1 = params.get(0);
         this.myExpression2 = params.get(1);
     }

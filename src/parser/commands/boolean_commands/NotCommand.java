@@ -10,6 +10,7 @@ public class NotCommand extends EvalCommand {
     private Command myExpression;
 
     public NotCommand(List<Command> params) {
+        super(params);
         myExpression = params.get(0);
     }
 

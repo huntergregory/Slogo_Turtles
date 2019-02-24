@@ -11,6 +11,7 @@ public class IfElseCommand extends EvalCommand {
     private Command myFalse;
 
     public IfElseCommand(List<Command> params) {
+        super(params);
         myExpression = params.get(0);
         myTrue = params.get(1);
         myFalse = params.get(2);
