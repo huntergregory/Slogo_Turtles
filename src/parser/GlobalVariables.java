@@ -1,7 +1,5 @@
 package parser;
 
-import parser.commands.math_commands.ConstantCommand;
-
 public class GlobalVariables {
 
     private static GlobalVariables instance;

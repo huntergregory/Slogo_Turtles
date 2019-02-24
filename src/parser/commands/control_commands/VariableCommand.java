@@ -2,8 +2,6 @@ package parser.commands.control_commands;
 
 import parser.Command;
 
-import java.util.List;
-
 public class VariableCommand extends Command {
 
     String name;
@@ -13,7 +11,7 @@ public class VariableCommand extends Command {
     }
 
 
-    public String getVariableName() {
+    String getVariableName() {
         return name;
     }
 

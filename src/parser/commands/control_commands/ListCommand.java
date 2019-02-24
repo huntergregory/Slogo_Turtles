@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     }
 
 
-    public Command getParam(int index) {
+    Command getParam(int index) {
         return commands.get(index);
     }
 

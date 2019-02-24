@@ -13,9 +13,7 @@ public class CommandParser {
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
     private List<String> myCommandHistory;
-
     private static final String WHITESPACE_REGEX = "\\s+";
-
     private static CommandParser instance;
 
     private CommandParser() {
@@ -55,12 +53,6 @@ public class CommandParser {
         }
     }
 
-    private void runProgram() {
-        while (myCommandQueue.size() > 0) {
-            myCommandQueue.remove().execute();
-        }
-    }
-
     private List<String> getChunks(String input) throws ParserException {
         List<String> chunks = new ArrayList<>();
 
@@ -84,25 +76,26 @@ public class CommandParser {
         String currentChunk = input.get(myChunkIndex);
 
         if (InputTranslator.getInstance().isConstant(currentChunk)) {
+            myChunkIndex++;
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
         } else if (InputTranslator.getInstance().isVariable(currentChunk)) {
+            myChunkIndex++;
             return new VariableCommand(currentChunk.substring(1));
         }
-
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
         List<Command> paramList = new ArrayList<>();
+        myChunkIndex++;
+
         if (numParams == -1) // -1 means a list should be created, until an end bracket
             populateUntilListEnd(paramList, input);
         else {
             populateNParameters(paramList, numParams, input);
         }
-        myChunkIndex++;
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
     }
 
     private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {
         for (int i = 0; i < num; i++) {
-            myChunkIndex++;
             paramList.add(makeCommand(chunkList));
         }
     }
@@ -112,8 +105,14 @@ public class CommandParser {
             if (myChunkIndex == chunkList.size() - 1) {
                 throw new ParserException("Unterminated list");
             }
-            myChunkIndex++;
             paramList.add(makeCommand(chunkList));
+        }
+        myChunkIndex++;
+    }
+
+    private void runProgram() {
+        while (myCommandQueue.size() > 0) {
+            myCommandQueue.remove().execute();
         }
     }
 
@@ -121,8 +120,8 @@ public class CommandParser {
         return myCommandHistory;
     }
 
-    public static void main(String args[]) throws ParserException {
-        CommandParser.getInstance().parseAndRun("set :bule 7 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
-        //System.out.println(GlobalVariables.getInstance().getVariable("potato"));
+    public static void main(String[] args) throws ParserException {
+        CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]");
+        //CommandParser.getInstance().parseAndRun("set :bule 7 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
     }
 }
