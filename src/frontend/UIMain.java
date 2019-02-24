@@ -1,13 +1,6 @@
 package frontend;
 
 import control.backendapi.ParseCall;
-// TODO: REMOVE front end api calls AFTER TESTING TURTLES
-
-import control.frontendapi.SetHeadingCall;
-import control.frontendapi.move_distance_calls.BackCall;
-import control.frontendapi.move_distance_calls.ForwardCall;
-import control.frontendapi.move_to_position_calls.ClearScreenCall;
-import control.frontendapi.move_to_position_calls.GoToCall;
 import frontend.turtles.ImageTurtle;
 import frontend.turtles.Turtle;
 
@@ -43,9 +36,6 @@ public class UIMain extends Application {
     private Scene myScene;
     private ArrayList<Turtle> myTurtles;
 
-    // TODO: REMOVE AFTER TESTING TURTLES
-    private int testIndex;
-
     private UISidePanel myUISidePanel;
 
     public UIMain() {
@@ -64,56 +54,7 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        testTurtle();
-    }
-
-    private void testTurtle() {
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(2500),
-                ae -> testForwardBackward()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    private void testForwardBackward() {
-        double[] amounts = {100, 300, 100, 100};
-        double[] headings = {0, 90, 90, 45};
-
-        if (testIndex >= amounts.length) {
-            System.out.println("Clearing screen: " + new ClearScreenCall().call());
-            testIndex = 0;
-        }
-        else {
-            System.out.println();
-            System.out.println("index is: " + testIndex);
-            double amt = amounts[testIndex];
-            System.out.println("Setting new heading. Degrees moved is: " + new SetHeadingCall(headings[testIndex]).call());
-            if (testIndex == 2) {
-                System.out.println("Going backwards by " + amt + ": " + new BackCall(amt).call());
-            }
-            else {
-                System.out.println("Going forwards by " + amt + ": " + new ForwardCall(amt).call());
-            }
-            testIndex ++;
-        }
-    }
-
-    private void testGoTo() {
-        double[] xPositions = {0, 100, -100, -100, 20};
-        double[] yPositions = {0, 100, 100, -100, 20};
-        double[] headings = {0, 0, 0, 69, 69};
-
-        if (testIndex >= xPositions.length) {
-            System.out.println("Clearing screen: " + new ClearScreenCall().call());
-            testIndex = 0;
-        }
-        else {
-            System.out.println();
-            System.out.println("index is: " + testIndex);
-            System.out.println("going to position (" + xPositions[testIndex] + ", " + yPositions[testIndex] + "): " + new GoToCall(xPositions[testIndex], yPositions[testIndex]).call());
-            System.out.println("Setting new heading. Degrees moved is: " + new SetHeadingCall(headings[testIndex]).call());
-            testIndex ++;
-        }
+        new TurtleTester().testForwardBackward(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (int width, int height, Paint background) {
