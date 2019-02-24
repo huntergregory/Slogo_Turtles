@@ -114,7 +114,6 @@ public class TurtleTester {
         public void handle(ActionEvent e) {
             double[] xPositions = {0, 100, -100, -100, 20};
             double[] yPositions = {0, 100, 100, -100, 20};
-            double[] headings = {0, 0, 0, 69, 69};
 
             if (index >= xPositions.length) {
                 print("Clearing screen: " + new ClearScreenCall().call());
@@ -126,7 +125,6 @@ public class TurtleTester {
                 double newX = xPositions[index];
                 double newY = yPositions[index];
                 print("going to position (" + newX + ", " + newY + "): " + new GoToCall(newX, newY).call());
-                print("Setting new heading. Degrees moved is: " + new SetHeadingCall(headings[index]).call());
                 index++;
             }
         }
