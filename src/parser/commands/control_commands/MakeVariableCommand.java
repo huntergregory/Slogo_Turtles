@@ -2,7 +2,6 @@ package parser.commands.control_commands;
 
 import parser.Command;
 import parser.GlobalVariables;
-import parser.commands.VariableCommand;
 
 import java.util.List;
 

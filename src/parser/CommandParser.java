@@ -1,6 +1,6 @@
 package parser;
 
-import parser.commands.VariableCommand;
+import parser.commands.control_commands.VariableCommand;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
