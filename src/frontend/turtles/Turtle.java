@@ -167,11 +167,13 @@ public abstract class Turtle {
 
     private double getInBoundsNum(double num, double min, double max) {
         if (num < min) {
-            System.out.println("X position was out of bounds on the left or top");
+            System.out.println("position was out of bounds on the left or top");
+            System.out.println("returning " + min);
             return min;
         }
         if (num > max) {
-            System.out.println("X position was out of bounds on the right or bottom");
+            System.out.println("position was out of bounds on the right or bottom");
+            System.out.println("returning " + max);
             return max;
         }
         return num;
