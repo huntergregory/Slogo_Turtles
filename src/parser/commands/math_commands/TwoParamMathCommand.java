@@ -11,9 +11,8 @@ abstract class TwoParamMathCommand extends EvalCommand {
     Command myExpression2;
 
     TwoParamMathCommand(List<Command> params) {
+        super(params);
         this.myExpression1 = params.get(0);
         this.myExpression2 = params.get(1);
     }
-
-    abstract public double runCommand();
 }

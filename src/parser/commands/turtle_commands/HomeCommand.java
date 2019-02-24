@@ -2,8 +2,16 @@ package parser.commands.turtle_commands;
 
 import control.frontendapi.move_to_position_calls.HomeCall;
 import parser.ActionCommand;
+import parser.Command;
+
+import java.util.List;
 
 public class HomeCommand extends ActionCommand {
+
+    public HomeCommand(List<Command> params) {
+        super(params);
+    }
+
     @Override
     public double runCommand() {
         return new HomeCall().call();

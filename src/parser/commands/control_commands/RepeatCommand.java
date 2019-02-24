@@ -12,6 +12,7 @@ public class RepeatCommand extends EvalCommand {
     private Command myCurrentIter; // :repcount, TODO make an iterable command? i.e. each execution it iterates itself?
 
     public RepeatCommand(List<Command> params) {
+        super(params);
         myTotalIter = params.get(0);
         myList = params.get(1);
         myCurrentIter = null; // TODO call to parser to store, update :repcount as user defined variable but make sure to save/load previous value

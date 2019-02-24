@@ -10,6 +10,7 @@ public class IfCommand extends EvalCommand {
     private Command myBody;
 
     public IfCommand(List<Command> params) {
+        super(params);
         myExpression = params.get(0);
         myBody = params.get(1);
     }

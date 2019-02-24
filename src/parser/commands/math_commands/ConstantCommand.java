@@ -7,6 +7,7 @@ public class ConstantCommand extends EvalCommand {
     private double value;
 
     public ConstantCommand(double value) {
+        super(null);
         this.value = value;
     }
 
