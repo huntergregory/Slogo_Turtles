@@ -5,7 +5,7 @@ public class TowardsCall extends FrontendAPICall {
     private double myX;
     private double myY;
 
-    protected TowardsCall(double x, double y) {
+    public TowardsCall(double x, double y) {
         myX = x;
         myY = y;
     }
@@ -24,7 +24,7 @@ public class TowardsCall extends FrontendAPICall {
 
         //TODO: Remove if modulo is undesired
         double difference = newHeading - oldHeading;
-        double modDifference = difference % NUM_DEGREES; // mod always returns a positive number
+        double modDifference = difference % NUM_DEGREES;
         return modDifference;
     }
 
@@ -32,8 +32,10 @@ public class TowardsCall extends FrontendAPICall {
         double newHeading;
         if (deltaY == 0)
             newHeading = (deltaX > 0) ? 90 : -90; // OR 270
-        else
-            newHeading = Math.toDegrees(Math.atan(deltaX / deltaY));
+        else {
+            double positiveHeading = Math.toDegrees(Math.atan(deltaX / deltaY));
+            newHeading = (deltaX > 0) ? -positiveHeading : positiveHeading;
+        }
         return newHeading;
     }
 }

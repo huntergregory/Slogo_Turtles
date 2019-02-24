@@ -16,9 +16,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
+//TODO: Test more angle calculations
 public class TurtleTester {
     private void test(EventHandler<ActionEvent> handler) {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1500), handler));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), handler));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         System.out.println("testing");
@@ -41,27 +42,10 @@ public class TurtleTester {
     }
 
     public void testQueries() {
-        print("pen is down: " + new PenDownQuery().call());
-        new PenUpCall().call();
-        print("pen is down: " + new PenDownQuery().call());
-        new PenDownCall().call();
-        print("pen is down: " + new PenDownQuery().call());
-
-        print("heading: " + new HeadingQuery().call());
-        new SetHeadingCall(50).call();
-        print("heading: " + new HeadingQuery().call());
-
-        print("xpos is: " + new XPositionQuery().call());
-        print("ypos is: " + new YPositionQuery().call());
-        new GoToCall(50, 20).call();
-        print("xpos is: " + new XPositionQuery().call());
-        print("ypos is: " + new YPositionQuery().call());
-
-        print("turtle is showing: " + new ShowingQuery().call());
-        new HideTurtleCall().call();
-        print("turtle is showing: " + new ShowingQuery().call());
-        new ShowTurtleCall().call();
-        print("turtle is showing: " + new ShowingQuery().call());
+        testPenDownQuery();
+        testHeadingQuery();
+        testXYQueries();
+        testShowingQuery();
     }
 
     private class TowardsHandler implements EventHandler<ActionEvent> {
@@ -69,7 +53,15 @@ public class TurtleTester {
 
         @Override
         public void handle(ActionEvent e) {
+            double[] xPositions = {0, 0, 50, 50, -50};
+            double[] yPositions = {0, 50, 0, 50, -50};
 
+            if (index < xPositions.length) {
+                var x = xPositions[index];
+                var y = yPositions[index];
+                print("Rotating towards (" + x + ", " + y + "): " + new TowardsCall(x, y).call());
+                index++;
+            }
         }
     }
 
@@ -138,6 +130,37 @@ public class TurtleTester {
                 index++;
             }
         }
+    }
+
+
+    private void testShowingQuery() {
+        print("turtle is showing: " + new ShowingQuery().call());
+        new HideTurtleCall().call();
+        print("turtle is showing: " + new ShowingQuery().call());
+        new ShowTurtleCall().call();
+        print("turtle is showing: " + new ShowingQuery().call());
+    }
+
+    private void testXYQueries() {
+        print("xpos is: " + new XPositionQuery().call());
+        print("ypos is: " + new YPositionQuery().call());
+        new GoToCall(50, 20).call();
+        print("xpos is: " + new XPositionQuery().call());
+        print("ypos is: " + new YPositionQuery().call());
+    }
+
+    private void testHeadingQuery() {
+        print("heading: " + new HeadingQuery().call());
+        new SetHeadingCall(50).call();
+        print("heading: " + new HeadingQuery().call());
+    }
+
+    private void testPenDownQuery() {
+        print("pen is down: " + new PenDownQuery().call());
+        new PenUpCall().call();
+        print("pen is down: " + new PenDownQuery().call());
+        new PenDownCall().call();
+        print("pen is down: " + new PenDownQuery().call());
     }
 
 

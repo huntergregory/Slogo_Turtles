@@ -54,7 +54,7 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        new TurtleTester().testQueries(); //TODO: Remove when done testing
+        new TurtleTester().testTowards(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (int width, int height, Paint background) {
