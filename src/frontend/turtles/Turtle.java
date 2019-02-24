@@ -16,10 +16,10 @@ public abstract class Turtle {
 
     private ObservableList myModifiableList;
     private Pen myPen;
-    private double myMinX;
-    private double myMaxX;
-    private double myMinY;
-    private double myMaxY;
+    private double myDisplayWidth;
+    private double myDisplayHeight;
+    private double myTopLeftX;
+    private double myTopLeftY;
     private double myX;
     private double myY;
     private double myHeading;
@@ -27,19 +27,23 @@ public abstract class Turtle {
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
-     * @param screenWidth
-     * @param screenHeight
+     * @param displayWidth
+     * @param displayHeight
      * @param topLeftX
      * @param topLeftY
      * @param list
      */
-    public Turtle(double screenWidth, double screenHeight, double topLeftX, double topLeftY, ObservableList list) {
-        setBoundaries(screenWidth, screenHeight, topLeftX, topLeftY);
+    public Turtle(double displayWidth, double displayHeight, double topLeftX, double topLeftY, ObservableList list) {
+        myDisplayWidth = displayWidth;
+        myDisplayHeight = displayHeight;
+        myTopLeftX = topLeftX;  //TODO: ObservableList given is for the TurtleDisplay, minX and y are unnecessary
+        myTopLeftY = topLeftY;
         myModifiableList = list;
         initializeNode();
         myModifiableList.add(myNode);
         myPen = new Pen(myModifiableList);
-        myX = 0; myY = 0; myHeading = 0;
+        setPosition(0, 0);
+        setHeading(0);
         myIsShowing = true;
     }
 
@@ -63,13 +67,15 @@ public abstract class Turtle {
     }
 
 
-    public void setPosition(double x, double y) {
-        double newX = getAdjustedValue(x, myMinX, myMaxX);
-        double newY = getAdjustedValue(y, myMinY, myMaxY);
-        setNodePosition(newX, newY);
-        myPen.draw(myX, myY, newX, newY);
-        myX = newX;
-        myY = newY;
+    public void setPosition(double newX, double newY) {
+        double oldDisplayX = getOriginAdjustedX();
+        double oldDisplayY = getOriginAdjustedY();
+        setX(newX);
+        setY(newY);
+        double newDisplayX = getOriginAdjustedX();
+        double newDisplayY = getOriginAdjustedY();
+        setNodePosition(newDisplayX, newDisplayY);
+        myPen.draw(oldDisplayX, oldDisplayY, newDisplayX, newDisplayY);
     }
 
 
@@ -121,15 +127,26 @@ public abstract class Turtle {
 
 
 
-    private void setBoundaries(double screenWidth, double screenHeight, double topLeftX, double topLeftY) {
-        myMinX = topLeftX;
-        myMaxX = topLeftX + screenWidth;
-        myMinY = topLeftY;
-        myMaxY = topLeftY + screenHeight;
+    private double getOriginAdjustedX() {
+        double centerX = myDisplayWidth / 2 - Turtle.WIDTH / 2;
+        return myX + centerX;
+
     }
 
+    private double getOriginAdjustedY() {
+        double centerY = myDisplayHeight / 2 - Turtle.HEIGHT / 2;
+        return myY + centerY;
+    }
 
-    private double getAdjustedValue(double num, double min, double max) {
+    private void setX(double x) {
+        myX = getInBoundsNum(x, myTopLeftX, myDisplayWidth - Turtle.WIDTH);
+    }
+
+    private void setY(double y) {
+        myY = getInBoundsNum(y, myTopLeftY, myDisplayHeight - Turtle.HEIGHT);
+    }
+
+    private double getInBoundsNum(double num, double min, double max) {
         if (num < min)
             return min;
         if (num > max)

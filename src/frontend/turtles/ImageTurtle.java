@@ -27,5 +27,6 @@ public class ImageTurtle extends Turtle {
         var view = (ImageView) myNode;
         view.setX(x);
         view.setY(y);
+        System.out.println(myNode == view);
     }
 }
