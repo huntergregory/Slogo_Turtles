@@ -1,12 +1,11 @@
 package parser.commands.control_commands;
 
 import parser.Command;
-
 import java.util.List;
 
 public class ListCommand extends Command {
 
-    protected List<Command> commands;
+    //protected List<Command> commands;
 
     public ListCommand(List<Command> params) {
         this.commands = params;

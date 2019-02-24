@@ -121,7 +121,7 @@ public class CommandParser {
     }
 
     public static void main(String[] args) throws ParserException {
-        CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]");
-        //CommandParser.getInstance().parseAndRun("set :bule 7 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
+        //CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]");
+        CommandParser.getInstance().parseAndRun("set :bule 7 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
     }
 }

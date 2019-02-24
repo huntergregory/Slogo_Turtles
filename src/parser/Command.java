@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class Command {
 
     protected VariablesGroup variables;
-    private List<Command> commands;
+    protected List<Command> commands;
 
     public Command() {}
 
@@ -16,7 +16,7 @@ public abstract class Command {
     // Execute constructed command
     public final double execute() {
         if (commands != null)
-            for (Command command: commands)
+            for (Command command : commands)
                 command.setVariables(variables);
         return runCommand();
     }

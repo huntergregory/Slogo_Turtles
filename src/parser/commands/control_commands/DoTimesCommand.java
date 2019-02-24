@@ -19,14 +19,14 @@ public class DoTimesCommand extends Command {
     @Override
     public double runCommand() {
 
-        int limit = (int)varParams.getParam(1).execute();
-        String countVarName = ((VariableCommand)varParams.getParam(0)).getVariableName();
+        int limit = (int) varParams.getParam(1).execute();
+        String countVarName = ((VariableCommand) varParams.getParam(0)).getVariableName();
 
         for (int i = 1; i < limit; i++) {
 
             VariablesGroup vars = new VariablesGroup();
             vars.setVariable(countVarName, i);
-            body.setVariables(vars);
+            body.setVariables(vars); //propagates var changes through body commands
             body.execute();
         }
 
