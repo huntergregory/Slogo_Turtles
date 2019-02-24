@@ -13,11 +13,11 @@ public enum LineStroke {
         myStrokeArray = array;
     }
 
-    protected String getText() {
+    public String getText() {
         return myName;
     }
 
-    protected double[] getStrokeArray() {
+    public double[] getStrokeArray() {
         return myStrokeArray;
     }
 }
