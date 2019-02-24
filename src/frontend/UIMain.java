@@ -87,7 +87,7 @@ public class UIMain extends Application {
             System.out.println();
             System.out.println("index is: " + testIndex);
             double amt = amounts[testIndex];
-            System.out.println("Setting new heading: " + new SetHeadingCall(headings[testIndex]).call());
+            System.out.println("Setting new heading. Degrees moved is: " + new SetHeadingCall(headings[testIndex]).call());
             if (testIndex == 2) {
                 System.out.println("Going backwards by " + amt + ": " + new BackCall(amt).call());
             }
@@ -111,7 +111,7 @@ public class UIMain extends Application {
             System.out.println();
             System.out.println("index is: " + testIndex);
             System.out.println("going to position (" + xPositions[testIndex] + ", " + yPositions[testIndex] + "): " + new GoToCall(xPositions[testIndex], yPositions[testIndex]).call());
-            System.out.println("Setting new heading: " + new SetHeadingCall(headings[testIndex]).call());
+            System.out.println("Setting new heading. Degrees moved is: " + new SetHeadingCall(headings[testIndex]).call());
             testIndex ++;
         }
     }

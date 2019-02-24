@@ -24,8 +24,8 @@ public class TowardsCall extends FrontendAPICall {
 
         //TODO: Remove if modulo is undesired
         double difference = newHeading - oldHeading;
-        double modDifference = difference % NUM_DEGREES;
-        return (difference >= 0) ? modDifference : -modDifference;
+        double modDifference = difference % NUM_DEGREES; // mod always returns a positive number
+        return modDifference;
     }
 
     private double getNewHeading(double deltaX, double deltaY) {
