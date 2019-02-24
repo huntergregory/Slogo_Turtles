@@ -156,11 +156,11 @@ public abstract class Turtle {
     }
 
     private void setX(double x) {
-        myX = getInBoundsNum(x, -getOriginX(), getOriginX() - Turtle.WIDTH);
+        myX = getInBoundsNum(x, -getOriginX() + Turtle.WIDTH/2, getOriginX() - Turtle.WIDTH/2);
     }
 
     private void setY(double y) {
-        myY = getInBoundsNum(y, -getOriginY(), getOriginY() - Turtle.HEIGHT);
+        myY = getInBoundsNum(y, -getOriginY() + Turtle.HEIGHT/2, getOriginY() - Turtle.HEIGHT/2);
     }
 
     private double getInBoundsNum(double num, double min, double max) {

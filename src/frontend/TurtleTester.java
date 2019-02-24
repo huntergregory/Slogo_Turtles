@@ -112,8 +112,8 @@ public class TurtleTester {
 
         @Override
         public void handle(ActionEvent e) {
-            double[] xPositions = {0, 100, -100, -100, 20};
-            double[] yPositions = {0, 100, 100, -100, 20};
+            double[] xPositions = {200, -240, -240, 50, 50, -50};
+            double[] yPositions = {200, 50, -240, 0, 50, -50};
 
             if (index >= xPositions.length) {
                 print("Clearing screen: " + new ClearScreenCall().call());
