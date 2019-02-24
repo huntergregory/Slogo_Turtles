@@ -1,6 +1,7 @@
 package frontend;
 
 import control.backendapi.ParseCall;
+import frontend.turtles.ImageTurtle;
 import frontend.turtles.Turtle;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -55,7 +56,7 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new Turtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
+        var turtle = new ImageTurtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
         myTurtles.add(turtle);
     }
 
