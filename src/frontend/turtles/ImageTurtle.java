@@ -19,6 +19,7 @@ public class ImageTurtle extends Turtle {
         view.setPreserveRatio(false);
         view.setFitWidth(Turtle.WIDTH);
         view.setFitHeight(Turtle.HEIGHT);
+        view.getStyleClass().add("turtle");
         myNode = view;
     }
 

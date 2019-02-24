@@ -23,6 +23,7 @@ public class Pen {
         if (!myIsDown)
             return;
         Line line = new Line(oldX, oldY, newX, newY);
+        line.getStyleClass().add("line");
         addStroke(line);
         myLines.add(line);
         myModifiableList.add(line);
