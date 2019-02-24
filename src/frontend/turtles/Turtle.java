@@ -19,8 +19,6 @@ public abstract class Turtle {
     private Pen myPen;
     private double myDisplayWidth;
     private double myDisplayHeight;
-    private double myTopLeftX;
-    private double myTopLeftY;
     private double myX;
     private double myY;
     private double myHeading;
@@ -30,15 +28,11 @@ public abstract class Turtle {
      * Assumes all double inputs are positive, and list input is nonnull.
      * @param displayWidth
      * @param displayHeight
-     * @param topLeftX
-     * @param topLeftY
      * @param list
      */
-    public Turtle(double displayWidth, double displayHeight, double topLeftX, double topLeftY, ObservableList list) {
+    public Turtle(double displayWidth, double displayHeight, ObservableList list) {
         myDisplayWidth = displayWidth;
         myDisplayHeight = displayHeight;
-        myTopLeftX = topLeftX;  //TODO: If ObservableList given is for the TurtleDisplay, these are unnecessary
-        myTopLeftY = topLeftY;
 
         myModifiableList = list;
         initializeNode();
