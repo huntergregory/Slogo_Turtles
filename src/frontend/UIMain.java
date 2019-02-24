@@ -77,7 +77,7 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(400, 400, 0, 0, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
+        var turtle = new ImageTurtle(400, 400, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
         myTurtles.add(turtle);
     }
 
