@@ -43,7 +43,7 @@ public abstract class Turtle {
         myModifiableList.add(myNode);
         myPen = new Pen(myModifiableList);
         setPosition(0, 0);
-        setHeading(90);
+        setHeading(0);
         myIsShowing = true;
     }
 
