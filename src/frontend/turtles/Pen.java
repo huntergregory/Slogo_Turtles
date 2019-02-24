@@ -23,6 +23,7 @@ public class Pen {
         Line line = new Line(oldX, oldY, newX, newY);
         addStroke(line);
         myLines.add(line);
+        myModifiableList.add(line);
     }
 
     private void addStroke(Line line) {

@@ -43,6 +43,7 @@ public abstract class Turtle {
         myModifiableList.add(myNode);
         myPen = new Pen(myModifiableList);
         setPosition(0, 0);
+        moveAboveLines();
         setHeading(0);
         myIsShowing = true;
     }
@@ -75,7 +76,18 @@ public abstract class Turtle {
         double newDisplayX = getOriginAdjustedX();
         double newDisplayY = getOriginAdjustedY();
         setNodePosition(newDisplayX, newDisplayY);
-        myPen.draw(oldDisplayX, oldDisplayY, newDisplayX, newDisplayY);
+        myPen.draw(oldDisplayX + Turtle.WIDTH / 2,
+                oldDisplayY + Turtle.HEIGHT / 2,
+                newDisplayX + Turtle.WIDTH / 2,
+                newDisplayY + Turtle.HEIGHT / 2);
+    }
+
+    /**
+     * Call after setPosition if you want Turtles to be drawn above lines drawn.
+     */
+    public void moveAboveLines() {
+        myModifiableList.remove(myNode);
+        myModifiableList.add(myNode);
     }
 
 
