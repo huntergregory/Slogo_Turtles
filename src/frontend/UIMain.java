@@ -2,6 +2,7 @@ package frontend;
 
 import control.backendapi.ParseCall;
 import frontend.turtles.ImageTurtle;
+import frontend.turtles.TriangleTurtle;
 import frontend.turtles.Turtle;
 
 import javafx.animation.Animation;
@@ -77,7 +78,7 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(400, 400, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
+        var turtle = new TriangleTurtle(400, 400, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
         myTurtles.add(turtle);
     }
 

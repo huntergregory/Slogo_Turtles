@@ -74,10 +74,10 @@ public abstract class Turtle {
         double newDisplayX = getOriginAdjustedTurtleX();
         double newDisplayY = getOriginAdjustedTurtleY();
         myNode.relocate(newDisplayX, newDisplayY);
-        myPen.draw(oldDisplayX + Turtle.WIDTH / 2,
-                oldDisplayY + Turtle.HEIGHT / 2,
-                newDisplayX + Turtle.WIDTH / 2,
-                newDisplayY + Turtle.HEIGHT / 2);
+        myPen.draw(oldDisplayX + Turtle.WIDTH / 2.0,
+                oldDisplayY + Turtle.HEIGHT / 2.0,
+                newDisplayX + Turtle.WIDTH / 2.0,
+                newDisplayY + Turtle.HEIGHT / 2.0);
     }
 
     /**
@@ -137,30 +137,30 @@ public abstract class Turtle {
 
 
     private double getOriginX() {
-        return myDisplayWidth / 2;
+        return myDisplayWidth / 2.0;
     }
 
     private double getOriginY() {
-        return myDisplayHeight / 2;
+        return myDisplayHeight / 2.0;
     }
 
     private double getOriginAdjustedTurtleX() {
-        double centerX = getOriginX() - Turtle.WIDTH / 2;
+        double centerX = getOriginX() - Turtle.WIDTH / 2.0;
         return myX + centerX;
 
     }
 
     private double getOriginAdjustedTurtleY() {
-        double centerY = getOriginY()- Turtle.HEIGHT / 2;
+        double centerY = getOriginY()- Turtle.HEIGHT / 2.0;
         return myY + centerY;
     }
 
     private void setX(double x) {
-        myX = getInBoundsNum(x, -getOriginX() + Turtle.WIDTH/2, getOriginX() - Turtle.WIDTH/2);
+        myX = getInBoundsNum(x, -getOriginX() + Turtle.WIDTH/2.0, getOriginX() - Turtle.WIDTH/2.0);
     }
 
     private void setY(double y) {
-        myY = getInBoundsNum(y, -getOriginY() + Turtle.HEIGHT/2, getOriginY() - Turtle.HEIGHT/2);
+        myY = getInBoundsNum(y, -getOriginY() + Turtle.HEIGHT/2.0, getOriginY() - Turtle.HEIGHT/2.0);
     }
 
     private double getInBoundsNum(double num, double min, double max) {
