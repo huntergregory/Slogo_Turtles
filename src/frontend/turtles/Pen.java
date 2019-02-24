@@ -20,6 +20,8 @@ public class Pen {
     }
 
     protected void draw(double oldX, double oldY, double newX, double newY) {
+        if (!myIsDown)
+            return;
         Line line = new Line(oldX, oldY, newX, newY);
         addStroke(line);
         myLines.add(line);

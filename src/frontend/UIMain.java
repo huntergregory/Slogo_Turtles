@@ -54,7 +54,7 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        new TurtleTester().testForwardBackward(); //TODO: Remove when done testing
+        new TurtleTester().testQueries(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (int width, int height, Paint background) {
@@ -69,10 +69,6 @@ public class UIMain extends Application {
         myTurtles = new ArrayList<>();
         var turtle = new ImageTurtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
         myTurtles.add(turtle);
-
-        // TODO: REMOVE AFTER TESTING
-        var originTurtle = new ImageTurtle(SIZE, SIZE, 0, 0, myRoot.getChildren());
-        myTurtles.add(originTurtle);
     }
 
     private void handleKeyInput (KeyCode code) {
