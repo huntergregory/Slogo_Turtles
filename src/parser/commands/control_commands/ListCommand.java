@@ -6,7 +6,7 @@ import java.util.List;
 public class ListCommand extends Command {
 
     public ListCommand(List<Command> params) {
-        this.mySubCommands = params;
+        super(params);
     }
 
     @Override

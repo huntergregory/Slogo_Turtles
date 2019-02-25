@@ -12,7 +12,7 @@ public class MakeVariableCommand extends Command {
 
     public MakeVariableCommand(List<Command> params) {
         super(params);
-        myName = ((VariableCommand)params.get(0)).getVariableName();
+        myName = ((VariableCommand) params.get(0)).getVariableName();
         myExpression = params.get(1);
     }
 

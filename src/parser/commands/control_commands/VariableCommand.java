@@ -4,17 +4,15 @@ import parser.Command;
 
 public class VariableCommand extends Command {
 
-    String myName;
+    private String myName;
 
     public VariableCommand(String name) {
         this.myName = name;
     }
 
-
     String getVariableName() {
         return myName;
     }
-
 
     @Override
     public double runCommand() {

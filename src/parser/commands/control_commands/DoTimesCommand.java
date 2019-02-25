@@ -1,7 +1,6 @@
 package parser.commands.control_commands;
 
 import parser.Command;
-import parser.VariablesGroup;
 import java.util.List;
 
 public class DoTimesCommand extends Command {
@@ -11,8 +10,8 @@ public class DoTimesCommand extends Command {
 
     public DoTimesCommand(List<Command> params) {
         super(params);
-        myParams = (ListCommand)params.get(0);
-        myBody = params.get(1);
+        myParams = (ListCommand) params.get(0); // dotimes >>>[]<<< []
+        myBody = params.get(1); // dotimes [] >>>[]<<<
     }
 
     @Override
@@ -21,14 +20,12 @@ public class DoTimesCommand extends Command {
         String countVarName = ((VariableCommand) myParams.getParam(0)).getVariableName();
 
         for (int i = 1; i < limit; i++) { //TODO remove duplication
-            VariablesGroup vars = new VariablesGroup();
-            vars.setVariable(countVarName, i);
-            myBody.setVariables(vars); //propagates var changes through myBody mySubCommands
+            myVariables.setVariable(countVarName, i);
+            myBody.addVariables(myVariables); //propagates var changes through body commands
             myBody.execute();
         }
-        VariablesGroup vars = new VariablesGroup();
-        vars.setVariable(countVarName, limit);
-        myBody.setVariables(vars);
+        myVariables.setVariable(countVarName, limit);
+        myBody.addVariables(myVariables);
         return myBody.execute();
     }
 }

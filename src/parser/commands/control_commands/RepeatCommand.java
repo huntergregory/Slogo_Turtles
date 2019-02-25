@@ -2,7 +2,6 @@ package parser.commands.control_commands;
 
 import parser.Command;
 import parser.EvalCommand;
-import parser.VariablesGroup;
 import java.util.List;
 
 public class RepeatCommand extends EvalCommand {
@@ -23,14 +22,12 @@ public class RepeatCommand extends EvalCommand {
         String countVarName = "repcount";
 
         for (int i = 1; i < limit; i++) { //TODO remove duplication
-            VariablesGroup vars = new VariablesGroup();
-            vars.setVariable(countVarName, i);
-            myBody.setVariables(vars);
+            myVariables.setVariable(countVarName, i);
+            myBody.addVariables(myVariables);
             myBody.execute();
         }
-        VariablesGroup vars = new VariablesGroup();
-        vars.setVariable(countVarName, limit);
-        myBody.setVariables(vars);
+        myVariables.setVariable(countVarName, limit);
+        myBody.addVariables(myVariables);
         return myBody.execute(); // Final iteration
     }
 }

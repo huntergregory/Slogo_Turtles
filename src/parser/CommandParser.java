@@ -33,7 +33,7 @@ public class CommandParser {
         try {
             parseProgram(program);
         }
-        catch (ParserException e) { // Only store valid mySubCommands in history (ones that don't produce parsing exceptions)
+        catch (ParserException e) { // Only store valid commands in history (ones that don't produce parsing exceptions)
             myCommandHistory.remove(myCommandHistory.size() - 1);
             throw e;
         }
@@ -123,9 +123,9 @@ public class CommandParser {
     public static void main(String[] args) throws ParserException {
         //CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]");
         //CommandParser.getInstance().parseAndRun("set :bule 1 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
-        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ fd :a dotimes [ :b 4 ] [ fd :a fd :b ] ]");
+        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ]");
         /*
-        Output should be: 1 1 1 2 1 3 1 4 2 2 2 2 2 3 2 4
+        Output should be: 1 1 1 2 1 3 1 4 2 1 2 2 2 3 2 4
         PROBLEM: the original dotimes variablesgroup that conatins :a gets overwritten completely in nested loop instead of integrated
 
         Execution variable passing flow needs to be:

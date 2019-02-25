@@ -5,21 +5,25 @@ import java.util.Map;
 
 public class VariablesGroup {
 
-    private Map<String, Double> variables;
+    private Map<String, Double> myVariables;
 
     public VariablesGroup() {
-        variables = new HashMap<>();
+        myVariables = new HashMap<>();
     }
 
     double getVariable(String variable) {
-        return variables.getOrDefault(variable, 0.0);
+        return myVariables.getOrDefault(variable, 0.0);
     }
 
     public void setVariable(String variable, double value) {
-        variables.put(variable, value);
+        myVariables.put(variable, value);
+    }
+
+    void add(VariablesGroup newVars) {
+        myVariables.putAll(newVars.myVariables);
     }
 
     boolean hasVariable(String variable) {
-        return variables.containsKey(variable);
+        return myVariables.containsKey(variable);
     }
 }
