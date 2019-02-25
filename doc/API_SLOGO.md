@@ -3,25 +3,25 @@ SLogo API Plan
 ### OVERALL PICTURE
 - Front end
      - update method to get data from backend each step
-     - terminal for commands
+     - terminal for parser_private.commands
      - window displaying turtle (same window as terminal)
-     - send input string to parser
+     - send input string to parser_public
      - display error boxes when prompted
      - option to display command history in separate window
      - get command history from backend to display if needed
-     - make new command (that is a combination of established commands)
+     - make new command (that is a combination of established parser_private.commands)
 
 
 - Parser/Backend
      - takes in strings, does internal stuff
-     - throw errors for invalid commands, etc.
+     - throw errors for invalid parser_private.commands, etc.
      - keeps track of old state
      - keep command history as Strings
      - current state of turtle (direction, position, etc.)
-     - keep list of commands (commands should be abstract)
+     - keep list of parser_private.commands (parser_private.commands should be abstract)
      - command properties for each language 
      - extension
-         - add new commands
+         - add new parser_private.commands
 
 - Turtle
     - pic
@@ -38,9 +38,9 @@ SLogo API Plan
     - frequency of marking
     - mark will be dots instead of lines
 
-- Command class
+- parser_private.Command class
     - action
-    - syntax/error checking, reports if valid to parser, which reports to GUI
+    - syntax/error checking, reports if valid to parser_public, which reports to GUI
     - ^^list of parameters
 
 ### Architecture Design Questions:
@@ -50,10 +50,10 @@ SLogo API Plan
     - The result of parsing is a valid command or error. The ui receives the it.
 - When are errors detected and how are they reported?
     - Errors are detected during the parsing of the string. They are reported to the UI. Other errors can come from when GUI attempts to apply command that is syntactically valid
-- What do commands know, when do they know it, and how do they get it?
-    - Commands know their syntax, they know the GUI API to call functions once validity is established. They inherit a reference to the API through the Command super class.
+- What do parser_private.commands know, when do they know it, and how do they get it?
+    - Commands know their syntax, they know the GUI API to call functions once validity is established. They inherit a reference to the API through the parser_private.Command super class.
 - How is the GUI updated after a command has completed execution?
-    - Command will call a method in GUI to execute, clear text prompt
+    - parser_private.Command will call a method in GUI to execute, clear text prompt
 
 ### API Design:
 
@@ -65,7 +65,7 @@ FRONT END
 * Internal
     - Update state of display
     - Take in input
-    - Show past commands
+    - Show past parser_private.commands
 
 BACK END
 * External

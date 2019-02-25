@@ -4,5 +4,5 @@ module slogo.parser {
     requires javafx.graphics;
     requires javafx.controls;
 
-    exports parser;
+    exports parser_public;
 }

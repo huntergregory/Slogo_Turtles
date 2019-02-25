@@ -2,8 +2,8 @@
 
 ## Part 1
 
-1. We have a abstract Command class that is subclasses by each specific command. This allows flexibility
-by new classes subclassing Command.
+1. We have a abstract parser_private.Command class that is subclasses by each specific command. This allows flexibility
+by new classes subclassing parser_private.Command.
 
 2. Our API encapsulates design decisions by allowing the frontend and backend to call each others' public
 methods. They don't know how each others' methods are implemented, but it does not matter.
