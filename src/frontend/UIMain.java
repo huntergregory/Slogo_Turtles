@@ -5,20 +5,15 @@ import frontend.turtles.ImageTurtle;
 import frontend.turtles.TriangleTurtle;
 import frontend.turtles.Turtle;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import parser.ParserException;
 
 import java.util.ArrayList;
@@ -33,15 +28,17 @@ public class UIMain extends Application {
     private static UIMain instance;
 
     public static final String TITLE = "SLogo";
-    public static final int SIZE = 600;
-    public static final Paint BACKGROUND = Color.WHITE;
-
-    private BorderPane myRoot;
-    private Pane myTurtlePaneRoot;
-    private Scene myScene;
     private ArrayList<Turtle> myTurtles;
 
-    private UISidePanel myUISidePanel;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 600;
+    public static final Paint BACKGROUND = Color.WHITE;
+
+    private Group root;
+    private BorderPane myPane;
+    private Pane myTurtlePane;
+    private Scene myScene;
+    private ControlPanel myControlPanel;
 
     public UIMain() {
 
@@ -54,7 +51,7 @@ public class UIMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         instance = this;
-        myScene = setupGame(SIZE, SIZE, BACKGROUND);
+        myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
         initializeTurtles();
         stage.setScene(myScene);
         stage.setTitle(TITLE);
@@ -63,14 +60,14 @@ public class UIMain extends Application {
     }
 
     private Scene setupGame (int width, int height, Paint background) {
-        myRoot = new BorderPane();
-        myTurtlePaneRoot = new Pane();
-        myTurtlePaneRoot.getStyleClass().add("pane");
-        myTurtlePaneRoot.setMaxSize(400, 400); //TODO: FIX magic numbers
-        //TODO: add terminal and stuff on right, set sizes of terminal and stuff and min size for turtlePane (center)
-        myRoot.setCenter(myTurtlePaneRoot);
-        var scene = new Scene(myRoot, width, height, background);
+        myPane = new BorderPane();
+        myTurtlePane = new Pane();
+        myTurtlePane.getStyleClass().add("pane");
+        var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
+        myControlPanel = new ControlPanel(WIDTH, HEIGHT);
+        myPane.setLeft(myControlPanel.paneBox);
+        myPane.setCenter(myTurtlePane);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
     }
@@ -78,7 +75,7 @@ public class UIMain extends Application {
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(400, 400, myTurtlePaneRoot.getChildren()); //TODO: FIX magic numbers
+        var turtle = new ImageTurtle(400, 400, myTurtlePane.getChildren()); //TODO: FIX magic numbers
         myTurtles.add(turtle);
     }
 
