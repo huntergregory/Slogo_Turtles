@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.io.IOException;
+
 public class ControlPanel {
 
         private Font font = new Font("verdana",12);
@@ -116,7 +118,12 @@ public class ControlPanel {
                 myPenColor = myPenColorChooser.getColor();
             });
             helpButton.setOnAction((event) -> {
-
+                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+                try {
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
 
