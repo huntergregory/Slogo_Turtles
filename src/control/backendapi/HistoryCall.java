@@ -1,15 +1,14 @@
 package control.backendapi;
 
 import parser.CommandParser;
-import parser.ParserException;
+import java.util.List;
 
 public class HistoryCall extends BackendAPICall {
 
     public HistoryCall(String program) {}
 
     @Override
-    public double call() throws ParserException {
-        CommandParser.getInstance().getCommandHistory();
-        return 0;
+    public List<String> call() {
+        return CommandParser.getInstance().getCommandHistory();
     }
 }

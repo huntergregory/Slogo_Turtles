@@ -12,8 +12,8 @@ public class LanguageCall extends BackendAPICall {
     }
 
     @Override
-    public double call() throws ParserException {
+    public Double call() throws ParserException {
         InputTranslator.getInstance().changeLanguage(newLanguage);
-        return 0;
+        return 0.0;
     }
 }

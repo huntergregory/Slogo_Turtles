@@ -4,6 +4,5 @@ import parser.ParserException;
 
 public abstract class BackendAPICall {
 
-    public abstract double call() throws ParserException;
-
+    public abstract Object call() throws ParserException;
 }
