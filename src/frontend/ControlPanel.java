@@ -55,39 +55,71 @@ public class ControlPanel {
             paneBox = new VBox();
             VBox controlBox = new VBox(30);
 
+            addCommandInput(controlBox);
+            addTurtleImageChooser(controlBox);
+            addLanguageChooser(controlBox);
+            addUserCommandsDropBox(controlBox);
+            addVariablesDropBox(controlBox);
+            addBackGroundColorChooser(controlBox);
+            addPenColorChooser(controlBox);
+            addHelpButton(controlBox);
+
+            setupPaneBox(WIDTH, HEIGHT, controlBox);
+
+            handleButtonInput();
+        }
+
+        private void addCommandInput(VBox controlBox) {
             myCommandInput = new Selector(controlBox, "PARSE", "Enter Command", pastCommandsList);
             parseButton = myCommandInput.getButton();
 
+        }
+
+        private void addTurtleImageChooser(VBox controlBox) {
             myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", turtleList);
             turtleImageButton = myTurtleImageChooser.getButton();
+        }
 
+        private void addLanguageChooser(VBox controlBox) {
             myLanguageChooser = new Selector(controlBox, "APPLY", "Choose Language", languageList);
             languageButton = myLanguageChooser.getButton();
+        }
 
+        private void addUserCommandsDropBox(VBox controlBox) {
             userCommandsDropBox = new ComboBox<String>();
             userCommandsDropBox.setPromptText("VIew User Commands");
             userCommandsDropBox.setEditable(true);
             userCommandsDropBox.setVisibleRowCount(3);
             userCommandsDropBox.setItems(userCommandsList);
             controlBox.getChildren().add(userCommandsDropBox);
+        }
 
+        private void addVariablesDropBox(VBox controlBox) {
             variablesDropBox = new ComboBox<String>();
             variablesDropBox.setPromptText("VIew Variables");
             variablesDropBox.setEditable(true);
             variablesDropBox.setVisibleRowCount(3);
             variablesDropBox.setItems(variablesList);
             controlBox.getChildren().add(variablesDropBox);
+        }
 
+        private void addBackGroundColorChooser(VBox controlBox) {
             myBackgroundColorChooser =  new ColorSelector(controlBox, "Background");
             backgroundButton = myBackgroundColorChooser.getButton();
+        }
 
+        private void addPenColorChooser(VBox controlBox) {
             myPenColorChooser =  new ColorSelector(controlBox, "Pen Color");
             penButton = myPenColorChooser.getButton();
+        }
 
+        private void addHelpButton(VBox controlBox) {
             helpButton = new Button("HELP");
             helpButton.setFont(font);
             controlBox.getChildren().add(helpButton);
+        }
 
+        private void setupPaneBox(int WIDTH, int HEIGHT, VBox controlBox) {
             paneBox.setPadding(new Insets(30,30,30,30));
             paneBox.getChildren().add(controlBox);
             paneBox.setStyle("-fx-background-color: #027a50;");
@@ -95,9 +127,6 @@ public class ControlPanel {
             paneBox.setLayoutY(0);
             paneBox.setPrefWidth(WIDTH / 3);
             paneBox.setPrefHeight(HEIGHT);
-
-            handleButtonInput();
-
         }
 
         private void handleButtonInput() {
