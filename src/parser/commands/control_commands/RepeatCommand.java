@@ -2,27 +2,35 @@ package parser.commands.control_commands;
 
 import parser.Command;
 import parser.EvalCommand;
-
+import parser.VariablesGroup;
 import java.util.List;
 
 public class RepeatCommand extends EvalCommand {
 
     private Command myTotalIter;
-    private Command myList;
-    private Command myCurrentIter; // :repcount, TODO make an iterable command? i.e. each execution it iterates itself?
+    private Command myBody;
+    private Command myCurrentIter; //TODO  :repcount should be global???????? Overwritten in relevant parts of code??
 
     public RepeatCommand(List<Command> params) {
         super(params);
         myTotalIter = params.get(0);
-        myList = params.get(1);
-        myCurrentIter = null; // TODO call to parser to store, update :repcount as user defined variable but make sure to save/load previous value
+        myBody = params.get(1);
     }
 
     @Override
     public double runCommand() {
-        for (int i = 0; i < myTotalIter.execute() - 1; i++) {
-            myList.execute();
+        int limit = (int) myTotalIter.execute();
+        String countVarName = "repcount";
+
+        for (int i = 1; i < limit; i++) { //TODO remove duplication
+            VariablesGroup vars = new VariablesGroup();
+            vars.setVariable(countVarName, i);
+            myBody.setVariables(vars);
+            myBody.execute();
         }
-        return myList.execute(); // Final iteration
+        VariablesGroup vars = new VariablesGroup();
+        vars.setVariable(countVarName, limit);
+        myBody.setVariables(vars);
+        return myBody.execute(); // Final iteration
     }
 }

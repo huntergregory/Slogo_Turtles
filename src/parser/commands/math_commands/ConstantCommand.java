@@ -15,5 +15,4 @@ public class ConstantCommand extends EvalCommand {
     public double runCommand() {
         return this.value;
     }
-
 }

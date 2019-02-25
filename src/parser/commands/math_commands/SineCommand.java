@@ -1,7 +1,6 @@
 package parser.commands.math_commands;
 
 import parser.Command;
-
 import java.util.List;
 
 public class SineCommand extends SingleParamMathCommand {

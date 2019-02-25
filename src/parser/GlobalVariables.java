@@ -3,11 +3,10 @@ package parser;
 public class GlobalVariables {
 
     private static GlobalVariables instance;
-
-    private VariablesGroup variables;
+    private VariablesGroup myVariables;
 
     private GlobalVariables() {
-        this.variables = new VariablesGroup();
+        this.myVariables = new VariablesGroup();
     }
 
     public static GlobalVariables getInstance() {
@@ -16,13 +15,11 @@ public class GlobalVariables {
         return instance;
     }
 
-
     public double getVariable(String name) {
-        return variables.getVariable(name);
+        return myVariables.getVariable(name);
     }
 
     public void setVariable(String name, double value) {
-        variables.setVariable(name, value);
+        myVariables.setVariable(name, value);
     }
-
 }

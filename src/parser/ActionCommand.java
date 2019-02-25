@@ -11,5 +11,4 @@ public abstract class ActionCommand extends Command {
     public ActionCommand(List<Command> params) {
         super(params);
     }
-
 }

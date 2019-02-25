@@ -48,7 +48,7 @@ class CommandFactory {
         Class clazz = null;
         try {
 
-            clazz = Class.forName("parser.commands." + commandClassNames.get(commandName));
+            clazz = Class.forName("parser.mySubCommands." + commandClassNames.get(commandName));
             Constructor constructor = clazz.getConstructor(List.class);
             return (Command)constructor.newInstance(args);
 

@@ -5,23 +5,18 @@ import java.util.List;
 
 public class ListCommand extends Command {
 
-    //protected List<Command> commands;
-
     public ListCommand(List<Command> params) {
-        this.commands = params;
+        this.mySubCommands = params;
     }
 
     @Override
     public double runCommand() {
-        for (int i = 0; i < commands.size() - 1; i++)
-            commands.get(i).execute();
-        return commands.get(commands.size() - 1).execute();
+        for (int i = 0; i < mySubCommands.size() - 1; i++)
+            mySubCommands.get(i).execute();
+        return mySubCommands.get(mySubCommands.size() - 1).execute();
     }
-
 
     Command getParam(int index) {
-        return commands.get(index);
+        return mySubCommands.get(index);
     }
-
-
 }

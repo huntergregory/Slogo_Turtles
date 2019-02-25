@@ -7,24 +7,24 @@ import java.util.List;
 
 public class MakeVariableCommand extends Command {
 
-    private String varName;
-    private Command expr;
+    private String myName;
+    private Command myExpression;
 
     public MakeVariableCommand(List<Command> params) {
         super(params);
-        varName = ((VariableCommand)params.get(0)).getVariableName();
-        expr = params.get(1);
+        myName = ((VariableCommand)params.get(0)).getVariableName();
+        myExpression = params.get(1);
     }
 
     @Override
     public double runCommand() {
 
-        if (variables != null)
-            variables.setVariable(varName, expr.execute());
+        if (myVariables != null)
+            myVariables.setVariable(myName, myExpression.execute());
         else
-            GlobalVariables.getInstance().setVariable(varName, expr.execute());
+            GlobalVariables.getInstance().setVariable(myName, myExpression.execute());
 
-        return getVariable(varName);
+        return getVariable(myName);
 
     }
 }

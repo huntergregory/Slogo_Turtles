@@ -11,7 +11,7 @@ public class VariablesGroup {
         variables = new HashMap<>();
     }
 
-    public double getVariable(String variable) {
+    double getVariable(String variable) {
         return variables.getOrDefault(variable, 0.0);
     }
 
@@ -19,7 +19,7 @@ public class VariablesGroup {
         variables.put(variable, value);
     }
 
-    public boolean hasVariable(String variable) {
+    boolean hasVariable(String variable) {
         return variables.containsKey(variable);
     }
 }

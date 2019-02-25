@@ -2,7 +2,6 @@ package parser.commands.boolean_commands;
 
 import parser.Command;
 import parser.EvalCommand;
-
 import java.util.List;
 
 public class NotCommand extends EvalCommand {

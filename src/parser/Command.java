@@ -4,32 +4,32 @@ import java.util.List;
 
 public abstract class Command {
 
-    protected VariablesGroup variables;
-    protected List<Command> commands;
+    protected VariablesGroup myVariables;
+    protected List<Command> mySubCommands;
 
     public Command() {}
 
     public Command(List<Command> params) {
-        this.commands = params;
+        this.mySubCommands = params;
     }
 
     // Execute constructed command
     public final double execute() {
-        if (commands != null)
-            for (Command command : commands)
-                command.setVariables(variables);
+        if (mySubCommands != null)
+            for (Command command : mySubCommands)
+                command.setVariables(myVariables);
         return runCommand();
     }
 
     public abstract double runCommand();
 
     public void setVariables(VariablesGroup variables) {
-        this.variables = variables;
+        this.myVariables = variables;
     }
 
     protected double getVariable(String variable) {
-        if (variables != null && variables.hasVariable(variable))
-            return variables.getVariable(variable);
+        if (myVariables != null && myVariables.hasVariable(variable))
+            return myVariables.getVariable(variable);
         return GlobalVariables.getInstance().getVariable(variable);
     }
 }
