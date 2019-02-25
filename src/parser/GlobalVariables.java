@@ -19,6 +19,10 @@ public class GlobalVariables {
         return myVariables.getVariable(name);
     }
 
+    public VariablesGroup getVariablesGroup() {
+        return myVariables;
+    }
+
     public void setVariable(String name, double value) {
         myVariables.setVariable(name, value);
     }

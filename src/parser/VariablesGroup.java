@@ -26,4 +26,8 @@ public class VariablesGroup {
     boolean hasVariable(String variable) {
         return myVariableMap.containsKey(variable);
     }
+
+    public Map<String, Double> getMap() {
+        return myVariableMap;
+    }
 }

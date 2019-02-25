@@ -7,7 +7,6 @@ public class RepeatCommand extends Command {
 
     private Command myTotalIter;
     private Command myBody;
-    private Command myCurrentIter;
 
     public RepeatCommand(List<Command> params) {
         super(params);
@@ -20,7 +19,7 @@ public class RepeatCommand extends Command {
         int limit = (int) myTotalIter.execute();
         String countVarName = "repcount";
 
-        for (int i = 1; i < limit; i++) { //TODO remove duplication
+        for (int i = 1; i < limit; i++) { //TODO remove duplication across dotimes, for, repeat
             myVariables.setVariable(countVarName, i);
             myBody.addVariables(myVariables);
             myBody.execute();
