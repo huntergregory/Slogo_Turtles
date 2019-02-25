@@ -2,10 +2,10 @@ package control.frontendapi.move_distance_calls;
 
 import control.frontendapi.FrontendAPICall;
 
-public class MoveDistanceCall extends FrontendAPICall  {
+public abstract class MoveDistanceCall extends FrontendAPICall  {
     private double myDistance;
 
-    MoveDistanceCall(double distance) {
+    protected MoveDistanceCall(double distance) {
         myDistance = distance;
     }
 
@@ -17,8 +17,8 @@ public class MoveDistanceCall extends FrontendAPICall  {
 
     private void move() {
         double heading = ui.getHeading();
-        int newY = (int)(Math.sin(heading) * myDistance);
-        int newX = (int)(Math.cos(heading) * myDistance);
-        ui.setXY(newX, newY);
+        double newY = Math.sin(heading) * myDistance;
+        double newX = Math.cos(heading) * myDistance;
+        ui.setPosition(newX, newY);
     }
 }
