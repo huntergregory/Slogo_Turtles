@@ -1,14 +1,13 @@
 package parser.commands.control_commands;
 
 import parser.Command;
-import parser.EvalCommand;
 import java.util.List;
 
-public class RepeatCommand extends EvalCommand {
+public class RepeatCommand extends Command {
 
     private Command myTotalIter;
     private Command myBody;
-    private Command myCurrentIter; //TODO  :repcount should be global???????? Overwritten in relevant parts of code??
+    private Command myCurrentIter;
 
     public RepeatCommand(List<Command> params) {
         super(params);

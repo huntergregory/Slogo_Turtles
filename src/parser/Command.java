@@ -30,8 +30,9 @@ public abstract class Command {
     }
 
     protected double getVariable(String variable) {
-        if (myVariables != null && myVariables.hasVariable(variable))
+        if (myVariables.hasVariable(variable)) {
             return myVariables.getVariable(variable);
+        }
         return GlobalVariables.getInstance().getVariable(variable);
     }
 }

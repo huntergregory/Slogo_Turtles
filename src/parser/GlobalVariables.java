@@ -15,7 +15,7 @@ public class GlobalVariables {
         return instance;
     }
 
-    public double getVariable(String name) {
+    double getVariable(String name) {
         return myVariables.getVariable(name);
     }
 

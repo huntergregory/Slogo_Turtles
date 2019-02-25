@@ -123,16 +123,12 @@ public class CommandParser {
     public static void main(String[] args) throws ParserException {
         //CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]");
         //CommandParser.getInstance().parseAndRun("set :bule 1 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]");
-        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ]");
+        //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b");
+        //CommandParser.getInstance().parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c");
+        //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b");
+        
         /*
-        Output should be: 1 1 1 2 1 3 1 4 2 1 2 2 2 3 2 4
-        PROBLEM: the original dotimes variablesgroup that conatins :a gets overwritten completely in nested loop instead of integrated
 
-        Execution variable passing flow needs to be:
-            Command -> send myVariables to children, execute self
-            Child Command 1 -> receives myVariables from parent, adds or modifies with own local myVariables
-            Child Command 1 -> sends myVariables to children, executes self
-            Child Command 2 -> repeats
          */
     }
 }
