@@ -63,6 +63,10 @@ public class UIMain extends Application {
         }
     }
 
+    public double getHeading() {
+        return 0.0; // TODO This
+    }
+
     private void handleException(Exception e) {
         // TODO: Handle exception with some display
     }
@@ -108,5 +112,16 @@ public class UIMain extends Application {
 
     public void eraseLines() {
         System.out.println("Erasing lines"); //TODO: FIX
+    }
+
+    public double getTurtleIsShowing() {
+        return 0;
+    }
+
+    public boolean getPenIsDown() {
+        return false;
+    }
+
+    public void eraseLines() {
     }
 }

@@ -3,7 +3,7 @@
 
 ```java
 package Simulation;
-public abstract class Simulation { // since this doesn't have any instance variables, perhaps make this an enum class 
+public abstract class Simulation { variablesVariables
       public abstract int getNextStateOfCell(Cell cell, ArrayList<Cell> neighbors); //public to other packages
     public void setCurrentGrid(Cell[][] grid) //private
     public void setNextGrid(Cell[][] grid) //private

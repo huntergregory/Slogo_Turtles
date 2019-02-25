@@ -1,5 +1,6 @@
 package parser;
 
+import parser.commands.control_commands.VariableCommand;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,12 +12,8 @@ public class CommandParser {
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
     private List<String> myCommandHistory;
-
-    private static CommandParser instance;
-
-    private static final String COMMENT_REGEX = "^#.*";
-    private static final String NUMBER_REGEX = "^-?[0-9]+\\.?[0-9]*";
     private static final String WHITESPACE_REGEX = "\\s+";
+    private static CommandParser instance;
 
     private CommandParser() {
         myChunkIndex = 0;
@@ -55,19 +52,13 @@ public class CommandParser {
         }
     }
 
-    private void runProgram() {
-        while (myCommandQueue.size() > 0) {
-            myCommandQueue.remove().execute();
-        }
-    }
-
     private List<String> getChunks(String input) throws ParserException {
         List<String> chunks = new ArrayList<>();
 
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
             String currentLine = scan.nextLine().toLowerCase().strip();
-            if (currentLine.matches(COMMENT_REGEX)) {
+            if (InputTranslator.getInstance().isComment(currentLine)) {
                 continue;
             }
 
@@ -82,37 +73,71 @@ public class CommandParser {
     // Loops until individual command hierarchy is satisfied
     private Command makeCommand(List<String> input) throws ParserException {
         String currentChunk = input.get(myChunkIndex);
-        if (currentChunk.matches(NUMBER_REGEX)) {
+
+        if (InputTranslator.getInstance().isConstant(currentChunk)) {
+            myChunkIndex++;
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
+        } else if (InputTranslator.getInstance().isVariable(currentChunk)) {
+            myChunkIndex++;
+            return new VariableCommand(currentChunk.substring(1));
         }
         int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
         List<Command> paramList = new ArrayList<>();
+        myChunkIndex++;
+
         if (numParams == -1) // -1 means a list should be created, until an end bracket
             populateUntilListEnd(paramList, input);
-        else
+        else {
             populateNParameters(paramList, numParams, input);
-        myChunkIndex++;
+        }
         return CommandFactory.getInstance().createCommand(currentChunk, paramList);
     }
 
     private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {
         for (int i = 0; i < num; i++) {
-            myChunkIndex++;
+            if (myChunkIndex == chunkList.size()) {
+                throw new ParserException("Invalid parameter count");
+            }
             paramList.add(makeCommand(chunkList));
         }
     }
 
     private void populateUntilListEnd(List<Command> paramList, List<String> chunkList) throws ParserException {
         while (!chunkList.get(myChunkIndex).equals("ListEnd")) {
-            if (myChunkIndex == chunkList.size() - 1)
-                throw new ParserException("Unterminated List");
-
+            if (myChunkIndex == chunkList.size() - 1) {
+                throw new ParserException("Unterminated list");
+            }
             paramList.add(makeCommand(chunkList));
-            myChunkIndex++;
+        }
+        myChunkIndex++;
+    }
+
+    private void runProgram() {
+        while (myCommandQueue.size() > 0) {
+            myCommandQueue.remove().execute();
         }
     }
 
     public List<String> getCommandHistory() {
         return myCommandHistory;
+    }
+
+    public static void main(String[] args) throws ParserException {
+        // ------ TEST CASES ------
+        //CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]"); //WORKS
+        //CommandParser.getInstance().parseAndRun("set :bule 0 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
+        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
+        //CommandParser.getInstance().parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c"); //WORKS
+        //CommandParser.getInstance().parseAndRun("repeat 5 [ fd :repcount repeat 2 [ fd :repcount ] ] fd :repcount"); //WORKS
+        //CommandParser.getInstance().parseAndRun("fd not or 1 0"); //WORKS
+        //CommandParser.getInstance().parseAndRun("1 and 4"); //THROWS PARSEREXCEPTION AS IT SHOULD
+        //CommandParser.getInstance().parseAndRun("repeat 3 [ make :a sum 8 :repcount fd :a ] fd :a fd :repcount"); //WORKS
+        //CommandParser.getInstance().parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
+
+        // ------ UNTESTED COMMANDS ------
+        // Turtle commands, turtle queries, for, to, other languages (should be easy, just change default in InputTranslator)
+        /*
+
+         */
     }
 }

@@ -92,7 +92,7 @@ We decided to add more public methods to the front end (external API) to match e
 ```java
 interface FrontendInternal {
 
-    // Set the language for interpretation of commands
+    commands
     void setLanguage();
     
     // Set the color of the pen
@@ -113,7 +113,7 @@ interface FrontendInternal {
     // Set the background color
     void setBackground();
 
-    // Display environment variables
+    variablesVariables
     void displayVariables();
     
     // Display command history
@@ -164,7 +164,7 @@ interface FrontendExternal {
     // Determine heading of Turtle
     double getHeading();
     
-    // Determine language used to interpret commands
+    commands
     String getLanguage();
     
 }
@@ -180,7 +180,7 @@ interface BackendExternal {
     // Run a command given by the user, return the appropriate value based on the program
     double run(String program);
     
-    // Get a list of variables that currently exist
+    variablesVariables
     Map<String, Double> getVariables();
     
     // Get the complete history of commands
