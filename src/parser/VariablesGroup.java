@@ -19,10 +19,6 @@ public class VariablesGroup {
         myVariableMap.put(variable, value);
     }
 
-    void add(VariablesGroup newVars) {
-        myVariableMap.putAll(newVars.myVariableMap);
-    }
-
     public boolean isEmpty() {
         return myVariableMap.isEmpty();
     }

@@ -15,7 +15,7 @@ public abstract class Command {
 
     // Execute constructed command
     public final double execute() {
-        if (mySubCommands != null) { //TODO can this be empty instead of null?
+        if (mySubCommands != null) {
             for (Command command : mySubCommands) {
                 command.addVariables(myVariables);
             }
@@ -26,7 +26,7 @@ public abstract class Command {
     public abstract double runCommand();
 
     public void addVariables(VariablesGroup variables) {
-        this.myVariables.add(variables);
+        this.myVariables = variables; // Share same VariablesGroup between subcommands (for local scope)
     }
 
     protected double getVariable(String variable) {

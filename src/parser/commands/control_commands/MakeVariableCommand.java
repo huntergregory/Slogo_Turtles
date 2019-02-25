@@ -17,7 +17,6 @@ public class MakeVariableCommand extends Command {
 
     @Override
     public double runCommand() {
-
         if (!myVariables.isEmpty()) // myVariables guaranteed to have at least 1 pre-existing variable if it's a subcommand
             myVariables.setVariable(myName, myExpression.execute()); // local scope
         else

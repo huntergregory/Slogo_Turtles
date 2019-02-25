@@ -96,6 +96,9 @@ public class CommandParser {
 
     private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {
         for (int i = 0; i < num; i++) {
+            if (myChunkIndex == chunkList.size()) {
+                throw new ParserException("Invalid parameter count");
+            }
             paramList.add(makeCommand(chunkList));
         }
     }
@@ -121,18 +124,17 @@ public class CommandParser {
     }
 
     public static void main(String[] args) throws ParserException {
+        // ------ TEST CASES ------
         //CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]"); //WORKS
-        //CommandParser.getInstance().parseAndRun("set :bule 1 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
+        //CommandParser.getInstance().parseAndRun("set :bule 0 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
         //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
         //CommandParser.getInstance().parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c"); //WORKS
-        //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
         //CommandParser.getInstance().parseAndRun("repeat 5 [ fd :repcount repeat 2 [ fd :repcount ] ]"); //WORKS
         //CommandParser.getInstance().parseAndRun("fd not or 1 0"); //WORKS
-
-        //CommandParser.getInstance().parseAndRun("repeat 5 [ make :a sum 8 :repcount fd :a ] fd :a"); //DOES NOT WORK
+        //CommandParser.getInstance().parseAndRun("1 and 4"); //THROWS PARSEREXCEPTION AS IT SHOULD
+        //CommandParser.getInstance().parseAndRun("repeat 3 [ make :a sum 8 :repcount fd :a ] fd :a"); //WORKS
         /*
 
-                1 and 4 threw IOBE fix in parser
          */
     }
 }
