@@ -19,13 +19,12 @@ public class DoTimesCommand extends Command {
         int limit = (int) myParams.getParam(1).execute();
         String countVarName = ((VariableCommand) myParams.getParam(0)).getVariableName();
 
-        for (int i = 1; i < limit; i++) { //TODO remove duplication across dotimes, for, repeat
+        double retval = 0;
+        for (int i = 1; i <= limit; i++) { //TODO remove duplication across dotimes, for, repeat
             myVariables.setVariable(countVarName, i);
             myBody.addVariables(myVariables); //propagates var changes through body commands
-            myBody.execute();
+            retval = myBody.execute();
         }
-        myVariables.setVariable(countVarName, limit);
-        myBody.addVariables(myVariables);
-        return myBody.execute();
+        return retval;
     }
 }

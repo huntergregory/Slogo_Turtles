@@ -133,7 +133,8 @@ public class CommandParser {
         //CommandParser.getInstance().parseAndRun("fd not or 1 0"); //WORKS
         //CommandParser.getInstance().parseAndRun("1 and 4"); //THROWS PARSEREXCEPTION AS IT SHOULD
         //CommandParser.getInstance().parseAndRun("repeat 3 [ make :a sum 8 :repcount fd :a ] fd :a"); //WORKS
-        CommandParser.getInstance().parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
+        //CommandParser.getInstance().parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
+        CommandParser.getInstance().parseAndRun("for [ :potato 2 13 3 ] [ fd sum 100 :potato ]");
 
         // ------ UNTESTED COMMANDS ------
         // Turtle commands, turtle queries, for, to, other languages (should be easy, just change default in InputTranslator)

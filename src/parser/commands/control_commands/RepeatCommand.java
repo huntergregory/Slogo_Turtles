@@ -19,13 +19,12 @@ public class RepeatCommand extends Command {
         int limit = (int) myTotalIter.execute();
         String countVarName = "repcount";
 
-        for (int i = 1; i < limit; i++) { //TODO remove duplication across dotimes, for, repeat
+        double retval = 0;
+        for (int i = 1; i <= limit; i++) { //TODO remove duplication across dotimes, for, repeat
             myVariables.setVariable(countVarName, i);
             myBody.addVariables(myVariables);
-            myBody.execute();
+            retval = myBody.execute();
         }
-        myVariables.setVariable(countVarName, limit);
-        myBody.addVariables(myVariables);
-        return myBody.execute(); // Final iteration
+        return retval;
     }
 }
