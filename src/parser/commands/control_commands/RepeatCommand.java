@@ -1,6 +1,7 @@
 package parser.commands.control_commands;
 
 import parser.Command;
+import parser.GlobalVariables;
 import java.util.List;
 
 public class RepeatCommand extends Command {
@@ -18,13 +19,15 @@ public class RepeatCommand extends Command {
     public double runCommand() {
         int limit = (int) myTotalIter.execute();
         String countVarName = "repcount";
-
         double retval = 0;
+
         for (int i = 1; i <= limit; i++) { //TODO remove duplication across dotimes, for, repeat
-            myVariables.setVariable(countVarName, i);
-            myBody.addVariables(myVariables);
+            // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
+            /*myVariables.setVariable(countVarName, i);
+              myBody.addVariables(myVariables);*/
+            GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
             retval = myBody.execute();
         }
-        return retval;
+        return retval; // Final iteration
     }
 }

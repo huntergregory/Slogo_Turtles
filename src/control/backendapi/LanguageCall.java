@@ -3,7 +3,7 @@ package control.backendapi;
 import parser.InputTranslator;
 import parser.ParserException;
 
-public class LanguageCall extends BackendAPICall {
+public class LanguageCall {
 
     private String newLanguage;
 
@@ -11,9 +11,7 @@ public class LanguageCall extends BackendAPICall {
         this.newLanguage = language;
     }
 
-    @Override
-    public Double call() throws ParserException {
+    public void call() throws ParserException {
         InputTranslator.getInstance().changeLanguage(newLanguage);
-        return 0.0;
     }
 }

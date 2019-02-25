@@ -3,7 +3,7 @@ package control.backendapi;
 import parser.CommandParser;
 import parser.ParserException;
 
-public class ParseCall extends BackendAPICall {
+public class ParseCall {
 
     private String program;
 
@@ -11,9 +11,7 @@ public class ParseCall extends BackendAPICall {
         this.program = program;
     }
 
-    @Override
-    public Double call() throws ParserException {
+    public void call() throws ParserException {
         CommandParser.getInstance().parseAndRun(program);
-        return 0.0;
     }
 }
