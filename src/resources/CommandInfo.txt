@@ -1,4 +1,6 @@
 #
+# Note: -1 for number of parameters means 1 or more params required
+#
 # Turtle Commands
 #
 Forward=ForwardCommand:1
@@ -42,13 +44,13 @@ Pi=PiCommand:0
 #
 # Boolean Operations
 #
-LessThan=LessThanCommand:0
-GreaterThan=GreaterThanCommand:0
-Equal=EqualCommand:0
-NotEqual=NotEqualCommand:0
-And=AndCommand:0
-Or=OrCommand:0
-Not=NotCommand:0
+LessThan=LessThanCommand:2
+GreaterThan=GreaterThanCommand:2
+Equal=EqualCommand:2
+NotEqual=NotEqualCommand:2
+And=AndCommand:2
+Or=OrCommand:2
+Not=NotCommand:1
 #
 # Variables, Control, and User-Defined Commands
 #
@@ -79,3 +81,7 @@ Turtles=TurtlesCommand:0
 Tell=TellCommand:0
 Ask=AskCommand:0
 AskWith=AskWithCommand:0
+#
+# Custom Commands
+#
+ListStart=ListCommand:-1

@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CommandFactory {
+class CommandFactory {
 
-    public static final String COMMAND_INFO_FILENAME = "CommandInfo.txt";
-    public static final String COMMENT_CHAR = "#";
-    public static final String COMMAND_NAME_DELIMITER = "=";
-    public static final String COMMAND_INFO_DELIMITER = ":";
+    private static final String COMMAND_INFO_FILENAME = "CommandInfo.txt";
+    private static final String COMMENT_CHAR = "#";
+    private static final String COMMAND_NAME_DELIMITER = "=";
+    private static final String COMMAND_INFO_DELIMITER = ":";
 
     private static CommandFactory instance;
     private Map<String, String> commandClassNames;
@@ -27,7 +27,7 @@ public class CommandFactory {
         initClassMaps();
     }
 
-    public static CommandFactory getInstance() throws ParserException {
+    static CommandFactory getInstance() throws ParserException {
         if (instance == null) {
             instance = new CommandFactory();
         }
@@ -40,7 +40,7 @@ public class CommandFactory {
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    public Command createCommand(String commandName, List<Command> args) throws ParserException {
+    Command createCommand(String commandName, List<Command> args) throws ParserException {
 
         Class clazz = null;
         try {
@@ -60,7 +60,7 @@ public class CommandFactory {
 
     }
 
-    public Command createConstantCommand(double value) {
+    Command createConstantCommand(double value) {
         return new ConstantCommand(value);
     }
 
@@ -98,7 +98,7 @@ public class CommandFactory {
      * @param command The name of the command
      * @return The number of parameters required for the given command
      */
-    public int getParamCount(String command) {
+    int getParamCount(String command) {
         return commandParamCounts.get(command);
     }
 }
