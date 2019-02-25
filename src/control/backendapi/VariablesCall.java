@@ -9,6 +9,6 @@ public class VariablesCall extends BackendAPICall {
 
     @Override
     public Map<String, Double> call() {
-        return GlobalVariables.getInstance().getVariablesGroup().getMap(); //TODO fix this
+        return GlobalVariables.getInstance().getVariablesGroup().getMap();
     }
 }
