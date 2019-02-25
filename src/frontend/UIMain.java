@@ -1,30 +1,47 @@
 package frontend;
 
 import control.backendapi.ParseCall;
+import frontend.turtles.ImageTurtle;
+import frontend.turtles.Turtle;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import parser.ParserException;
 
+import java.util.ArrayList;
+
+/**
+ *
+ * Coordinate system is positive in the right and downwards direction.
+ * A heading of 0 points upwards.
+ */
 public class UIMain extends Application {
+    public static final double WIDTH = 1000;
+    public static final double HEIGHT = 600;
+    public static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
+    public static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
+    public static final double TURTLE_PANE_HEIGHT = HEIGHT * 5/6.0;
+    public static final String PANE_CSS_CLASS = "pane";
+    public static final Paint BACKGROUND = Color.WHITE;
 
     private static UIMain instance;
 
     public static final String TITLE = "SLogo";
-    public static final int SIZE = 1000;
-    public static final Paint BACKGROUND = Color.WHITE;
+    private ArrayList<Turtle> myTurtles;
 
-    private Group root;
+    private BorderPane myPane;
+    private Pane myTurtlePane;
     private Scene myScene;
-
-    private UISidePanel myUISidePanel;
+    private ControlPanel myControlPanel;
 
     public UIMain() {
-
 
     }
 
@@ -33,19 +50,40 @@ public class UIMain extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         instance = this;
-        myScene = setupGame(SIZE, SIZE, BACKGROUND);
+        myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
+        initializeTurtles();
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
+        new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
 
-    private Scene setupGame (int width, int height, Paint background) {
-        root = new Group();
-        var scene = new Scene(root, width, height, background);
+    private Scene setupGame (double width, double height, Paint background) {
+        myPane = new BorderPane();
+        setUpTurtlePane();
+        var scene = new Scene(myPane, width, height, background);
+        scene.getStylesheets().add("style.css");
+        myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
+        myPane.setLeft(myControlPanel.paneBox);
+        myPane.setCenter(myTurtlePane);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
+    }
+
+    private void setUpTurtlePane() {
+        myTurtlePane = new Pane();
+        myTurtlePane.getStyleClass().add(PANE_CSS_CLASS);
+        myTurtlePane.setMaxSize(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
+        myTurtlePane.setMinSize(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
+    }
+
+    //must be called after setupGame to prevent null pointer on myRoot
+    private void initializeTurtles() {
+        myTurtles = new ArrayList<>();
+        var turtle = new ImageTurtle(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myTurtlePane.getChildren());
+        myTurtles.add(turtle);
     }
 
     private void handleKeyInput (KeyCode code) {
@@ -73,45 +111,46 @@ public class UIMain extends Application {
 
 
     /*************      Frontend internal api      *********************/
+    // All assume there is at least one turtle in myTurtles
 
     public double getX() {
-        return 3.0; //TODO: FIX
+        return myTurtles.get(0).getX();
     }
 
     public double getY() {
-        return 7.0; //TODO: FIX
+        return myTurtles.get(0).getY();
     }
 
     public void setPosition(double x, double y) {
-        System.out.println("Setting x and y"); //TODO: FIX
+        myTurtles.get(0).setPosition(x,y);
     }
 
     public double getHeading() {
-        return 69; //TODO: FIX
+        return myTurtles.get(0).getHeading();
     }
 
     public void setHeading(double heading) {
-        System.out.println("Setting heading"); //TODO: FIX
+        myTurtles.get(0).setHeading(heading);
     }
 
     public boolean getPenIsDown() {
-        return false; //TODO: FIX
+        return myTurtles.get(0).getPenIsDown();
     }
 
     public void setPenIsDown(boolean down) {
-        System.out.println("Setting penIsDown"); //TODO: FIX
+        myTurtles.get(0).setPenIsDown(down);
     }
 
     public boolean getTurtleIsShowing() {
-        return false; //TODO: FIX
+        return myTurtles.get(0).getIsShowing();
     }
 
     public void setTurtleIsShowing(boolean showing) {
-        System.out.println("Setting turtleIsShowing"); //TODO: FIX
+        myTurtles.get(0).setIsShowing(showing);
     }
 
     public void eraseLines() {
-        System.out.println("Erasing lines"); //TODO: FIX
+        myTurtles.get(0).eraseLines();
     }
 
     public double getTurtleIsShowing() {

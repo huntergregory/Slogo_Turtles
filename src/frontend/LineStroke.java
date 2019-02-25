@@ -4,7 +4,7 @@ package frontend;
  * Add more enumerations to allow addition of different turtle strokes.
  */
 public enum LineStroke {
-    NORMAL("normal", new double[]{0});
+    NORMAL("normal", new double[]{});
 
     String myName;
     double[] myStrokeArray;
@@ -13,11 +13,11 @@ public enum LineStroke {
         myStrokeArray = array;
     }
 
-    protected String getText() {
+    public String getText() {
         return myName;
     }
 
-    protected double[] getStrokeArray() {
+    public double[] getStrokeArray() {
         return myStrokeArray;
     }
 }

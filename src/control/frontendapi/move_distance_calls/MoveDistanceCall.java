@@ -16,9 +16,9 @@ public abstract class MoveDistanceCall extends FrontendAPICall  {
     }
 
     private void move() {
-        double heading = ui.getHeading();
-        double newY = Math.sin(heading) * myDistance;
-        double newX = Math.cos(heading) * myDistance;
+        double heading = Math.toRadians(ui.getHeading());
+        double newX = ui.getX() + Math.sin(heading) * myDistance;
+        double newY = ui.getY() - Math.cos(heading) * myDistance;
         ui.setPosition(newX, newY);
     }
 }

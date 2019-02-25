@@ -1,6 +1,7 @@
 package control.frontendapi.move_to_position_calls;
 
 import control.frontendapi.FrontendAPICall;
+import control.frontendapi.TowardsCall;
 
 public abstract class MoveToPositionCall extends FrontendAPICall {
     private double myNewX;
@@ -15,10 +16,13 @@ public abstract class MoveToPositionCall extends FrontendAPICall {
 
     @Override
     public double call() {
+        new TowardsCall(myNewX, myNewY).call();
+        System.out.println("pointing towards " + myNewX + " " + myNewY);
+        double distanceTravelled = getCartesianDistance();
         ui.setPosition(myNewX, myNewY);
         if (myEraseLines)
             ui.eraseLines();
-        return getCartesianDistance();
+        return distanceTravelled;
     }
 
     private double getCartesianDistance() {
