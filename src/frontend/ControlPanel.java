@@ -39,10 +39,10 @@ public class ControlPanel {
 
         private Button helpButton;
 
-        ObservableList<String> turtleList = FXCollections.observableArrayList();
-        ObservableList<String> colorList = FXCollections.observableArrayList("blue","red","yellow");
+        ObservableList<String> pastCommandsList = FXCollections.observableArrayList("fd 50");
+        ObservableList<String> turtleList = FXCollections.observableArrayList("tan_turtle.png");
         ObservableList<String> languageList = FXCollections.observableArrayList("Chinese","English","French","German","Italian","Portuguese","Russian","Spanish","Syntax","Urdu");
-        ObservableList<String> userCommandsList = FXCollections.observableArrayList();
+        ObservableList<String> userCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> variablesList = FXCollections.observableArrayList();
 
         ControlPanel(int WIDTH, int HEIGHT) {
@@ -53,27 +53,27 @@ public class ControlPanel {
             paneBox = new VBox();
             VBox controlBox = new VBox(30);
 
-            myCommandInput = new Selector(controlBox, "PARSE", "Enter Command", colorList);
+            myCommandInput = new Selector(controlBox, "PARSE", "Enter Command", pastCommandsList);
             parseButton = myCommandInput.getButton();
 
-            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", colorList);
+            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", turtleList);
             turtleImageButton = myTurtleImageChooser.getButton();
 
             myLanguageChooser = new Selector(controlBox, "APPLY", "Choose Language", languageList);
             languageButton = myLanguageChooser.getButton();
 
             userCommandsDropBox = new ComboBox<String>();
-            userCommandsDropBox.setPromptText("VIew USer Commands");
+            userCommandsDropBox.setPromptText("VIew User Commands");
             userCommandsDropBox.setEditable(true);
             userCommandsDropBox.setVisibleRowCount(3);
-            userCommandsDropBox.setItems(colorList);
+            userCommandsDropBox.setItems(userCommandsList);
             controlBox.getChildren().add(userCommandsDropBox);
 
             variablesDropBox = new ComboBox<String>();
             variablesDropBox.setPromptText("VIew Variables");
             variablesDropBox.setEditable(true);
             variablesDropBox.setVisibleRowCount(3);
-            variablesDropBox.setItems(colorList);
+            variablesDropBox.setItems(variablesList);
             controlBox.getChildren().add(variablesDropBox);
 
             myBackgroundColorChooser =  new ColorSelector(controlBox, "Background");
@@ -138,6 +138,18 @@ public class ControlPanel {
 
         public Color getMyPenColor() {
             return myPenColor;
+        }
+
+        public void addPastCommand(String command) {
+            pastCommandsList.add(command);
+        }
+
+        public void addUserCommand(String command) {
+            userCommandsList.add(command);
+        }
+
+        public void addVariable(String variable) {
+            variablesList.add(variable);
         }
 
 }
