@@ -10,6 +10,6 @@ public class CosineCommand extends SingleParamMathCommand {
     }
 
     public double runCommand() {
-        return Math.cos(myExpression.execute());
+        return Math.cos(Math.toRadians(myExpression.execute()));
     }
 }

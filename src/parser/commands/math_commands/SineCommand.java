@@ -10,6 +10,6 @@ public class SineCommand extends SingleParamMathCommand {
     }
 
     public double runCommand() {
-        return Math.sin(myExpression.execute());
+        return Math.sin(Math.toRadians(myExpression.execute()));
     }
 }

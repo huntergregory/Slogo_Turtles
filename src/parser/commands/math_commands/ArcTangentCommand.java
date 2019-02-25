@@ -10,6 +10,6 @@ public class ArcTangentCommand extends SingleParamMathCommand {
     }
 
     public double runCommand() {
-        return Math.atan(myExpression.execute());
+        return Math.atan(Math.toRadians(myExpression.execute()));
     }
 }

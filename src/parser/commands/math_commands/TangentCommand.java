@@ -10,6 +10,6 @@ public class TangentCommand extends SingleParamMathCommand {
     }
 
     public double runCommand() {
-        return Math.tan(myExpression.execute());
+        return Math.tan(Math.toRadians(myExpression.execute()));
     }
 }
