@@ -49,7 +49,7 @@ public class UIMain extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         instance = this;
         myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
         initializeTurtles();
@@ -61,8 +61,7 @@ public class UIMain extends Application {
 
     private Scene setupGame (int width, int height, Paint background) {
         myPane = new BorderPane();
-        myTurtlePane = new Pane();
-        myTurtlePane.getStyleClass().add("pane");
+        setUpTurtlePane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
         myControlPanel = new ControlPanel(WIDTH, HEIGHT);
@@ -70,6 +69,13 @@ public class UIMain extends Application {
         myPane.setCenter(myTurtlePane);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
+    }
+
+    private void setUpTurtlePane() {
+        myTurtlePane = new Pane();
+        myTurtlePane.getStyleClass().add("pane"); //TODO: remove magic string
+        myTurtlePane.setMaxSize(400, 400); //TODO: remove magic numbers
+        myTurtlePane.setMinSize(400, 400); //TODO: remove magic numbers
     }
 
     //must be called after setupGame to prevent null pointer on myRoot
