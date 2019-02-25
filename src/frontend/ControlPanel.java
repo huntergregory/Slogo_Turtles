@@ -125,7 +125,7 @@ public class ControlPanel {
             paneBox.setStyle("-fx-background-color: #027a50;");
             paneBox.setLayoutX(0);
             paneBox.setLayoutY(0);
-            paneBox.setPrefWidth(WIDTH / 3);
+            paneBox.setPrefWidth(WIDTH);
             paneBox.setPrefHeight(HEIGHT);
         }
 

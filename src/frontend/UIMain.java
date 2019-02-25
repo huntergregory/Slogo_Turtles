@@ -2,7 +2,6 @@ package frontend;
 
 import control.backendapi.ParseCall;
 import frontend.turtles.ImageTurtle;
-import frontend.turtles.TriangleTurtle;
 import frontend.turtles.Turtle;
 
 import javafx.application.Application;
@@ -24,17 +23,19 @@ import java.util.ArrayList;
  * A heading of 0 points upwards.
  */
 public class UIMain extends Application {
+    public static final double WIDTH = 1000;
+    public static final double HEIGHT = 600;
+    public static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
+    public static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
+    public static final double TURTLE_PANE_HEIGHT = HEIGHT * 5/6.0;
+    public static final String PANE_CSS_CLASS = "pane";
+    public static final Paint BACKGROUND = Color.WHITE;
 
     private static UIMain instance;
 
     public static final String TITLE = "SLogo";
     private ArrayList<Turtle> myTurtles;
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 600;
-    public static final Paint BACKGROUND = Color.WHITE;
-
-    private Group root;
     private BorderPane myPane;
     private Pane myTurtlePane;
     private Scene myScene;
@@ -59,12 +60,12 @@ public class UIMain extends Application {
         new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
 
-    private Scene setupGame (int width, int height, Paint background) {
+    private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
         setUpTurtlePane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
-        myControlPanel = new ControlPanel(WIDTH, HEIGHT);
+        myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
         myPane.setLeft(myControlPanel.paneBox);
         myPane.setCenter(myTurtlePane);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
@@ -73,15 +74,15 @@ public class UIMain extends Application {
 
     private void setUpTurtlePane() {
         myTurtlePane = new Pane();
-        myTurtlePane.getStyleClass().add("pane"); //TODO: remove magic string
-        myTurtlePane.setMaxSize(400, 400); //TODO: remove magic numbers
-        myTurtlePane.setMinSize(400, 400); //TODO: remove magic numbers
+        myTurtlePane.getStyleClass().add(PANE_CSS_CLASS);
+        myTurtlePane.setMaxSize(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
+        myTurtlePane.setMinSize(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
     }
 
     //must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
         myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(400, 400, myTurtlePane.getChildren()); //TODO: FIX magic numbers
+        var turtle = new ImageTurtle(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myTurtlePane.getChildren());
         myTurtles.add(turtle);
     }
 
