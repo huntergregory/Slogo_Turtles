@@ -47,11 +47,11 @@ public class ControlPanel {
         ObservableList<String> userCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> variablesList = FXCollections.observableArrayList();
 
-        ControlPanel(int WIDTH, int HEIGHT) {
+        ControlPanel(double WIDTH, double HEIGHT) {
             init(WIDTH, HEIGHT);
         }
 
-        private void init(int WIDTH, int HEIGHT) {
+        private void init(double WIDTH, double HEIGHT) {
             paneBox = new VBox();
             VBox controlBox = new VBox(30);
 
@@ -119,7 +119,7 @@ public class ControlPanel {
             controlBox.getChildren().add(helpButton);
         }
 
-        private void setupPaneBox(int WIDTH, int HEIGHT, VBox controlBox) {
+        private void setupPaneBox(double WIDTH, double HEIGHT, VBox controlBox) {
             paneBox.setPadding(new Insets(30,30,30,30));
             paneBox.getChildren().add(controlBox);
             paneBox.setStyle("-fx-background-color: #027a50;");
