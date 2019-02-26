@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import ui_public.RequiredExternalAPICallsFront;
 
 import java.io.IOException;
 
@@ -164,7 +165,7 @@ public class ControlPanel {
 
         private void handleParse(String input) {
             try {
-                ExternalAPICall<Void, String> parseCall = (ExternalAPICall<Void, String>) executionContext.getExternalAPICall("parse");
+                ExternalAPICall<Void, String> parseCall = (ExternalAPICall<Void, String>) executionContext.getExternalAPICall(RequiredExternalAPICallsFront.PARSE);
                 parseCall.call(input);
             } catch (Exception e) {
 

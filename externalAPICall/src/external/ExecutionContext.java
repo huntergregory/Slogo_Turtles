@@ -3,24 +3,26 @@ package external;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExecutionContext {
+public class ExecutionContext<E extends Enum<E>> {
 
-    private Map<String, ExternalAPICall<?,?>> externalAPICallMap;
+    private Map<E, ExternalAPICall<?,?>> externalAPICallMap;
+    private boolean verified;
 
     public ExecutionContext() {
         externalAPICallMap = new HashMap<>();
+        verified = false;
     }
 
-    public void addExternalAPICall(String commandName, ExternalAPICall<?,?> externalAPICall) {
-        externalAPICallMap.put(commandName, externalAPICall);
+    public void addExternalAPICall(E command, ExternalAPICall<?,?> externalAPICall) {
+        externalAPICallMap.put(command, externalAPICall);
     }
 
     public boolean hasCommand(String commandName) {
         return externalAPICallMap.containsKey(commandName);
     }
 
-    public ExternalAPICall<?,?> getExternalAPICall(String commandName) {
-        return externalAPICallMap.get(commandName);
+    public ExternalAPICall<?,?> getExternalAPICall(E command) {
+        return externalAPICallMap.get(command);
     }
 
 }

@@ -6,13 +6,13 @@ import external.ExternalAPICall;
 import frontendapi.rotate_angle_calls.LeftCall;
 import javafx.application.Application;
 import parser_public.CommandParser;
-import parser_public.ParserException;
+import parser_public.RequiredExternalAPICallsBack;
+import ui_public.RequiredExternalAPICallsFront;
 import ui_public.UIMain;
 import frontendapi.move_distance_calls.ForwardCall;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * entry.Main entrypoint for program
@@ -38,14 +38,14 @@ public class Main {
     public static void go() {
 
         ExecutionContext executionContext = new ExecutionContext();
-        executionContext.addExternalAPICall("Forward", (ExternalAPICall<Double, Double>) distance -> new ForwardCall(distance).call());
-        executionContext.addExternalAPICall("Left", (ExternalAPICall<Double, Double>) degrees -> new LeftCall(degrees).call());
+        executionContext.addExternalAPICall(RequiredExternalAPICallsBack.FORWARD, (ExternalAPICall<Double, Double>) distance -> new ForwardCall(distance).call());
+        executionContext.addExternalAPICall(RequiredExternalAPICallsBack.LEFT, (ExternalAPICall<Double, Double>) degrees -> new LeftCall(degrees).call());
 
         CommandParser commandParser = new CommandParser(executionContext);
 
         ExecutionContext e2 = new ExecutionContext();
         try {
-            e2.addExternalAPICall("parse", (ExternalAPICall<Void, String>) input -> {
+            e2.addExternalAPICall(RequiredExternalAPICallsFront.PARSE, (ExternalAPICall<Void, String>) input -> {
                 try {
                     new ParseCall(input).call();
                 } catch (Exception e) {

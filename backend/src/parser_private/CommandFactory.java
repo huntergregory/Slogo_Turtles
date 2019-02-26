@@ -58,10 +58,7 @@ public class CommandFactory {
                 return (Command) constructor.newInstance(args);
             }
             else {
-                if (executionContext.hasCommand(commandName))
-                    return (Command) constructor.newInstance(args, executionContext.getExternalAPICall(commandName));
-                else
-                    throw new ParserException("External API Call for " + clazz.getName() + " does not exist");
+                return (Command) constructor.newInstance(args, executionContext);
             }
 
         } catch (ClassNotFoundException e) {
