@@ -5,12 +5,14 @@
 *.iws
 .idea/
 out/
+classes/
 local.properties
 
 # Generic Android ignores #
 ###########################
 bin/
 target
+classes
 gen/
 
 # Built Application Files

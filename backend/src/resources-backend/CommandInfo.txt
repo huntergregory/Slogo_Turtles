@@ -52,7 +52,7 @@ And=boolean_commands.AndCommand:2
 Or=boolean_commands.OrCommand:2
 Not=boolean_commands.NotCommand:1
 #
-# ui_private.Variables, Control, and User-Defined Commands
+# Variables, Control, and User-Defined Commands
 #
 MakeVariable=control_commands.MakeVariableCommand:2
 Repeat=control_commands.RepeatCommand:2

@@ -2,13 +2,12 @@ package parser_private.commands.turtle_commands;
 
 import external.ExecutionContext;
 import external.ExternalAPICall;
-import parser_private.ActionCommand;
 import parser_private.Command;
 import parser_public.RequiredExternalAPICallsBack;
 
 import java.util.List;
 
-public class ForwardCommand extends ActionCommand {
+public class ForwardCommand extends Command {
 
     private Command myDistance;
     private ExternalAPICall<Double, Double> apiCall;

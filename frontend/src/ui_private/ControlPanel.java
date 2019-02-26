@@ -46,7 +46,7 @@ public class ControlPanel {
 
         ObservableList<String> pastCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> turtleList = FXCollections.observableArrayList("tan_turtle.png");
-        ObservableList<String> languageList = FXCollections.observableArrayList("Chinese","English","French","German","Italian","Portuguese","Russian","Spanish","Syntax","Urdu");
+        ObservableList<String> languageList = FXCollections.observableArrayList("Chinese","English","French","German","Italian","Portuguese","Russian","Spanish","Urdu");
         ObservableList<String> userCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> variablesList = FXCollections.observableArrayList();
 
@@ -102,7 +102,7 @@ public class ControlPanel {
 
         private void addVariablesDropBox(VBox controlBox) {
             variablesDropBox = new ComboBox<String>();
-            variablesDropBox.setPromptText("VIew ui_private.Variables");
+            variablesDropBox.setPromptText("VIew Variables");
             variablesDropBox.setEditable(true);
             variablesDropBox.setVisibleRowCount(3);
             variablesDropBox.setItems(variablesList);
@@ -154,7 +154,7 @@ public class ControlPanel {
                 myPenColor = myPenColorChooser.getColor();
             });
             helpButton.setOnAction((event) -> {
-                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/parser_private.commands.php";
+                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
                 try {
                     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
                 } catch (IOException e) {

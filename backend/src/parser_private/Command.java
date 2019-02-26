@@ -1,12 +1,11 @@
 package parser_private;
 
 import parser_public.GlobalVariables;
-
 import java.util.List;
 
 public abstract class Command {
 
-    protected VariablesGroup myVariables = new VariablesGroup();
+    private VariablesGroup myVariables = new VariablesGroup();
     protected List<Command> mySubCommands;
 
     public Command() {}
@@ -27,8 +26,8 @@ public abstract class Command {
 
     public abstract double runCommand();
 
-    public void addVariables(VariablesGroup variables) {
-        this.myVariables = variables; // Share same parser_private.VariablesGroup between subcommands (for local scope)
+    private void addVariables(VariablesGroup variables) {
+        this.myVariables = variables; // Share same VariablesGroup between subcommands (for local scope)
     }
 
     protected double getVariable(String variable) {

@@ -13,10 +13,12 @@ public class LeftCommand extends Command {
     private ExternalAPICall<Double, Double> apiCall;
 
     public LeftCommand(List<Command> params, ExecutionContext executionContext) {
+        super(params);
         this.degreesCommand = params.get(0);
         this.apiCall = (ExternalAPICall<Double, Double>)executionContext.getExternalAPICall(RequiredExternalAPICallsBack.LEFT);
     }
 
+    @Override
     public double runCommand() {
         System.out.println("Turning left");
         return apiCall.call(degreesCommand.execute());
