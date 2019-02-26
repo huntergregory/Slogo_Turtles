@@ -12,6 +12,7 @@ local.properties
 ###########################
 bin/
 target
+classes
 gen/
 
 # Built Application Files
