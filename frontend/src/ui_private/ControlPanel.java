@@ -45,7 +45,7 @@ public class ControlPanel {
 
         ObservableList<String> pastCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> turtleList = FXCollections.observableArrayList("tan_turtle.png");
-        ObservableList<String> languageList = FXCollections.observableArrayList("Chinese","English","French","German","Italian","Portuguese","Russian","Spanish","Syntax","Urdu");
+        ObservableList<String> languageList = FXCollections.observableArrayList("Chinese","English","French","German","Italian","Portuguese","Russian","Spanish","Urdu");
         ObservableList<String> userCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> variablesList = FXCollections.observableArrayList();
 
