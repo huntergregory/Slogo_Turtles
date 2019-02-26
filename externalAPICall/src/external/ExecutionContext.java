@@ -17,12 +17,11 @@ public class ExecutionContext<E extends Enum<E>> {
         externalAPICallMap.put(command, externalAPICall);
     }
 
-    public boolean hasCommand(String commandName) {
-        return externalAPICallMap.containsKey(commandName);
-    }
-
     public ExternalAPICall<?,?> getExternalAPICall(E command) {
-        return externalAPICallMap.get(command);
+        if (externalAPICallMap.containsKey(command))
+            return externalAPICallMap.get(command);
+        else
+            return null;
     }
 
 }

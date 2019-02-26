@@ -5,5 +5,6 @@ public enum RequiredExternalAPICallsBack {
     BACKWARD,
     HOME,
     LEFT,
-    RIGHT
+    RIGHT,
+    XCOR
 }

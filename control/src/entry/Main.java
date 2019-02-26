@@ -4,6 +4,7 @@ import backendapi.ParseCall;
 import external.ExecutionContext;
 import external.ExternalAPICall;
 import frontendapi.move_to_position_calls.*;
+import frontendapi.query_calls.XPositionQuery;
 import frontendapi.rotate_angle_calls.*;
 import javafx.application.Application;
 import parser_public.CommandParser;
@@ -43,6 +44,7 @@ public class Main {
         executionContext.addExternalAPICall(RequiredExternalAPICallsBack.FORWARD, (ExternalAPICall<Double, Double>) distance -> new ForwardCall(distance).call());
         executionContext.addExternalAPICall(RequiredExternalAPICallsBack.LEFT, (ExternalAPICall<Double, Double>) degrees -> new LeftCall(degrees).call());
         executionContext.addExternalAPICall(RequiredExternalAPICallsBack.HOME, (ExternalAPICall<Double, Void>) (nothing) -> new HomeCall().call());
+        executionContext.addExternalAPICall(RequiredExternalAPICallsBack.XCOR, (ExternalAPICall<Double, Void>) (nothing) -> new XPositionQuery().call());
 
         CommandParser commandParser = new CommandParser(executionContext);
 
