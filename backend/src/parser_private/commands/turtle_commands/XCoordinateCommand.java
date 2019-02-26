@@ -2,19 +2,19 @@ package parser_private.commands.turtle_commands;
 
 import external.ExternalAPICall;
 import parser_private.Command;
-
 import java.util.List;
 
 public class XCoordinateCommand extends Command {
 
-    private ExternalAPICall<Double, Void> apiCall;
+    private ExternalAPICall<Double, Void> myApiCall;
 
     public XCoordinateCommand(List<Command> params, ExternalAPICall<Double, Void> apiCall) {
-        this.apiCall = apiCall;
+        super(params);
+        this.myApiCall = apiCall;
     }
 
+    @Override
     public double runCommand() {
-        return apiCall.call(null);
+        return myApiCall.call(null);
     }
-
 }

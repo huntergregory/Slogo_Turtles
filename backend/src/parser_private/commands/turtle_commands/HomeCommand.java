@@ -1,18 +1,20 @@
 package parser_private.commands.turtle_commands;
 
-import parser_private.ActionCommand;
+import external.ExternalAPICall;
 import parser_private.Command;
 import java.util.List;
 
-public class HomeCommand extends ActionCommand {
+public class HomeCommand extends Command {
 
-    public HomeCommand(List<Command> params) {
+    private ExternalAPICall<Double, Double> myApiCall;
+
+    public HomeCommand(List<Command> params, ExternalAPICall<Double, Double> apiCall) {
         super(params);
+        this.myApiCall = apiCall;
     }
 
     @Override
     public double runCommand() {
-        //return new HomeCall().call();
-        return 0;
+        return myApiCall.call(null);
     }
 }

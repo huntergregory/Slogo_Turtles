@@ -1,0 +1,87 @@
+#
+# Note: -1 for number of parameters means 1 or more params required
+#
+# Turtle Commands
+#
+Forward=turtle_commands.ForwardCommand:1
+Backward=turtle_commands.BackwardCommand:1
+Left=turtle_commands.LeftCommand:1
+Right=turtle_commands.RightCommand:1
+SetHeading=turtle_commands.SetHeadingCommand:1
+SetTowards=turtle_commands.SetTowardsCommand:2
+SetPosition=turtle_commands.SetPositionCommand:2
+PenDown=turtle_commands.PenDownCommand:0
+PenUp=turtle_commands.PenUpCommand:0
+ShowTurtle=turtle_commands.ShowTurtleCommand:0
+HideTurtle=turtle_commands.HideTurtleCommand:0
+Home=turtle_commands.HomeCommand:0
+ClearScreen=turtle_commands.ClearScreenCommand:0
+#
+# Turtle Queries
+#
+XCoordinate=turtle_commands.XCoordinateCommand:0
+YCoordinate=turtle_commands.YCoordinateCommand:0
+Heading=turtle_commands.HeadingCommand:0
+IsPenDown=turtle_commands.IsPenDownCommand:0
+IsShowing=turtle_commands.IsShowingCommand:0
+#
+# Math Operations
+#
+Sum=math_commands.SumCommand:2
+Difference=math_commands.DifferenceCommand:2
+Product=math_commands.ProductCommand:2
+Quotient=math_commands.QuotientCommand:2
+Remainder=math_commands.RemainderCommand:2
+Minus=math_commands.MinusCommand:1
+Random=math_commands.RandomCommand:1
+Sine=math_commands.SineCommand:1
+Cosine=math_commands.CosineCommand:1
+Tangent=math_commands.TangentCommand:1
+ArcTangent=math_commands.ArcTangentCommand:1
+NaturalLog=math_commands.NaturalLogCommand:1
+Power=math_commands.PowerCommand:2
+Pi=math_commands.PiCommand:0
+#
+# Boolean Operations
+#
+LessThan=boolean_commands.LessThanCommand:2
+GreaterThan=boolean_commands.GreaterThanCommand:2
+Equal=boolean_commands.EqualCommand:2
+NotEqual=boolean_commands.NotEqualCommand:2
+And=boolean_commands.AndCommand:2
+Or=boolean_commands.OrCommand:2
+Not=boolean_commands.NotCommand:1
+#
+# ui_private.Variables, Control, and User-Defined Commands
+#
+MakeVariable=control_commands.MakeVariableCommand:2
+Repeat=control_commands.RepeatCommand:2
+DoTimes=control_commands.DoTimesCommand:2
+For=control_commands.ForCommand:2
+If=control_commands.IfCommand:2
+IfElse=control_commands.IfElseCommand:3
+MakeUserInstruction=control_commands.MakeUserInstructionCommand:0
+#
+# Display Commands
+#
+SetBackground=display_commands.SetBackgroundCommand:0
+SetPenColor=display_commands.SetPenColorCommand:0
+SetPenSize=display_commands.SetPenSizeCommand:0
+SetShape=display_commands.SetShapeCommand:0
+SetPalette=display_commands.SetPaletteCommand:0
+GetPenColor=display_commands.GetPenColorCommand:0
+GetShape=display_commands.GetShapeCommand:0
+Stamp=display_commands.StampCommand:0
+ClearStamps=display_commands.ClearStampsCommand:0
+#
+# Multiple Turtle Commands
+#
+ID=multiple_turtle_commands.IDCommand:0
+Turtles=multiple_turtle_commands.TurtlesCommand:0
+Tell=multiple_turtle_commands.TellCommand:0
+Ask=multiple_turtle_commands.AskCommand:0
+AskWith=multiple_turtle_commands.AskWithCommand:0
+#
+# Custom Commands
+#
+ListStart=control_commands.ListCommand:-1

@@ -3,12 +3,13 @@ package entry;
 import backendapi.ParseCall;
 import external.ExecutionContext;
 import external.ExternalAPICall;
-import frontendapi.rotate_angle_calls.LeftCall;
+import frontendapi.move_to_position_calls.*;
+import frontendapi.rotate_angle_calls.*;
 import javafx.application.Application;
 import parser_public.CommandParser;
 import parser_public.ParserException;
 import ui_public.UIMain;
-import frontendapi.move_distance_calls.ForwardCall;
+import frontendapi.move_distance_calls.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,6 +41,7 @@ public class Main {
         ExecutionContext executionContext = new ExecutionContext();
         executionContext.addExternalAPICall("Forward", (ExternalAPICall<Double, Double>) distance -> new ForwardCall(distance).call());
         executionContext.addExternalAPICall("Left", (ExternalAPICall<Double, Double>) degrees -> new LeftCall(degrees).call());
+        executionContext.addExternalAPICall("Home", (ExternalAPICall<Double, Double>) rtn -> new HomeCall().call());
 
         CommandParser commandParser = new CommandParser(executionContext);
 
