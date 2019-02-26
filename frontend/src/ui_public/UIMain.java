@@ -43,7 +43,6 @@ public class UIMain extends Application {
     private ControlPanel myControlPanel;
 
     public UIMain() {
-
     }
 
     public static UIMain getInstance() {
