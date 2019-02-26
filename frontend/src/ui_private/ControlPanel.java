@@ -1,5 +1,7 @@
 package ui_private;
 
+import external.ExecutionContext;
+import external.ExternalAPICall;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -47,7 +49,10 @@ public class ControlPanel {
         ObservableList<String> userCommandsList = FXCollections.observableArrayList("fd 50");
         ObservableList<String> variablesList = FXCollections.observableArrayList();
 
-        public ControlPanel(double WIDTH, double HEIGHT) {
+        private ExecutionContext executionContext;
+
+        public ControlPanel(double WIDTH, double HEIGHT, ExecutionContext executionContext) {
+            this.executionContext = executionContext;
             init(WIDTH, HEIGHT);
         }
 
@@ -133,6 +138,7 @@ public class ControlPanel {
             parseButton.setOnAction((event) -> {
                 myCommand = myCommandInput.getInput();
                 System.out.println(myCommand);
+                handleParse(myCommand);
             });
             turtleImageButton.setOnAction((event) -> {
                 myTurtleImage = myTurtleImageChooser.getInput();
@@ -154,6 +160,15 @@ public class ControlPanel {
                     e.printStackTrace();
                 }
             });
+        }
+
+        private void handleParse(String input) {
+            try {
+                ExternalAPICall<Void, String> parseCall = (ExternalAPICall<Void, String>) executionContext.getExternalAPICall("parse");
+                parseCall.call(input);
+            } catch (Exception e) {
+
+            }
         }
 
         public String getMyCommand() {
@@ -191,4 +206,8 @@ public class ControlPanel {
         public VBox getPaneBox() {
             return paneBox;
         }
+
+    public void setExecutionContext(ExecutionContext executionContext) {
+            this.executionContext = executionContext;
+    }
 }

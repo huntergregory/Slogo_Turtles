@@ -1,6 +1,6 @@
 package frontendapi;
 
-import frontend.UIMain;
+import ui_public.UIMain;
 
 abstract public class FrontendAPICall {
 

@@ -1,5 +1,6 @@
 package parser_private;
 
+import external.ExecutionContext;
 import parser_private.commands.math_commands.ConstantCommand;
 import parser_public.ParserException;
 
@@ -43,20 +44,28 @@ public class CommandFactory {
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    public Command createCommand(String commandName, List<Command> args) throws ParserException {
+    public Command createCommand(String commandName, List<Command> args, ExecutionContext executionContext) throws ParserException {
 
         Class clazz = null;
         try {
 
             clazz = Class.forName("parser_private.commands." + commandClassNames.get(commandName));
-            Constructor constructor = clazz.getConstructor(List.class);
-            return (Command)constructor.newInstance(args);
+            Constructor[] constructors = clazz.getConstructors();
+            if (constructors.length > 1)
+                throw new ParserException("Class " + clazz.getName() + " should only have one constructor.");
+            Constructor constructor = constructors[0];
+            if (constructor.getParameterCount() == 1) {
+                return (Command) constructor.newInstance(args);
+            }
+            else {
+                if (executionContext.hasCommand(commandName))
+                    return (Command) constructor.newInstance(args, executionContext.getExternalAPICall(commandName));
+                else
+                    throw new ParserException("External API Call for " + clazz.getName() + " does not exist");
+            }
 
         } catch (ClassNotFoundException e) {
             throw new ParserException("Class " + commandClassNames.get(commandName) + " not found");
-        } catch (NoSuchMethodException e) {
-            throw new ParserException("Class " + clazz.getName() +
-                    " does not have correct constructor");
         } catch (Exception e) {
             throw new ParserException("Error instantiating class for command " + commandName + "\n" + e);
         }

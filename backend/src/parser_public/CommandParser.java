@@ -1,5 +1,6 @@
 package parser_public;
 
+import external.ExecutionContext;
 import parser_private.CommandFactory;
 import parser_private.commands.control_commands.VariableCommand;
 import java.util.ArrayList;
@@ -11,21 +12,24 @@ import parser_private.Command;
 
 public class CommandParser {
 
+    private static CommandParser instance;
+
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
     private List<String> myCommandHistory;
     private static final String WHITESPACE_REGEX = "\\s+";
-    private static CommandParser instance;
 
-    private CommandParser() {
+    private ExecutionContext executionContext;
+
+    public CommandParser(ExecutionContext executionContext) {
         myChunkIndex = 0;
         myCommandQueue = new LinkedList<>();
         myCommandHistory = new ArrayList<>();
+        this.executionContext = executionContext;
+        instance = this;
     }
 
     public static CommandParser getInstance() {
-        if (instance == null)
-            instance = new CommandParser();
         return instance;
     }
 
@@ -92,7 +96,7 @@ public class CommandParser {
         else {
             populateNParameters(paramList, numParams, input);
         }
-        return CommandFactory.getInstance().createCommand(currentChunk, paramList);
+        return CommandFactory.getInstance().createCommand(currentChunk, paramList, executionContext);
     }
 
     private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {
@@ -128,7 +132,7 @@ public class CommandParser {
         // ------ TEST CASES ------
         //parser_public.CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("set :bule 0 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
-        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
+        //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("repeat 5 [ fd :repcount repeat 2 [ fd :repcount ] ] fd :repcount"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("fd not or 1 0"); //WORKS

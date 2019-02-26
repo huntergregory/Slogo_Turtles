@@ -1,6 +1,5 @@
 package parser_private.commands.turtle_commands;
 
-import frontendapi.move_to_position_calls.HomeCall;
 import parser_private.ActionCommand;
 import parser_private.Command;
 import java.util.List;
@@ -13,6 +12,7 @@ public class HomeCommand extends ActionCommand {
 
     @Override
     public double runCommand() {
-        return new HomeCall().call();
+        //return new HomeCall().call();
+        return 0;
     }
 }

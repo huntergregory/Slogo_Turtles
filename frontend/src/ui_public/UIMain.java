@@ -1,6 +1,6 @@
 package ui_public;
 
-import backendapi.ParseCall;
+import external.ExecutionContext;
 import ui_private.ControlPanel;
 import ui_private.TurtleTester;
 import ui_private.turtles.ImageTurtle;
@@ -14,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import parser_public.ParserException;
 
 import java.util.ArrayList;
 
@@ -41,10 +40,7 @@ public class UIMain extends Application {
     private Pane myTurtlePane;
     private Scene myScene;
     private ControlPanel myControlPanel;
-
-    public UIMain() {
-
-    }
+    private ExecutionContext executionContext;
 
     public static UIMain getInstance() {
         return instance;
@@ -58,15 +54,21 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        new TurtleTester().testGoTo(); //TODO: Remove when done testing
+        //new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
+
+    public void setExecutionContext(ExecutionContext executionContext) {
+        this.executionContext = executionContext;
+        myControlPanel.setExecutionContext(executionContext);
+    }
+
 
     private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
         setUpTurtlePane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
-        myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
+        myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT, executionContext);
         myPane.setLeft(myControlPanel.getPaneBox());
         myPane.setCenter(myTurtlePane);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
@@ -90,15 +92,6 @@ public class UIMain extends Application {
     private void handleKeyInput (KeyCode code) {
         if (code == KeyCode.ENTER) {
 
-        }
-    }
-
-    // Method for testing structure
-    public void parseButtonPressed() {
-        try {
-            new ParseCall("fd 50").call();
-        } catch (ParserException e) {
-            handleException(e);
         }
     }
 

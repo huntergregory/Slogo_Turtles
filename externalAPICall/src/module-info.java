@@ -1,0 +1,3 @@
+module externalAPICall {
+    exports external;
+}
