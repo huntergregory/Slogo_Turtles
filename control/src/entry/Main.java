@@ -1,17 +1,17 @@
 package entry;
 
-import backendapi.ParseCall;
+import parser_public.api.ParseCall;
 import external.ExecutionContext;
 import external.ExternalAPICall;
-import frontendapi.move_to_position_calls.*;
-import frontendapi.query_calls.XPositionQuery;
-import frontendapi.rotate_angle_calls.*;
+import ui_public.api.move_to_position_calls.*;
+import ui_public.api.query_calls.XPositionQuery;
+import ui_public.api.rotate_angle_calls.*;
 import javafx.application.Application;
 import parser_public.CommandParser;
 import parser_public.RequiredExternalAPICallsBack;
 import ui_public.RequiredExternalAPICallsFront;
 import ui_public.UIMain;
-import frontendapi.move_distance_calls.*;
+import ui_public.api.move_distance_calls.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
