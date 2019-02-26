@@ -101,7 +101,7 @@ public class ControlPanel {
 
         private void addVariablesDropBox(VBox controlBox) {
             variablesDropBox = new ComboBox<String>();
-            variablesDropBox.setPromptText("VIew ui_private.Variables");
+            variablesDropBox.setPromptText("VIew Variables");
             variablesDropBox.setEditable(true);
             variablesDropBox.setVisibleRowCount(3);
             variablesDropBox.setItems(variablesList);
