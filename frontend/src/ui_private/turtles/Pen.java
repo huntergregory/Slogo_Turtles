@@ -1,5 +1,6 @@
 package ui_private.turtles;
 
+import javafx.beans.property.BooleanProperty;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
@@ -7,21 +8,38 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 
 public class Pen {
+    public static final String CSS_TAG = "line";
+
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
-    private boolean myIsDown;
     private LineStroke myStroke;
-    public static final String CSS_TAG = "line";
+    private BooleanProperty myIsDown;
+    private BooleanProperty myShouldEraseLines; //should be true after a clear screen command
 
     protected Pen(ObservableList list) {
         myModifiableList = list;
         myStroke = LineStroke.NORMAL;
         myLines = new ArrayList<>();
-        myIsDown = true;
+        addEraseListener();
+        bindProperties();
+    }
+
+    private void addEraseListener() {
+        myShouldEraseLines.addListener((o, oldBool, newBool) -> {
+            if (oldBool) {
+                erase();
+                myShouldEraseLines.set(false);
+            }
+        });
+    }
+
+    private void bindProperties() {
+        myIsDown.bind(//get properties from back end);
+        myShouldEraseLines.bind(//get properties from back end);
     }
 
     protected void draw(double oldX, double oldY, double newX, double newY) {
-        if (!myIsDown)
+        if (!myIsDown.getValue())
             return;
         Line line = new Line(oldX, oldY, newX, newY);
         line.getStyleClass().add(CSS_TAG);
@@ -50,11 +68,11 @@ public class Pen {
         myLines = new ArrayList<>();
     }
 
-    protected boolean getIsDown() {
+    protected BooleanProperty getDownProperty() {
         return myIsDown;
     }
 
-    protected void setIsDown(boolean down) {
-        myIsDown = down;
+    protected BooleanProperty getEraseLinesProperty() {
+        return myShouldEraseLines;
     }
 }

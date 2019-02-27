@@ -1,33 +1,25 @@
-package parser_public;
+package parser_private;
 
 public class TurtleState {
 
-    private int myTurtleID;
     private double myX;
     private double myY;
     private double myHeading;
     private boolean myIsShowing;
     private boolean myPenDown;
+    private boolean myErasePreviousLines;
 
-    private TurtleState(int turtID, double x, double y, double heading, boolean show, boolean pendown) {
-        myTurtleID = turtID;
+    private TurtleState(double x, double y, double heading, boolean show, boolean pendown, boolean eraseLines) {
         myX = x;
         myY = y;
         myHeading = heading;
         myIsShowing = show;
         myPenDown = pendown;
+        myErasePreviousLines = eraseLines;
     }
 
     public TurtleState() {
-        this(0, 0, 0, 0, true, false);
-    }
-
-    public TurtleState(double x, double y, double heading, boolean show, boolean pendown) {
-        this(0, x, y, heading, show, pendown);
-    }
-
-    public TurtleState(TurtleState prev) {
-        this(prev.myTurtleID, prev.myX, prev.myY, prev.myHeading, prev.myIsShowing, prev.myPenDown);
+        this(0, 0, 0, true, true, false);
     }
 
     public void setX(double newX) {
@@ -50,10 +42,7 @@ public class TurtleState {
         myPenDown = penDown;
     }
 
-    public int getTurtleID() {
-        return myTurtleID;
-    }
-
+    /*
     public double getX() {
         return myX;
     }
@@ -73,4 +62,5 @@ public class TurtleState {
     public boolean getPenDown() {
         return myPenDown;
     }
+    */
 }

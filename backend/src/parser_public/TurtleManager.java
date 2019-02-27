@@ -1,5 +1,7 @@
 package parser_public;
 
+import parser_private.Turtle;
+
 import java.util.ArrayList;
 
 public class TurtleManager {
