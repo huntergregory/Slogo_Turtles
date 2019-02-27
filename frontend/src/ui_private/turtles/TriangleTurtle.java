@@ -8,8 +8,8 @@ import javafx.scene.paint.Paint;
 public class TriangleTurtle extends Turtle {
     private static final Paint COLOR = Color.RED;
 
-    public TriangleTurtle(int id, ObservableList list, double width, double height) {
-        super(id, list, width, height);
+    public TriangleTurtle(int id, ObservableList list, double xOrigin, double yOrigin) {
+        super(id, list, xOrigin, yOrigin);
     }
 
     @Override
