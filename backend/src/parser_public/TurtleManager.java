@@ -5,26 +5,37 @@ import parser_private.Turtle;
 import java.util.ArrayList;
 
 public class TurtleManager {
+    private static TurtleManager instance;
+
     private ArrayList<Turtle> myTurtles;
 
-    protected TurtleManager() {
-        this(1);
-    }
-
-    protected TurtleManager(int numTurtles) {
+    private TurtleManager() {
         myTurtles = new ArrayList<>();
-        while (numTurtles > 0) {
-            myTurtles.add(new Turtle());
-            numTurtles -= 1;
-        }
     }
 
-    public void addTurtle() {
-        myTurtles.add(new Turtle());
+    public static TurtleManager getInstance() {
+        if (instance == null) {
+            instance = new TurtleManager();
+        }
+        return instance;
+    }
+
+    public void addTurtle(double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
+        int id = myTurtles.size();
+        myTurtles.add(new Turtle(id, displayWidth, displayHeight, turtleWidth, turtleHeight));
     }
 
     public void removeTurtle() {
-        int last = myTurtles.size() - 1;
-        myTurtles.remove(last);
+        removeTurtle(myTurtles.size() - 1);
+    }
+
+    public void removeTurtle(int id) {
+        if (idOutOfBounds(id))
+            return;
+        myTurtles.remove(id);
+    }
+
+    private boolean idOutOfBounds(int id) {
+        return id >= myTurtles.size() || id < 0;
     }
 }

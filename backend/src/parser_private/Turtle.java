@@ -1,6 +1,8 @@
 package parser_private;
 
 
+import javafx.beans.property.DoubleProperty;
+
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
  * Ensures the turtle stays in a boundary width and height.
@@ -15,11 +17,10 @@ public class Turtle {
     private int myTurtleID;
     private double myX;
     private double myY;
-    private double myHeading;
+    private DoubleProperty myHeading;
     private boolean myIsShowing;
     private boolean myPenIsDown;
     private boolean myErasePreviousLines;
-    //FIXME: or do TurtleState
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -46,32 +47,8 @@ public class Turtle {
         myErasePreviousLines = false;
     }
 
-    public void eraseLines() {
-        myPen.erase();
-    }
-
-    public void setState(TurtleState newState) {
-        myCurrentState = newState;
-
-        setPosition(newState.getX(), newState.getY());
-        setHeading(newState.getHeading());
-        myPen.setIsDown(newState.getPenDown());
-        myNode.setVisible(newState.getShowing());
-    }
-
     private void setPosition(double newX, double newY) {
-        double oldDisplayX = getOriginAdjustedTurtleX();
-        double oldDisplayY = getOriginAdjustedTurtleY();
-        setX(newX);
-        setY(newY);
-        double newDisplayX = getOriginAdjustedTurtleX();
-        double newDisplayY = getOriginAdjustedTurtleY();
-        myNode.relocate(newDisplayX, newDisplayY);
-        myPen.draw(oldDisplayX + Turtle.WIDTH / 2.0,
-                oldDisplayY + Turtle.HEIGHT / 2.0,
-                newDisplayX + Turtle.WIDTH / 2.0,
-                newDisplayY + Turtle.HEIGHT / 2.0);
-        moveAboveLines();
+
     }
 
     /**
