@@ -1,6 +1,7 @@
 package ui_private.turtles;
 
 import javafx.beans.property.BooleanProperty;
+import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
@@ -11,13 +12,15 @@ public class Pen {
     public static final String CSS_TAG = "line";
     public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
 
+    private int myID;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
     private LineStroke myStroke;
     private BooleanProperty myIsDown;
     private BooleanProperty myShouldEraseLines; //should be true after a clear screen command
 
-    protected Pen(ObservableList list) {
+    protected Pen(int id, ObservableList list) {
+        myID = id;
         myModifiableList = list;
         myStroke = DEFAULT_LINE_STROKE;
         myLines = new ArrayList<>();
@@ -35,8 +38,9 @@ public class Pen {
     }
 
     private void bindProperties() {
-        myIsDown.bind(//get properties from back end);
-        myShouldEraseLines.bind(//get properties from back end);
+        var manager = TurtleManager.getInstance();
+        myIsDown.bind(manager.getDownProperty(myID));
+        myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
     protected void draw(double oldX, double oldY, double newX, double newY) {

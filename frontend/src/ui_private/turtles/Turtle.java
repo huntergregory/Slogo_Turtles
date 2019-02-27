@@ -2,6 +2,7 @@ package ui_private.turtles;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -18,10 +19,11 @@ public abstract class Turtle {
 
     protected Node myNode; //must be accessed by subclass
 
-    private ObservableList myModifiableList;
-    private Pen myPen;
+    private int myID;
     private double myDisplayWidth;
     private double myDisplayHeight;
+    private ObservableList myModifiableList;
+    private Pen myPen;
 
     private BooleanProperty myIsShowingProperty;
     private DoubleProperty myHeadingProperty;
@@ -39,7 +41,8 @@ public abstract class Turtle {
      * @param displayHeight
      * @param list
      */
-    public Turtle(double displayWidth, double displayHeight, ObservableList list) {
+    public Turtle(int id, double displayWidth, double displayHeight, ObservableList list) {
+        myID = id;
         myDisplayWidth = displayWidth;
         myDisplayHeight = displayHeight;
 
@@ -78,9 +81,10 @@ public abstract class Turtle {
     }
 
     private void bindProperties() {
-        myXProperty.bind(//get properties from back end);
-        myYProperty.bind(//get properties from back end);
-        myHeadingProperty.bind(//get properties from back end);
+        var manager = TurtleManager.getInstance();
+        myXProperty.bind(manager.getXProperty(myID));
+        myYProperty.bind(manager.getYProperty(myID));
+        myHeadingProperty.bind(manager.getHeadingProperty(myID));
     }
 
     private void updateOnPositionChange(double old, boolean isX) {
