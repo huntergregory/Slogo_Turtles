@@ -17,10 +17,9 @@ public class TurtleDisplay {
     private double myHeight;
     private ObservableList myObservableList;
 
-    protected TurtleDisplay(double width, double height, ObservableList list) {
+    protected TurtleDisplay(double width, double height) {
         myWidth = width;
         myHeight = height;
-        myObservableList = list;
         initializePane();
         initializeTurtles();
     }
@@ -37,7 +36,7 @@ public class TurtleDisplay {
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
         TurtleManager.getInstance().initialize(myWidth, myHeight, Turtle.WIDTH, Turtle.HEIGHT);
-        myTurtleViews.add(new ImageTurtle(0, myObservableList));
+        myTurtleViews.add(new ImageTurtle(0, myTurtlePane.getChildren()));
     }
 
     protected Pane getPane() {
