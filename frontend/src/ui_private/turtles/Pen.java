@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Pen {
     public static final String CSS_TAG = "line";
+    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
 
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
@@ -18,7 +19,7 @@ public class Pen {
 
     protected Pen(ObservableList list) {
         myModifiableList = list;
-        myStroke = LineStroke.NORMAL;
+        myStroke = DEFAULT_LINE_STROKE;
         myLines = new ArrayList<>();
         addEraseListener();
         bindProperties();
@@ -66,13 +67,5 @@ public class Pen {
     protected void erase() {
         myModifiableList.removeAll(myLines);
         myLines = new ArrayList<>();
-    }
-
-    protected BooleanProperty getDownProperty() {
-        return myIsDown;
-    }
-
-    protected BooleanProperty getEraseLinesProperty() {
-        return myShouldEraseLines;
     }
 }
