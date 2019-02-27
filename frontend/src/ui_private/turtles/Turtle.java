@@ -72,10 +72,10 @@ public abstract class Turtle {
     }
 
     private void addPropertyListeners() {
-        myXProperty.addListener((o, oldVal, newVal) -> updateOnPositionChange(oldVal.doubleValue(), true));
-        myYProperty.addListener((o, oldVal, newVal) -> updateOnPositionChange(oldVal.doubleValue(), false));
-        myHeadingProperty.addListener((o, oldVal, newVal) -> myNode.setRotate(newVal.doubleValue()));
-        myIsShowingProperty.addListener((o, oldVal, newVal) -> myNode.setVisible(newVal));
+        myXProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), true); System.out.println("updating x");  });
+        myYProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), false); System.out.println("updating y");  });
+        myHeadingProperty.addListener((o, oldVal, newVal) -> { myNode.setRotate(newVal.doubleValue()); System.out.println("rotating");  } );
+        myIsShowingProperty.addListener((o, oldVal, newVal) -> { myNode.setVisible(newVal); System.out.println("hiding or showing");  } );
     }
 
     private void bindProperties() {
