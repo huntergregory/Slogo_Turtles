@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import parser_public.CommandParser;
+import parser_public.InputTranslator;
 import parser_public.ParserException;
 
 import java.io.IOException;
@@ -139,6 +140,7 @@ public class ControlPanel {
             });
             languageButton.setOnAction((event) -> {
                 myLanguage = myLanguageChooser.getInput();
+                sendToTranslator();
             });
             backgroundButton.setOnAction((event) -> {
                 myBackgroundColor = myBackgroundColorChooser.getColor();
@@ -166,6 +168,16 @@ public class ControlPanel {
                 // TODO handle parse error
             }
         }
+
+        private void sendToTranslator() {
+            try {
+                InputTranslator.getInstance().changeLanguage(myLanguage);
+            }
+            catch (ParserException e) {
+                //TODO handle parse error
+            }
+        }
+
 
         public String getMyCommand() {
             return myCommand;
