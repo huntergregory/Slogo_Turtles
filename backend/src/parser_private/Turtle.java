@@ -3,7 +3,6 @@ package parser_private;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import parser_public.NoTurtleException;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
@@ -17,12 +16,12 @@ public class Turtle {
     private final double myTurtleHeight;
 
     private int myTurtleID;
-    private double myX;
-    private double myY;
-    private DoubleProperty myHeading;
-    private boolean myIsShowing;
-    private boolean myPenIsDown;
-    private boolean myErasePreviousLines;
+    private DoubleProperty myXProperty;
+    private DoubleProperty myYProperty;
+    private DoubleProperty myHeadingProperty;
+    private BooleanProperty myIsShowingProperty;
+    private BooleanProperty myPenIsDownProperty;
+    private BooleanProperty myShouldEraseLinesProperty;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -41,38 +40,71 @@ public class Turtle {
     }
 
     private void setDefaultState() {
-        myX = 0;
-        myY = 0;
-        myHeading = 0;
-        myIsShowing = true;
-        myPenIsDown = true;
-        myErasePreviousLines = false;
+        setPosition(0,0);
+        setHeading(0);
+        setShowing(true);
+        setPenDown(true);
+        myShouldEraseLinesProperty.set(false);
     }
 
-    public void setPosition(double newX, double newY) {
-
+    public void setPosition(double x, double y) {
+        myXProperty.set(getInBoundsNum(x, -getOriginX() + myTurtleWidth/2.0, getOriginX() - myTurtleWidth/2.0));
+        myYProperty.set(getInBoundsNum(y, -getOriginY() + myTurtleHeight/2.0, getOriginY() - myTurtleHeight/2.0));
     }
 
     public void setHeading(double heading) {
-        myNode.setRotate(heading);
+        myHeadingProperty.set(heading);
     }
+
+    public void setShowing(boolean bool) {
+        myIsShowingProperty.set(bool);
+    }
+
+    public void setPenDown(boolean bool) {
+        myIsShowingProperty.set(bool);
+    }
+
+    public void eraseLines() {
+        myShouldEraseLinesProperty.set(true);
+    }
+
+    public int getTurtleID() {
+        return myTurtleID;
+    }
+
+    public DoubleProperty getXProperty() {
+        return myXProperty;
+    }
+
+    public DoubleProperty getYProperty() {
+        return myYProperty;
+    }
+
+    public DoubleProperty getHeadingProperty() {
+        return myHeadingProperty;
+    }
+
+    public BooleanProperty getDownProperty() {
+        return myPenIsDownProperty;
+    }
+
+    public BooleanProperty getShowingProperty() {
+        return myIsShowingProperty;
+    }
+
+    public BooleanProperty getEraseProperty() {
+        return myShouldEraseLinesProperty;
+    }
+
 
     private double getOriginAdjustedTurtleX() {
         double centerX = getOriginX() - Turtle.WIDTH / 2.0;
-        return myX + centerX;
+        return myXProperty + centerX;
     }
 
     private double getOriginAdjustedTurtleY() {
         double centerY = getOriginY()- Turtle.HEIGHT / 2.0;
-        return myY + centerY;
-    }
-
-    private void setX(double x) {
-        myX = getInBoundsNum(x, -getOriginX() + Turtle.WIDTH/2.0, getOriginX() - Turtle.WIDTH/2.0);
-    }
-
-    private void setY(double y) {
-        myY = getInBoundsNum(y, -getOriginY() + Turtle.HEIGHT/2.0, getOriginY() - Turtle.HEIGHT/2.0);
+        return myYProperty + centerY;
     }
 
     private double getInBoundsNum(double num, double min, double max) {
@@ -87,46 +119,5 @@ public class Turtle {
             return max;
         }
         return num;
-    }
-
-    public int getTurtleID() {
-        return myTurtleID;
-    }
-
-
-    public DoubleProperty getXProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getXProperty();
-    }
-
-    public DoubleProperty getYProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getYProperty();
-    }
-
-    public DoubleProperty getHeadingProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getHeadingProperty();
-    }
-
-    public BooleanProperty getDownProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getDownProperty();
-    }
-
-    public BooleanProperty getShowingProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getShowingProperty();
-    }
-
-    public BooleanProperty getEraseProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
-            throw new NoTurtleException();
-        return myTurtles.get(turtleID).getEraseLinesProperty();
     }
 }

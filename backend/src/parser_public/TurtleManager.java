@@ -48,45 +48,45 @@ public class TurtleManager {
     }
 
     public void removeTurtle(int id) {
-        if (idOutOfBounds())
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
         myTurtles.remove(id);
     }
 
-    public DoubleProperty getXProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public DoubleProperty getXProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getXProperty();
+        return myTurtles.get(id).getXProperty(id);
     }
 
-    public DoubleProperty getYProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public DoubleProperty getYProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getYProperty();
+        return myTurtles.get(id).getYProperty(id);
     }
 
-    public DoubleProperty getHeadingProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public DoubleProperty getHeadingProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getHeadingProperty();
+        return myTurtles.get(id).getHeadingProperty(id);
     }
 
-    public BooleanProperty getDownProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public BooleanProperty getDownProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getDownProperty();
+        return myTurtles.get(id).getDownProperty(id);
     }
 
-    public BooleanProperty getShowingProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public BooleanProperty getShowingProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getShowingProperty();
+        return myTurtles.get(id).getShowingProperty(id);
     }
 
-    public BooleanProperty getEraseProperty(int turtleID) throws NoTurtleException {
-        if (idOutOfBounds(turtleID))
+    public BooleanProperty getEraseProperty(int id) throws NoTurtleException {
+        if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(turtleID).getEraseProperty();
+        return myTurtles.get(id).getEraseProperty(id);
     }
 
     private boolean idOutOfBounds(int id) {
