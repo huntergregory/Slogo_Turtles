@@ -1,8 +1,10 @@
 package parser_private;
 
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
@@ -17,12 +19,12 @@ public class Turtle {
     private final double myTurtleHeight;
 
     private int myTurtleID;
-    private DoubleProperty myXProperty;
-    private DoubleProperty myYProperty;
-    private DoubleProperty myHeadingProperty;
-    private BooleanProperty myIsShowingProperty;
-    private BooleanProperty myPenIsDownProperty;
-    private BooleanProperty myShouldEraseLinesProperty;
+    private SimpleDoubleProperty myXProperty;
+    private SimpleDoubleProperty myYProperty;
+    private SimpleDoubleProperty myHeadingProperty;
+    private SimpleBooleanProperty myIsShowingProperty;
+    private SimpleBooleanProperty myPenIsDownProperty;
+    private SimpleBooleanProperty myShouldEraseLinesProperty;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -37,7 +39,17 @@ public class Turtle {
         myDisplayHeight = displayHeight;
         myTurtleWidth = turtleWidth;
         myTurtleHeight = turtleHeight;
+        instantiateProperties();
         setDefaultState();
+    }
+
+    private void instantiateProperties() {
+        myXProperty = new SimpleDoubleProperty();
+        myYProperty = new SimpleDoubleProperty();
+        myHeadingProperty = new SimpleDoubleProperty();
+        myIsShowingProperty = new SimpleBooleanProperty();
+        myPenIsDownProperty = new SimpleBooleanProperty();
+        myShouldEraseLinesProperty = new SimpleBooleanProperty();
     }
 
     private void setDefaultState() {

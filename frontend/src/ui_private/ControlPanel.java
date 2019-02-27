@@ -163,7 +163,6 @@ public class ControlPanel {
             System.out.println(myCommand); //TODO remove before submission
             try {
                 CommandParser.getInstance().parseAndRun(myCommand);
-                UIMain.getInstance().updateTurtles();
             }
             catch (ParserException e) {
                 // TODO handle parse error

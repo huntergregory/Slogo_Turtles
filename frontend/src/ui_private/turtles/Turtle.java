@@ -2,6 +2,8 @@ package ui_private.turtles;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
@@ -23,10 +25,10 @@ public abstract class Turtle {
     private ObservableList myModifiableList;
     private Pen myPen;
 
-    private BooleanProperty myIsShowingProperty;
-    private DoubleProperty myHeadingProperty;
-    private DoubleProperty myXProperty;
-    private DoubleProperty myYProperty;
+    private BooleanProperty myIsShowingProperty = new SimpleBooleanProperty();
+    private DoubleProperty myHeadingProperty = new SimpleDoubleProperty();
+    private DoubleProperty myXProperty = new SimpleDoubleProperty();
+    private DoubleProperty myYProperty = new SimpleDoubleProperty();
     private double myOldX = 0;
     private double myOldY = 0;
     private boolean myReadyToMove; //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
@@ -35,8 +37,7 @@ public abstract class Turtle {
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
-     * @param displayWidth
-     * @param displayHeight
+     * @param id
      * @param list
      */
     public Turtle(int id, ObservableList list) {

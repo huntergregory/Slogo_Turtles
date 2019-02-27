@@ -1,6 +1,7 @@
 package ui_private.turtles;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
@@ -16,8 +17,8 @@ public class Pen {
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
     private LineStroke myStroke;
-    private BooleanProperty myIsDown;
-    private BooleanProperty myShouldEraseLines; //should be true after a clear screen command
+    private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
+    private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
     protected Pen(int id, ObservableList list) {
         myID = id;
