@@ -50,5 +50,6 @@ public class TurtleDisplay {
 
     public void removeTurtle() {
         //FIXME
+        //TODO: catch NoTurtleException
     }
 }

@@ -6,12 +6,13 @@ import javafx.beans.property.DoubleProperty;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
- * Ensures the turtle stays in a boundary width and height.
+ * Ensures the turtle stays in display width and height.
+ * X and Y properties reflect the coordinates of the turtle view's top left corner.
  * @author Hunter Gregory
  */
 public class Turtle {
-    private final double myBoundaryWidth;
-    private final double myBoundaryHeight;
+    private final double myDisplayWidth;
+    private final double myDisplayHeight;
     private final double myTurtleWidth;
     private final double myTurtleHeight;
 
@@ -32,8 +33,8 @@ public class Turtle {
      */
     public Turtle(int turtID, double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
         myTurtleID = turtID;
-        myBoundaryWidth = displayWidth;
-        myBoundaryHeight = displayHeight;
+        myDisplayWidth = displayWidth;
+        myDisplayHeight = displayHeight;
         myTurtleWidth = turtleWidth;
         myTurtleHeight = turtleHeight;
         setDefaultState();
@@ -48,8 +49,10 @@ public class Turtle {
     }
 
     public void setPosition(double x, double y) {
-        myXProperty.set(getInBoundsNum(x, -getOriginX() + myTurtleWidth/2.0, getOriginX() - myTurtleWidth/2.0));
-        myYProperty.set(getInBoundsNum(y, -getOriginY() + myTurtleHeight/2.0, getOriginY() - myTurtleHeight/2.0));
+        double displayX = getDisplayX(x);
+        double displayY = getDisplayY(y);
+        myXProperty.set(getInBoundsNum(displayX, 0, myDisplayWidth - myTurtleWidth));
+        myYProperty.set(getInBoundsNum(displayY, 0, myDisplayHeight - myTurtleHeight));
     }
 
     public void setHeading(double heading) {
@@ -96,28 +99,19 @@ public class Turtle {
         return myShouldEraseLinesProperty;
     }
 
-
-    private double getOriginAdjustedTurtleX() {
-        double centerX = getOriginX() - Turtle.WIDTH / 2.0;
-        return myXProperty + centerX;
+    private double getDisplayX(double x) {
+        return x - myTurtleWidth/2.0 + myDisplayWidth/2.0;
     }
 
-    private double getOriginAdjustedTurtleY() {
-        double centerY = getOriginY()- Turtle.HEIGHT / 2.0;
-        return myYProperty + centerY;
+    private double getDisplayY(double y) {
+        return -y - myTurtleHeight/2.0 + myDisplayHeight/2.0;
     }
 
     private double getInBoundsNum(double num, double min, double max) {
-        if (num < min) {
-            System.out.println("position was out of bounds on the left or top");
-            System.out.println("returning " + min);
+        if (num < min)
             return min;
-        }
-        if (num > max) {
-            System.out.println("position was out of bounds on the right or bottom");
-            System.out.println("returning " + max);
+        if (num > max)
             return max;
-        }
         return num;
     }
 }

@@ -56,37 +56,37 @@ public class TurtleManager {
     public DoubleProperty getXProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getXProperty(id);
+        return myTurtles.get(id).getXProperty();
     }
 
     public DoubleProperty getYProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getYProperty(id);
+        return myTurtles.get(id).getYProperty();
     }
 
     public DoubleProperty getHeadingProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getHeadingProperty(id);
+        return myTurtles.get(id).getHeadingProperty();
     }
 
     public BooleanProperty getDownProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getDownProperty(id);
+        return myTurtles.get(id).getDownProperty();
     }
 
     public BooleanProperty getShowingProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getShowingProperty(id);
+        return myTurtles.get(id).getShowingProperty();
     }
 
     public BooleanProperty getEraseProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getEraseProperty(id);
+        return myTurtles.get(id).getEraseProperty();
     }
 
     private boolean idOutOfBounds(int id) {
