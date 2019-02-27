@@ -1,5 +1,5 @@
 package frontendapi;
-
+/*
 public class TowardsCall extends FrontendAPICall {
     private final double NUM_DEGREES = 360;
     private double myX;
@@ -38,6 +38,6 @@ public class TowardsCall extends FrontendAPICall {
             newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + 180;
             System.out.println("set heading: " + newHeading);
         }*/
-        return 0; //newHeading;
+        /*return 0; //newHeading;
     }
-}
+}*/

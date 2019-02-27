@@ -1,4 +1,4 @@
-package frontendapi.rotate_angle_calls;
+/*package frontendapi.rotate_angle_calls;
 
 import frontendapi.FrontendAPICall;
 
@@ -15,3 +15,4 @@ public abstract class RotateAngleCall extends FrontendAPICall {
         return Math.abs(myAngle);
     }
 }
+*/

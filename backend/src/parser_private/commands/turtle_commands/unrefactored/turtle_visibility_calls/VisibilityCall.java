@@ -1,4 +1,4 @@
-package frontendapi.turtle_visibility_calls;
+/*package frontendapi.turtle_visibility_calls;
 
 import frontendapi.FrontendAPICall;
 
@@ -15,3 +15,4 @@ public abstract class VisibilityCall extends FrontendAPICall {
         return myWillShow ? 1 : 0;
     }
 }
+*/

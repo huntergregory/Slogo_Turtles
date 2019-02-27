@@ -43,7 +43,7 @@ public class TurtleManager {
     }
 
     public void setIsShowing(boolean bool) {
-        myTurtles.get(0).setShowing();
+        myTurtles.get(0).setShowing(bool);
     }
 
     public void eraseLines() {
