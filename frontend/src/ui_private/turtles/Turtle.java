@@ -15,11 +15,11 @@ import javafx.scene.Node;
  * @author Hunter Gregory
  */
 public abstract class Turtle {
-    public static final double WIDTH = 20;
-    public static final double HEIGHT = 20;
-    public static final String CSS_TAG = "turtle";
+    static final double WIDTH = 20;
+    static final double HEIGHT = 20;
+    private static final String CSS_TAG = "turtle";
 
-    protected Node myNode; //must be accessed by subclass
+    Node myNode; //must be accessed by subclass
 
     private int myID;
     private ObservableList myModifiableList;
@@ -43,7 +43,7 @@ public abstract class Turtle {
      * @param id
      * @param list
      */
-    public Turtle(int id, ObservableList list, double dispX, double dispY) {
+    Turtle(int id, ObservableList list, double dispX, double dispY) {
         myID = id;
         myDispXOffset = dispX;
         myDispYOffset = dispY;

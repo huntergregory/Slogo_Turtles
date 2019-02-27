@@ -66,7 +66,6 @@ public class TurtleManager {
         return getDownProperty(0).getValue();
     }
 
-
     public void initialize(double paneWidth, double paneHeight) {
         addTurtle(paneWidth, paneHeight);
     }

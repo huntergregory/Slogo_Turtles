@@ -137,7 +137,7 @@ public class CommandParser {
         //parser_public.CommandParser.getInstance().parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
 
         // ------ UNTESTED COMMANDS ------
-        // Turtle parser_private.commands, turtle queries, for, to, other languages (should be easy, just change default in parser_public.InputTranslator)
+        // Turtle commands, turtle queries, for, to, other languages (should be easy, just change default in parser_public.InputTranslator)
         /*
 
          */
