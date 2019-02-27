@@ -57,6 +57,7 @@ public abstract class Turtle {
         addPropertyListeners();
         bindProperties();
         eraseLines(); // a dot of a line is added if not called???????????
+
         move();
     }
 
@@ -78,8 +79,8 @@ public abstract class Turtle {
     }
 
     private void addPropertyListeners() {
-        myXProperty.addListener((o, oldVal, newVal) -> { updateX(oldVal.doubleValue(), newVal.doubleValue()); System.out.println("updating x " + oldVal + " " + newVal);  });
-        myYProperty.addListener((o, oldVal, newVal) -> { updateY(oldVal.doubleValue(), newVal.doubleValue()); System.out.println("updating y" + oldVal + " " + newVal);  });
+        myXProperty.addListener((o, oldVal, newVal) -> { updateX(oldVal.doubleValue(), newVal.doubleValue());});
+        myYProperty.addListener((o, oldVal, newVal) -> { updateY(oldVal.doubleValue(), newVal.doubleValue());});
         myHeadingProperty.addListener((o, oldVal, newVal) -> { myNode.setRotate(newVal.doubleValue()); System.out.println("rotating");  } );
         myIsShowingProperty.addListener((o, oldVal, newVal) -> { myNode.setVisible(newVal); System.out.println("hiding or showing");  } );
     }
@@ -104,18 +105,12 @@ public abstract class Turtle {
     }
 
     private void move() {
-        if (!didNotMove()) {
-            myNode.relocate(myNewX - Turtle.WIDTH / 2.0 + myDispXOffset, myNewY - Turtle.HEIGHT / 2.0 + myDispYOffset);
-            myPen.draw(myOldX + Turtle.WIDTH / 2.0,
-                    myOldY + Turtle.HEIGHT / 2.0,
-                    myNewX + Turtle.WIDTH / 2.0,
-                    myNewY + Turtle.HEIGHT / 2.0);
-            moveAboveLines();
-        }
-    }
-
-    private boolean didNotMove() {
-        return myOldX == myNewX && myOldY == myNewY;
+        myNode.relocate(myNewX - Turtle.WIDTH / 2.0 + myDispXOffset, myNewY - Turtle.HEIGHT / 2.0 + myDispYOffset);
+        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
+                myOldY + Turtle.HEIGHT / 2.0,
+                myNewX + Turtle.WIDTH / 2.0,
+                myNewY + Turtle.HEIGHT / 2.0);
+        moveAboveLines();
     }
 
     /**

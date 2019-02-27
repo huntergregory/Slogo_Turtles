@@ -55,7 +55,6 @@ public class Turtle {
     public void setPosition(double x, double y) {
         myXProperty.set(getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0));
         myYProperty.set(getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0));
-        System.out.println("setting position in backend");
     }
 
     public void setHeading(double heading) {

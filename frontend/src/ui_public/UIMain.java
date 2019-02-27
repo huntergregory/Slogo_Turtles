@@ -49,7 +49,6 @@ public class UIMain extends Application {
 
     private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
-
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
 
         var scene = new Scene(myPane, width, height, background);
