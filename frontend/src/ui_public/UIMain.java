@@ -1,5 +1,6 @@
 package ui_public;
 
+import parser_public.ParserException;
 import ui_private.ControlPanel;
 
 import javafx.application.Application;
@@ -20,14 +21,17 @@ public class UIMain extends Application {
     private static final double HEIGHT = 600;
     private static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
     private static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
-    private static final double TURTLE_PANE_HEIGHT = HEIGHT * 5/6.0;
+    private static final double TURTLE_PANE_HEIGHT = HEIGHT * 2/3.0;
+    private static final double TERMINAL_HEIGHT = HEIGHT / 6.0;
     private static final Paint BACKGROUND = Color.WHITE;
     private static final String TITLE = "SLogo";
 
+    private Scene myScene;
     private BorderPane myPane;
     private TurtleDisplay myTurtleDisplay;
-    private Scene myScene;
     private ControlPanel myControlPanel;
+    private CommandTerminal myTerminal;
+    private UIFactory myFactory;
 
     private static UIMain instance;
 
@@ -49,24 +53,33 @@ public class UIMain extends Application {
 
     private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
-        myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
-
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
+
+        myTerminal = new CommandTerminal(); //FIXME
+        myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
         myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
+        myFactory = new UIFactory(myTurtleDisplay, myControlPanel);
+
+        //TODO: include Command/Variable Window Panel that manages Window classes. Put it on the right of the Pane
+        //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
         myPane.setLeft(myControlPanel.getPaneBox());
         myPane.setCenter(myTurtleDisplay.getPane());
+        myPane.setBottom(myTerminal);
+
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
     }
 
+    //Delete??
     private void handleKeyInput (KeyCode code) {
         if (code == KeyCode.ENTER) {
 
         }
     }
 
-    private void handleException(Exception e) {
+    //TODO: put this in CommandTerminal
+    private void handleException(ParserException e) {
         // TODO: Handle exception with some display
     }
 }

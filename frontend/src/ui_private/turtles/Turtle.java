@@ -5,7 +5,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import parser_public.TurtleManager;
-import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 

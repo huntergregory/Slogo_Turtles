@@ -1,9 +1,7 @@
 package ui_private.turtles;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import parser_public.TurtleManager;
-import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 
