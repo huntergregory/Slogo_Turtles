@@ -1,6 +1,4 @@
-package frontendapi.move_distance_calls;
-
-import frontendapi.FrontendAPICall;
+package parser_private.commands.turtle_commands.move_distance_commands;
 
 public abstract class MoveDistanceCall extends FrontendAPICall  {
     private double myDistance;
