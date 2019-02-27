@@ -5,6 +5,6 @@ import frontendapi.FrontendAPICall;
 public class XPositionQuery extends FrontendAPICall {
     @Override
     public double call() {
-        return ui.getX();
+        return 0; //ui.getX();
     }
 }

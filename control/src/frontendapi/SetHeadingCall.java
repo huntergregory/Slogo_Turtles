@@ -9,8 +9,8 @@ public class SetHeadingCall extends FrontendAPICall {
 
     @Override
     public double call() {
-        double oldHeading = ui.getHeading();
-        ui.setHeading(myNewHeading);
-        return Math.abs(myNewHeading - oldHeading);
+        //double oldHeading = ui.getHeading();
+        //ui.setHeading(myNewHeading);
+        return 0; //Math.abs(myNewHeading - oldHeading);
     }
 }

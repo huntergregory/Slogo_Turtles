@@ -8,7 +8,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import parser_public.CommandParser;
+import parser_public.ParserException;
+import ui_public.UIMain;
 
+import javax.swing.text.html.parser.Parser;
 import java.io.IOException;
 
 public class ControlPanel {
@@ -130,10 +134,8 @@ public class ControlPanel {
         }
 
         private void handleButtonInput() {
-            parseButton.setOnAction((event) -> {
-                myCommand = myCommandInput.getInput();
-                System.out.println(myCommand);
-            });
+            parseButton.setOnAction((event) -> sendToParser());
+
             turtleImageButton.setOnAction((event) -> {
                 myTurtleImage = myTurtleImageChooser.getInput();
             });
@@ -154,6 +156,18 @@ public class ControlPanel {
                     e.printStackTrace();
                 }
             });
+        }
+
+        private void sendToParser() {
+            myCommand = myCommandInput.getInput();
+            System.out.println(myCommand); //TODO remove before submission
+            try {
+                CommandParser.getInstance().parseAndRun(myCommand);
+                UIMain.getInstance().updateTurtles();
+            }
+            catch (ParserException e) {
+                // TODO handle parse error
+            }
         }
 
         public String getMyCommand() {

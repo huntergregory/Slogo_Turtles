@@ -13,17 +13,18 @@ public class TowardsCall extends FrontendAPICall {
     @Override
     public double call() {
         double newHeading = getNewHeading();
-        double oldHeading = ui.getHeading();
-        ui.setHeading(newHeading);
+        //double oldHeading = ui.getHeading();
+        //ui.setHeading(newHeading);
 
         //TODO: Remove if modulo is undesired
-        double difference = newHeading - oldHeading;
-        double modDifference = difference % NUM_DEGREES;
-        return modDifference;
+        //double difference = newHeading - oldHeading;
+        //double modDifference = difference % NUM_DEGREES;
+        //return modDifference;
+        return 0;
     }
 
     private double getNewHeading() {
-        double deltaX = myX - ui.getX();
+        /*double deltaX = myX - ui.getX();
         double deltaY = -(myY - ui.getY());
         if (deltaX == 0 && deltaY == 0)
             return ui.getHeading();
@@ -36,7 +37,7 @@ public class TowardsCall extends FrontendAPICall {
             System.out.println("proposed heading: " + upLeftOrUpRightHeading);
             newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + 180;
             System.out.println("set heading: " + newHeading);
-        }
-        return newHeading;
+        }*/
+        return 0; //newHeading;
     }
 }

@@ -1,6 +1,7 @@
 package ui_public;
 
-import backendapi.ParseCall;
+import parser_public.TurtleState;
+import parser_public.StateList;
 import ui_private.ControlPanel;
 import ui_private.TurtleTester;
 import ui_private.turtles.ImageTurtle;
@@ -14,9 +15,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import parser_public.ParserException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,23 +25,22 @@ import java.util.ArrayList;
  * A heading of 0 points upwards.
  */
 public class UIMain extends Application {
-    public static final double WIDTH = 1000;
-    public static final double HEIGHT = 600;
-    public static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
-    public static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
-    public static final double TURTLE_PANE_HEIGHT = HEIGHT * 5/6.0;
-    public static final String PANE_CSS_CLASS = "pane";
-    public static final Paint BACKGROUND = Color.WHITE;
+    private static final double WIDTH = 1000;
+    private static final double HEIGHT = 600;
+    private static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
+    private static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
+    private static final double TURTLE_PANE_HEIGHT = HEIGHT * 5/6.0;
+    private static final String PANE_CSS_CLASS = "pane";
+    private static final Paint BACKGROUND = Color.WHITE;
+    private static final String TITLE = "SLogo";
 
-    private static UIMain instance;
-
-    public static final String TITLE = "SLogo";
-    private ArrayList<Turtle> myTurtles;
-
+    private ArrayList<Turtle> myTurtleImages;
     private BorderPane myPane;
     private Pane myTurtlePane;
     private Scene myScene;
     private ControlPanel myControlPanel;
+
+    private static UIMain instance;
 
     public UIMain() {
 
@@ -58,7 +58,7 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        new TurtleTester().testGoTo(); //TODO: Remove when done testing
+        //new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (double width, double height, Paint background) {
@@ -80,11 +80,23 @@ public class UIMain extends Application {
         myTurtlePane.setMinSize(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
     }
 
-    //must be called after setupGame to prevent null pointer on myRoot
+    // Must be called after setupGame to prevent null pointer on myRoot
     private void initializeTurtles() {
-        myTurtles = new ArrayList<>();
-        var turtle = new ImageTurtle(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myTurtlePane.getChildren());
-        myTurtles.add(turtle);
+        myTurtleImages = new ArrayList<>();
+        StateList.getInstance().initialize(TURTLE_PANE_HEIGHT, TURTLE_PANE_WIDTH); // Initialize GUI turtle state list with 1 turtle, set vars to default
+        updateTurtles();
+    }
+
+    public void updateTurtles() {
+        List<TurtleState> newStates = StateList.getInstance().getList();
+        for (TurtleState state : newStates) {
+            if (myTurtleImages.size() < state.getTurtleID() + 1) { //TODO this logic may need to change for multiple turtles depending on how it's implemented
+                var turtle = new ImageTurtle(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myTurtlePane.getChildren());
+                myTurtleImages.add(turtle);
+            }
+            Turtle toEdit = myTurtleImages.get(state.getTurtleID());
+            toEdit.setState(state);
+        }
     }
 
     private void handleKeyInput (KeyCode code) {
@@ -93,60 +105,11 @@ public class UIMain extends Application {
         }
     }
 
-    // Method for testing structure
-    public void parseButtonPressed() {
-        try {
-            new ParseCall("fd 50").call();
-        } catch (ParserException e) {
-            handleException(e);
-        }
-    }
-
     private void handleException(Exception e) {
         // TODO: Handle exception with some display
     }
 
-
-    /*************      Frontend internal api      *********************/
-    // All assume there is at least one turtle in myTurtles
-
-    public double getX() {
-        return myTurtles.get(0).getX();
-    }
-
-    public double getY() {
-        return myTurtles.get(0).getY();
-    }
-
-    public void setPosition(double x, double y) {
-        myTurtles.get(0).setPosition(x,y);
-    }
-
-    public double getHeading() {
-        return myTurtles.get(0).getHeading();
-    }
-
-    public void setHeading(double heading) {
-        myTurtles.get(0).setHeading(heading);
-    }
-
-    public boolean getPenIsDown() {
-        return myTurtles.get(0).getPenIsDown();
-    }
-
-    public void setPenIsDown(boolean down) {
-        myTurtles.get(0).setPenIsDown(down);
-    }
-
-    public boolean getTurtleIsShowing() {
-        return myTurtles.get(0).getIsShowing();
-    }
-
-    public void setTurtleIsShowing(boolean showing) {
-        myTurtles.get(0).setIsShowing(showing);
-    }
-
     public void eraseLines() {
-        myTurtles.get(0).eraseLines();
+        myTurtleImages.get(0).eraseLines();
     }
 }

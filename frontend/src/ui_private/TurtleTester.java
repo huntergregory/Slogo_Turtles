@@ -1,6 +1,6 @@
 package ui_private;
 
-import frontendapi.TowardsCall;
+/*import frontendapi.TowardsCall;
 import frontendapi.SetHeadingCall;
 import frontendapi.move_distance_calls.*;
 import frontendapi.move_to_position_calls.*;
@@ -14,10 +14,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.util.Duration;
+import javafx.util.Duration;*/
 
 //TODO: make angle always in range [0, 360) and update Calls related to angles if necessary
-public class TurtleTester {
+public class TurtleTester {/*
     private void test(EventHandler<ActionEvent> handler) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), handler));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -164,5 +164,5 @@ public class TurtleTester {
 
     private void print(String message) {
         System.out.println(message);
-    }
+    }*/
 }

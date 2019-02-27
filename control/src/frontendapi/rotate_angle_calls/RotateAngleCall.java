@@ -11,7 +11,7 @@ public abstract class RotateAngleCall extends FrontendAPICall {
 
     @Override
     public double call() {
-        ui.setHeading(myAngle + ui.getHeading());
+        //ui.setHeading(myAngle + ui.getHeading());
         return Math.abs(myAngle);
     }
 }

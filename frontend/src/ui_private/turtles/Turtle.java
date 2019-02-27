@@ -1,5 +1,6 @@
 package ui_private.turtles;
 
+import parser_public.TurtleState;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -21,8 +22,8 @@ public abstract class Turtle {
     private double myDisplayHeight;
     private double myX;
     private double myY;
-    private double myHeading;
-    private boolean myIsShowing;
+
+    private TurtleState myCurrentState;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -43,14 +44,13 @@ public abstract class Turtle {
         setPosition(0, 0);
         eraseLines(); // a dot of a line is added if not called
         setHeading(0);
-        myIsShowing = true;
+        myNode.setVisible(true);
     }
 
     /**
      * Turtle class depends on the implementation assigning a nonnull Node to myNode.
      */
     abstract protected void initializeNode();
-
 
     /**
      * Removes the turtle and its lines from the scene
@@ -60,13 +60,20 @@ public abstract class Turtle {
         myModifiableList.remove(myNode);
     }
 
-
     public void eraseLines() {
         myPen.erase();
     }
 
+    public void setState(TurtleState newState) {
+        myCurrentState = newState;
 
-    public void setPosition(double newX, double newY) {
+        setPosition(newState.getX(), newState.getY());
+        setHeading(newState.getHeading());
+        myPen.setIsDown(newState.getPenDown());
+        myNode.setVisible(newState.getShowing());
+    }
+
+    private void setPosition(double newX, double newY) {
         double oldDisplayX = getOriginAdjustedTurtleX();
         double oldDisplayY = getOriginAdjustedTurtleY();
         setX(newX);
@@ -89,53 +96,13 @@ public abstract class Turtle {
         myModifiableList.add(myNode);
     }
 
-
-    public double getX() {
-        return myX;
+    private void setHeading(double heading) {
+        myNode.setRotate(heading);
     }
-
-
-    public double getY() {
-        return myY;
-    }
-
-
-    public void setHeading(double heading) {
-        myHeading = heading;
-        myNode.setRotate(myHeading);
-    }
-
-
-    public double getHeading() {
-        return myHeading;
-    }
-
-
-    public boolean getIsShowing() {
-        return myIsShowing;
-    }
-
-
-    public void setIsShowing(boolean show) {
-        myIsShowing = show;
-        myNode.setVisible(show);
-    }
-
-
-    public boolean getPenIsDown() {
-        return myPen.getIsDown();
-    }
-
-
-    public void setPenIsDown(boolean down) {
-        myPen.setIsDown(down);
-    }
-
 
     public void setStroke(LineStroke stroke) {
         myPen.setStroke(stroke);
     }
-
 
     private double getOriginX() {
         return myDisplayWidth / 2.0;
@@ -148,7 +115,6 @@ public abstract class Turtle {
     private double getOriginAdjustedTurtleX() {
         double centerX = getOriginX() - Turtle.WIDTH / 2.0;
         return myX + centerX;
-
     }
 
     private double getOriginAdjustedTurtleY() {

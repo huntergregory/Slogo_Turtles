@@ -4,7 +4,5 @@ module frontend {
     requires javafx.controls;
     requires java.desktop;
 
-
-    requires control;
     requires backend;
 }

@@ -34,7 +34,7 @@ public class CommandParser {
         try {
             parseProgram(program);
         }
-        catch (ParserException e) { // Only store valid parser_private.commands in history (ones that don't produce parsing exceptions)
+        catch (ParserException e) { // Only store valid commands in history (ones that don't produce parsing exceptions)
             myCommandHistory.remove(myCommandHistory.size() - 1);
             throw e;
         }

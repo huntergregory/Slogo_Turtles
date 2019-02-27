@@ -11,14 +11,14 @@ public abstract class MoveDistanceCall extends FrontendAPICall  {
 
     @Override
     public double call() {
-        move();
+        //move();
         return Math.abs(myDistance);
     }
 
-    private void move() {
+    /*private void move() {
         double heading = Math.toRadians(ui.getHeading());
         double newX = ui.getX() + Math.sin(heading) * myDistance;
         double newY = ui.getY() - Math.cos(heading) * myDistance;
         ui.setPosition(newX, newY);
-    }
+    }*/
 }

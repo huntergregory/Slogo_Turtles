@@ -11,7 +11,7 @@ public class SetPenCall extends FrontendAPICall {
 
     @Override
     public double call() {
-        ui.setPenIsDown(myWillBeDown);
+        //ui.setPenIsDown(myWillBeDown);
         return myWillBeDown ? 1 : 0;
     }
 }

@@ -11,7 +11,7 @@ public abstract class VisibilityCall extends FrontendAPICall {
 
     @Override
     public double call() {
-        ui.setTurtleIsShowing(myWillShow);
+        //ui.setTurtleIsShowing(myWillShow);
         return myWillShow ? 1 : 0;
     }
 }

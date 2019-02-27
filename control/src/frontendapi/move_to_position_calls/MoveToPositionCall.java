@@ -19,17 +19,17 @@ public abstract class MoveToPositionCall extends FrontendAPICall {
         new TowardsCall(myNewX, myNewY).call();
         System.out.println("pointing towards " + myNewX + " " + myNewY);
         double distanceTravelled = getCartesianDistance();
-        ui.setPosition(myNewX, myNewY);
-        if (myEraseLines)
-            ui.eraseLines();
+        //ui.setPosition(myNewX, myNewY);
+        //if (myEraseLines)
+            //ui.eraseLines();
         return distanceTravelled;
     }
 
     private double getCartesianDistance() {
-        double oldX = ui.getX();
-        double oldY = ui.getY();
-        var deltaXSquared = Math.pow(myNewX - oldX, 2);
-        var deltaYSquared = Math.pow(myNewY - oldY, 2);
-        return Math.sqrt(deltaXSquared + deltaYSquared);
+        //double oldX = ui.getX();
+        //double oldY = ui.getY();
+        //var deltaXSquared = Math.pow(myNewX - oldX, 2);
+        //var deltaYSquared = Math.pow(myNewY - oldY, 2);
+        return 0.0; //Math.sqrt(deltaXSquared + deltaYSquared);
     }
 }
