@@ -51,10 +51,13 @@ public class InputTranslator {
     String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : myCurrentLanguage) {
             if (entry.getValue().matcher(symbol).matches()) {
-                if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable")) {
+                if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable") && !entry.getKey().equals("Command")) {
                     return entry.getKey();
                 }
-                return symbol; // Returns original input if constant or name of user defined variable
+                if (entry.getKey().equals("Command") && !GlobalCommands.getInstance().isDefined(symbol)) {
+                    throw new ParserException("Undefined command");
+                }
+                return symbol; // Returns original input if constant or name of user defined variable or defined command
             }
         }
         throw new ParserException("Invalid syntax");
