@@ -2,6 +2,7 @@ package parser_private.commands.control_commands;
 
 import parser_private.Command;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ListCommand extends Command {
 
@@ -18,5 +19,9 @@ public class ListCommand extends Command {
 
     Command getParam(int index) {
         return mySubCommands.get(index);
+    }
+
+    public void doForEachCommand(Consumer<Command> consumer) {
+
     }
 }

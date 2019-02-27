@@ -1,6 +1,7 @@
 package parser_public;
 
-import parser_private.Command;
+import parser_private.StoredUserDefinedCommand;
+import parser_private.commands.control_commands.ListCommand;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +9,10 @@ import java.util.Map;
 public class GlobalCommands {
 
     private static GlobalCommands instance;
-    private Map<String, Command> myVariables;
+    private Map<String, StoredUserDefinedCommand> myCommands;
 
     private GlobalCommands() {
-        this.myVariables = new HashMap<>();
+        this.myCommands = new HashMap<>();
     }
 
     public static GlobalCommands getInstance() {
@@ -20,11 +21,15 @@ public class GlobalCommands {
         return instance;
     }
 
-    public void addCommand(String commandName, Command newCommand) {
-
+    public void addCommand(String commandName, StoredUserDefinedCommand newCommand) {
+        myCommands.put(commandName, newCommand);
     }
 
     boolean isDefined(String command) {
-        return myVariables.keySet().contains(command);
+        return myCommands.keySet().contains(command);
+    }
+
+    public double runCommand(String commandName, ListCommand params) {
+        myCommands.get(commandName).run(params);
     }
 }
