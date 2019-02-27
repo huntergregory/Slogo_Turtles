@@ -1,10 +1,10 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_private.EvalCommand;
+
 import java.util.List;
 
-public class IfCommand extends EvalCommand {
+public class IfCommand extends Command {
 
     private Command myExpression;
     private Command myBody;

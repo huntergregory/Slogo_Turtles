@@ -1,11 +1,10 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_private.EvalCommand;
 
 import java.util.List;
 
-public class IfElseCommand extends EvalCommand {
+public class IfElseCommand extends Command {
 
     private Command myExpression;
     private Command myTrue;

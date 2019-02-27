@@ -5,17 +5,17 @@
 #
 Forward=turtle_commands.move_distance_commands.ForwardCommand:1
 Backward=turtle_commands.move_distance_commands.BackwardCommand:1
-Left=turtle_commands.LeftCommand:1
-Right=turtle_commands.RightCommand:1
+Left=turtle_commands.rotate_angle_commands.LeftCommand:1
+Right=turtle_commands.rotate_angle_commands.RightCommand:1
 SetHeading=turtle_commands.SetHeadingCommand:1
 SetTowards=turtle_commands.SetTowardsCommand:2
-SetPosition=turtle_commands.SetPositionCommand:2
-PenDown=turtle_commands.PenDownCommand:0
-PenUp=turtle_commands.PenUpCommand:0
-ShowTurtle=turtle_commands.ShowTurtleCommand:0
-HideTurtle=turtle_commands.HideTurtleCommand:0
-Home=turtle_commands.HomeCommand:0
-ClearScreen=turtle_commands.ClearScreenCommand:0
+SetPosition=turtle_commands.move_to_position_commands.SetPositionCommand:2
+PenDown=turtle_commands.set_pen_commands.PenDownCommand:0
+PenUp=turtle_commands.set_pen_commands.PenUpCommand:0
+ShowTurtle=turtle_commands.visibility_commands.ShowTurtleCommand:0
+HideTurtle=turtle_commands.visibility_commands.HideTurtleCommand:0
+Home=turtle_commands.move_to_position_commands.HomeCommand:0
+ClearScreen=turtle_commands.move_to_position_commands.ClearScreenCommand:0
 #
 # Turtle Queries
 #
