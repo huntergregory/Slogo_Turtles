@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 public class ImageTurtle extends Turtle {
     public static String IMAGE_NAME = "tan_turtle.png";
 
-    public ImageTurtle(int id, ObservableList list) {
-        super(id, list);
+    public ImageTurtle(int id, double width, double height, ObservableList list) {
+        super(id, list, width, height);
     }
 
     @Override

@@ -92,9 +92,9 @@ public class CommandFactory {
             }
 
         } catch (IOException e) {
-            throw new ParserException("Unable to read parser_private.Command Info file");
+            throw new ParserException("Unable to read Command Info file");
         } catch (NumberFormatException e) {
-            throw new ParserException("Invalid parser_private.Command Info file format, did not receive integer");
+            throw new ParserException("Invalid Command Info file format, did not receive integer");
         }
     }
 

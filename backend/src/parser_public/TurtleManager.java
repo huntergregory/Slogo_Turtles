@@ -14,10 +14,6 @@ public class TurtleManager {
     private static TurtleManager instance;
 
     private ArrayList<Turtle> myTurtles;
-    private double myDisplayWidth;
-    private double myDisplayHeight;
-    private double myTurtleWidth;
-    private double myTurtleHeight;
 
     private TurtleManager() {
         myTurtles = new ArrayList<>();
@@ -71,17 +67,13 @@ public class TurtleManager {
     }
 
 
-    public void initialize(double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
-        myDisplayWidth = displayWidth;
-        myDisplayHeight = displayHeight;
-        myTurtleWidth = turtleWidth;
-        myTurtleHeight = turtleHeight;
-        addTurtle();
+    public void initialize(double paneWidth, double paneHeight) {
+        addTurtle(paneWidth, paneHeight);
     }
 
-    public void addTurtle() {
+    public void addTurtle(double paneWidth, double paneHeight) {
         int id = myTurtles.size();
-        myTurtles.add(new Turtle(id, myDisplayWidth, myDisplayHeight, myTurtleWidth, myTurtleHeight));
+        myTurtles.add(new Turtle(id, paneWidth, paneHeight));
     }
 
     public void removeTurtle() {

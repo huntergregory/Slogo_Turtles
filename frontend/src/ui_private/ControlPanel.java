@@ -10,9 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import parser_public.CommandParser;
 import parser_public.ParserException;
-import ui_public.UIMain;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.IOException;
 
 public class ControlPanel {
@@ -90,8 +88,8 @@ public class ControlPanel {
         }
 
         private void addUserCommandsDropBox(VBox controlBox) {
-            userCommandsDropBox = new ComboBox<String>();
-            userCommandsDropBox.setPromptText("VIew User Commands");
+            userCommandsDropBox = new ComboBox<>();
+            userCommandsDropBox.setPromptText("View User Commands");
             userCommandsDropBox.setEditable(true);
             userCommandsDropBox.setVisibleRowCount(3);
             userCommandsDropBox.setItems(userCommandsList);
@@ -99,8 +97,8 @@ public class ControlPanel {
         }
 
         private void addVariablesDropBox(VBox controlBox) {
-            variablesDropBox = new ComboBox<String>();
-            variablesDropBox.setPromptText("VIew ui_private.Variables");
+            variablesDropBox = new ComboBox<>();
+            variablesDropBox.setPromptText("View Variables");
             variablesDropBox.setEditable(true);
             variablesDropBox.setVisibleRowCount(3);
             variablesDropBox.setItems(variablesList);

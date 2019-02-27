@@ -128,7 +128,7 @@ public class CommandParser {
         // ------ TEST CASES ------
         //parser_public.CommandParser.getInstance().parseAndRun("dotimes [ :john 5 ] [ fd :john ]"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("set :bule 0 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
-        CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
+        //CommandParser.getInstance().parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("repeat 5 [ fd :repcount repeat 2 [ fd :repcount ] ] fd :repcount"); //WORKS
         //parser_public.CommandParser.getInstance().parseAndRun("fd not or 1 0"); //WORKS

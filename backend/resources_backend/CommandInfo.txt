@@ -3,8 +3,8 @@
 #
 # Turtle Commands
 #
-Forward=turtle_commands.ForwardCommand:1
-Backward=turtle_commands.BackwardCommand:1
+Forward=turtle_commands.move_distance_commands.ForwardCommand:1
+Backward=turtle_commands.move_distance_commands.BackwardCommand:1
 Left=turtle_commands.LeftCommand:1
 Right=turtle_commands.RightCommand:1
 SetHeading=turtle_commands.SetHeadingCommand:1
@@ -19,11 +19,11 @@ ClearScreen=turtle_commands.ClearScreenCommand:0
 #
 # Turtle Queries
 #
-XCoordinate=turtle_commands.XCoordinateCommand:0
-YCoordinate=turtle_commands.YCoordinateCommand:0
-Heading=turtle_commands.HeadingCommand:0
-IsPenDown=turtle_commands.IsPenDownCommand:0
-IsShowing=turtle_commands.IsShowingCommand:0
+XCoordinate=turtle_commands.query_commands.XCoordinateCommand:0
+YCoordinate=turtle_commands.query_commands.YCoordinateCommand:0
+Heading=turtle_commands.query_commands.HeadingCommand:0
+IsPenDown=turtle_commands.query_commands.IsPenDownCommand:0
+IsShowing=turtle_commands.query_commands.IsShowingCommand:0
 #
 # Math Operations
 #

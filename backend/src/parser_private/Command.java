@@ -27,8 +27,8 @@ public abstract class Command {
 
     public abstract double runCommand();
 
-    public void addVariables(VariablesGroup variables) {
-        this.myVariables = variables; // Share same parser_private.VariablesGroup between subcommands (for local scope)
+    private void addVariables(VariablesGroup variables) {
+        this.myVariables = variables; // Share same VariablesGroup between subcommands (for local scope)
     }
 
     protected double getVariable(String variable) {
