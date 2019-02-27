@@ -50,7 +50,6 @@ public class UIMain extends Application {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-        //new TurtleTester().testGoTo(); //TODO: Remove when done testing
     }
 
     private Scene setupGame (double width, double height, Paint background) {

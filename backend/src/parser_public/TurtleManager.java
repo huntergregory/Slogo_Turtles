@@ -30,6 +30,47 @@ public class TurtleManager {
         return instance;
     }
 
+    public void setPosition(double x, double y) {
+        myTurtles.get(0).setPosition(x,y);
+    }
+
+    public void setHeading(double heading) {
+        myTurtles.get(0).setHeading(0);
+    }
+
+    public void setPenDown(boolean bool) {
+        myTurtles.get(0).setPenDown(bool);
+    }
+
+    public void setIsShowing(boolean bool) {
+        myTurtles.get(0).setShowing();
+    }
+
+    public void eraseLines() {
+        myTurtles.get(0).eraseLines();
+    }
+
+    public double getX() {
+        return getXProperty(0).getValue();
+    }
+
+    public double getY() {
+        return getYProperty(0).getValue();
+    }
+
+    public double getHeading() {
+        return getHeadingProperty(0).getValue();
+    }
+
+    public boolean getIsShowing() {
+        return getShowingProperty(0).getValue();
+    }
+
+    public boolean getPenDown() {
+        return getDownProperty(0).getValue();
+    }
+
+
     public void initialize(double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
         myDisplayWidth = displayWidth;
         myDisplayHeight = displayHeight;

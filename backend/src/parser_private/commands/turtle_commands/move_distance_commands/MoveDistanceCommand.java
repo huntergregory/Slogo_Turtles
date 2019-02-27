@@ -1,28 +1,34 @@
 package parser_private.commands.turtle_commands.move_distance_commands;
 
 import parser_private.Command;
+import parser_public.TurtleManager;
 
 import java.util.List;
 
-public class MoveDistanceCommand extends Command {
+public abstract class MoveDistanceCommand extends Command {
     private Command myDistance;
+    private boolean myGoingForward;
 
-    public MoveDistanceCommand(List<Command> params) {
+    public MoveDistanceCommand(List<Command> params, boolean goingForward) {
         super(params);
         this.myDistance = params.get(0);
+        myGoingForward = goingForward;
     }
 
     @Override
     public double runCommand() {
         double distance = myDistance.execute();
-
-        return 0;
+        if (!myGoingForward)
+            distance *= -1;
+        move(distance);
+        return Math.abs(distance);
     }
 
-    private void move() {
-        double heading = Math.toRadians(ui.getHeading());
-        double newX = ui.getX() + Math.sin(heading) * myDistance;
-        double newY = ui.getY() - Math.cos(heading) * myDistance;
-        ui.setPosition(newX, newY);
+    private void move(double distance) {
+        var manager = TurtleManager.getInstance();
+        double heading = Math.toRadians(manager.getHeading());
+        double newX = manager.getX() + Math.sin(heading) * distance;
+        double newY = manager.getY() - Math.cos(heading) * distance;
+        manager.setPosition(newX, newY);
     }
 }

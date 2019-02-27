@@ -2,8 +2,6 @@ package parser_private.commands.turtle_commands;
 
 import parser_private.ActionCommand;
 import parser_private.Command;
-import parser_public.StateList;
-import parser_private.TurtleState;
 
 import java.util.List;
 
