@@ -37,7 +37,7 @@ public class TurtleDisplay {
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
         TurtleManager.getInstance().initialize(myWidth, myHeight, Turtle.WIDTH, Turtle.HEIGHT);
-        myTurtleViews.add(new ImageTurtle(myWidth, myHeight, myObservableList));
+        myTurtleViews.add(new ImageTurtle(0, myObservableList));
     }
 
     protected Pane getPane() {

@@ -20,8 +20,6 @@ public abstract class Turtle {
     protected Node myNode; //must be accessed by subclass
 
     private int myID;
-    private double myDisplayWidth;
-    private double myDisplayHeight;
     private ObservableList myModifiableList;
     private Pen myPen;
 
@@ -41,10 +39,8 @@ public abstract class Turtle {
      * @param displayHeight
      * @param list
      */
-    public Turtle(int id, double displayWidth, double displayHeight, ObservableList list) {
+    public Turtle(int id, ObservableList list) {
         myID = id;
-        myDisplayWidth = displayWidth;
-        myDisplayHeight = displayHeight;
 
         myModifiableList = list;
         initializeNode();
