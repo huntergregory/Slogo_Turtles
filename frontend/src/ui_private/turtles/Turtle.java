@@ -93,11 +93,13 @@ public abstract class Turtle {
         myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
+    //x must be updated first in the backend for this to work
     private void updateX(double oldVal, double newVal) {
         myOldX = oldVal;
         myNewX = newVal;
     }
 
+    //x must be updated first in the backend for this to work
     private void updateY(double oldVal, double newVal) {
         myOldY = oldVal;
         myNewY = newVal;
