@@ -1,9 +1,14 @@
 package ui_private.turtles;
 
-import parser_public.TurtleState;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+
 
 /**
  * Represents a movable turtle with customizable image and drawing capabilities.
@@ -16,35 +21,37 @@ public abstract class Turtle {
 
     protected Node myNode; //must be accessed by subclass
 
+    private int myID;
     private ObservableList myModifiableList;
     private Pen myPen;
-    private double myDisplayWidth;
-    private double myDisplayHeight;
-    private double myX;
-    private double myY;
 
-    private TurtleState myCurrentState;
+    private BooleanProperty myIsShowingProperty = new SimpleBooleanProperty();
+    private DoubleProperty myHeadingProperty = new SimpleDoubleProperty();
+    private DoubleProperty myXProperty = new SimpleDoubleProperty();
+    private DoubleProperty myYProperty = new SimpleDoubleProperty();
+    private double myOldX = 0;
+    private double myOldY = 0;
+    private boolean myReadyToMove; //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
+                                    //could have created a Coordinate object, but then front and back end would have to share this class
+
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
-     * @param displayWidth
-     * @param displayHeight
+     * @param id
      * @param list
      */
-    public Turtle(double displayWidth, double displayHeight, ObservableList list) {
-        myDisplayWidth = displayWidth;
-        myDisplayHeight = displayHeight;
+    public Turtle(int id, ObservableList list) {
+        myID = id;
 
         myModifiableList = list;
         initializeNode();
         myNode.getStyleClass().add(CSS_TAG);
         myModifiableList.add(myNode);
+        myPen = new Pen(myID, myModifiableList);
 
-        myPen = new Pen(myModifiableList);
-        setPosition(0, 0);
-        eraseLines(); // a dot of a line is added if not called
-        setHeading(0);
-        myNode.setVisible(true);
+        addPropertyListeners();
+        bindProperties();
+        eraseLines(); // a dot of a line is added if not called???????????
     }
 
     /**
@@ -60,87 +67,61 @@ public abstract class Turtle {
         myModifiableList.remove(myNode);
     }
 
-    public void eraseLines() {
-        myPen.erase();
+    public void setStroke(LineStroke stroke) {
+        myPen.setStroke(stroke);
     }
 
-    public void setState(TurtleState newState) {
-        myCurrentState = newState;
-
-        setPosition(newState.getX(), newState.getY());
-        setHeading(newState.getHeading());
-        myPen.setIsDown(newState.getPenDown());
-        myNode.setVisible(newState.getShowing());
+    private void addPropertyListeners() {
+        myXProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), true); System.out.println("updating x");  });
+        myYProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), false); System.out.println("updating y");  });
+        myHeadingProperty.addListener((o, oldVal, newVal) -> { myNode.setRotate(newVal.doubleValue()); System.out.println("rotating");  } );
+        myIsShowingProperty.addListener((o, oldVal, newVal) -> { myNode.setVisible(newVal); System.out.println("hiding or showing");  } );
     }
 
-    private void setPosition(double newX, double newY) {
-        double oldDisplayX = getOriginAdjustedTurtleX();
-        double oldDisplayY = getOriginAdjustedTurtleY();
-        setX(newX);
-        setY(newY);
-        double newDisplayX = getOriginAdjustedTurtleX();
-        double newDisplayY = getOriginAdjustedTurtleY();
-        myNode.relocate(newDisplayX, newDisplayY);
-        myPen.draw(oldDisplayX + Turtle.WIDTH / 2.0,
-                oldDisplayY + Turtle.HEIGHT / 2.0,
-                newDisplayX + Turtle.WIDTH / 2.0,
-                newDisplayY + Turtle.HEIGHT / 2.0);
+    private void bindProperties() {
+        var manager = TurtleManager.getInstance();
+        myXProperty.bind(manager.getXProperty(myID));
+        myYProperty.bind(manager.getYProperty(myID));
+        myHeadingProperty.bind(manager.getHeadingProperty(myID));
+        myIsShowingProperty.bind(manager.getShowingProperty(myID));
+    }
+
+    private void updateOnPositionChange(double old, boolean isX) {
+        if (isX)
+            myOldX = old;
+        else
+            myOldY = old;
+
+        if (myReadyToMove) {
+            move();
+        }
+        myReadyToMove = !myReadyToMove;
+    }
+
+    private void move() {
+        if (didNotMove())
+            return;
+        myNode.relocate(myXProperty.doubleValue(), myXProperty.doubleValue());
+        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
+                myOldY + Turtle.HEIGHT / 2.0,
+                myXProperty.doubleValue() + Turtle.WIDTH / 2.0,
+                myXProperty.doubleValue() + Turtle.HEIGHT / 2.0);
         moveAboveLines();
     }
 
+    private boolean didNotMove() {
+        return myOldX == myXProperty.doubleValue() && myOldY == myYProperty.doubleValue();
+    }
+
     /**
-     * Call after setPosition if you want Turtles to be drawn above lines drawn.
+     * Call after move if you want Turtles to be drawn above lines drawn.
      */
     private void moveAboveLines() {
         myModifiableList.remove(myNode);
         myModifiableList.add(myNode);
     }
 
-    private void setHeading(double heading) {
-        myNode.setRotate(heading);
-    }
-
-    public void setStroke(LineStroke stroke) {
-        myPen.setStroke(stroke);
-    }
-
-    private double getOriginX() {
-        return myDisplayWidth / 2.0;
-    }
-
-    private double getOriginY() {
-        return myDisplayHeight / 2.0;
-    }
-
-    private double getOriginAdjustedTurtleX() {
-        double centerX = getOriginX() - Turtle.WIDTH / 2.0;
-        return myX + centerX;
-    }
-
-    private double getOriginAdjustedTurtleY() {
-        double centerY = getOriginY()- Turtle.HEIGHT / 2.0;
-        return myY + centerY;
-    }
-
-    private void setX(double x) {
-        myX = getInBoundsNum(x, -getOriginX() + Turtle.WIDTH/2.0, getOriginX() - Turtle.WIDTH/2.0);
-    }
-
-    private void setY(double y) {
-        myY = getInBoundsNum(y, -getOriginY() + Turtle.HEIGHT/2.0, getOriginY() - Turtle.HEIGHT/2.0);
-    }
-
-    private double getInBoundsNum(double num, double min, double max) {
-        if (num < min) {
-            System.out.println("position was out of bounds on the left or top");
-            System.out.println("returning " + min);
-            return min;
-        }
-        if (num > max) {
-            System.out.println("position was out of bounds on the right or bottom");
-            System.out.println("returning " + max);
-            return max;
-        }
-        return num;
+    private void eraseLines() {
+        myPen.erase();
     }
 }

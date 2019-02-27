@@ -1,4 +1,4 @@
-package frontendapi.move_to_position_calls;
+/*package frontendapi.move_to_position_calls;
 
 import frontendapi.FrontendAPICall;
 import frontendapi.TowardsCall;
@@ -32,4 +32,4 @@ public abstract class MoveToPositionCall extends FrontendAPICall {
         //var deltaYSquared = Math.pow(myNewY - oldY, 2);
         return 0.0; //Math.sqrt(deltaXSquared + deltaYSquared);
     }
-}
+}*/

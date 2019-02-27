@@ -1,5 +1,8 @@
 package ui_private.turtles;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
@@ -7,21 +10,42 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 
 public class Pen {
+    public static final String CSS_TAG = "line";
+    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
+
+    private int myID;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
-    private boolean myIsDown;
     private LineStroke myStroke;
-    public static final String CSS_TAG = "line";
+    private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
+    private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
-    protected Pen(ObservableList list) {
+    protected Pen(int id, ObservableList list) {
+        myID = id;
         myModifiableList = list;
-        myStroke = LineStroke.NORMAL;
+        myStroke = DEFAULT_LINE_STROKE;
         myLines = new ArrayList<>();
-        myIsDown = true;
+        addEraseListener();
+        bindProperties();
+    }
+
+    private void addEraseListener() {
+        myShouldEraseLines.addListener((o, oldBool, newBool) -> {
+            if (oldBool) {
+                erase();
+                myShouldEraseLines.set(false);
+            }
+        });
+    }
+
+    private void bindProperties() {
+        var manager = TurtleManager.getInstance();
+        myIsDown.bind(manager.getDownProperty(myID));
+        myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
     protected void draw(double oldX, double oldY, double newX, double newY) {
-        if (!myIsDown)
+        if (!myIsDown.getValue())
             return;
         Line line = new Line(oldX, oldY, newX, newY);
         line.getStyleClass().add(CSS_TAG);
@@ -48,13 +72,5 @@ public class Pen {
     protected void erase() {
         myModifiableList.removeAll(myLines);
         myLines = new ArrayList<>();
-    }
-
-    protected boolean getIsDown() {
-        return myIsDown;
-    }
-
-    protected void setIsDown(boolean down) {
-        myIsDown = down;
     }
 }

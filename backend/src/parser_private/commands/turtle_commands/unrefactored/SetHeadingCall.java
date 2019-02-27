@@ -1,4 +1,4 @@
-package frontendapi;
+/*package frontendapi;
 
 public class SetHeadingCall extends FrontendAPICall {
     private double myNewHeading;
@@ -13,4 +13,4 @@ public class SetHeadingCall extends FrontendAPICall {
         //ui.setHeading(myNewHeading);
         return 0; //Math.abs(myNewHeading - oldHeading);
     }
-}
+}*/
