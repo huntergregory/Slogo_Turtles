@@ -50,7 +50,7 @@ public abstract class Turtle {
         initializeNode();
         myNode.getStyleClass().add(CSS_TAG);
         myModifiableList.add(myNode);
-        myPen = new Pen(myModifiableList);
+        myPen = new Pen(myID, myModifiableList);
 
         addPropertyListeners();
         bindProperties();
@@ -102,30 +102,16 @@ public abstract class Turtle {
     private void move() {
         if (didNotMove())
             return;
-        double oldDisplayX = getOriginAdjustedTurtleX(myOldX);
-        double oldDisplayY = getOriginAdjustedTurtleY(myOldY);
-        double newDisplayX = getOriginAdjustedTurtleX(myXProperty.doubleValue());
-        double newDisplayY = getOriginAdjustedTurtleY(myYProperty.doubleValue());
-        myNode.relocate(newDisplayX, newDisplayY);
-        myPen.draw(oldDisplayX + Turtle.WIDTH / 2.0,
-                oldDisplayY + Turtle.HEIGHT / 2.0,
-                newDisplayX + Turtle.WIDTH / 2.0,
-                newDisplayY + Turtle.HEIGHT / 2.0);
+        myNode.relocate(myXProperty.doubleValue(), myXProperty.doubleValue());
+        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
+                myOldY + Turtle.HEIGHT / 2.0,
+                myXProperty.doubleValue() + Turtle.WIDTH / 2.0,
+                myXProperty.doubleValue() + Turtle.HEIGHT / 2.0);
         moveAboveLines();
     }
 
     private boolean didNotMove() {
         return myOldX == myXProperty.doubleValue() && myOldY == myYProperty.doubleValue();
-    }
-
-    private double getOriginAdjustedTurtleX(double x) {
-        double centerX = myDisplayHeight / 2.0 - Turtle.WIDTH / 2.0;
-        return x + centerX;
-    }
-
-    private double getOriginAdjustedTurtleY(double y) {
-        double centerY = myDisplayWidth / 2.0 - Turtle.HEIGHT / 2.0;
-        return y + centerY;
     }
 
     /**

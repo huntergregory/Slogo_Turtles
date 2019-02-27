@@ -1,7 +1,9 @@
 package parser_private;
 
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import parser_public.NoTurtleException;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
@@ -47,32 +49,12 @@ public class Turtle {
         myErasePreviousLines = false;
     }
 
-    private void setPosition(double newX, double newY) {
+    public void setPosition(double newX, double newY) {
 
     }
 
-    /**
-     * Call after setPosition if you want Turtles to be drawn above lines drawn.
-     */
-    private void moveAboveLines() {
-        myModifiableList.remove(myNode);
-        myModifiableList.add(myNode);
-    }
-
-    private void setHeading(double heading) {
+    public void setHeading(double heading) {
         myNode.setRotate(heading);
-    }
-
-    public void setStroke(LineStroke stroke) {
-        myPen.setStroke(stroke);
-    }
-
-    private double getOriginX() {
-        return myDisplayWidth / 2.0;
-    }
-
-    private double getOriginY() {
-        return myDisplayHeight / 2.0;
     }
 
     private double getOriginAdjustedTurtleX() {
@@ -109,5 +91,42 @@ public class Turtle {
 
     public int getTurtleID() {
         return myTurtleID;
+    }
+
+
+    public DoubleProperty getXProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getXProperty();
+    }
+
+    public DoubleProperty getYProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getYProperty();
+    }
+
+    public DoubleProperty getHeadingProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getHeadingProperty();
+    }
+
+    public BooleanProperty getDownProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getDownProperty();
+    }
+
+    public BooleanProperty getShowingProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getShowingProperty();
+    }
+
+    public BooleanProperty getEraseProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getEraseLinesProperty();
     }
 }

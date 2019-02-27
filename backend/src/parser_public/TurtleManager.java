@@ -1,5 +1,7 @@
 package parser_public;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import parser_private.Turtle;
 
 import java.util.ArrayList;
@@ -46,9 +48,45 @@ public class TurtleManager {
     }
 
     public void removeTurtle(int id) {
-        if (idOutOfBounds(id))
-            return;
+        if (idOutOfBounds())
+            throw new NoTurtleException();
         myTurtles.remove(id);
+    }
+
+    public DoubleProperty getXProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getXProperty();
+    }
+
+    public DoubleProperty getYProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getYProperty();
+    }
+
+    public DoubleProperty getHeadingProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getHeadingProperty();
+    }
+
+    public BooleanProperty getDownProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getDownProperty();
+    }
+
+    public BooleanProperty getShowingProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getShowingProperty();
+    }
+
+    public BooleanProperty getEraseProperty(int turtleID) throws NoTurtleException {
+        if (idOutOfBounds(turtleID))
+            throw new NoTurtleException();
+        return myTurtles.get(turtleID).getEraseProperty();
     }
 
     private boolean idOutOfBounds(int id) {
