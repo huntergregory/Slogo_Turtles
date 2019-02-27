@@ -20,6 +20,10 @@ public class GlobalCommands {
         return instance;
     }
 
+    public void addCommand(String commandName, Command newCommand) {
+
+    }
+
     boolean isDefined(String command) {
         return myVariables.keySet().contains(command);
     }
