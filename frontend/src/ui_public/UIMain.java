@@ -1,7 +1,5 @@
 package ui_public;
 
-import parser_public.TurtleState;
-import parser_public.StateList;
 import ui_private.ControlPanel;
 import ui_private.turtles.ImageTurtle;
 import ui_private.turtles.Turtle;
@@ -10,13 +8,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -51,7 +47,6 @@ public class UIMain extends Application {
     public void start(Stage stage) {
         instance = this;
         myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
-        initializeTurtles();
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
@@ -60,7 +55,7 @@ public class UIMain extends Application {
 
     private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
-        myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
+        myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myPane.getChildren());
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
         myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
@@ -68,25 +63,6 @@ public class UIMain extends Application {
         myPane.setCenter(myTurtleDisplay.getPane());
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
-    }
-
-    // Must be called after setupGame to prevent null pointer on myRoot
-    private void initializeTurtles() {
-        myTurtleImages = new ArrayList<>();
-        StateList.getInstance().initialize(TURTLE_PANE_HEIGHT, TURTLE_PANE_WIDTH); // Initialize GUI turtle state list with 1 turtle, set vars to default
-        updateTurtles();
-    }
-
-    public void updateTurtles() {
-        List<TurtleState> newStates = StateList.getInstance().getList();
-        for (TurtleState state : newStates) {
-            if (myTurtleImages.size() < state.getTurtleID() + 1) { //TODO this logic may need to change for multiple turtles depending on how it's implemented
-                var turtle = new ImageTurtle(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT, myTurtleDisplay.getChildren());
-                myTurtleImages.add(turtle);
-            }
-            Turtle toEdit = myTurtleImages.get(state.getTurtleID());
-            toEdit.setState(state);
-        }
     }
 
     private void handleKeyInput (KeyCode code) {
@@ -97,9 +73,5 @@ public class UIMain extends Application {
 
     private void handleException(Exception e) {
         // TODO: Handle exception with some display
-    }
-
-    public void eraseLines() {
-        myTurtleImages.get(0).eraseLines();
     }
 }

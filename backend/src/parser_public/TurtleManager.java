@@ -4,10 +4,18 @@ import parser_private.Turtle;
 
 import java.util.ArrayList;
 
+/**
+ * Singleton that manages all turtles in the backend. Initialize method must be called first to set the
+ * display and turtle width and height.
+ */
 public class TurtleManager {
     private static TurtleManager instance;
 
     private ArrayList<Turtle> myTurtles;
+    private double myDisplayWidth;
+    private double myDisplayHeight;
+    private double myTurtleWidth;
+    private double myTurtleHeight;
 
     private TurtleManager() {
         myTurtles = new ArrayList<>();
@@ -20,9 +28,17 @@ public class TurtleManager {
         return instance;
     }
 
-    public void addTurtle(double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
+    public void initialize(double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
+        myDisplayWidth = displayWidth;
+        myDisplayHeight = displayHeight;
+        myTurtleWidth = turtleWidth;
+        myTurtleHeight = turtleHeight;
+        addTurtle();
+    }
+
+    public void addTurtle() {
         int id = myTurtles.size();
-        myTurtles.add(new Turtle(id, displayWidth, displayHeight, turtleWidth, turtleHeight));
+        myTurtles.add(new Turtle(id, myDisplayWidth, myDisplayHeight, myTurtleWidth, myTurtleHeight));
     }
 
     public void removeTurtle() {
