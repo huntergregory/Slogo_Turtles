@@ -1,4 +1,6 @@
 package ui_public;
 
-public class CommandTerminal {
+import javafx.scene.layout.Pane;
+
+public class CommandTerminal extends Pane {
 }
