@@ -43,7 +43,6 @@ public class UIMain extends Application {
     private static UIMain instance;
 
     public UIMain() {
-
     }
 
     public static UIMain getInstance() {
