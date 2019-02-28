@@ -61,6 +61,7 @@ public class UIFactory {
 
     //horizontal features currently consist of Selectors and ColorChoosers
     private void addHorizontalFeature(HorizontalFeature feature) {
+        feature.setTurtleDisplay(myTurtleDisplay);
         myLeftPanel.addRow(feature.getPane(mySidePanelWidth));
     }
 }

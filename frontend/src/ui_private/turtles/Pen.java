@@ -54,6 +54,8 @@ public class Pen {
         for (double value : myStroke.getStrokeArray())
             line.getStrokeDashArray().add(value);
         line.setStroke(myColor);
+
+        System.out.println(myColor.toString());
     }
 
     protected void setStroke(LineStroke stroke) {

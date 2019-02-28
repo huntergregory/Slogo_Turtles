@@ -8,8 +8,9 @@ public class BackgroundColorChooser extends ColorChooser {
     private static final String LABEL_TEXT = "Background Color";
 
     @Override
-    EventHandler<ActionEvent> handleNewColor(Color newColor) {
-        return event -> { System.out.println("background here"); myTurtleDisplay.setBackgroundColor(newColor); };
+    void handleNewColor(Color newColor) {
+        System.out.println("background here");
+        myTurtleDisplay.setBackgroundColor(newColor);
     }
 
     @Override

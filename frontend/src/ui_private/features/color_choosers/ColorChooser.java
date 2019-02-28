@@ -17,10 +17,10 @@ public abstract class ColorChooser extends HorizontalFeature {
     }
 
     private void addListener() {
-        myColorPicker.setOnAction(handleNewColor(myColorPicker.getValue())); //not sure if this color will be dynamic or fixed
+        myColorPicker.setOnAction(e -> handleNewColor(myColorPicker.getValue())); //not sure if this color will be dynamic or fixed
     }
 
-    abstract EventHandler<ActionEvent> handleNewColor(Color newColor);
+    abstract void handleNewColor(Color newColor);
 
     @Override
     public Node getMainComponent() {

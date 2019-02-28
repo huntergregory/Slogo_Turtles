@@ -17,11 +17,11 @@ public class ImageTurtleView extends TurtleView {
     @Override
     protected void initializeNode() {
         var image = new Image(getClass().getClassLoader().getResourceAsStream(TurtleDisplay.DEFAULT_IMAGE_NAME));
-        var view = new ImageView(image);
-        view.setPreserveRatio(false);
-        view.setFitWidth(WIDTH);
-        view.setFitHeight(HEIGHT);
-        myNode = view;
+        myImageView = new ImageView(image);
+        myImageView.setPreserveRatio(false);
+        myImageView.setFitWidth(WIDTH);
+        myImageView.setFitHeight(HEIGHT);
+        myNode = myImageView;
     }
 
     public void setImage(Image image) {

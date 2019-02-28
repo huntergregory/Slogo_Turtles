@@ -8,8 +8,9 @@ public class PenColorChooser extends ColorChooser {
     private static final String LABEL_TEXT = "Pen Color";
 
     @Override
-    EventHandler<ActionEvent> handleNewColor(Color newColor) {
-        return event -> { System.out.println("pen here"); myTurtleDisplay.setPenColor(newColor);};
+    void handleNewColor(Color newColor) {
+        System.out.println("pen here");
+        myTurtleDisplay.setPenColor(newColor);
     }
 
     @Override
