@@ -179,15 +179,6 @@ public class ControlPanel {
             }
         }
 
-        private void sendToTranslator() {
-            try {
-                InputTranslator.getInstance().changeLanguage(myLanguage);
-            }
-            catch (ParserException e) {
-                //TODO handle parse error
-            }
-        }
-
         public String getMyCommand() {
             return myCommand;
         }
