@@ -32,12 +32,7 @@ class Pen {
     }
 
     private void addEraseListener() {
-        myShouldEraseLines.addListener((o, oldBool, newBool) -> {
-            if (newBool) {
-                erase();
-                myShouldEraseLines.set(false);
-            }
-        });
+        myShouldEraseLines.addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
     }
 
     private void bindProperties() {

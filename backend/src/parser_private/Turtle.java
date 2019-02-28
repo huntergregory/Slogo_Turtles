@@ -79,6 +79,7 @@ public class Turtle {
 
     public void eraseLines() {
         myShouldEraseLinesProperty.set(true);
+        myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
     public int getTurtleID() {
