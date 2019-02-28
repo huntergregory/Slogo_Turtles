@@ -21,6 +21,7 @@ public class LanguageSelector extends Selector<String> {
     protected EventHandler<ActionEvent> handleItemSelected(String item) {
         return event -> {
             try {
+                System.out.println("language here");
                 InputTranslator.getInstance().changeLanguage(item);
             }
             catch (ParserException e) {

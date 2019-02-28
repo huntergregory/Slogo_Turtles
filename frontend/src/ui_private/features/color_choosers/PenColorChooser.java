@@ -9,7 +9,7 @@ public class PenColorChooser extends ColorChooser {
 
     @Override
     EventHandler<ActionEvent> handleNewColor(Color newColor) {
-        return event -> myTurtleDisplay.setPenColor(newColor);
+        return event -> { System.out.println("pen here"); myTurtleDisplay.setPenColor(newColor);};
     }
 
     @Override

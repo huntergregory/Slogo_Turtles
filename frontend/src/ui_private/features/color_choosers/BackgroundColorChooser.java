@@ -9,7 +9,7 @@ public class BackgroundColorChooser extends ColorChooser {
 
     @Override
     EventHandler<ActionEvent> handleNewColor(Color newColor) {
-        return event -> myTurtleDisplay.setBackgroundColor(newColor);
+        return event -> { System.out.println("background here"); myTurtleDisplay.setBackgroundColor(newColor); };
     }
 
     @Override

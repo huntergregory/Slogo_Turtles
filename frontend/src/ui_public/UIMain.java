@@ -28,6 +28,7 @@ public class UIMain extends Application {
     private UIFactory myFactory;
 
     public UIMain() {
+
     }
 
     @Override
@@ -48,9 +49,20 @@ public class UIMain extends Application {
         myPane.setCenter(myFactory.getCenter());
         myPane.setBottom(myFactory.getBottom());
 
-        myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
+        addFeatures();
+
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode())); //FIXME: unnecessary?
         return scene;
+    }
+
+    private void addFeatures() {
+        myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
+        myFactory.addFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+        myFactory.addFeature(FeatureType.LANGUAGE_SELECTOR);
+        myFactory.addFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
+        myFactory.addFeature(FeatureType.PAST_COMMANDS_WINDOW);
+        myFactory.addFeature(FeatureType.UserCommandsWindow);
+        myFactory.addFeature(FeatureType.VariablesWindow);
     }
 
     //Delete??
