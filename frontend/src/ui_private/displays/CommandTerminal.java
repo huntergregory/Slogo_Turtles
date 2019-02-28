@@ -3,6 +3,7 @@ package ui_private.displays;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
 import parser_public.ParserException;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ public class CommandTerminal {
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
-        myCommandInput.setPromptText(PROMPT);
+        myCommandInput.setPromptText(PROMPT);//can barely ever see prompt, maybe we just set the text
     }
 
     private void sendToParser() {
@@ -42,7 +43,7 @@ public class CommandTerminal {
         }
     }
 
-    public Node getPane() {
-        return myCommandInput; //FIXME: need to return some pane including commandinput and parsebutton
+    public Pane getPane() {
+        return new Pane(myCommandInput); //FIXME: need to return some pane including commandinput and parsebutton
     }
 }

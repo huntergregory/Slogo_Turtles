@@ -1,5 +1,6 @@
-package ui_public;
+package ui_private;
 
+import javafx.scene.layout.Pane;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
@@ -7,17 +8,36 @@ import ui_private.features.*;
 import ui_private.features.scrollable_windows.ScrollableWindow;
 
 public class UIFactory {
-
     private TurtleDisplay myTurtleDisplay;
     private SidePanel myLeftPanel;
     private CommandTerminal myTerminal;
     private SidePanel myRightPanel;
 
-    protected UIFactory(TurtleDisplay turtleDisplay, CommandTerminal terminal, SidePanel leftPanel, SidePanel rightPanel) {
-        myTurtleDisplay = turtleDisplay;
-        myTerminal = terminal;
-        myLeftPanel = leftPanel;
-        myRightPanel = rightPanel;
+    public UIFactory(double width, double height) {
+        var sidePanelWidth = width / 3.0;
+        var turtlePanelWidth = width / 3.0;
+        var turtlePaneHeight = height * 2.0 / 3.0;
+        var terinalHeight = height / 6.0;
+        myTerminal = new CommandTerminal(); //FIXME
+        myTurtleDisplay = new TurtleDisplay(turtlePanelWidth, turtlePaneHeight);
+        myLeftPanel = new SidePanel(sidePanelWidth);
+        myRightPanel = new SidePanel(sidePanelWidth);
+    }
+
+    public Pane getLeft() {
+        return myLeftPanel.getPane();
+    }
+
+    public Pane getRight() {
+        return myRightPanel.getPane();
+    }
+
+    public Pane getBottom() {
+        return myTerminal.getPane();
+    }
+
+    public Pane getCenter() {
+        return myTurtleDisplay.getPane();
     }
 
     public void addFeature(FeatureType type) {
@@ -53,37 +73,4 @@ public class UIFactory {
     private void addHorizontalFeature(HorizontalFeature feature) {
         myLeftPanel.addRow(feature.getPane());
     }
-
-/*
-    //FOR ALL OF THESE, MAKE SURE THEY CAN ONLY BE CALLED ONCE
-
-    public void addTurtleBackgroundSelector() {
-        //TODO: add selector to controlPanel for language that has handler to communicate with TurtleDisplay
-    }
-
-    public void addPenColorSelector() {
-        //TODO: add selector to controlPanel for language that has handler to communicate with TurtleDisplay
-    }
-
-    // allow images or shapes to be selected for turtle
-    public void addTurtleTypeSelector() {
-        //TODO: add selector to controlPanel for language that has handler to communicate with TurtleDisplay
-    }
-
-    public void addLanguageSelector() {
-        //TODO: add selector to controlPanel for language that has handler to communicate with back end
-    }
-
-    public void addVariableWindow() {
-        //TODO: not sure how to make it communicate with back end
-    }
-
-    public void addUserCommandsWindow() {
-        //TODO: not sure how to make it communicate with back end
-    }
-
-    public void addPastCommmandsWindow() {
-        //TODO: not sure how to make it communicate with back end
-    }
-    */
 }
