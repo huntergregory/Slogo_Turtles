@@ -3,8 +3,8 @@ package ui_public;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
-import ui_private.features.Feature;
-import ui_private.features.FeatureType;
+import ui_private.features.*;
+import ui_private.features.scrollable_windows.ScrollableWindow;
 
 public class UIFactory {
 
@@ -21,30 +21,37 @@ public class UIFactory {
     }
 
     public void addFeature(FeatureType type) {
-        var feature = getFeature(type);
-        if (feature instanceof Selector)
-            addSelector(feature);
-        else
-            addScrollableWindow(feature);
+        try {
+            var feature = getFeature(type);
+            if (feature instanceof VerticalFeature)
+                addVerticalFeature((VerticalFeature) feature);
+            else
+                addHorizontalFeature((HorizontalFeature) feature);
+        }
+        catch (NoFeatureException e) {
+            System.out.println("Failed to add feature, update the FeatureType enum.");
+        }
     }
 
-    private Feature getFeature(FeatureType type) {
+    private Feature getFeature(FeatureType type) throws NoFeatureException {
         try {
             var featureClass = Class.forName(type.getClassName());
             Object feature = featureClass.getDeclaredConstructor().newInstance();
             return (Feature) feature;
         }
         catch (Exception e) {
-            System.out.println("Failed to add feature, update the FeatureType enum.");
+            throw new NoFeatureException();
         }
     }
 
-    private void addSelector() {
-        //TODO
+    //vertical features currently consist of only scrollable windows
+    private void addVerticalFeature(VerticalFeature feature) {
+        myRightPanel.addRow(feature.getPane());
     }
 
-    private void addScrollableWindow() {
-        //TODO
+    //horizontal features currently consist of Selectors and ColorChoosers
+    private void addHorizontalFeature(HorizontalFeature feature) {
+        myLeftPanel.addRow(feature.getPane());
     }
 
 /*
