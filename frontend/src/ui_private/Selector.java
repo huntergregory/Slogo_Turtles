@@ -22,7 +22,7 @@ class Selector {
         hbox.getChildren().add(myDropBox);
 
         myButton = new Button(buttonText);
-        myButton.setFont(font);
+        //myButton.setFont(font);
         hbox.getChildren().add(myButton);
         controlBox.getChildren().add(hbox);
 
