@@ -1,27 +1,30 @@
 package ui_private.turtles;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.paint.Color;
 import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
+import ui_private.displays.TurtleDisplay;
 
 import java.util.ArrayList;
 
 public class Pen {
     public static final String CSS_TAG = "line";
-    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
 
     private int myID;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
     private LineStroke myStroke;
+    private Color myColor;
     private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
     private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
     protected Pen(int id, ObservableList list) {
         myID = id;
         myModifiableList = list;
-        myStroke = DEFAULT_LINE_STROKE;
+        myStroke = TurtleDisplay.DEFAULT_LINE_STROKE;
+        myColor = TurtleDisplay.DEFAULT_PEN_COLOR;
         myLines = new ArrayList<>();
         addEraseListener();
         bindProperties();
@@ -47,24 +50,29 @@ public class Pen {
             return;
         Line line = new Line(oldX, oldY, newX, newY);
         line.getStyleClass().add(CSS_TAG);
-        addStroke(line);
+        setStyle(line);
         myLines.add(line);
         myModifiableList.add(line);
     }
 
-    private void addStroke(Line line) {
+    private void setStyle(Line line) {
         for (double value : myStroke.getStrokeArray())
             line.getStrokeDashArray().add(value);
+        line.setStroke(myColor);
     }
 
     protected void setStroke(LineStroke stroke) {
-        if (stroke.equals(myStroke))
-            return;
         myStroke = stroke;
         for (Line line : myLines) {
             line.getStrokeDashArray().removeAll(); //might need to remove each number individually before updating myStroke
-            addStroke(line);
+            setStyle(line);
         }
+    }
+
+    protected void setPenColor(Color color) {
+        myColor = color;
+        for (Line line : myLines)
+            line.setStroke(color);
     }
 
     protected void erase() {

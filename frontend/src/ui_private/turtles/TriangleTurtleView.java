@@ -5,10 +5,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Paint;
 
-public class TriangleTurtle extends Turtle {
+public class TriangleTurtleView extends TurtleView {
     private static final Paint COLOR = Color.RED;
 
-    public TriangleTurtle(int id, ObservableList list, double xOrigin, double yOrigin) {
+    public TriangleTurtleView(int id, ObservableList list, double xOrigin, double yOrigin) {
         super(id, list, xOrigin, yOrigin);
     }
 

@@ -79,7 +79,7 @@ public class ControlPanel {
         }
 
         private void addTurtleImageChooser(VBox controlBox) {
-            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", turtleList);
+            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose TurtleView", turtleList);
             turtleImageButton = myTurtleImageChooser.getButton();
         }
 

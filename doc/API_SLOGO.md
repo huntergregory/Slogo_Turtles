@@ -4,7 +4,7 @@ SLogo API Plan
 - Front end
      - update method to get data from backend each step
      - terminal for commands
-     - window displaying turtle (same window as terminal)
+     - window displaying turtleView (same window as terminal)
      - send input string to parser_public
      - display error boxes when prompted
      - option to display command history in separate window
@@ -17,7 +17,7 @@ SLogo API Plan
      - throw errors for invalid commands, etc.
      - keeps track of old state
      - keep command history as Strings
-     - current state of turtle (direction, position, etc.)
+     - current state of turtleView (direction, position, etc.)
      - keep list of commands (commands should be abstract)
      - command properties for each language 
      - extension
@@ -59,7 +59,7 @@ SLogo API Plan
 
 FRONT END
 * External
-    - Commands applied to the turtle
+    - Commands applied to the turtleView
     - Send text command to back end for parsing
 
 * Internal

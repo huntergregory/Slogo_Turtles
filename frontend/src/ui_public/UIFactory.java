@@ -1,6 +1,7 @@
 package ui_public;
 
 import ui_private.ControlPanel;
+import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
 import ui_private.displays.WindowPanel;
 import ui_private.features.Feature;

@@ -1,6 +1,7 @@
 package ui_public;
 
 import parser_public.ParserException;
+import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
 import ui_private.ControlPanel;
 

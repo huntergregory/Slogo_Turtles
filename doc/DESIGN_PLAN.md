@@ -4,12 +4,12 @@ SLogo Team 5 Plan
 * Frontend
     * Internal
         - Update state of display
-        - Add turtle logo
-        - Update state of turtle
+        - Add turtleView logo
+        - Update state of turtleView
         - Display error
         - Show past commands in new window
         - Grab previous commands
-        - Commands applied to the turtle
+        - Commands applied to the turtleView
         - Send text command to back end for parsing
         - Set language
         - See variables currently available in the environment
@@ -40,7 +40,7 @@ SLogo Team 5 Plan
 ### Design Overview
 - Frontend
      - Terminal for commands
-     - Window displaying turtle (same window as terminal)
+     - Window displaying turtleView (same window as terminal)
      - Send input string to parser_public
      - Display error boxes when prompted
      - Option to display command history in separate window
@@ -81,7 +81,7 @@ SLogo Team 5 Plan
 We decided to add more public methods to the front end (external API) to match every basic command "Turtle Command" at this [link](https://www2.cs.duke.edu/courses/spring19/compsci308/assign/03_slogo/commands.php). See java API code below.
 
 ### User Interface
-- The user interface will contain a text box on the right panel that will allow the user to type in commands. Furthermore, there will be a buttons to select the language of the commands, color of the pen, and background color. Invalid commands will cause the text box to be highlighted in red. Past commands and environment vairables will be displayed above the text box. Finally, the larger left panel will display the turtle in its habitat. Errors will be reported to the user in JavaFX Alert boxes.
+- The user interface will contain a text box on the right panel that will allow the user to type in commands. Furthermore, there will be a buttons to select the language of the commands, color of the pen, and background color. Invalid commands will cause the text box to be highlighted in red. Past commands and environment vairables will be displayed above the text box. Finally, the larger left panel will display the turtleView in its habitat. Errors will be reported to the user in JavaFX Alert boxes.
 
 ![](https://i.imgur.com/0inBEvm.jpg)
 
@@ -107,7 +107,7 @@ interface FrontendInternal {
     // Add variable to environment variable list
     void addVariable();
     
-    // Update the state of the turtle
+    // Update the state of the turtleView
     void updateDisplay();
     
     // Set the background color
@@ -123,36 +123,36 @@ interface FrontendInternal {
 ```
 
 - Frontend / External
-    - The external API of the frontend will contain getX() methods to supply the backend with information about the turtle's current state. There will also be public void methods that are called by the backend after parsing a valid instruction. These will include setPosition, setHeading, setPenDown, and clearScreen, and more.
+    - The external API of the frontend will contain getX() methods to supply the backend with information about the turtleView's current state. There will also be public void methods that are called by the backend after parsing a valid instruction. These will include setPosition, setHeading, setPenDown, and clearScreen, and more.
 
 ```java
 interface FrontendExternal {
 
-    // Update the position of the turtle
+    // Update the position of the turtleView
     void setPosition(double x, double y);
         
-    // Update heading of turtle
+    // Update heading of turtleView
     void setHeading(double angle);
     
     // Change status of pen 
     void setPenDown(boolean down);
     
-    // Moves turtle backwards or forwards
+    // Moves turtleView backwards or forwards
     void moveForwards(double amount);
     
     // Rotates counter-clockwise (positive) or clockwise
     void rotate(double amount);
     
-    // Rotates turtle to face a point
+    // Rotates turtleView to face a point
     void towards(double x, double y);
     
-    // Hide or show the turtle
+    // Hide or show the turtleView
     void setVisible(boolean visible);
     
-    // true if turtle is visible
+    // true if turtleView is visible
     void getVisible();
     
-    // Remove turtle and lines from screen
+    // Remove turtleView and lines from screen
     void clearScreen();
     
     // Determine if pen is down
@@ -248,15 +248,15 @@ abstract class EvalCommand extends Command {
     - Parser looks for two parameters for SUM, finds 60, 32.
     - Parser creates SUM EvalCommand and executes.
     - Parser uses return value of sum command as parameter in new LEFT ActionCommand.
-    - Parser executes LEFT command, sends call to UI API for the turtle to rotate 92 degrees.
+    - Parser executes LEFT command, sends call to UI API for the turtleView to rotate 92 degrees.
     - Turtle updates its heading and the visualization is refreshed to reflect change.
 
 - The user inputs "cs"
     - Call to parse("cs")
     - parser_public identifies "cs" as a valid ActionCommand, and calls that command's execute method
     - this method calls the front end clearScreen method
-    - the frontend calls turtle's reset method
-    - the turtle recenters itself and tells its pen to deleteLines
+    - the frontend calls turtleView's reset method
+    - the turtleView recenters itself and tells its pen to deleteLines
 
 - The user types "50 fd"
     - call to parse("50 fd")
@@ -303,7 +303,7 @@ Map<String, Double> vars = backend.getVariables();
         - setting the pen color
         - setting the background color
 
-- We discussed having multiple turtles as well as animating a turtle's movement (as opposed to performing all actions immediately), and we made sure that our front end's external and internal API were open to these changes if they come along down the road. For the former, we could create getters and setters identical to the current ones, except we would append a turtle index in each method's signature. In the latter, we would give the Turtle object a moveTo and rotateTo method with an additional duration parameter in the method signature.
+- We discussed having multiple turtles as well as animating a turtleView's movement (as opposed to performing all actions immediately), and we made sure that our front end's external and internal API were open to these changes if they come along down the road. For the former, we could create getters and setters identical to the current ones, except we would append a turtleView index in each method's signature. In the latter, we would give the Turtle object a moveTo and rotateTo method with an additional duration parameter in the method signature.
 
 ### Team Responsibilities
 

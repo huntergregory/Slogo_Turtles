@@ -4,10 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import ui_private.features.Feature;
-import ui_public.TurtleDisplay;
+import ui_private.displays.TurtleDisplay;
 
 public abstract class ColorChooser extends Feature {
     private ColorPicker myColorPicker;

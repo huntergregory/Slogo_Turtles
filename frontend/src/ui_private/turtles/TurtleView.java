@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.paint.Color;
 import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -13,7 +14,7 @@ import javafx.scene.Node;
  * Represents a movable turtle with customizable image and drawing capabilities.
  * @author Hunter Gregory
  */
-public abstract class Turtle {
+public abstract class TurtleView {
     static final double WIDTH = 20;
     static final double HEIGHT = 20;
     private static final String CSS_TAG = "turtle";
@@ -42,7 +43,7 @@ public abstract class Turtle {
      * @param id
      * @param list
      */
-    Turtle(int id, ObservableList list, double dispX, double dispY) {
+    TurtleView(int id, ObservableList list, double dispX, double dispY) {
         myID = id;
         myDispXOffset = dispX;
         myDispYOffset = dispY;
@@ -61,7 +62,7 @@ public abstract class Turtle {
     }
 
     /**
-     * Turtle class depends on the implementation assigning a nonnull Node to myNode.
+     * TurtleView class depends on the implementation assigning a nonnull Node to myNode.
      */
     abstract protected void initializeNode();
 
@@ -75,6 +76,10 @@ public abstract class Turtle {
 
     public void setStroke(LineStroke stroke) {
         myPen.setStroke(stroke);
+    }
+
+    public void setPenColor(Color color) {
+        myPen.setPenColor(color);
     }
 
     private void addPropertyListeners() {
@@ -106,11 +111,11 @@ public abstract class Turtle {
     }
 
     private void move() {
-        myNode.relocate(myNewX - Turtle.WIDTH / 2.0 + myDispXOffset, myNewY - Turtle.HEIGHT / 2.0 + myDispYOffset);
-        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
-                myOldY + Turtle.HEIGHT / 2.0,
-                myNewX + Turtle.WIDTH / 2.0,
-                myNewY + Turtle.HEIGHT / 2.0);
+        myNode.relocate(myNewX - TurtleView.WIDTH / 2.0 + myDispXOffset, myNewY - TurtleView.HEIGHT / 2.0 + myDispYOffset);
+        myPen.draw(myOldX + TurtleView.WIDTH / 2.0,
+                myOldY + TurtleView.HEIGHT / 2.0,
+                myNewX + TurtleView.WIDTH / 2.0,
+                myNewY + TurtleView.HEIGHT / 2.0);
         moveAboveLines();
     }
 
