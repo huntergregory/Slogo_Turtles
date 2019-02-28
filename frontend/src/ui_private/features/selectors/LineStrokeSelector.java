@@ -26,12 +26,10 @@ public class LineStrokeSelector extends Selector<String> {
     }
 
     @Override
-    protected EventHandler<ActionEvent> handleItemSelected(String item) {
-        return event -> {
-            var stroke = getLineStroke(item);
-            //if (stroke != null)
-                //TODO: need turtle display
-        };
+    protected void handleItemSelected(String item) {
+        var stroke = getLineStroke(item);
+        if (stroke != null)
+            return; //myTurtleDisplay.setStroke(stroke) //FIXME
     }
 
     private LineStroke getLineStroke(String item) {

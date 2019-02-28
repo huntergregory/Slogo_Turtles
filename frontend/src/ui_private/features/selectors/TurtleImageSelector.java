@@ -19,7 +19,6 @@ public class TurtleImageSelector extends Selector<Image> {
         ArrayList<Image> images = new ArrayList<>();
         for (String imageName : IMAGE_NAMES) {
             InputStream stream = getClass().getClassLoader().getResourceAsStream(imageName);
-            System.out.println(stream == null);
             if (stream != null)
                 images.add(new Image(stream));
         }
@@ -28,12 +27,13 @@ public class TurtleImageSelector extends Selector<Image> {
 
     @Override
     protected ObservableList getItemList() {
-        return null;
+        return IMAGES;
     }
 
     @Override
-    protected EventHandler<ActionEvent> handleItemSelected(Image item) {
-        return event -> {}; //turtleDisplay.setImage(item) //TODO: get turtle display and change image
+    protected void handleItemSelected(Image item) {
+        System.out.println("here");
+        myTurtleDisplay.setTurtleImage(item);
     }
 
     @Override

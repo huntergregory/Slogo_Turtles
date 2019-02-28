@@ -19,7 +19,7 @@ public abstract class Selector<T> extends HorizontalFeature {
         myDropBox.setItems(getItemList());
         myDropBox.getSelectionModel().selectFirst();
         T selectedItem = myDropBox.getSelectionModel().getSelectedItem();
-        myDropBox.setOnAction(handleItemSelected(selectedItem));
+        myDropBox.setOnAction(e -> handleItemSelected(selectedItem));
     }
 
 
@@ -29,11 +29,9 @@ public abstract class Selector<T> extends HorizontalFeature {
     abstract protected ObservableList getItemList();
 
     /**
-     * Make sure Object is the
      * @param item
-     * @return
      */
-    abstract protected EventHandler<ActionEvent> handleItemSelected(T item);
+    abstract protected void handleItemSelected(T item);
 
 
     @Override

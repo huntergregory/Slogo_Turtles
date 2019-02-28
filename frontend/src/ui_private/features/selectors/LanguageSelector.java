@@ -19,16 +19,14 @@ public class LanguageSelector extends Selector<String> {
     }
 
     @Override
-    protected EventHandler<ActionEvent> handleItemSelected(String item) {
-        return event -> {
-            try {
-                System.out.println("language here");
-                InputTranslator.getInstance().changeLanguage(item);
-            }
-            catch (ParserException e) {
-                System.out.println("Not a valid language");
-            }
-        };
+    protected void handleItemSelected(String item) {
+        try {
+            System.out.println("language here");
+            InputTranslator.getInstance().changeLanguage(item);
+        }
+        catch (ParserException e) {
+            System.out.println("Not a valid language");
+        }
     }
 
     @Override
