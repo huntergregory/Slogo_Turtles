@@ -79,7 +79,7 @@ public class ControlPanel {
         }
 
         private void addTurtleImageChooser(VBox controlBox) {
-            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", turtleList);
+            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle Image", turtleList);
             turtleImageButton = myTurtleImageChooser.getButton();
         }
 
@@ -166,7 +166,7 @@ public class ControlPanel {
             }
             catch (ParserException e) {
                 // TODO handle parse error
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
 
@@ -178,7 +178,6 @@ public class ControlPanel {
                 //TODO handle parse error
             }
         }
-
 
         public String getMyCommand() {
             return myCommand;

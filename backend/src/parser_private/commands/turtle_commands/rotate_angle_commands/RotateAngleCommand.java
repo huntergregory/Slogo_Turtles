@@ -7,13 +7,23 @@ import java.util.List;
 
 public class RotateAngleCommand extends TurtleCommand {
 
-    RotateAngleCommand(List<Command> params) {
-        super(params);
+    private Command myAngle;
+    private boolean myGoingRight;
 
+    RotateAngleCommand(List<Command> params, boolean goingRight) {
+        super(params);
+        myAngle = params.get(0);
+        myGoingRight = goingRight;
     }
 
     @Override
     public double runCommand() {
-        return 0;
+        double angle = myAngle.execute();
+        if (!myGoingRight) {
+            angle *= -1;
+        }
+        myManager.setHeading(angle + myManager.getHeading());
+        System.out.println("Rotating " + angle);
+        return Math.abs(angle);
     }
 }

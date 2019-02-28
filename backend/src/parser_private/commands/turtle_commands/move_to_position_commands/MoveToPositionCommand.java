@@ -7,30 +7,32 @@ import java.util.List;
 
 public class MoveToPositionCommand extends TurtleCommand {
 
-    double myNewX;
-    double myNewY;
+    Command myNewX;
+    Command myNewY;
 
     MoveToPositionCommand(List<Command> params) {
         super(params);
         if (params.size() != 0) {
-            myNewX = params.get(0).execute();
-            myNewY = params.get(1).execute();
+            myNewX = params.get(0);
+            myNewY = params.get(1);
         }
     }
 
-    private double getCartesianDistance() {
+    private double getCartesianDistance(double newX, double newY) {
         double oldX = myManager.getX();
         double oldY = myManager.getY();
-        double deltaXSquared = Math.pow(myNewX - oldX, 2);
-        double deltaYSquared = Math.pow(myNewY - oldY, 2);
+        double deltaXSquared = Math.pow(newX - oldX, 2);
+        double deltaYSquared = Math.pow(newY - oldY, 2);
         return Math.sqrt(deltaXSquared + deltaYSquared);
     }
 
     @Override
     public double runCommand() {
-        System.out.println("new position: " + myNewX + " " + myNewY);
-        double distanceTravelled = getCartesianDistance();
-        myManager.setPosition(myNewX, - myNewY);
+        double newX = myNewX.execute();
+        double newY = myNewY.execute();
+        System.out.println("new position: " + newX + " " + newY);
+        double distanceTravelled = getCartesianDistance(newX, newY);
+        myManager.setPosition(newX, - newY);
         return distanceTravelled;
     }
 }

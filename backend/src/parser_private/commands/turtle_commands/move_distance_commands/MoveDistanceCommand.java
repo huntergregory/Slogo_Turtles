@@ -19,8 +19,9 @@ public abstract class MoveDistanceCommand extends TurtleCommand {
     @Override
     public double runCommand() {
         double distance = myDistance.execute();
-        if (!myGoingForward)
+        if (!myGoingForward) {
             distance *= -1;
+        }
         move(distance);
         return Math.abs(distance);
     }
