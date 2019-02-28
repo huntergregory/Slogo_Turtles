@@ -29,7 +29,7 @@ public class TurtleDisplay {
     private double myWidth;
     private double myHeight;
 
-    protected TurtleDisplay(double width, double height) {
+    public TurtleDisplay(double width, double height) {
         myWidth = width;
         myHeight = height;
         initializePane();

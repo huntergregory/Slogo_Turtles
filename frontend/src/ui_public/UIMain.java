@@ -4,7 +4,6 @@ import parser_public.ParserException;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
-import ui_private.ControlPanel;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -64,9 +63,9 @@ public class UIMain extends Application {
 
         myTerminal = new CommandTerminal(); //FIXME
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
-        myLeftPanel = new SidePanel(CONTROL_PANEL_WIDTH;
+        myLeftPanel = new SidePanel(CONTROL_PANEL_WIDTH);
         myRightPanel = new SidePanel(CONTROL_PANEL_WIDTH);
-        myFactory = new UIFactory(myTurtleDisplay, myLeftPanel, myTerminal, myRightPanel);
+        myFactory = new UIFactory(myTurtleDisplay, myTerminal, myRightPanel, myLeftPanel);
 
         //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
         myPane.setLeft(myLeftPanel.getPane());
