@@ -20,6 +20,7 @@ public abstract class ScrollableWindow extends VerticalFeature {
         myTextArea = new TextArea(getText());
         myScrollPane = new ScrollPane(myTextArea);
         myScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        myScrollPane.setDisable(true);
     }
 
     abstract protected int getMaxLinesDisplayed();

@@ -1,5 +1,6 @@
 package ui_private.displays;
 
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import parser_public.CommandParser;
 import parser_public.ParserException;
@@ -8,6 +9,7 @@ import java.awt.*;
 
 public class CommandTerminal {
     public static final double PARSE_BUTTON_HEIGHT = 50;
+    private static final String PROMPT = "Enter Command";
 
     private Button myParseButton;
     private TextArea myCommandInput;
@@ -19,7 +21,7 @@ public class CommandTerminal {
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
-        myCommandInput.setText("Enter Command");
+        myCommandInput.setPromptText(PROMPT);
     }
 
     private void sendToParser() {
@@ -33,5 +35,7 @@ public class CommandTerminal {
         }
     }
 
-
+    public Node getPane() {
+        return myCommandInput; //FIXME: need to return some pane including commandinput and parsebutton
+    }
 }

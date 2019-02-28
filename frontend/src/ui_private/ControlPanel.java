@@ -15,7 +15,7 @@ import parser_public.ParserException;
 import java.io.IOException;
 //TODO: Delete
 public class ControlPanel {
-
+/*
         private Font font = new Font("verdana",12);
         protected VBox paneBox;
 
@@ -213,5 +213,5 @@ public class ControlPanel {
 
         public VBox getPaneBox() {
             return paneBox;
-        }
+        } */
 }

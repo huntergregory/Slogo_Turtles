@@ -71,7 +71,7 @@ public class UIMain extends Application {
         myPane.setLeft(myLeftPanel.getPane());
         myPane.setRight(myRightPanel.getPane());
         myPane.setCenter(myTurtleDisplay.getPane());
-        //myPane.setBottom(myTerminal.getPane());
+        myPane.setBottom(myTerminal.getPane());
 
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
