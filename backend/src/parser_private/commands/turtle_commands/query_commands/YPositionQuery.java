@@ -12,7 +12,7 @@ public class YPositionQuery extends TurtleCommand {
 
     @Override
     public double runCommand() {
-        return myManager.getY();
+        return - myManager.getY();
     }
 }
 

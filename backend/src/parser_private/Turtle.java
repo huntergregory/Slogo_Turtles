@@ -66,7 +66,7 @@ public class Turtle {
     }
 
     public void setPenDown(boolean bool) {
-        myIsShowingProperty.set(bool);
+        myPenIsDownProperty.set(bool);
     }
 
     public void eraseLines() {

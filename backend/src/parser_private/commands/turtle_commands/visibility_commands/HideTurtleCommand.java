@@ -5,15 +5,16 @@ import parser_private.commands.turtle_commands.TurtleCommand;
 
 import java.util.List;
 
-public class ShowTurtleCall extends TurtleCommand {
+public class HideTurtleCommand extends TurtleCommand {
 
-    public ShowTurtleCall(List<Command> params) {
+    public HideTurtleCommand(List<Command> params) {
         super(params);
     }
 
     @Override
     public double runCommand() {
-        myManager.setIsShowing(true);
-        return 1;
+        System.out.println("hiding");
+        myManager.setIsShowing(false);
+        return 0;
     }
 }
