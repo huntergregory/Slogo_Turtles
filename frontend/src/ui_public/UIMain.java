@@ -1,6 +1,7 @@
 package ui_public;
 
 import parser_public.ParserException;
+import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
 import ui_private.ControlPanel;
@@ -12,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import ui_private.displays.WindowPanel;
 
 /**
  *
@@ -33,9 +33,9 @@ public class UIMain extends Application {
     private BorderPane myPane;
 
     //all these besides factory can be local
-    private WindowPanel myWindowPanel;
+    private SidePanel myRightPanel;
+    private SidePanel myLeftPanel;
     private TurtleDisplay myTurtleDisplay;
-    private ControlPanel myControlPanel;
     private CommandTerminal myTerminal;
     private UIFactory myFactory;
 
@@ -64,13 +64,13 @@ public class UIMain extends Application {
 
         myTerminal = new CommandTerminal(); //FIXME
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
-        myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
-        myWindowPanel = new WindowPanel(); //FIXME
-        myFactory = new UIFactory(myTurtleDisplay, myControlPanel, myTerminal, myWindowPanel);
+        myLeftPanel = new SidePanel(CONTROL_PANEL_WIDTH;
+        myRightPanel = new SidePanel(CONTROL_PANEL_WIDTH);
+        myFactory = new UIFactory(myTurtleDisplay, myLeftPanel, myTerminal, myRightPanel);
 
         //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
-        myPane.setLeft(myControlPanel.getPaneBox());
-        myPane.setRight(myWindowPanel.getPane());
+        myPane.setLeft(myLeftPanel.getPane());
+        myPane.setRight(myRightPanel.getPane());
         myPane.setCenter(myTurtleDisplay.getPane());
         myPane.setBottom(myTerminal.getPane());
 

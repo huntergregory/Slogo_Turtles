@@ -1,24 +1,23 @@
 package ui_public;
 
-import ui_private.ControlPanel;
+import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
-import ui_private.displays.WindowPanel;
 import ui_private.features.Feature;
 import ui_private.features.FeatureType;
 
 public class UIFactory {
 
     private TurtleDisplay myTurtleDisplay;
-    private ControlPanel myControlPanel;
+    private SidePanel myLeftPanel;
     private CommandTerminal myTerminal;
-    private WindowPanel myWindowPanel;
+    private SidePanel myRightPanel;
 
-    protected UIFactory(TurtleDisplay turtleDisplay, ControlPanel controlPanel, CommandTerminal terminal, WindowPanel windowPanel) {
-        myControlPanel = controlPanel;
+    protected UIFactory(TurtleDisplay turtleDisplay, CommandTerminal terminal, SidePanel leftPanel, SidePanel rightPanel) {
         myTurtleDisplay = turtleDisplay;
         myTerminal = terminal;
-        myWindowPanel = windowPanel;
+        myLeftPanel = leftPanel;
+        myRightPanel = rightPanel;
     }
 
     public void addFeature(FeatureType type) {
