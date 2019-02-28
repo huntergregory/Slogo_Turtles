@@ -5,10 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import javafx.scene.text.Font;
-import ui_private.features.Feature;
+import ui_private.features.HorizontalFeature;
 
-public abstract class Selector<T> extends Feature {
+public abstract class Selector<T> extends HorizontalFeature {
 
     private static final int NUM_OPTIONS_SHOWN = 4;
 
@@ -44,7 +43,7 @@ public abstract class Selector<T> extends Feature {
 
 
     @Override
-    public Node getTheNode() {
+    public Node getMainComponent() {
         return getDropBox();
     }
 }

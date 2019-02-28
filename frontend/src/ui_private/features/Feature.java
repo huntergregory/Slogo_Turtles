@@ -2,6 +2,7 @@ package ui_private.features;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 public abstract class Feature {
@@ -16,19 +17,27 @@ public abstract class Feature {
     /**
      * @return the main part of the feature with handlers built in
      */
-    public Node getNode() throws NodeAlreadyUsedException {
+    public Pane getPane() throws NodeAlreadyUsedException {
         if (myWasUsed)
             throw new NodeAlreadyUsedException();
         myWasUsed = true;
-        return getTheNode();
+        return getBox();
     }
 
-    abstract protected Node getTheNode();
+    /**
+     * @return a Pane which another abstract class out to create using getMainComponent and getLabel
+     */
+    abstract protected Pane getBox();
+
+    /**
+     * @return the main feature (selector, scrolling pane, etc.)
+     */
+    abstract protected Node getMainComponent();
 
     /**
      * @return title describing the feature. Will be displayed near the main feature
      */
-    public Label getLabel() {
+    protected Label getLabel() {
         if (myLabel != null)
             return myLabel;
         myLabel = new Label(getLabelText());

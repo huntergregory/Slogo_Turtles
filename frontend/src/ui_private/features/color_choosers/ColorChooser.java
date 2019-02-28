@@ -5,10 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
-import ui_private.features.Feature;
 import ui_private.displays.TurtleDisplay;
+import ui_private.features.HorizontalFeature;
 
-public abstract class ColorChooser extends Feature {
+public abstract class ColorChooser extends HorizontalFeature {
     private ColorPicker myColorPicker;
     protected TurtleDisplay myTurtleDisplay;
 
@@ -30,7 +30,7 @@ public abstract class ColorChooser extends Feature {
     abstract EventHandler<ActionEvent> handleNewColor(Color newColor);
 
     @Override
-    public Node getTheNode() {
+    public Node getMainComponent() {
         return myColorPicker;
     }
 }
