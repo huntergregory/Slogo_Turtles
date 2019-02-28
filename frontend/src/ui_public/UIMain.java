@@ -61,8 +61,8 @@ public class UIMain extends Application {
         myFactory.addFeature(FeatureType.LANGUAGE_SELECTOR);
         myFactory.addFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
         myFactory.addFeature(FeatureType.PAST_COMMANDS_WINDOW);
-        myFactory.addFeature(FeatureType.UserCommandsWindow);
-        myFactory.addFeature(FeatureType.VariablesWindow);
+        myFactory.addFeature(FeatureType.USER_COMMANDS_WINDOW);
+        myFactory.addFeature(FeatureType.VARIABLES_WINDOW);
     }
 
     //Delete??

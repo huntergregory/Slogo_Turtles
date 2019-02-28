@@ -1,13 +1,13 @@
 package ui_private.displays;
 
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
 import parser_public.ParserException;
 import javafx.event.ActionEvent;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CommandTerminal {
@@ -24,7 +24,7 @@ public class CommandTerminal {
 
     public CommandTerminal() {
         myParseButton = new Button("PARSE");
-        //myParseButton.setOnAction((event) -> sendToParser());
+        myParseButton.setOnAction((event) -> sendToParser());
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
@@ -34,16 +34,21 @@ public class CommandTerminal {
     private void sendToParser() {
         myCommand = myCommandInput.getText();
         System.out.println(myCommand); //TODO remove before submission
+        myCommandInput.setText("");
+        myCommandInput.setPromptText(PROMPT);
         try {
             CommandParser.getInstance().parseAndRun(myCommand);
         }
         catch (ParserException e) {
             // TODO handle parse error
-            myCommandInput.setText("Enter a valid command");
+            myCommandInput.setPromptText("Enter a valid command");
         }
     }
 
     public Pane getPane() {
-        return new Pane(myCommandInput); //FIXME: need to return some pane including commandinput and parsebutton
+        var pane = new Pane();
+        pane.getChildren().add(myCommandInput);
+        pane.getChildren().add(myParseButton);
+        return pane; //FIXME: need to return some pane including commandinput and parsebutton
     }
 }
