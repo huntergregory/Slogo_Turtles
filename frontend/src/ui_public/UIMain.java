@@ -21,9 +21,9 @@ import javafx.stage.Stage;
 public class UIMain extends Application {
     private static final double WIDTH = 1000;
     private static final double HEIGHT = 600;
-    private static final double CONTROL_PANEL_WIDTH = WIDTH / 3.0;
-    private static final double TURTLE_PANE_WIDTH = WIDTH / 2.0;
-    private static final double TURTLE_PANE_HEIGHT = HEIGHT * 2/3.0;
+    private static final double SIDE_PANEL_WIDTH = WIDTH / 3.0;
+    private static final double TURTLE_PANE_WIDTH = WIDTH / 3.0;
+    private static final double TURTLE_PANE_HEIGHT = HEIGHT * 2.0 / 3.0;
     private static final double TERMINAL_HEIGHT = HEIGHT / 6.0;
     private static final Paint BACKGROUND = Color.WHITE;
     private static final String TITLE = "SLogo";
@@ -63,15 +63,15 @@ public class UIMain extends Application {
 
         myTerminal = new CommandTerminal(); //FIXME
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
-        myLeftPanel = new SidePanel(CONTROL_PANEL_WIDTH);
-        myRightPanel = new SidePanel(CONTROL_PANEL_WIDTH);
+        myLeftPanel = new SidePanel(SIDE_PANEL_WIDTH);
+        myRightPanel = new SidePanel(SIDE_PANEL_WIDTH);
         myFactory = new UIFactory(myTurtleDisplay, myTerminal, myRightPanel, myLeftPanel);
 
         //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
         myPane.setLeft(myLeftPanel.getPane());
         myPane.setRight(myRightPanel.getPane());
         myPane.setCenter(myTurtleDisplay.getPane());
-        myPane.setBottom(myTerminal.getPane());
+        //myPane.setBottom(myTerminal.getPane());
 
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;

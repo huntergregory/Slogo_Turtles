@@ -8,25 +8,19 @@ import javafx.scene.control.ComboBox;
 import ui_private.features.HorizontalFeature;
 
 public abstract class Selector<T> extends HorizontalFeature {
-
     private static final int NUM_OPTIONS_SHOWN = 4;
 
-    private boolean myWasUsed = false;
+    private ComboBox<T> myDropBox;
 
     public Selector() {
-        ComboBox<T> dropBox = getDropBox();
-        dropBox.setEditable(true);
-        dropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
-        dropBox.setItems(getItemList());
-        dropBox.getSelectionModel().selectFirst();
-        T selectedItem = dropBox.getSelectionModel().getSelectedItem();
-        dropBox.setOnAction(handleItemSelected(selectedItem));
+        myDropBox = new ComboBox<>();
+        myDropBox.setEditable(true);
+        myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
+        myDropBox.setItems(getItemList());
+        myDropBox.getSelectionModel().selectFirst();
+        T selectedItem = myDropBox.getSelectionModel().getSelectedItem();
+        myDropBox.setOnAction(handleItemSelected(selectedItem));
     }
-
-    /**
-     * @return nonnull ComboBox
-     */
-    abstract protected ComboBox<T> getDropBox();
 
 
     /**
@@ -44,6 +38,6 @@ public abstract class Selector<T> extends HorizontalFeature {
 
     @Override
     public Node getMainComponent() {
-        return getDropBox();
+        return myDropBox;
     }
 }

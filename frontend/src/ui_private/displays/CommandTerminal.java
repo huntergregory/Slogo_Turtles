@@ -22,9 +22,7 @@ public class CommandTerminal {
 
     public CommandTerminal() {
         myParseButton = new Button("PARSE");
-        myParseButton.setOnAction((event) -> {
-            sendToParser();
-        });
+        //myParseButton.setOnAction((event) -> sendToParser());
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
