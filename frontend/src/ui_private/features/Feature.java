@@ -18,17 +18,17 @@ public abstract class Feature {
     /**
      * @return the main part of the feature with handlers built in
      */
-    public Pane getPane() throws NodeAlreadyUsedException {
+    public Pane getPane(double width) throws NodeAlreadyUsedException {
         if (myWasUsed)
             throw new NodeAlreadyUsedException();
         myWasUsed = true;
-        return getBox();
+        return getGrid(width);
     }
 
     /**
      * @return a Pane which another abstract class out to create using getMainComponent and getLabel
      */
-    abstract protected Pane getBox();
+    abstract protected Pane getGrid(double width);
 
     /**
      * @return the main feature (selector, scrolling pane, etc.)

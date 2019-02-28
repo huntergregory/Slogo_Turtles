@@ -46,9 +46,11 @@ public class CommandTerminal {
     }
 
     public Pane getPane() {
-        var pane = new Pane();
-        pane.getChildren().add(myCommandInput);
-        pane.getChildren().add(myParseButton);
-        return pane; //FIXME: need to return some pane including commandinput and parsebutton
+        var gridPane = new GridPane();
+        myCommandInput.setPrefWidth(1000); //stretch out text area //FIXME magic number
+        myParseButton.setMinWidth(100); //FIXME magic number
+        myParseButton.setPrefHeight(60); //stretch out height //FIXME magic number
+        gridPane.addRow(0, myCommandInput, myParseButton);
+        return gridPane; //FIXME: need to return some pane including commandinput and parsebutton
     }
 }

@@ -12,16 +12,17 @@ public class UIFactory {
     private SidePanel myLeftPanel;
     private CommandTerminal myTerminal;
     private SidePanel myRightPanel;
+    private double mySidePanelWidth;
 
     public UIFactory(double width, double height) {
-        var sidePanelWidth = width / 3.0;
+        mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
-        var terinalHeight = height / 6.0;
+        var terminalHeight = height / 6.0;
         myTerminal = new CommandTerminal(); //FIXME
         myTurtleDisplay = new TurtleDisplay(turtlePanelWidth, turtlePaneHeight);
-        myLeftPanel = new SidePanel(sidePanelWidth);
-        myRightPanel = new SidePanel(sidePanelWidth);
+        myLeftPanel = new SidePanel(mySidePanelWidth);
+        myRightPanel = new SidePanel(mySidePanelWidth);
     }
 
     public Pane getLeft() {
@@ -55,11 +56,11 @@ public class UIFactory {
 
     //vertical features currently consist of only scrollable windows
     private void addVerticalFeature(VerticalFeature feature) {
-        myRightPanel.addRow(feature.getPane());
+        myRightPanel.addRow(feature.getPane(mySidePanelWidth));
     }
 
     //horizontal features currently consist of Selectors and ColorChoosers
     private void addHorizontalFeature(HorizontalFeature feature) {
-        myLeftPanel.addRow(feature.getPane());
+        myLeftPanel.addRow(feature.getPane(mySidePanelWidth));
     }
 }

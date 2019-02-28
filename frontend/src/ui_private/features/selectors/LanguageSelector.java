@@ -8,6 +8,7 @@ import parser_public.InputTranslator;
 import parser_public.ParserException;
 
 public class LanguageSelector extends Selector<String> {
+    private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
             FXCollections.observableArrayList("Chinese","English","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
@@ -32,6 +33,6 @@ public class LanguageSelector extends Selector<String> {
 
     @Override
     protected String getLabelText() {
-        return null;
+        return TITLE;
     }
 }

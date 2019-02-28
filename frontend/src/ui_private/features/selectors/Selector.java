@@ -14,7 +14,7 @@ public abstract class Selector<T> extends HorizontalFeature {
 
     public Selector() {
         myDropBox = new ComboBox<>();
-        myDropBox.setEditable(true);
+        myDropBox.setEditable(false);
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
         myDropBox.setItems(getItemList());
         myDropBox.getSelectionModel().selectFirst();

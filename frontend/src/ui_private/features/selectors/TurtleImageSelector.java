@@ -12,13 +12,14 @@ import java.util.ArrayList;
 
 public class TurtleImageSelector extends Selector<Image> {
     private static final String TITLE = "Turtle Image";
-    private static final String[] IMAGE_NAMES = {""}; //TODO: include names
+    private static final String[] IMAGE_NAMES = {"tan_turtle.png"}; //TODO: include names
     private ObservableList IMAGES = constructList(); //can't be static because getClass can't be in a static method
 
     private ObservableList constructList() {
         ArrayList<Image> images = new ArrayList<>();
         for (String imageName : IMAGE_NAMES) {
             InputStream stream = getClass().getClassLoader().getResourceAsStream(imageName);
+            System.out.println(stream == null);
             if (stream != null)
                 images.add(new Image(stream));
         }
