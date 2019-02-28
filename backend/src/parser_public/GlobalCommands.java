@@ -1,18 +1,21 @@
 package parser_public;
 
+import parser_private.Command;
 import parser_private.StoredUserDefinedCommand;
-import parser_private.commands.control_commands.ListCommand;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GlobalCommands {
 
     private static GlobalCommands instance;
-    private Map<String, StoredUserDefinedCommand> myCommands;
+    private Map<String, StoredUserDefinedCommand> myStoredCommands;
+    private Map<String, Integer> myParamCounts;
 
     private GlobalCommands() {
-        this.myCommands = new HashMap<>();
+        this.myStoredCommands = new HashMap<>();
+        this.myParamCounts = new HashMap<>();
     }
 
     public static GlobalCommands getInstance() {
@@ -22,14 +25,20 @@ public class GlobalCommands {
     }
 
     public void addCommand(String commandName, StoredUserDefinedCommand newCommand) {
-        myCommands.put(commandName, newCommand);
+        myStoredCommands.put(commandName, newCommand);
+        myParamCounts.put(commandName, newCommand.getArgumentCount());
+    }
+
+    int getParamCount(String command) {
+        return myParamCounts.get(command);
     }
 
     boolean isDefined(String command) {
-        return myCommands.keySet().contains(command);
+        return myStoredCommands.keySet().contains(command);
     }
 
-    public double runCommand(String commandName, ListCommand params) {
-        myCommands.get(commandName).run(params);
+    Command getCommand(String commandName, List<Command> params) {
+        myStoredCommands.get(commandName).assignParams(params);
+        return myStoredCommands.get(commandName);
     }
 }

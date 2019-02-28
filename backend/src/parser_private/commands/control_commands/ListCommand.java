@@ -17,11 +17,15 @@ public class ListCommand extends Command {
         return mySubCommands.get(mySubCommands.size() - 1).execute();
     }
 
-    Command getParam(int index) {
+    public Command getParam(int index) {
         return mySubCommands.get(index);
     }
 
-    public void doForEachCommand(Consumer<Command> consumer) {
+    public int size() {
+        return mySubCommands.size();
+    }
 
+    boolean isEmpty() {
+        return mySubCommands.size() == 0;
     }
 }
