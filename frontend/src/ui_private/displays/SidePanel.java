@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
 public class SidePanel {
-    public static final double MAX_WIDTH = 500;
     public static final double V_GAP = 30;
     private static final Color GREEN = Color.web("0x027a50");
     private static final Background BACKGROUND = new Background(new BackgroundFill(GREEN, null, null));
@@ -23,7 +22,7 @@ public class SidePanel {
 
     public SidePanel(double width) {
         initializeGridPane();
-        myNormalWidth = (MAX_WIDTH < width) ? MAX_WIDTH : width;
+        myNormalWidth = width;
         myChildren = new ArrayList<>();
         myNumRows = 0;
     }
@@ -53,6 +52,6 @@ public class SidePanel {
 
     private void expandPanel() {
         myPane.setMinWidth(myNormalWidth);
-        myPane.setMaxWidth(MAX_WIDTH);
+        myPane.setMaxWidth(myNormalWidth);
     }
 }
