@@ -149,7 +149,7 @@ public class ControlPanel {
                 myPenColor = myPenColorChooser.getColor();
             });
             helpButton.setOnAction((event) -> {
-                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/parser_private.commands.php";
+                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
                 try {
                     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
                 } catch (IOException e) {
@@ -166,6 +166,7 @@ public class ControlPanel {
             }
             catch (ParserException e) {
                 // TODO handle parse error
+                e.printStackTrace();
             }
         }
 

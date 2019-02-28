@@ -82,12 +82,14 @@ public class CommandParser {
         } else if (InputTranslator.getInstance().isVariable(currentChunk)) {    // Return new user defined variable reference if need be
             myChunkIndex++;
             return new VariableCommand(currentChunk.substring(1));
-        } else if (!CommandFactory.getInstance().isNormalCommand(currentChunk) && !GlobalCommands.getInstance().isDefined(currentChunk)) {
-            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) {
+        } else if (!CommandFactory.getInstance().isNormalCommand(currentChunk)) {
+            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) { //TODO allow overwrite previous command
                 myChunkIndex++;                                                 // Check if otherwise invalid command is preceded by "to", return new var ref if so
                 return new VariableCommand(currentChunk);
             }
-            throw new ParserException("Invalid command");                       // Else, invalid command
+            else if (!GlobalCommands.getInstance().isDefined(currentChunk)) {
+                throw new ParserException("Invalid command");                   // Else, invalid command
+            }
         }
         List<Command> paramList = getParameters(currentChunk, input);
         if (CommandFactory.getInstance().isNormalCommand(currentChunk)) {       // Return complete command
