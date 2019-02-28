@@ -18,7 +18,7 @@ public class SetTowardsCommand extends TurtleCommand {
 
     private double getNewHeading() {
         double x = myX.execute();
-        double y = myY.execute();
+        double y = - myY.execute();
         double deltaX = x - myManager.getX();
         double deltaY = -(y - myManager.getY());
         if (deltaX == 0 && deltaY == 0)
@@ -29,7 +29,6 @@ public class SetTowardsCommand extends TurtleCommand {
             newHeading = (deltaX > 0) ? 90 : -90; // OR 270
         else {
             double upLeftOrUpRightHeading = Math.toDegrees(Math.atan(deltaX / deltaY));
-            System.out.println("proposed heading: " + upLeftOrUpRightHeading);
             newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + 180;
             System.out.println("set heading: " + newHeading);
         }

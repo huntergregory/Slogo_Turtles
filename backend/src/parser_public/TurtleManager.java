@@ -31,7 +31,7 @@ public class TurtleManager {
     }
 
     public void setHeading(double heading) {
-        myTurtles.get(0).setHeading(0);
+        myTurtles.get(0).setHeading(heading);
     }
 
     public void setPenDown(boolean bool) {
