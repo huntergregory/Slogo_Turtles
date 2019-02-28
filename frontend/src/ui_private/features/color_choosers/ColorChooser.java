@@ -10,17 +10,9 @@ import ui_private.features.HorizontalFeature;
 
 public abstract class ColorChooser extends HorizontalFeature {
     private ColorPicker myColorPicker;
-    protected TurtleDisplay myTurtleDisplay;
 
     public ColorChooser() {
         myColorPicker = new ColorPicker();
-        addListener();
-    }
-
-    public void setTurtleDisplay(TurtleDisplay turtleDisplay) {
-        if (turtleDisplay == null)
-            return;
-        myTurtleDisplay = turtleDisplay;
         addListener();
     }
 
