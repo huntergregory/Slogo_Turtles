@@ -1,5 +1,6 @@
 package ui_private.features.scrollable_windows;
 
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import ui_private.features.VerticalFeature;
@@ -42,5 +43,11 @@ public abstract class ScrollableWindow extends VerticalFeature {
             maxLines -= 1;
         }
         return builder.toString();
+    }
+
+
+    @Override
+    protected Node getMainComponent() {
+        return myScrollPane;
     }
 }
