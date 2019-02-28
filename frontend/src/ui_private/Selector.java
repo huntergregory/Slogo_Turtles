@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 
 class Selector {
 
-    private Font font = new Font("verdana",12);
     private Button myButton;
     private ComboBox<String> myDropBox;
 
