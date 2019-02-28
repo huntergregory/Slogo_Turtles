@@ -116,10 +116,10 @@ public abstract class TurtleView {
 
     private void move() {
         myNode.relocate(myNewX - TurtleView.WIDTH / 2.0 + myDispXOffset, myNewY - TurtleView.HEIGHT / 2.0 + myDispYOffset);
-        myPen.draw(myOldX + TurtleView.WIDTH / 2.0,
-                myOldY + TurtleView.HEIGHT / 2.0,
-                myNewX + TurtleView.WIDTH / 2.0,
-                myNewY + TurtleView.HEIGHT / 2.0);
+        myPen.draw(myOldX + myDispXOffset,
+                myOldY + myDispYOffset,
+                myNewX + myDispXOffset,
+                myNewY + myDispYOffset);
         moveAboveLines();
     }
 

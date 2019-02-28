@@ -10,7 +10,7 @@ import parser_public.ParserException;
 public class LanguageSelector extends Selector<String> {
     private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
-            FXCollections.observableArrayList("Chinese","English","French","German","Italian",
+            FXCollections.observableArrayList("English","Chinese","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
 
     @Override
