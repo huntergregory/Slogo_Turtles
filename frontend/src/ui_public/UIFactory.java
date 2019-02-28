@@ -1,18 +1,53 @@
 package ui_public;
 
 import ui_private.ControlPanel;
+import ui_private.displays.CommandTerminal;
+import ui_private.displays.WindowPanel;
+import ui_private.features.Feature;
+import ui_private.features.FeatureType;
 
 public class UIFactory {
 
     private TurtleDisplay myTurtleDisplay;
     private ControlPanel myControlPanel;
-    //TODO: include Command/Variable Window Panel that manages Window classes
+    private CommandTerminal myTerminal;
+    private WindowPanel myWindowPanel;
 
-    protected UIFactory(TurtleDisplay turtleDisplay, ControlPanel controlPanel) {
+    protected UIFactory(TurtleDisplay turtleDisplay, ControlPanel controlPanel, CommandTerminal terminal, WindowPanel windowPanel) {
         myControlPanel = controlPanel;
         myTurtleDisplay = turtleDisplay;
+        myTerminal = terminal;
+        myWindowPanel = windowPanel;
     }
 
+    public void addFeature(FeatureType type) {
+        var feature = getFeature(type);
+        if (feature instanceof Selector)
+            addSelector(feature);
+        else
+            addScrollableWindow(feature);
+    }
+
+    private Feature getFeature(FeatureType type) {
+        try {
+            var featureClass = Class.forName(type.getClassName());
+            Object feature = featureClass.getDeclaredConstructor().newInstance();
+            return (Feature) feature;
+        }
+        catch (Exception e) {
+            System.out.println("Failed to add feature, update the FeatureType enum.");
+        }
+    }
+
+    private void addSelector() {
+        //TODO
+    }
+
+    private void addScrollableWindow() {
+        //TODO
+    }
+
+/*
     //FOR ALL OF THESE, MAKE SURE THEY CAN ONLY BE CALLED ONCE
 
     public void addTurtleBackgroundSelector() {
@@ -43,4 +78,5 @@ public class UIFactory {
     public void addPastCommmandsWindow() {
         //TODO: not sure how to make it communicate with back end
     }
+    */
 }

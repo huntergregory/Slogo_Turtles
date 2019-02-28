@@ -1,4 +1,7 @@
 package ui_private.features.scrollable_windows;
 
-public class ScrollableWindow {
+import ui_private.features.Feature;
+
+public abstract class ScrollableWindow extends Feature {
+
 }
