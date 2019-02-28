@@ -17,7 +17,7 @@ public class TurtleDisplay {
     private double myTurtleXOrigin;
     private double myTurtleYOrigin;
 
-    TurtleDisplay(double width, double height) {
+    protected TurtleDisplay(double width, double height) {
         myWidth = width;
         myHeight = height;
         myTurtleXOrigin = width / 2.0;

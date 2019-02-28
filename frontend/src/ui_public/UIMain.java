@@ -1,6 +1,7 @@
 package ui_public;
 
 import parser_public.ParserException;
+import ui_private.displays.CommandTerminal;
 import ui_private.ControlPanel;
 
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import ui_private.displays.WindowPanel;
 
 /**
  *

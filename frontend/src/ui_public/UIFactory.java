@@ -15,10 +15,6 @@ public class UIFactory {
 
     //FOR ALL OF THESE, MAKE SURE THEY CAN ONLY BE CALLED ONCE
 
-    public void addLanguageSelector() {
-        //TODO: add selector to controlPanel for language that has handler to communicate with back end
-    }
-
     public void addTurtleBackgroundSelector() {
         //TODO: add selector to controlPanel for language that has handler to communicate with TurtleDisplay
     }
@@ -30,6 +26,10 @@ public class UIFactory {
     // allow images or shapes to be selected for turtle
     public void addTurtleTypeSelector() {
         //TODO: add selector to controlPanel for language that has handler to communicate with TurtleDisplay
+    }
+
+    public void addLanguageSelector() {
+        //TODO: add selector to controlPanel for language that has handler to communicate with back end
     }
 
     public void addVariableWindow() {
