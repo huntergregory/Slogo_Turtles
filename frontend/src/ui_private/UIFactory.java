@@ -42,7 +42,7 @@ public class UIFactory {
 
     public void addFeature(FeatureType type) {
         try {
-            var feature = getFeature(type);
+            var feature = type.getFeature();
             if (feature instanceof VerticalFeature)
                 addVerticalFeature((VerticalFeature) feature);
             else
@@ -50,17 +50,6 @@ public class UIFactory {
         }
         catch (NoFeatureException e) {
             System.out.println("Failed to add feature, update the FeatureType enum.");
-        }
-    }
-
-    private Feature getFeature(FeatureType type) throws NoFeatureException {
-        try {
-            var featureClass = Class.forName(type.getClassName());
-            Object feature = featureClass.getDeclaredConstructor().newInstance();
-            return (Feature) feature;
-        }
-        catch (Exception e) {
-            throw new NoFeatureException();
         }
     }
 
