@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import ui_private.features.exceptions.NodeAlreadyUsedException;
 
 public abstract class Feature {
     private static final String FONT_FAMILY = "verdana";

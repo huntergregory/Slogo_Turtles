@@ -9,7 +9,7 @@ public abstract class HorizontalFeature extends Feature {
     @Override
     protected Pane getBox() {
         GridPane grid = new GridPane();
-        grid.addRow(0, getMainComponent(), getLabel());
+        grid.addRow(0, getLabel(), getMainComponent());
         grid.setHgap(H_GAP);
         return grid;
     }

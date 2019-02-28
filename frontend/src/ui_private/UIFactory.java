@@ -5,7 +5,7 @@ import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
 import ui_private.features.*;
-import ui_private.features.scrollable_windows.ScrollableWindow;
+import ui_private.features.exceptions.NoFeatureException;
 
 public class UIFactory {
     private TurtleDisplay myTurtleDisplay;

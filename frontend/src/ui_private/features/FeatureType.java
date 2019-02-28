@@ -1,12 +1,12 @@
 package ui_private.features;
 
 public enum FeatureType {
-    PEN_COLOR("selectors.PenColorSelector"); //TODO: FIX
+    PEN_COLOR_CHOOSER("color_choosers.PenColorChooser");
 
 
     private String myClassName;
     FeatureType(String className) {
-        myClassName = "java.lang.frontend.src.ui_private.features." + className;
+        myClassName = "ui_private.features." + className;
     }
 
     public String getClassName() {

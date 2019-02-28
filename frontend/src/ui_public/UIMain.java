@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import ui_private.features.FeatureType;
 
 /**
  *
@@ -47,6 +48,7 @@ public class UIMain extends Application {
         myPane.setCenter(myFactory.getCenter());
         myPane.setBottom(myFactory.getBottom());
 
+        myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode())); //FIXME: unnecessary?
         return scene;
     }
