@@ -44,6 +44,14 @@ public class Turtle {
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
     }
 
+    private double getInBoundsNum(double num, double min, double max) {
+        if (num < min)
+            return min;
+        if (num > max)
+            return max;
+        return num;
+    }
+
     private void setDefaultState() {
         setPosition(0,0);
         setHeading(0);
@@ -99,13 +107,5 @@ public class Turtle {
 
     public BooleanProperty getEraseProperty() {
         return myShouldEraseLinesProperty;
-    }
-
-    private double getInBoundsNum(double num, double min, double max) {
-        if (num < min)
-            return min;
-        if (num > max)
-            return max;
-        return num;
     }
 }

@@ -15,7 +15,8 @@ public class ClearScreenCommand extends MoveToPositionCommand {
 
     @Override
     public double runCommand() {
+        double rtn = super.runCommand();
         myManager.eraseLines();
-        return super.runCommand();
+        return rtn;
     }
 }
