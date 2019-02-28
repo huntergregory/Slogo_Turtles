@@ -11,11 +11,19 @@ public abstract class Feature {
     //TODO: transfer these^ to css
 
     private Label myLabel;
+    private boolean myWasUsed = false;
 
     /**
      * @return the main part of the feature with handlers built in
      */
-    abstract public Node getNode();
+    public Node getNode() throws NodeAlreadyUsedException {
+        if (myWasUsed)
+            throw new NodeAlreadyUsedException();
+        myWasUsed = true;
+        return getTheNode();
+    }
+
+    abstract protected Node getTheNode();
 
     /**
      * @return title describing the feature. Will be displayed near the main feature

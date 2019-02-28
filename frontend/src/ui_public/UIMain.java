@@ -66,7 +66,7 @@ public class UIMain extends Application {
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
         myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
         myWindowPanel = new WindowPanel(); //FIXME
-        myFactory = new UIFactory(myTurtleDisplay, myControlPanel, myWindowPanel, myTerminal);
+        myFactory = new UIFactory(myTurtleDisplay, myControlPanel, myTerminal, myWindowPanel);
 
         //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
         myPane.setLeft(myControlPanel.getPaneBox());

@@ -30,7 +30,7 @@ public abstract class ColorChooser extends Feature {
     abstract EventHandler<ActionEvent> handleNewColor(Color newColor);
 
     @Override
-    public Node getNode() {
+    public Node getTheNode() {
         return myColorPicker;
     }
 }

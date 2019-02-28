@@ -1,7 +1,7 @@
 package ui_private.features;
 
 public enum FeatureType {
-    PEN_COLOR("selectors.PenColorSelector");
+    PEN_COLOR("selectors.PenColorSelector"); //TODO: FIX
 
 
     private String myClassName;

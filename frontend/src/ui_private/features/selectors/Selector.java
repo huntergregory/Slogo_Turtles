@@ -12,6 +12,8 @@ public abstract class Selector<T> extends Feature {
 
     private static final int NUM_OPTIONS_SHOWN = 4;
 
+    private boolean myWasUsed = false;
+
     public Selector() {
         ComboBox<T> dropBox = getDropBox();
         dropBox.setEditable(true);
@@ -42,7 +44,7 @@ public abstract class Selector<T> extends Feature {
 
 
     @Override
-    public Node getNode() {
+    public Node getTheNode() {
         return getDropBox();
     }
 }
