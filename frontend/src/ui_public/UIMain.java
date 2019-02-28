@@ -28,6 +28,9 @@ public class UIMain extends Application {
 
     private Scene myScene;
     private BorderPane myPane;
+
+    //all these besides factory can be local
+    private WindowPanel myWindowPanel;
     private TurtleDisplay myTurtleDisplay;
     private ControlPanel myControlPanel;
     private CommandTerminal myTerminal;
@@ -59,13 +62,14 @@ public class UIMain extends Application {
         myTerminal = new CommandTerminal(); //FIXME
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
         myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);
-        myFactory = new UIFactory(myTurtleDisplay, myControlPanel);
+        myWindowPanel = new WindowPanel(); //FIXME
+        myFactory = new UIFactory(myTurtleDisplay, myControlPanel, myWindowPanel, myTerminal);
 
-        //TODO: include Command/Variable Window Panel that manages Window classes. Put it on the right of the Pane
         //TODO: have ControlPanel and WindowPanel be width 0 until UIFactory adds something to them.
         myPane.setLeft(myControlPanel.getPaneBox());
+        myPane.setRight(myWindowPanel.getPane());
         myPane.setCenter(myTurtleDisplay.getPane());
-        myPane.setBottom(myTerminal);
+        myPane.setBottom(myTerminal.getPane());
 
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         return scene;
