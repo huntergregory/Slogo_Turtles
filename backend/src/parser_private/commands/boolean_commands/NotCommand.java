@@ -1,11 +1,10 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
-import parser_private.EvalCommand;
 
 import java.util.List;
 
-public class NotCommand extends EvalCommand {
+public class NotCommand extends Command {
 
     private Command myExpression;
 

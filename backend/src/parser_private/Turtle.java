@@ -1,10 +1,9 @@
 package parser_private;
 
-
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
@@ -13,12 +12,11 @@ import javafx.beans.value.ObservableValue;
  * @author Hunter Gregory
  */
 public class Turtle {
-    private final double myDisplayWidth;
-    private final double myDisplayHeight;
-    private final double myTurtleWidth;
-    private final double myTurtleHeight;
 
     private int myTurtleID;
+    private double myPaneWidth;
+    private double myPaneHeight;
+
     private SimpleDoubleProperty myXProperty;
     private SimpleDoubleProperty myYProperty;
     private SimpleDoubleProperty myHeadingProperty;
@@ -28,17 +26,11 @@ public class Turtle {
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
-     * @param displayWidth
-     * @param displayHeight
-     * @param turtleWidth
-     * @param turtleHeight
      */
-    public Turtle(int turtID, double displayWidth, double displayHeight, double turtleWidth, double turtleHeight) {
+    public Turtle(int turtID, double pwidth, double pheight) {
         myTurtleID = turtID;
-        myDisplayWidth = displayWidth;
-        myDisplayHeight = displayHeight;
-        myTurtleWidth = turtleWidth;
-        myTurtleHeight = turtleHeight;
+        myPaneWidth = pwidth;
+        myPaneHeight = pheight;
         instantiateProperties();
         setDefaultState();
     }
@@ -52,6 +44,14 @@ public class Turtle {
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
     }
 
+    private double getInBoundsNum(double num, double min, double max) {
+        if (num < min)
+            return min;
+        if (num > max)
+            return max;
+        return num;
+    }
+
     private void setDefaultState() {
         setPosition(0,0);
         setHeading(0);
@@ -61,11 +61,8 @@ public class Turtle {
     }
 
     public void setPosition(double x, double y) {
-        double displayX = getDisplayX(x);
-        double displayY = getDisplayY(y);
-        myXProperty.set(getInBoundsNum(displayX, 0, myDisplayWidth - myTurtleWidth));
-        myYProperty.set(getInBoundsNum(displayY, 0, myDisplayHeight - myTurtleHeight));
-        System.out.println("setting position in backend");
+        myXProperty.set(getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0));
+        myYProperty.set(getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0));
     }
 
     public void setHeading(double heading) {
@@ -77,11 +74,12 @@ public class Turtle {
     }
 
     public void setPenDown(boolean bool) {
-        myIsShowingProperty.set(bool);
+        myPenIsDownProperty.set(bool);
     }
 
     public void eraseLines() {
         myShouldEraseLinesProperty.set(true);
+        myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
     public int getTurtleID() {
@@ -110,21 +108,5 @@ public class Turtle {
 
     public BooleanProperty getEraseProperty() {
         return myShouldEraseLinesProperty;
-    }
-
-    private double getDisplayX(double x) {
-        return x - myTurtleWidth/2.0 + myDisplayWidth/2.0;
-    }
-
-    private double getDisplayY(double y) {
-        return -y - myTurtleHeight/2.0 + myDisplayHeight/2.0;
-    }
-
-    private double getInBoundsNum(double num, double min, double max) {
-        if (num < min)
-            return min;
-        if (num > max)
-            return max;
-        return num;
     }
 }

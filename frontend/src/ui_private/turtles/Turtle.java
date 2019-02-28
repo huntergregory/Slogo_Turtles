@@ -15,11 +15,11 @@ import javafx.scene.Node;
  * @author Hunter Gregory
  */
 public abstract class Turtle {
-    public static final double WIDTH = 20;
-    public static final double HEIGHT = 20;
-    public static final String CSS_TAG = "turtle";
+    static final double WIDTH = 20;
+    static final double HEIGHT = 20;
+    private static final String CSS_TAG = "turtle";
 
-    protected Node myNode; //must be accessed by subclass
+    Node myNode; //must be accessed by subclass
 
     private int myID;
     private ObservableList myModifiableList;
@@ -31,7 +31,10 @@ public abstract class Turtle {
     private DoubleProperty myYProperty = new SimpleDoubleProperty();
     private double myOldX = 0;
     private double myOldY = 0;
-    private boolean myReadyToMove; //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
+    private double myNewX = 0;
+    private double myNewY = 0;
+    private double myDispXOffset;
+    private double myDispYOffset;   //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
                                     //could have created a Coordinate object, but then front and back end would have to share this class
 
 
@@ -40,8 +43,10 @@ public abstract class Turtle {
      * @param id
      * @param list
      */
-    public Turtle(int id, ObservableList list) {
+    Turtle(int id, ObservableList list, double dispX, double dispY) {
         myID = id;
+        myDispXOffset = dispX;
+        myDispYOffset = dispY;
 
         myModifiableList = list;
         initializeNode();
@@ -52,6 +57,8 @@ public abstract class Turtle {
         addPropertyListeners();
         bindProperties();
         eraseLines(); // a dot of a line is added if not called???????????
+
+        move();
     }
 
     /**
@@ -72,10 +79,10 @@ public abstract class Turtle {
     }
 
     private void addPropertyListeners() {
-        myXProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), true); System.out.println("updating x");  });
-        myYProperty.addListener((o, oldVal, newVal) -> { updateOnPositionChange(oldVal.doubleValue(), false); System.out.println("updating y");  });
-        myHeadingProperty.addListener((o, oldVal, newVal) -> { myNode.setRotate(newVal.doubleValue()); System.out.println("rotating");  } );
-        myIsShowingProperty.addListener((o, oldVal, newVal) -> { myNode.setVisible(newVal); System.out.println("hiding or showing");  } );
+        myXProperty.addListener((o, oldVal, newVal) -> updateX(oldVal.doubleValue(), newVal.doubleValue()));
+        myYProperty.addListener((o, oldVal, newVal) -> updateY(oldVal.doubleValue(), newVal.doubleValue()));
+        myHeadingProperty.addListener((o, oldVal, newVal) -> myNode.setRotate(newVal.doubleValue()));
+        myIsShowingProperty.addListener((o, oldVal, newVal) -> myNode.setVisible(newVal));
     }
 
     private void bindProperties() {
@@ -86,31 +93,30 @@ public abstract class Turtle {
         myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
-    private void updateOnPositionChange(double old, boolean isX) {
-        if (isX)
-            myOldX = old;
-        else
-            myOldY = old;
-
-        if (myReadyToMove) {
+    //x must be updated first in the backend for this to work
+    private void updateX(double oldVal, double newVal) {
+        myOldX = oldVal;
+        myNewX = newVal;
+        if(Math.abs(myHeadingProperty.getValue()) == 90) {
+            myOldY = myNewY;
             move();
         }
-        myReadyToMove = !myReadyToMove;
+    }
+
+    //x must be updated first in the backend for this to work
+    private void updateY(double oldVal, double newVal) {
+        myOldY = oldVal;
+        myNewY = newVal;
+        move();
     }
 
     private void move() {
-        if (didNotMove())
-            return;
-        myNode.relocate(myXProperty.doubleValue(), myXProperty.doubleValue());
-        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
-                myOldY + Turtle.HEIGHT / 2.0,
-                myXProperty.doubleValue() + Turtle.WIDTH / 2.0,
-                myXProperty.doubleValue() + Turtle.HEIGHT / 2.0);
+        myNode.relocate(myNewX - Turtle.WIDTH / 2.0 + myDispXOffset, myNewY - Turtle.HEIGHT / 2.0 + myDispYOffset);
+        myPen.draw(myOldX + myDispXOffset,
+                myOldY + myDispYOffset,
+                myNewX + myDispXOffset,
+                myNewY + myDispYOffset);
         moveAboveLines();
-    }
-
-    private boolean didNotMove() {
-        return myOldX == myXProperty.doubleValue() && myOldY == myYProperty.doubleValue();
     }
 
     /**

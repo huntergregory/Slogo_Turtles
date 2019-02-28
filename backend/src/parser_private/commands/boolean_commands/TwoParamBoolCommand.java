@@ -1,10 +1,10 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
-import parser_private.EvalCommand;
+
 import java.util.List;
 
-abstract class TwoParamBoolCommand extends EvalCommand {
+abstract class TwoParamBoolCommand extends Command {
 
     Command myExpression1;
     Command myExpression2;

@@ -1,6 +1,5 @@
 package ui_public;
 
-import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 import parser_public.TurtleManager;
 import ui_private.turtles.ImageTurtle;
@@ -9,17 +8,20 @@ import ui_private.turtles.Turtle;
 import java.util.ArrayList;
 
 public class TurtleDisplay {
-    public static final String PANE_CSS_CLASS = "pane";
+    private static final String PANE_CSS_CLASS = "pane";
 
     private Pane myTurtlePane;
     private ArrayList<Turtle> myTurtleViews; //TODO: call that class TurtleView
     private double myWidth;
     private double myHeight;
-    private ObservableList myObservableList;
+    private double myTurtleXOrigin;
+    private double myTurtleYOrigin;
 
-    protected TurtleDisplay(double width, double height) {
+    TurtleDisplay(double width, double height) {
         myWidth = width;
         myHeight = height;
+        myTurtleXOrigin = width / 2.0;
+        myTurtleYOrigin = height / 2.0;
         initializePane();
         initializeTurtles();
     }
@@ -35,11 +37,11 @@ public class TurtleDisplay {
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
-        TurtleManager.getInstance().initialize(myWidth, myHeight, Turtle.WIDTH, Turtle.HEIGHT);
-        myTurtleViews.add(new ImageTurtle(0, myTurtlePane.getChildren()));
+        TurtleManager.getInstance().initialize(myWidth, myHeight);
+        myTurtleViews.add(new ImageTurtle(0, myTurtleXOrigin, myTurtleYOrigin, myTurtlePane.getChildren()));
     }
 
-    protected Pane getPane() {
+    Pane getPane() {
         return myTurtlePane;
     }
 

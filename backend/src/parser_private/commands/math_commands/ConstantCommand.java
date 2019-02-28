@@ -1,8 +1,8 @@
 package parser_private.commands.math_commands;
 
-import parser_private.EvalCommand;
+import parser_private.Command;
 
-public class ConstantCommand extends EvalCommand {
+public class ConstantCommand extends Command {
 
     private double value;
 

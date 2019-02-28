@@ -98,6 +98,10 @@ public class CommandFactory {
         }
     }
 
+    public boolean isNormalCommand(String test) {
+        return commandClassNames.containsKey(test);
+    }
+
     /**
      * Get the number of parameters required for a command
      * @param command The name of the command

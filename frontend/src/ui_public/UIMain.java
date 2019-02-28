@@ -1,8 +1,6 @@
 package ui_public;
 
 import ui_private.ControlPanel;
-import ui_private.turtles.ImageTurtle;
-import ui_private.turtles.Turtle;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,8 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 /**
  *
@@ -28,24 +24,16 @@ public class UIMain extends Application {
     private static final Paint BACKGROUND = Color.WHITE;
     private static final String TITLE = "SLogo";
 
-    private ArrayList<Turtle> myTurtleImages;
     private BorderPane myPane;
     private TurtleDisplay myTurtleDisplay;
     private Scene myScene;
     private ControlPanel myControlPanel;
 
-    private static UIMain instance;
-
     public UIMain() {
-    }
-
-    public static UIMain getInstance() {
-        return instance;
     }
 
     @Override
     public void start(Stage stage) {
-        instance = this;
         myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
         stage.setTitle(TITLE);
@@ -55,6 +43,7 @@ public class UIMain extends Application {
     private Scene setupGame (double width, double height, Paint background) {
         myPane = new BorderPane();
         myTurtleDisplay = new TurtleDisplay(TURTLE_PANE_WIDTH, TURTLE_PANE_HEIGHT);
+
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
         myControlPanel = new ControlPanel(CONTROL_PANEL_WIDTH, HEIGHT);

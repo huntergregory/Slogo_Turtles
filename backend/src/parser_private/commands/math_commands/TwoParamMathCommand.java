@@ -1,10 +1,10 @@
 package parser_private.commands.math_commands;
 
 import parser_private.Command;
-import parser_private.EvalCommand;
+
 import java.util.List;
 
-abstract class TwoParamMathCommand extends EvalCommand {
+abstract class TwoParamMathCommand extends Command {
 
     Command myExpression1;
     Command myExpression2;

@@ -1,7 +1,7 @@
 package ui_private.turtles;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.layout.Pane;
 import parser_public.TurtleManager;
 import ui_private.LineStroke;
 import javafx.collections.ObservableList;
@@ -9,18 +9,20 @@ import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
-public class Pen {
-    public static final String CSS_TAG = "line";
-    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
+import static javafx.scene.paint.Color.TRANSPARENT;
+
+class Pen {
+    private static final String CSS_TAG = "line";
+    private static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
 
     private int myID;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
     private LineStroke myStroke;
-    private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
-    private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
+    private SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
+    private SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
-    protected Pen(int id, ObservableList list) {
+    Pen(int id, ObservableList list) {
         myID = id;
         myModifiableList = list;
         myStroke = DEFAULT_LINE_STROKE;
@@ -30,12 +32,7 @@ public class Pen {
     }
 
     private void addEraseListener() {
-        myShouldEraseLines.addListener((o, oldBool, newBool) -> {
-            if (oldBool) {
-                erase();
-                myShouldEraseLines.set(false);
-            }
-        });
+        myShouldEraseLines.addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
     }
 
     private void bindProperties() {
@@ -44,7 +41,7 @@ public class Pen {
         myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
-    protected void draw(double oldX, double oldY, double newX, double newY) {
+    void draw(double oldX, double oldY, double newX, double newY) {
         if (!myIsDown.getValue())
             return;
         Line line = new Line(oldX, oldY, newX, newY);
@@ -59,7 +56,7 @@ public class Pen {
             line.getStrokeDashArray().add(value);
     }
 
-    protected void setStroke(LineStroke stroke) {
+    void setStroke(LineStroke stroke) {
         if (stroke.equals(myStroke))
             return;
         myStroke = stroke;
@@ -69,7 +66,7 @@ public class Pen {
         }
     }
 
-    protected void erase() {
+    void erase() {
         myModifiableList.removeAll(myLines);
         myLines = new ArrayList<>();
     }

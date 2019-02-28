@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import parser_public.CommandParser;
 import parser_public.InputTranslator;
 import parser_public.ParserException;
-import ui_public.UIMain;
+
 import java.io.IOException;
 
 public class ControlPanel {
@@ -79,7 +79,7 @@ public class ControlPanel {
         }
 
         private void addTurtleImageChooser(VBox controlBox) {
-            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle", turtleList);
+            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle Image", turtleList);
             turtleImageButton = myTurtleImageChooser.getButton();
         }
 
@@ -149,7 +149,7 @@ public class ControlPanel {
                 myPenColor = myPenColorChooser.getColor();
             });
             helpButton.setOnAction((event) -> {
-                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/parser_private.commands.php";
+                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
                 try {
                     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
                 } catch (IOException e) {
@@ -166,6 +166,16 @@ public class ControlPanel {
             }
             catch (ParserException e) {
                 // TODO handle parse error
+                //e.printStackTrace();
+            }
+        }
+
+        private void sendToTranslator() {
+            try {
+                InputTranslator.getInstance().changeLanguage(myLanguage);
+            }
+            catch (ParserException e) {
+                //TODO handle parse error
             }
         }
 

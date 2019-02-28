@@ -54,13 +54,10 @@ public class InputTranslator {
                 if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable") && !entry.getKey().equals("Command")) {
                     return entry.getKey();
                 }
-                if (entry.getKey().equals("Command") && !GlobalCommands.getInstance().isDefined(symbol)) {
-                    throw new ParserException("Undefined command");
-                }
                 return symbol; // Returns original input if constant or name of user defined variable or defined command
             }
         }
-        throw new ParserException("Invalid syntax");
+        throw new ParserException("Invalid command or syntax");
     }
 
     private boolean matches(String property, String text) {
