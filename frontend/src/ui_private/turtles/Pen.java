@@ -31,7 +31,7 @@ public class Pen {
 
     private void addEraseListener() {
         myShouldEraseLines.addListener((o, oldBool, newBool) -> {
-            if (oldBool) {
+            if (newBool) {
                 erase();
                 myShouldEraseLines.set(false);
             }
