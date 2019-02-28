@@ -108,10 +108,10 @@ public abstract class Turtle {
 
     private void move() {
         myNode.relocate(myNewX - Turtle.WIDTH / 2.0 + myDispXOffset, myNewY - Turtle.HEIGHT / 2.0 + myDispYOffset);
-        myPen.draw(myOldX + Turtle.WIDTH / 2.0,
-                myOldY + Turtle.HEIGHT / 2.0,
-                myNewX + Turtle.WIDTH / 2.0,
-                myNewY + Turtle.HEIGHT / 2.0);
+        myPen.draw(myOldX + myDispXOffset,
+                myOldY + myDispYOffset,
+                myNewX + myDispXOffset,
+                myNewY + myDispYOffset);
         moveAboveLines();
     }
 
