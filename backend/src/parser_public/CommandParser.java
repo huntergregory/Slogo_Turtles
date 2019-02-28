@@ -83,7 +83,7 @@ public class CommandParser {
             myChunkIndex++;
             return new VariableCommand(currentChunk.substring(1));
         } else if (!CommandFactory.getInstance().isNormalCommand(currentChunk)) {
-            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) { //TODO allow overwrite previous command
+            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) {
                 myChunkIndex++;                                                 // Check if otherwise invalid command is preceded by "to", return new var ref if so
                 return new VariableCommand(currentChunk);
             }

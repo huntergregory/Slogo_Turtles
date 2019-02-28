@@ -13,7 +13,7 @@ public class ToCommand extends Command {
     private ListCommand myBody;
 
     public ToCommand(List<Command> params) {
-        myName = (VariableCommand) params.get(0); //TODO check command type here before cast
+        myName = (VariableCommand) params.get(0);
         myArguments = (ListCommand) params.get(1);
         myBody = (ListCommand) params.get(2);
     }
