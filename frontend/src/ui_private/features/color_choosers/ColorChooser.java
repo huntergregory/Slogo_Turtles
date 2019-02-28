@@ -14,6 +14,7 @@ public abstract class ColorChooser extends HorizontalFeature {
 
     public ColorChooser() {
         myColorPicker = new ColorPicker();
+        addListener();
     }
 
     public void setTurtleDisplay(TurtleDisplay turtleDisplay) {
