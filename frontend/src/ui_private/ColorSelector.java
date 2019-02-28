@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
+//TODO: Delete
 class ColorSelector {
 
     private Font font = new Font("verdana",12);

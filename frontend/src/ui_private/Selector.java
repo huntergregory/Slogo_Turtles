@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
-
+//TODO: Delete
 class Selector {
 
     private Button myButton;

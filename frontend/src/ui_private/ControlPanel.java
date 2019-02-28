@@ -13,7 +13,7 @@ import parser_public.InputTranslator;
 import parser_public.ParserException;
 
 import java.io.IOException;
-
+//TODO: Delete
 public class ControlPanel {
 
         private Font font = new Font("verdana",12);
