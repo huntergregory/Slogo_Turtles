@@ -4,11 +4,9 @@ import parser_private.Command;
 
 import java.util.List;
 
-public class HomeCommand extends MoveToPositionCommand {
+public class GoToCommand extends MoveToPositionCommand {
 
-    public HomeCommand(List<Command> params) {
+    public GoToCommand(List<Command> params) {
         super(params);
-        this.myNewX = 0;
-        this.myNewY = 0;
     }
 }
