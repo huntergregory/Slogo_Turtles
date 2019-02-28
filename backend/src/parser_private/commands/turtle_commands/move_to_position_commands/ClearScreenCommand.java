@@ -5,11 +5,18 @@ import parser_private.commands.math_commands.ConstantCommand;
 
 import java.util.List;
 
-public class HomeCommand extends MoveToPositionCommand {
+public class ClearScreenCommand extends MoveToPositionCommand {
 
-    public HomeCommand(List<Command> params) {
+    public ClearScreenCommand(List<Command> params) {
         super(params);
         this.myNewX = new ConstantCommand(0.0);
         this.myNewY = new ConstantCommand(0.0);
+    }
+
+    @Override
+    public double runCommand() {
+        double rtn = super.runCommand();
+        myManager.eraseLines();
+        return rtn;
     }
 }

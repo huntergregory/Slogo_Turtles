@@ -10,7 +10,7 @@ public class VariableCommand extends Command {
         this.myName = name;
     }
 
-    String getVariableName() {
+    public String getVariableName() {
         return myName;
     }
 

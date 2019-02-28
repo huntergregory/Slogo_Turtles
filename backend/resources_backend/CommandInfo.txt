@@ -4,12 +4,12 @@
 # Turtle Commands
 #
 Forward=turtle_commands.move_distance_commands.ForwardCommand:1
-Backward=turtle_commands.move_distance_commands.BackwardCommand:1
+Backward=turtle_commands.move_distance_commands.BackCommand:1
 Left=turtle_commands.rotate_angle_commands.LeftCommand:1
 Right=turtle_commands.rotate_angle_commands.RightCommand:1
-SetHeading=turtle_commands.SetHeadingCommand:1
-SetTowards=turtle_commands.SetTowardsCommand:2
-SetPosition=turtle_commands.move_to_position_commands.SetPositionCommand:2
+SetHeading=turtle_commands.rotate_angle_commands.SetHeadingCommand:1
+SetTowards=turtle_commands.rotate_angle_commands.SetTowardsCommand:2
+SetPosition=turtle_commands.move_to_position_commands.GoToCommand:2
 PenDown=turtle_commands.set_pen_commands.PenDownCommand:0
 PenUp=turtle_commands.set_pen_commands.PenUpCommand:0
 ShowTurtle=turtle_commands.visibility_commands.ShowTurtleCommand:0
@@ -19,11 +19,11 @@ ClearScreen=turtle_commands.move_to_position_commands.ClearScreenCommand:0
 #
 # Turtle Queries
 #
-XCoordinate=turtle_commands.query_commands.XCoordinateCommand:0
-YCoordinate=turtle_commands.query_commands.YCoordinateCommand:0
-Heading=turtle_commands.query_commands.HeadingCommand:0
-IsPenDown=turtle_commands.query_commands.IsPenDownCommand:0
-IsShowing=turtle_commands.query_commands.IsShowingCommand:0
+XCoordinate=turtle_commands.query_commands.XPositionQuery:0
+YCoordinate=turtle_commands.query_commands.YPositionQuery:0
+Heading=turtle_commands.query_commands.HeadingQuery:0
+IsPenDown=turtle_commands.query_commands.PenDownQuery:0
+IsShowing=turtle_commands.query_commands.ShowingQuery:0
 #
 # Math Operations
 #
@@ -60,7 +60,7 @@ DoTimes=control_commands.DoTimesCommand:2
 For=control_commands.ForCommand:2
 If=control_commands.IfCommand:2
 IfElse=control_commands.IfElseCommand:3
-MakeUserInstruction=control_commands.MakeUserInstructionCommand:0
+MakeUserInstruction=control_commands.ToCommand:3
 #
 # Display Commands
 #

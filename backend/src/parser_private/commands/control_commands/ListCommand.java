@@ -2,6 +2,7 @@ package parser_private.commands.control_commands;
 
 import parser_private.Command;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ListCommand extends Command {
 
@@ -16,7 +17,15 @@ public class ListCommand extends Command {
         return mySubCommands.get(mySubCommands.size() - 1).execute();
     }
 
-    Command getParam(int index) {
+    public Command getParam(int index) {
         return mySubCommands.get(index);
+    }
+
+    public int size() {
+        return mySubCommands.size();
+    }
+
+    boolean isEmpty() {
+        return mySubCommands.size() == 0;
     }
 }

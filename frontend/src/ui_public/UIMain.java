@@ -26,18 +26,11 @@ public class UIMain extends Application {
     private BorderPane myPane;
     private UIFactory myFactory;
 
-    private static UIMain instance;
-
     public UIMain() {
-    }
-
-    public static UIMain getInstance() {
-        return instance;
     }
 
     @Override
     public void start(Stage stage) {
-        instance = this;
         myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
         stage.setTitle(TITLE);

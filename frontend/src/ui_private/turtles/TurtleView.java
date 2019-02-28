@@ -83,10 +83,10 @@ public abstract class TurtleView {
     }
 
     private void addPropertyListeners() {
-        myXProperty.addListener((o, oldVal, newVal) -> { updateX(oldVal.doubleValue(), newVal.doubleValue());});
-        myYProperty.addListener((o, oldVal, newVal) -> { updateY(oldVal.doubleValue(), newVal.doubleValue());});
-        myHeadingProperty.addListener((o, oldVal, newVal) -> { myNode.setRotate(newVal.doubleValue()); System.out.println("rotating");  } );
-        myIsShowingProperty.addListener((o, oldVal, newVal) -> { myNode.setVisible(newVal); System.out.println("hiding or showing");  } );
+        myXProperty.addListener((o, oldVal, newVal) -> updateX(oldVal.doubleValue(), newVal.doubleValue()));
+        myYProperty.addListener((o, oldVal, newVal) -> updateY(oldVal.doubleValue(), newVal.doubleValue()));
+        myHeadingProperty.addListener((o, oldVal, newVal) -> myNode.setRotate(newVal.doubleValue()));
+        myIsShowingProperty.addListener((o, oldVal, newVal) -> myNode.setVisible(newVal));
     }
 
     private void bindProperties() {
@@ -101,6 +101,10 @@ public abstract class TurtleView {
     private void updateX(double oldVal, double newVal) {
         myOldX = oldVal;
         myNewX = newVal;
+        if(Math.abs(myHeadingProperty.getValue()) == 90) {
+            myOldY = myNewY;
+            move();
+        }
     }
 
     //x must be updated first in the backend for this to work

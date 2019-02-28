@@ -80,7 +80,11 @@ public class ControlPanel {
         }
 
         private void addTurtleImageChooser(VBox controlBox) {
+<<<<<<< HEAD
             myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose TurtleView", turtleList);
+=======
+            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle Image", turtleList);
+>>>>>>> master
             turtleImageButton = myTurtleImageChooser.getButton();
         }
 
@@ -150,7 +154,7 @@ public class ControlPanel {
                 myPenColor = myPenColorChooser.getColor();
             });
             helpButton.setOnAction((event) -> {
-                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/parser_private.commands.php";
+                String url_open ="https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
                 try {
                     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
                 } catch (IOException e) {
@@ -167,6 +171,7 @@ public class ControlPanel {
             }
             catch (ParserException e) {
                 // TODO handle parse error
+                //e.printStackTrace();
             }
         }
 
@@ -178,7 +183,6 @@ public class ControlPanel {
                 //TODO handle parse error
             }
         }
-
 
         public String getMyCommand() {
             return myCommand;

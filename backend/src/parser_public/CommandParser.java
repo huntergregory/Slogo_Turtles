@@ -51,6 +51,7 @@ public class CommandParser {
         while (myChunkIndex < programChunks.size()) {
             Command nextCommand = makeCommand(programChunks); // Get next command
             myCommandQueue.add(nextCommand);
+            runProgram(); //Execute each full command as it's parsed to allow for To definition and call in same program (as separate commands)
         }
     }
 
@@ -74,25 +75,46 @@ public class CommandParser {
 
     // Loops until individual command hierarchy is satisfied
     private Command makeCommand(List<String> input) throws ParserException {
-        String currentChunk = input.get(myChunkIndex);
-
-        if (InputTranslator.getInstance().isConstant(currentChunk)) {
+        String currentChunk = input.get(myChunkIndex);                          // Advance chunk
+        if (InputTranslator.getInstance().isConstant(currentChunk)) {           // Return constant if constant
             myChunkIndex++;
             return CommandFactory.getInstance().createConstantCommand(Double.parseDouble(currentChunk));
-        } else if (InputTranslator.getInstance().isVariable(currentChunk)) {
+        } else if (InputTranslator.getInstance().isVariable(currentChunk)) {    // Return new user defined variable reference if need be
             myChunkIndex++;
             return new VariableCommand(currentChunk.substring(1));
+        } else if (!CommandFactory.getInstance().isNormalCommand(currentChunk)) {
+            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) {
+                myChunkIndex++;                                                 // Check if otherwise invalid command is preceded by "to", return new var ref if so
+                return new VariableCommand(currentChunk);
+            }
+            else if (!GlobalCommands.getInstance().isDefined(currentChunk)) {
+                throw new ParserException("Invalid command");                   // Else, invalid command
+            }
         }
-        int numParams = CommandFactory.getInstance().getParamCount(currentChunk);
-        List<Command> paramList = new ArrayList<>();
-        myChunkIndex++;
+        List<Command> paramList = getParameters(currentChunk, input);
+        if (CommandFactory.getInstance().isNormalCommand(currentChunk)) {       // Return complete command
+            return CommandFactory.getInstance().createCommand(currentChunk, paramList);
+        }
+        return GlobalCommands.getInstance().getCommand(currentChunk, paramList);
+    }
 
-        if (numParams == -1) // -1 means a list should be created, until an end bracket
+    private List<Command> getParameters(String command, List<String> input) throws ParserException {
+        int numParams = 0;
+        List<Command> paramList = new ArrayList<>();
+        if (CommandFactory.getInstance().isNormalCommand(command)) {         // If we've made it this far, command must already exist, so find it:
+            numParams = CommandFactory.getInstance().getParamCount(command); // Normal command takes priority over user defined command of same name
+        }
+        else if (GlobalCommands.getInstance().isDefined(command)){
+            numParams = GlobalCommands.getInstance().getParamCount(command); // User defined command
+        }
+        myChunkIndex++;
+        if (numParams == -1) {                                               // -1 means a list should be created, until an end bracket
             populateUntilListEnd(paramList, input);
+        }
         else {
             populateNParameters(paramList, numParams, input);
         }
-        return CommandFactory.getInstance().createCommand(currentChunk, paramList);
+        return paramList;
     }
 
     private void populateNParameters(List<Command> paramList, int num, List<String> chunkList) throws ParserException {

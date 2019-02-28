@@ -6,6 +6,7 @@ import parser_private.commands.turtle_commands.TurtleCommand;
 import java.util.List;
 
 public abstract class MoveDistanceCommand extends TurtleCommand {
+
     private Command myDistance;
     private boolean myGoingForward;
 
@@ -18,8 +19,9 @@ public abstract class MoveDistanceCommand extends TurtleCommand {
     @Override
     public double runCommand() {
         double distance = myDistance.execute();
-        if (!myGoingForward)
+        if (!myGoingForward) {
             distance *= -1;
+        }
         move(distance);
         return Math.abs(distance);
     }

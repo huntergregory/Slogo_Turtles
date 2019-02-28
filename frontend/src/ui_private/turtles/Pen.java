@@ -20,7 +20,7 @@ public class Pen {
     private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
     private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
-    protected Pen(int id, ObservableList list) {
+    Pen(int id, ObservableList list) {
         myID = id;
         myModifiableList = list;
         myStroke = TurtleDisplay.DEFAULT_LINE_STROKE;
@@ -31,12 +31,7 @@ public class Pen {
     }
 
     private void addEraseListener() {
-        myShouldEraseLines.addListener((o, oldBool, newBool) -> {
-            if (oldBool) {
-                erase();
-                myShouldEraseLines.set(false);
-            }
-        });
+        myShouldEraseLines.addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
     }
 
     private void bindProperties() {
@@ -45,7 +40,7 @@ public class Pen {
         myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
-    protected void draw(double oldX, double oldY, double newX, double newY) {
+    void draw(double oldX, double oldY, double newX, double newY) {
         if (!myIsDown.getValue())
             return;
         Line line = new Line(oldX, oldY, newX, newY);

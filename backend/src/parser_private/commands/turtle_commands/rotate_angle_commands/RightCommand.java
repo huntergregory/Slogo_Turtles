@@ -4,9 +4,9 @@ import parser_private.Command;
 
 import java.util.List;
 
-public class LeftCommand extends RotateAngleCommand {
+public class RightCommand extends RotateAngleCommand {
 
-    public LeftCommand(List<Command> params) {
-        super(params, false);
+    public RightCommand(List<Command> params) {
+        super(params, true);
     }
 }

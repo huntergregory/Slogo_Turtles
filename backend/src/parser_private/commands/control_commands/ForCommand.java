@@ -10,6 +10,7 @@ public class ForCommand extends Command {
     Command myBody;
 
     public ForCommand(List<Command> params) {
+        super(params);
         forParams = (ListCommand)params.get(0);
         myBody = params.get(1);
     }
@@ -24,7 +25,7 @@ public class ForCommand extends Command {
         for (int i = start; i <= stop; i += increment) { //TODO remove duplication across dotimes, for, repeat
             // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
             /*myVariables.setVariable(countVarName, i);
-              myBody.addVariables(myVariables);*/ //propagates var changes through body parser_private.commands
+              myBody.addVariables(myVariables);*/ //propagates var changes through body commands
             GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
             retval = myBody.execute();
         }
