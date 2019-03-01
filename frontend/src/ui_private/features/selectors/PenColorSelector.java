@@ -1,6 +1,6 @@
 package ui_private.features.selectors;
 /*
-public class PenColorSelector extends Selector<String> {
+public class PenColorSelector extends Selector {
     private static final String LABEL_TEXT = "Pen Color";
 
     @Override
