@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import parser_public.TurtleManager;
 import ui_private.displays.TurtleDisplay;
 
 import java.io.InputStream;
@@ -33,7 +34,7 @@ public class TurtleImageSelector extends Selector<Image> {
     @Override
     protected void handleItemSelected(Image item) {
         System.out.println("here");
-        myTurtleDisplay.setTurtleImage(item);
+        //TurtleManager.getInstance().setTurtleImage(item);   FIXME
     }
 
     @Override

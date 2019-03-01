@@ -29,7 +29,7 @@ public class LineStrokeSelector extends Selector<String> {
     protected void handleItemSelected(String item) {
         var stroke = getLineStroke(item);
         if (stroke != null)
-            return; //myTurtleDisplay.setStroke(stroke) //FIXME
+            return; //TurtleManager.getInstance().setStroke(stroke) //FIXME
     }
 
     private LineStroke getLineStroke(String item) {

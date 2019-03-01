@@ -56,8 +56,8 @@ public class UIMain extends Application {
     }
 
     private void addFeatures() {
-        myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
-        myFactory.addFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+        //myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
+        //myFactory.addFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
         myFactory.addFeature(FeatureType.LANGUAGE_SELECTOR);
         myFactory.addFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
         myFactory.addFeature(FeatureType.PAST_COMMANDS_WINDOW);
