@@ -1,18 +1,17 @@
 package ui_private.features.selectors;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import ui_private.features.HorizontalFeature;
+import ui_private.features.Feature;
 
-public abstract class Selector<T> extends HorizontalFeature {
+public abstract class Selector<T> extends Feature {
     private static final int NUM_OPTIONS_SHOWN = 4;
 
     private ComboBox<T> myDropBox;
 
     public Selector() {
+        super(true);
         myDropBox = new ComboBox<>();
         myDropBox.setEditable(false);
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
