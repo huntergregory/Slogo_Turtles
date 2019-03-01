@@ -41,22 +41,23 @@ public class UIFactory {
         return myTurtleDisplay.getPane();
     }
 
-    private int myCount = 0; //FIXME
-    public void addFeature(FeatureType type) {
+
+    public void addLeftFeature(FeatureType type) {
+        addFeature(type, myLeftPanel);
+    }
+
+    public void addRightFeature(FeatureType type) {
+        addFeature(type, myRightPanel);
+    }
+
+
+    private void addFeature(FeatureType type, SidePanel panel) {
         try {
             var feature = type.getFeature();
-            if (myCount < 4)
-                createView(feature, myLeftPanel);
-            else
-                createView(feature, myRightPanel);
-            myCount ++;
+            panel.addRow(feature.getPane(mySidePanelWidth));
         }
         catch (NoFeatureException e) {
             System.out.println("Failed to add feature, update the FeatureType enum.");
         }
-    }
-
-    private void createView(Feature feature, SidePanel panel) {
-        panel.addRow(feature.getPane(mySidePanelWidth));
     }
 }
