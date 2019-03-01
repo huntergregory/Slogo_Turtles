@@ -47,6 +47,7 @@ public class CommandParser {
             throw new ParserException("Empty input string");
         }
         List<String> programChunks = getChunks(program);
+        System.out.println(programChunks);
         myChunkIndex = 0;
         while (myChunkIndex < programChunks.size()) {
             Command nextCommand = makeCommand(programChunks); // Get next command
@@ -61,7 +62,7 @@ public class CommandParser {
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
             String currentLine = scan.nextLine().toLowerCase().strip();
-            if (InputTranslator.getInstance().isComment(currentLine)) {
+            if (InputTranslator.getInstance().isComment(currentLine) || currentLine.isEmpty()) {
                 continue;
             }
 
