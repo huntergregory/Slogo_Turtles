@@ -40,9 +40,7 @@ public class CommandTerminal {
             CommandParser.getInstance().parseAndRun(myCommand);
         }
         catch (ParserException e) {
-            // TODO handle parse error
-            e.printStackTrace();
-            myCommandInput.setPromptText("Enter a valid command");
+            myCommandInput.setPromptText("--" + e.getMessage() + "-- Enter a valid command");
         }
     }
 
