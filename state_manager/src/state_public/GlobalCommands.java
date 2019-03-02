@@ -9,7 +9,7 @@ public class GlobalCommands {
     private Map<String, UserDefinedCommandInter> myStoredCommands;
     private Map<String, Integer> myParamCounts;
 
-    private GlobalCommands() {
+    public GlobalCommands() {
         this.myStoredCommands = new HashMap<>();
         this.myParamCounts = new HashMap<>();
     }
