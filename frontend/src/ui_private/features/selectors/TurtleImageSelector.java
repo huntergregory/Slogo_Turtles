@@ -5,17 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import parser_public.TurtleManager;
 import ui_private.displays.TurtleDisplay;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class TurtleImageSelector extends Selector<Image> {
+public class TurtleImageSelector extends Selector {
     private static final String TITLE = "Turtle Image";
     private static final String[] IMAGE_NAMES = {"tan_turtle.png"}; //TODO: include names
-    private ObservableList IMAGES = constructList(); //can't be static because getClass can't be in a static method
-
-    private ObservableList constructList() {
+    //private ObservableList IMAGES = constructList(); //can't be static because getClass can't be in a static method
+//FIXME
+    /*private ObservableList constructList() {
         ArrayList<Image> images = new ArrayList<>();
         for (String imageName : IMAGE_NAMES) {
             InputStream stream = getClass().getClassLoader().getResourceAsStream(imageName);
@@ -23,17 +24,17 @@ public class TurtleImageSelector extends Selector<Image> {
                 images.add(new Image(stream));
         }
         return FXCollections.observableArrayList(images);
-    }
+    }*/
 
     @Override
     protected ObservableList getItemList() {
-        return IMAGES;
-    }
+        return null;
+    } //FIXME
 
     @Override
-    protected void handleItemSelected(Image item) {
+    protected void handleItemSelected(String item) {
         System.out.println("here");
-        myTurtleDisplay.setTurtleImage(item);
+        //TurtleManager.getInstance().setTurtleImage(item);   FIXME
     }
 
     @Override

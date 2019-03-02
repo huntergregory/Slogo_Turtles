@@ -1,7 +1,5 @@
 package ui_private.features;
 
-import ui_private.features.color_choosers.BackgroundColorChooser;
-import ui_private.features.color_choosers.PenColorChooser;
 import ui_private.features.exceptions.NoFeatureException;
 import ui_private.features.scrollable_windows.PastCommandsWindow;
 import ui_private.features.selectors.LanguageSelector;
@@ -10,8 +8,8 @@ import ui_public.UserCommandsWindow;
 import ui_public.VariablesWindow;
 
 public enum FeatureType {
-    PEN_COLOR_CHOOSER(PenColorChooser.class),
-    BACKGROUND_COLOR_CHOOSER(BackgroundColorChooser.class),
+    //PEN_COLOR_CHOOSER(PenColorChooser.class),
+    //BACKGROUND_COLOR_CHOOSER(BackgroundColorChooser.class),
     LANGUAGE_SELECTOR(LanguageSelector.class),
     TURTLE_IMAGE_SELECTOR(TurtleImageSelector.class),
     PAST_COMMANDS_WINDOW(PastCommandsWindow.class),

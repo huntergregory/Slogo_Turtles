@@ -41,27 +41,23 @@ public class UIFactory {
         return myTurtleDisplay.getPane();
     }
 
-    public void addFeature(FeatureType type) {
+
+    public void addLeftFeature(FeatureType type) {
+        addFeature(type, myLeftPanel);
+    }
+
+    public void addRightFeature(FeatureType type) {
+        addFeature(type, myRightPanel);
+    }
+
+
+    private void addFeature(FeatureType type, SidePanel panel) {
         try {
             var feature = type.getFeature();
-            if (feature instanceof VerticalFeature)
-                addVerticalFeature((VerticalFeature) feature);
-            else
-                addHorizontalFeature((HorizontalFeature) feature);
+            panel.addRow(feature.getPane(mySidePanelWidth));
         }
         catch (NoFeatureException e) {
             System.out.println("Failed to add feature, update the FeatureType enum.");
         }
-    }
-
-    //vertical features currently consist of only scrollable windows
-    private void addVerticalFeature(VerticalFeature feature) {
-        myRightPanel.addRow(feature.getPane(mySidePanelWidth));
-    }
-
-    //horizontal features currently consist of Selectors and ColorChoosers
-    private void addHorizontalFeature(HorizontalFeature feature) {
-        feature.setTurtleDisplay(myTurtleDisplay);
-        myLeftPanel.addRow(feature.getPane(mySidePanelWidth));
     }
 }

@@ -1,10 +1,6 @@
-package ui_private.features.color_choosers;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
-
-public class PenColorChooser extends ColorChooser {
+package ui_private.features.selectors;
+/*
+public class PenColorSelector extends Selector {
     private static final String LABEL_TEXT = "Pen Color";
 
     @Override
@@ -18,3 +14,4 @@ public class PenColorChooser extends ColorChooser {
         return LABEL_TEXT;
     }
 }
+*/

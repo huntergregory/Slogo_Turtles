@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import parser_public.InputTranslator;
 import parser_public.ParserException;
 
-public class LanguageSelector extends Selector<String> {
+public class LanguageSelector extends Selector {
     private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
             FXCollections.observableArrayList("English","Chinese","French","German","Italian",

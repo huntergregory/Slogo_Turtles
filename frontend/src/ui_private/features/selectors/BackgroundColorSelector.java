@@ -1,10 +1,6 @@
-package ui_private.features.color_choosers;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
-
-public class BackgroundColorChooser extends ColorChooser {
+package ui_private.features.selectors;
+/*
+public class BackgroundColorSelector extends Selector {
     private static final String LABEL_TEXT = "Background Color";
 
     @Override
@@ -18,3 +14,4 @@ public class BackgroundColorChooser extends ColorChooser {
         return LABEL_TEXT;
     }
 }
+*/
