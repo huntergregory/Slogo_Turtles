@@ -41,6 +41,7 @@ public class CommandTerminal {
         }
         catch (ParserException e) {
             // TODO handle parse error
+            e.printStackTrace();
             myCommandInput.setPromptText("Enter a valid command");
         }
     }

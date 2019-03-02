@@ -23,7 +23,7 @@ public class ToCommand extends Command {
         if (myBody.isEmpty()) {
             return 0; // Failed to create new user command because empty body
         }
-        GlobalCommands.getInstance().addCommand(myName.getVariableName(), new StoredUserDefinedCommand(myArguments, myBody));
+        GlobalCommands.getInstance().addCommand(myName.getVariableName(), myArguments, myBody);
         return 1; // Successful creation
     }
 }
