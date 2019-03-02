@@ -1,24 +1,25 @@
 package parser_private;
 
-import parser_public.GlobalVariables;
+import state_public.CommandInter;
+import state_public.VariablesGroup;
 
 import java.util.List;
 
-public abstract class Command {
+public abstract class Command implements CommandInter {
 
     protected VariablesGroup myVariables = new VariablesGroup();
-    protected List<Command> mySubCommands;
+    protected List<CommandInter> mySubCommands;
 
     public Command() {}
 
-    public Command(List<Command> params) {
+    public Command(List<CommandInter> params) {
         this.mySubCommands = params;
     }
 
     // Execute constructed command
     public final double execute() {
         if (mySubCommands != null) {
-            for (Command command : mySubCommands) {
+            for (CommandInter command : mySubCommands) {
                 command.addVariables(myVariables);
             }
         }
@@ -27,7 +28,7 @@ public abstract class Command {
 
     public abstract double runCommand();
 
-    private void addVariables(VariablesGroup variables) {
+    public void addVariables(VariablesGroup variables) {
         this.myVariables = variables; // Share same VariablesGroup between subcommands (for local scope)
     }
 

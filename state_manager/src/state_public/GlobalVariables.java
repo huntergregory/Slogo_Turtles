@@ -1,13 +1,10 @@
 package state_public;
 
-import parser_private.VariablesGroup;
-
 public class GlobalVariables {
 
-    private static GlobalVariables instance;
     private VariablesGroup myVariables;
 
-    private GlobalVariables() {
+    public GlobalVariables() {
         this.myVariables = new VariablesGroup();
     }
 

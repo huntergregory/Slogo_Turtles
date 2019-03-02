@@ -1,16 +1,12 @@
 package state_public;
 
-import parser_private.Command;
-import parser_private.StoredUserDefinedCommand;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GlobalCommands {
 
-    private static GlobalCommands instance;
-    private Map<String, StoredUserDefinedCommand> myStoredCommands;
+    private Map<String, UserDefinedCommandInter> myStoredCommands;
     private Map<String, Integer> myParamCounts;
 
     private GlobalCommands() {
@@ -18,7 +14,7 @@ public class GlobalCommands {
         this.myParamCounts = new HashMap<>();
     }
 
-    public void addCommand(String commandName, StoredUserDefinedCommand newCommand) {
+    public void addCommand(String commandName, UserDefinedCommandInter newCommand) {
         myStoredCommands.put(commandName, newCommand);
         myParamCounts.put(commandName, newCommand.getArgumentCount());
     }
@@ -31,7 +27,7 @@ public class GlobalCommands {
         return myStoredCommands.keySet().contains(command);
     }
 
-    Command getCommand(String commandName, List<Command> params) {
+    CommandInter getCommand(String commandName, List<CommandInter> params) {
         myStoredCommands.get(commandName).assignParams(params);
         return myStoredCommands.get(commandName);
     }

@@ -1,4 +1,4 @@
-package parser_private;
+package state_public;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class VariablesGroup {
         return myVariableMap.isEmpty();
     }
 
-    boolean hasVariable(String variable) {
+    public boolean hasVariable(String variable) {
         return myVariableMap.containsKey(variable);
     }
 
