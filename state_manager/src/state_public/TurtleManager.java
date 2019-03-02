@@ -1,4 +1,4 @@
-package parser_public;
+package state_public;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -17,13 +17,6 @@ public class TurtleManager {
 
     private TurtleManager() {
         myTurtles = new ArrayList<>();
-    }
-
-    public static TurtleManager getInstance() {
-        if (instance == null) {
-            instance = new TurtleManager();
-        }
-        return instance;
     }
 
     public void setPosition(double x, double y) {

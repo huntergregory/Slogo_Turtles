@@ -1,19 +1,7 @@
 package ui_private;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import parser_public.CommandParser;
 import parser_public.InputTranslator;
-import parser_public.ParserException;
 
-
-import java.io.IOException;
 //TODO: Delete
 public class ControlPanel {
 /*

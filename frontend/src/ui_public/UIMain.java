@@ -1,6 +1,8 @@
 package ui_public;
 
-import parser_public.ParserException;
+import parser_public.CommandParser;
+import state_public.ParserException;
+import state_public.StateManager;
 import ui_private.UIFactory;
 
 import javafx.application.Application;
@@ -17,26 +19,36 @@ import ui_private.features.FeatureType;
  * Coordinate system is positive in the right and downwards direction.
  * A heading of 0 points upwards.
  */
-public class UIMain extends Application {
+public class UIMain {
     private static final double WIDTH = 1000;
     private static final double HEIGHT = 750;
     private static final Paint BACKGROUND = Color.WHITE;
     private static final String TITLE = "SLogo";
 
+    private Stage myStage;
     private Scene myScene;
     private BorderPane myPane;
     private UIFactory myFactory;
+    private StateManager myStateManager;
+    private CommandParser myBackend;
+    private int myWorkspaceID;
 
-    public UIMain() {
-
+    public UIMain(int workspaceID, Stage stage, CommandParser myBackend, StateManager stateManager) {
+        myWorkspaceID = workspaceID;
+        myStage = stage;
+        init(myStage);
+        setupBindings(myStateManager);
     }
 
-    @Override
-    public void start(Stage stage) {
+    private void init(Stage stage) {
         myScene = setupGame(WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
+    }
+
+    private void setupBindings(StateManager stateManager) {
+        // TODO
     }
 
     private Scene setupGame (double width, double height, Paint background) {

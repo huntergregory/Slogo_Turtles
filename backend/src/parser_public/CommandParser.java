@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import parser_private.Command;
+import state_public.ParserException;
+import state_public.StateManager;
 
 public class CommandParser {
 
@@ -15,18 +17,14 @@ public class CommandParser {
     private int myChunkIndex;
     private List<String> myCommandHistory;
     private static final String WHITESPACE_REGEX = "\\s+";
-    private static CommandParser instance;
 
-    private CommandParser() {
+    private StateManager myStateManager;
+
+    public CommandParser(StateManager stateManager) {
+        myStateManager = stateManager;
         myChunkIndex = 0;
         myCommandQueue = new LinkedList<>();
         myCommandHistory = new ArrayList<>();
-    }
-
-    public static CommandParser getInstance() {
-        if (instance == null)
-            instance = new CommandParser();
-        return instance;
     }
 
     public void parseAndRun(String program) throws ParserException {
@@ -160,7 +158,7 @@ public class CommandParser {
         //parser_public.CommandParser.getInstance().parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
 
         // ------ UNTESTED COMMANDS ------
-        // Turtle commands, turtle queries, for, to, other languages (should be easy, just change default in parser_public.InputTranslator)
+        // Turtle commands, turtle queries, for, to, other languages (should be easy, just change default in state_public.InputTranslator)
         /*
 
          */

@@ -1,7 +1,7 @@
 package parser_private.commands.turtle_commands;
 
 import parser_private.Command;
-import parser_public.TurtleManager;
+import state_public.TurtleManager;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package parser_public;
+package state_public;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -17,12 +17,6 @@ public class InputTranslator {
 
     private InputTranslator() throws ParserException {
         changeLanguage("English");
-    }
-
-    public static InputTranslator getInstance() throws ParserException {
-        if (instance == null)
-            instance = new InputTranslator();
-        return instance;
     }
 
     public void changeLanguage(String language) throws ParserException {

@@ -1,4 +1,4 @@
-package parser_public;
+package state_public;
 
 import parser_private.Command;
 import parser_private.StoredUserDefinedCommand;
@@ -16,12 +16,6 @@ public class GlobalCommands {
     private GlobalCommands() {
         this.myStoredCommands = new HashMap<>();
         this.myParamCounts = new HashMap<>();
-    }
-
-    public static GlobalCommands getInstance() {
-        if (instance == null)
-            instance = new GlobalCommands();
-        return instance;
     }
 
     public void addCommand(String commandName, StoredUserDefinedCommand newCommand) {

@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
 import parser_public.ParserException;
-import javafx.event.ActionEvent;
+
 import java.util.ArrayList;
 
 public class CommandTerminal {
