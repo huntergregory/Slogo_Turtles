@@ -1,15 +1,18 @@
-package parser_private;
+package state_public;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
  * Ensures the turtle stays in display width and height.
  * X and Y properties reflect the coordinates of the turtle view's top left corner.
  * @author Hunter Gregory
+ * @author David Miron
  */
 public class Turtle {
 
@@ -21,16 +24,17 @@ public class Turtle {
     private SimpleDoubleProperty myYProperty;
     private SimpleDoubleProperty myHeadingProperty;
     private SimpleBooleanProperty myIsShowingProperty;
-    private SimpleBooleanProperty myPenIsDownProperty;
     private SimpleBooleanProperty myShouldEraseLinesProperty;
+    private Pen myPen;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
      */
-    public Turtle(int turtID, double pwidth, double pheight) {
+    public Turtle(int turtID, double pwidth, double pheight, Palette penColor) {
         myTurtleID = turtID;
         myPaneWidth = pwidth;
         myPaneHeight = pheight;
+        myPen = new Pen(penColor);
         instantiateProperties();
         setDefaultState();
     }
@@ -40,7 +44,6 @@ public class Turtle {
         myYProperty = new SimpleDoubleProperty();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
-        myPenIsDownProperty = new SimpleBooleanProperty();
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
     }
 
@@ -56,7 +59,6 @@ public class Turtle {
         setPosition(0,0);
         setHeading(0);
         setShowing(true);
-        setPenDown(true);
         myShouldEraseLinesProperty.set(false);
     }
 
@@ -71,10 +73,6 @@ public class Turtle {
 
     public void setShowing(boolean bool) {
         myIsShowingProperty.set(bool);
-    }
-
-    public void setPenDown(boolean bool) {
-        myPenIsDownProperty.set(bool);
     }
 
     public void eraseLines() {
@@ -98,15 +96,15 @@ public class Turtle {
         return myHeadingProperty;
     }
 
-    public BooleanProperty getDownProperty() {
-        return myPenIsDownProperty;
-    }
-
     public BooleanProperty getShowingProperty() {
         return myIsShowingProperty;
     }
 
     public BooleanProperty getEraseProperty() {
         return myShouldEraseLinesProperty;
+    }
+
+    public Pen getPen() {
+        return myPen;
     }
 }

@@ -15,7 +15,6 @@ public class CommandParser {
 
     private Queue<Command> myCommandQueue;
     private int myChunkIndex;
-    private List<String> myCommandHistory;
     private static final String WHITESPACE_REGEX = "\\s+";
 
     private StateManager myStateManager;
@@ -24,7 +23,6 @@ public class CommandParser {
         myStateManager = stateManager;
         myChunkIndex = 0;
         myCommandQueue = new LinkedList<>();
-        myCommandHistory = new ArrayList<>();
     }
 
     public void parseAndRun(String program) throws ParserException {
