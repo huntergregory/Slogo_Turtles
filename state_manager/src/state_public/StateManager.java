@@ -20,9 +20,10 @@ public class StateManager {
     private GlobalCommands myCommands;
     private CommandHistory myCommandHistory;
     private Palette myBackgroundColor;
+    private InputTranslator myInputTranslator;
     private List<Palette> myPalettes;
 
-    public StateManager() {
+    public StateManager() throws ParserException {
         myTurtles = new ArrayList<>();
         myVariables = new GlobalVariables();
         myCommands = new GlobalCommands();
@@ -30,8 +31,35 @@ public class StateManager {
         myPalettes = new ArrayList<>();
         myPalettes.addAll(defaultPalettes);
         myBackgroundColor = myPalettes.get(0);
+        myInputTranslator = new InputTranslator();
     }
 
+    public List<Turtle> getTurtles() {
+        return myTurtles;
+    }
 
+    public GlobalVariables getVariables() {
+        return myVariables;
+    }
+
+    public GlobalCommands getCommands() {
+        return myCommands;
+    }
+
+    public CommandHistory getCommandHistory() {
+        return myCommandHistory;
+    }
+
+    public Palette getBackgroundColor() {
+        return myBackgroundColor;
+    }
+
+    public InputTranslator getInputTranslator() {
+        return myInputTranslator;
+    }
+
+    public List<Palette> getPalettes() {
+        return myPalettes;
+    }
 
 }

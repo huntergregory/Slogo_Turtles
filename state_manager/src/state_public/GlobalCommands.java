@@ -19,15 +19,15 @@ public class GlobalCommands {
         myParamCounts.put(commandName, newCommand.getArgumentCount());
     }
 
-    int getParamCount(String command) {
+    public int getParamCount(String command) {
         return myParamCounts.get(command);
     }
 
-    boolean isDefined(String command) {
+    public boolean isDefined(String command) {
         return myStoredCommands.keySet().contains(command);
     }
 
-    CommandInter getCommand(String commandName, List<CommandInter> params) {
+    public CommandInter getCommand(String commandName, List<CommandInter> params) {
         myStoredCommands.get(commandName).assignParams(params);
         return myStoredCommands.get(commandName);
     }

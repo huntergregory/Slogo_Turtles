@@ -1,11 +1,14 @@
 package parser_private;
 
 import parser_private.commands.math_commands.ConstantCommand;
-import parser_public.ParserException;
+import state_public.CommandInter;
+import state_public.ParserException;
+import state_public.StateManager;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -19,22 +22,17 @@ public class CommandFactory {
     private static final String COMMENT_CHAR = "#";
     private static final String COMMAND_NAME_DELIMITER = "=";
     private static final String COMMAND_INFO_DELIMITER = ":";
+    private static final String INJECTION_METHODNAME = "injectStateManager";
 
-    private static CommandFactory instance;
     private Map<String, String> commandClassNames;
     private Map<String, Integer> commandParamCounts;
 
-    private CommandFactory() throws ParserException {
+    private StateManager myStateManager;
+
+    public CommandFactory(StateManager stateManager) throws ParserException {
         commandClassNames = new HashMap<>();
         commandParamCounts = new HashMap<>();
         initClassMaps();
-    }
-
-    public static CommandFactory getInstance() throws ParserException {
-        if (instance == null) {
-            instance = new CommandFactory();
-        }
-        return instance;
     }
 
     /**
@@ -43,14 +41,19 @@ public class CommandFactory {
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    public Command createCommand(String commandName, List<Command> args) throws ParserException {
+    public Command createCommand(String commandName, List<CommandInter> args) throws ParserException {
 
         Class clazz = null;
         try {
 
             clazz = Class.forName("parser_private.commands." + commandClassNames.get(commandName));
             Constructor constructor = clazz.getConstructor(List.class);
-            return (Command)constructor.newInstance(args);
+            Command command = (Command)constructor.newInstance(args);
+
+            Method injection = Command.class.getMethod(INJECTION_METHODNAME, StateManager.class);
+            injection.invoke(command, myStateManager);
+
+            return command;
 
         } catch (ClassNotFoundException e) {
             throw new ParserException("Class " + commandClassNames.get(commandName) + " not found");

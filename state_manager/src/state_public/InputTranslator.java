@@ -13,9 +13,7 @@ public class InputTranslator {
     private static List<Map.Entry<String, Pattern>> myCurrentLanguage;
     private static final String RESOURCES_DIRECTORY = "languages/";
 
-    private static InputTranslator instance;
-
-    private InputTranslator() throws ParserException {
+    public InputTranslator() throws ParserException {
         changeLanguage("English");
     }
 
@@ -42,7 +40,7 @@ public class InputTranslator {
         }
     }
 
-    String getSymbol(String symbol) throws ParserException {
+    public String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : myCurrentLanguage) {
             if (entry.getValue().matcher(symbol).matches()) {
                 if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable") && !entry.getKey().equals("Command")) {
@@ -61,15 +59,15 @@ public class InputTranslator {
         return false;
     }
 
-    boolean isComment(String text) {
+    public boolean isComment(String text) {
         return matches("Comment", text);
     }
 
-    boolean isVariable(String text) {
+    public boolean isVariable(String text) {
         return matches("Variable", text);
     }
 
-    boolean isConstant(String text) {
+    public boolean isConstant(String text) {
         return matches("Constant", text);
     }
 }
