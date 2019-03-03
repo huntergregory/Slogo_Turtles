@@ -17,8 +17,9 @@ public abstract class Selector extends Feature {
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
         myDropBox.setItems(getItemList());
         myDropBox.getSelectionModel().selectFirst();
-        String selectedItem = myDropBox.getSelectionModel().getSelectedItem();
-        myDropBox.setOnAction(e -> handleItemSelected(selectedItem));
+        myDropBox.valueProperty().addListener((o, oldVal, newVal) -> handleItemSelected(newVal));
+        //String selectedItem = myDropBox.getSelectionModel().getSelectedItem();
+        //myDropBox.setOnAction(e -> handleItemSelected(selectedItem));
     }
 
     /**

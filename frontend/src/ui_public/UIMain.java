@@ -63,6 +63,7 @@ public class UIMain extends Application {
         myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
         //myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
         myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
+        myFactory.addLeftFeature(FeatureType.MOVE_TURTLE_SELECTOR);
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
         myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
         //myFactory.addRightFeature(FeatureType.FD_BUTTON);

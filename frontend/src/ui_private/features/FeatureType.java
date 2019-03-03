@@ -8,6 +8,7 @@ import ui_private.features.selectors.PenColorSelector;
 import ui_private.features.selectors.BackgroundColorSelector;
 import ui_private.features.selectors.PastCommandsSelector;
 import ui_private.features.selectors.UserCommandsSelector;
+import ui_private.features.selectors.MoveTurtleSelector;
 //import ui_public.UserCommandsWindow;
 import ui_private.features.scrollable_windows.VariablesWindow;
 import ui_private.features.scrollable_windows.TurtleStateWindow;
@@ -21,6 +22,7 @@ public enum FeatureType {
     PAST_COMMANDS_SELECTOR(PastCommandsSelector.class),
     //USER_COMMANDS_WINDOW(UserCommandsWindow.class),
     USER_COMMANDS_SELECTOR(UserCommandsSelector.class),
+    MOVE_TURTLE_SELECTOR(MoveTurtleSelector.class),
     VARIABLES_WINDOW(VariablesWindow.class),
     TURTLESTATE_WINDOW(TurtleStateWindow.class);
 
