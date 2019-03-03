@@ -59,7 +59,8 @@ public class UIMain extends Application {
         myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
         myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
         myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
-        myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
+        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
+        myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
         myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
     }
