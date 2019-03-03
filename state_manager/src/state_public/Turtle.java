@@ -80,6 +80,7 @@ public class Turtle {
         myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
+
     public int getTurtleID() {
         return myTurtleID;
     }
@@ -107,4 +108,7 @@ public class Turtle {
     public Pen getPen() {
         return myPen;
     }
+
+
+    public
 }
