@@ -33,9 +33,11 @@ public class UIMain {
     private CommandParser myBackend;
     private int myWorkspaceID;
 
-    public UIMain(int workspaceID, Stage stage, CommandParser myBackend, StateManager stateManager) {
+    public UIMain(int workspaceID, Stage stage, CommandParser backend, StateManager stateManager) {
         myWorkspaceID = workspaceID;
         myStage = stage;
+        myBackend = backend;
+        myStateManager = stateManager;
         init(myStage);
         setupBindings(myStateManager);
     }
@@ -55,7 +57,7 @@ public class UIMain {
         myPane = new BorderPane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
-        myFactory = new UIFactory(WIDTH, HEIGHT);
+        myFactory = new UIFactory(myBackend, WIDTH, HEIGHT);
         myPane.setLeft(myFactory.getLeft());
         myPane.setRight(myFactory.getRight());
         myPane.setCenter(myFactory.getCenter());

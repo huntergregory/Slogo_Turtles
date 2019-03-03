@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
+import state_public.ParserException;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,9 @@ public class CommandTerminal {
     private Button myParseButton;
     private TextArea myCommandInput;
     private String myCommand;
+    private CommandParser myBackend;
 
-    public CommandTerminal() {
+    public CommandTerminal(CommandParser backend) {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
         myCommandInput = new TextArea();
@@ -36,7 +38,7 @@ public class CommandTerminal {
         myCommandInput.setText("");
         myCommandInput.setPromptText(PROMPT);
         try {
-            CommandParser.getInstance().parseAndRun(myCommand);
+            myBackend.parseAndRun(myCommand);
         }
         catch (ParserException e) {
             myCommandInput.setPromptText("--" + e.getMessage() + "-- Enter a valid command");

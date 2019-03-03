@@ -1,6 +1,8 @@
 package ui_private;
 
 import javafx.scene.layout.Pane;
+import parser_public.CommandParser;
+import state_public.StateManager;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
@@ -13,16 +15,18 @@ public class UIFactory {
     private CommandTerminal myTerminal;
     private SidePanel myRightPanel;
     private double mySidePanelWidth;
+    private CommandParser myBackend;
 
-    public UIFactory(double width, double height) {
+    public UIFactory(CommandParser backend, double width, double height) {
         mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
         var terminalHeight = height / 6.0;
-        myTerminal = new CommandTerminal(); //FIXME
+        myTerminal = new CommandTerminal(myBackend); //FIXME
         myTurtleDisplay = new TurtleDisplay(turtlePanelWidth, turtlePaneHeight);
         myLeftPanel = new SidePanel(mySidePanelWidth);
         myRightPanel = new SidePanel(mySidePanelWidth);
+        myBackend = backend;
     }
 
     public Pane getLeft() {
