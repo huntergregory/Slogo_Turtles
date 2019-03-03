@@ -5,7 +5,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import parser_public.TurtleManager;
 import ui_private.turtles.ImageTurtleView;
 import ui_private.turtles.LineStroke;
 import ui_private.turtles.TurtleView;

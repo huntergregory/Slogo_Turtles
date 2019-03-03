@@ -2,7 +2,6 @@ package ui_private.turtles;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.paint.Color;
-import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 import ui_private.displays.TurtleDisplay;
