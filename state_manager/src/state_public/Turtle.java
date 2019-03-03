@@ -1,10 +1,13 @@
 package state_public;
 
+import java.awt.geom.Point2D;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
@@ -16,32 +19,30 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class Turtle {
 
-    private int myTurtleID;
     private double myPaneWidth;
     private double myPaneHeight;
 
-    private SimpleDoubleProperty myXProperty;
-    private SimpleDoubleProperty myYProperty;
-    private SimpleDoubleProperty myHeadingProperty;
-    private SimpleBooleanProperty myIsShowingProperty;
-    private SimpleBooleanProperty myShouldEraseLinesProperty;
+    private IntegerProperty myTurtleID;
+    private ObjectProperty<Point2D> myPositionProperty;
+    private DoubleProperty myHeadingProperty;
+    private BooleanProperty myIsShowingProperty;
+    private BooleanProperty myShouldEraseLinesProperty;
     private Pen myPen;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
      */
-    public Turtle(int turtID, double pwidth, double pheight, Palette penColor) {
-        myTurtleID = turtID;
+    public Turtle(int turtleID, double pwidth, double pheight, Palette penColor) {
         myPaneWidth = pwidth;
         myPaneHeight = pheight;
         myPen = new Pen(penColor);
-        instantiateProperties();
+        instantiateProperties(turtleID);
         setDefaultState();
     }
 
-    private void instantiateProperties() {
-        myXProperty = new SimpleDoubleProperty();
-        myYProperty = new SimpleDoubleProperty();
+    private void instantiateProperties(int turtleID) {
+        myTurtleID = new SimpleIntegerProperty(turtleID);
+        myPositionProperty = new SimpleObjectProperty<>();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
@@ -63,8 +64,9 @@ public class Turtle {
     }
 
     public void setPosition(double x, double y) {
-        myXProperty.set(getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0));
-        myYProperty.set(getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0));
+        double newX = getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0);
+        double newY = getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0);
+        myPositionProperty.set(new Point2D.Double(newX, newY));
     }
 
     public void setHeading(double heading) {
@@ -81,16 +83,12 @@ public class Turtle {
     }
 
 
-    public int getTurtleID() {
+    public IntegerProperty getTurtleIDProperty() {
         return myTurtleID;
     }
 
-    public DoubleProperty getXProperty() {
-        return myXProperty;
-    }
-
-    public DoubleProperty getYProperty() {
-        return myYProperty;
+    public ObjectProperty<Point2D> getPositionProperty() {
+        return myPositionProperty;
     }
 
     public DoubleProperty getHeadingProperty() {
@@ -110,5 +108,15 @@ public class Turtle {
     }
 
 
-    public
+    public int getID() {
+        return myTurtleID.get();
+    }
+
+    public Point2D getPosition() {
+        return myPositionProperty.get();
+    }
+
+    public double getHeading() {
+        return myHeadingProperty.get();
+    }
 }

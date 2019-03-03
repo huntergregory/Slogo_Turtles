@@ -3,19 +3,20 @@ package ui_private.features.scrollable_windows;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import ui_private.features.VerticalFeature;
+import ui_private.features.Feature;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-public abstract class ScrollableWindow extends VerticalFeature {
+public abstract class ScrollableWindow extends Feature {
 
     private ScrollPane myScrollPane;
     private TextArea myTextArea;
     private LinkedList<String> myTextChain;
 
     public ScrollableWindow() {
+        super(false);
         myTextChain = new LinkedList<>();
         myTextArea = new TextArea(getText());
         myScrollPane = new ScrollPane(myTextArea);

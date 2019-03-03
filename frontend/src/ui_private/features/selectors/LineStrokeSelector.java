@@ -8,7 +8,7 @@ import ui_private.turtles.LineStroke;
 
 import java.util.ArrayList;
 
-public class LineStrokeSelector extends Selector<String> {
+public class LineStrokeSelector extends Selector {
     private static final ObservableList STROKES = constructList();
     private static final String TITLE = "Line Stroke";
 
@@ -29,7 +29,7 @@ public class LineStrokeSelector extends Selector<String> {
     protected void handleItemSelected(String item) {
         var stroke = getLineStroke(item);
         if (stroke != null)
-            return; //myTurtleDisplay.setStroke(stroke) //FIXME
+            return; //TurtleManager.getInstance().setStroke(stroke) //FIXME
     }
 
     private LineStroke getLineStroke(String item) {

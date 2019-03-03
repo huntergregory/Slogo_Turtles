@@ -2,12 +2,16 @@ package ui_private.turtles;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.paint.Color;
 import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+
+import java.awt.geom.Point2D;
 
 
 /**
@@ -27,12 +31,9 @@ public abstract class TurtleView {
 
     private BooleanProperty myIsShowingProperty = new SimpleBooleanProperty();
     private DoubleProperty myHeadingProperty = new SimpleDoubleProperty();
-    private DoubleProperty myXProperty = new SimpleDoubleProperty();
-    private DoubleProperty myYProperty = new SimpleDoubleProperty();
-    private double myOldX = 0;
-    private double myOldY = 0;
-    private double myNewX = 0;
-    private double myNewY = 0;
+    private ObjectProperty<Point2D> myPositionProperty = new SimpleObjectProperty<>();
+    private Point2D myOldPoint = new Point2D.Double(0, 0);
+    private Point2D myNewPoint = new Point2D.Double(0, 0);
     private double myDispXOffset;
     private double myDispYOffset;   //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
                                     //could have created a Coordinate object, but then front and back end would have to share this class
@@ -83,43 +84,36 @@ public abstract class TurtleView {
     }
 
     private void addPropertyListeners() {
-        myXProperty.addListener((o, oldVal, newVal) -> updateX(oldVal.doubleValue(), newVal.doubleValue()));
-        myYProperty.addListener((o, oldVal, newVal) -> updateY(oldVal.doubleValue(), newVal.doubleValue()));
+        myPositionProperty.addListener((o, oldVal, newVal) -> updatePosition(oldVal, newVal));
         myHeadingProperty.addListener((o, oldVal, newVal) -> myNode.setRotate(newVal.doubleValue()));
         myIsShowingProperty.addListener((o, oldVal, newVal) -> myNode.setVisible(newVal));
     }
 
     private void bindProperties() {
         var manager = TurtleManager.getInstance();
-        myXProperty.bind(manager.getXProperty(myID));
-        myYProperty.bind(manager.getYProperty(myID));
+        myPositionProperty.bind(manager.getPositionProperty(myID));
         myHeadingProperty.bind(manager.getHeadingProperty(myID));
         myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
-    //x must be updated first in the backend for this to work
-    private void updateX(double oldVal, double newVal) {
-        myOldX = oldVal;
-        myNewX = newVal;
-        if(Math.abs(myHeadingProperty.getValue()) == 90) {
-            myOldY = myNewY;
-            move();
+    private void updatePosition(Point2D oldPoint, Point2D newPoint) {
+        if (oldPoint == null) {
+            myOldPoint = newPoint;
         }
-    }
-
-    //x must be updated first in the backend for this to work
-    private void updateY(double oldVal, double newVal) {
-        myOldY = oldVal;
-        myNewY = newVal;
+        else {
+            myOldPoint = oldPoint;
+        }
+        myNewPoint = newPoint;
         move();
     }
 
     private void move() {
-        myNode.relocate(myNewX - TurtleView.WIDTH / 2.0 + myDispXOffset, myNewY - TurtleView.HEIGHT / 2.0 + myDispYOffset);
-        myPen.draw(myOldX + myDispXOffset,
-                myOldY + myDispYOffset,
-                myNewX + myDispXOffset,
-                myNewY + myDispYOffset);
+        myNode.relocate(myNewPoint.getX() - TurtleView.WIDTH / 2.0 + myDispXOffset,
+                myNewPoint.getY() - TurtleView.HEIGHT / 2.0 + myDispYOffset);
+        myPen.draw(myOldPoint.getX() + myDispXOffset,
+                myOldPoint.getY() + myDispYOffset,
+                myNewPoint.getX() + myDispXOffset,
+                myNewPoint.getY() + myDispYOffset);
         moveAboveLines();
     }
 

@@ -16,16 +16,16 @@ public class StateManager {
 
     private TurtleManager myTurtleManager;
 
-    private GlobalVariables myVariables;
     private GlobalCommands myCommands;
+    private GlobalVariables myVariables;
     private CommandHistory myCommandHistory;
     private Palette myBackgroundColor;
     private InputTranslator myInputTranslator;
     private List<Palette> myPalettes;
 
     public StateManager() throws ParserException {
-        myTurtleManager = new TurtleManager();
         myVariables = new GlobalVariables();
+        myTurtleManager = new TurtleManager(myVariables);
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
         myPalettes = new ArrayList<>();

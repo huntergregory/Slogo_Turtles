@@ -1,6 +1,5 @@
 package ui_private;
 
-import parser_public.InputTranslator;
 
 //TODO: Delete
 public class ControlPanel {
@@ -68,11 +67,7 @@ public class ControlPanel {
         }
 
         private void addTurtleImageChooser(VBox controlBox) {
-<<<<<<< HEAD
-            myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose TurtleView", turtleList);
-=======
             myTurtleImageChooser = new Selector(controlBox, "APPLY", "Choose Turtle Image", turtleList);
->>>>>>> master
             turtleImageButton = myTurtleImageChooser.getButton();
         }
 

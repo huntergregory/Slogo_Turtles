@@ -1,0 +1,16 @@
+to proca [ :a ]
+[
+  fd :a
+]
+
+to procb [ :b ]
+[
+  bk :b
+]
+
+to test [ :c ]
+[
+  proca :c
+  procb :c
+]
+

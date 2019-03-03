@@ -8,10 +8,12 @@ public class TurtleManager {
 
     private List<Turtle> myTurtles;
     private List<Turtle> myActiveTurtles;
+    private GlobalVariables myVariables;
 
-    public TurtleManager() {
+    public TurtleManager(GlobalVariables variables) {
         myTurtles = new ArrayList<>();
         myActiveTurtles = new ArrayList<>();
+        myVariables = variables;
     }
 
     public List<Turtle> getTurtles() {
@@ -23,8 +25,10 @@ public class TurtleManager {
     }
 
     public void runTurtleCommand(Consumer<Turtle> func) {
-        for (Turtle turtle: myActiveTurtles)
+        for (Turtle turtle: myActiveTurtles) {
+            myVariables.setVariable("ID", turtle.getID());
             func.accept(turtle);
+        }
     }
 
 }

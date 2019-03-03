@@ -1,24 +1,23 @@
 package ui_private.features.selectors;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import ui_private.features.HorizontalFeature;
+import ui_private.features.Feature;
 
-public abstract class Selector<T> extends HorizontalFeature {
+public abstract class Selector extends Feature {
     private static final int NUM_OPTIONS_SHOWN = 4;
 
-    private ComboBox<T> myDropBox;
+    private ComboBox<String> myDropBox;
 
     public Selector() {
+        super(true);
         myDropBox = new ComboBox<>();
         myDropBox.setEditable(false);
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
         myDropBox.setItems(getItemList());
         myDropBox.getSelectionModel().selectFirst();
-        T selectedItem = myDropBox.getSelectionModel().getSelectedItem();
+        String selectedItem = myDropBox.getSelectionModel().getSelectedItem();
         myDropBox.setOnAction(e -> handleItemSelected(selectedItem));
     }
 
@@ -31,7 +30,7 @@ public abstract class Selector<T> extends HorizontalFeature {
     /**
      * @param item
      */
-    abstract protected void handleItemSelected(T item);
+    abstract protected void handleItemSelected(String item);
 
 
     @Override
