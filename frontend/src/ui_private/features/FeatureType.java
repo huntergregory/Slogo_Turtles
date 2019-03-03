@@ -25,6 +25,8 @@ public enum FeatureType {
     TURTLESTATE_WINDOW(TurtleStateWindow.class);
 
 
+
+
     private Class<? extends Feature> myClass;
     FeatureType(Class<? extends Feature> clazz) {
         myClass = clazz;

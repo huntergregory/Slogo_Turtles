@@ -65,6 +65,7 @@ public class UIMain extends Application {
         myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
         myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
+        //myFactory.addRightFeature(FeatureType.FD_BUTTON);
     }
 
     //TODO: put this in CommandTerminal

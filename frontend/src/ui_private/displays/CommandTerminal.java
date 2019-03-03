@@ -8,6 +8,9 @@ import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
 import parser_public.ParserException;
 import javafx.event.ActionEvent;
+
+import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class CommandTerminal {
@@ -20,6 +23,7 @@ public class CommandTerminal {
     private ArrayList<Node> myChildren;
     private Button myParseButton;
     private Button myUndoButton;
+    private Button myHelpButton;
     private TextArea myCommandInput;
     private String myCommand;
 
@@ -28,6 +32,8 @@ public class CommandTerminal {
         myParseButton.setOnAction((event) -> sendToParser());
         myUndoButton = new Button("UNDO");
         myParseButton.setOnAction((event) -> undoCommand());
+        myHelpButton = new Button("HELP");
+        myHelpButton.setOnAction((event) -> accessHelp());
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
@@ -51,6 +57,14 @@ public class CommandTerminal {
 
     }
 
+    private void accessHelp() {
+        try {
+            Desktop.getDesktop().browse(new URL("https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php").toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Pane getPane() {
         var gridPane = new GridPane();
         myCommandInput.setPrefWidth(1000); //stretch out text area //FIXME magic number
@@ -58,7 +72,9 @@ public class CommandTerminal {
         myParseButton.setPrefHeight(60); //stretch out height //FIXME magic number
         myUndoButton.setMinWidth(100);
         myUndoButton.setPrefHeight(60);
-        gridPane.addRow(0, myCommandInput, myParseButton, myUndoButton);
+        myHelpButton.setMinWidth(100);
+        myHelpButton.setPrefHeight(60);
+        gridPane.addRow(0, myCommandInput, myParseButton, myUndoButton, myHelpButton);
         return gridPane; //FIXME: need to return some pane including commandinput and parsebutton
     }
 }

@@ -21,7 +21,6 @@ public abstract class Selector extends Feature {
         myDropBox.setOnAction(e -> handleItemSelected(selectedItem));
     }
 
-
     /**
      * @return List of selectable items
      */
