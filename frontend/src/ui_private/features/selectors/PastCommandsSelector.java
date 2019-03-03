@@ -6,10 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import parser_public.InputTranslator;
 import parser_public.ParserException;
+import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {
     private static final String TITLE = "Past Commands";
-    private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList();
+    private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList("fd 50");
 
     @Override
     protected ObservableList getItemList() {
@@ -25,7 +26,7 @@ public class PastCommandsSelector extends Selector {
 //        catch (ParserException e) {
 //            System.out.println("Not a valid language");
 //        }
-        
+
     }
 
     @Override

@@ -19,12 +19,15 @@ public class CommandTerminal {
     private GridPane myPane;
     private ArrayList<Node> myChildren;
     private Button myParseButton;
+    private Button myUndoButton;
     private TextArea myCommandInput;
     private String myCommand;
 
     public CommandTerminal() {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
+        myUndoButton = new Button("UNDO");
+        myParseButton.setOnAction((event) -> undoCommand());
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
@@ -44,12 +47,18 @@ public class CommandTerminal {
         }
     }
 
+    private void undoCommand() {
+
+    }
+
     public Pane getPane() {
         var gridPane = new GridPane();
         myCommandInput.setPrefWidth(1000); //stretch out text area //FIXME magic number
         myParseButton.setMinWidth(100); //FIXME magic number
         myParseButton.setPrefHeight(60); //stretch out height //FIXME magic number
-        gridPane.addRow(0, myCommandInput, myParseButton);
+        myUndoButton.setMinWidth(100);
+        myUndoButton.setPrefHeight(60);
+        gridPane.addRow(0, myCommandInput, myParseButton, myUndoButton);
         return gridPane; //FIXME: need to return some pane including commandinput and parsebutton
     }
 }
