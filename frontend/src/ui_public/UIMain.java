@@ -5,7 +5,6 @@ import state_public.ParserException;
 import state_public.StateManager;
 import ui_private.UIFactory;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
@@ -57,7 +56,7 @@ public class UIMain {
         myPane = new BorderPane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
-        myFactory = new UIFactory(myBackend, WIDTH, HEIGHT);
+        myFactory = new UIFactory(myBackend, myStateManager, WIDTH, HEIGHT);
         myPane.setLeft(myFactory.getLeft());
         myPane.setRight(myFactory.getRight());
         myPane.setCenter(myFactory.getCenter());

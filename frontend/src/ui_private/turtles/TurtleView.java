@@ -22,7 +22,7 @@ public abstract class TurtleView {
     static final double HEIGHT = 20;
     private static final String CSS_TAG = "turtle";
 
-    Node myNode; //must be accessed by subclass
+    protected Node myNode; //must be accessed by subclass
 
     private int myID;
     private ObservableList myModifiableList;
