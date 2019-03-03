@@ -67,6 +67,8 @@ public class UIMain extends Application {
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
         myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
         //myFactory.addRightFeature(FeatureType.FD_BUTTON);
+        myFactory.addRightFeature(FeatureType.PEN_THICKNESS_SLIDER);
+        myFactory.addRightFeature(FeatureType.PEN_UPDOWN_SELECTOR);
     }
 
     //TODO: put this in CommandTerminal
