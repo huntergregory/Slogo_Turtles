@@ -1,9 +1,9 @@
 package ui_private.features.scrollable_windows;
 
-public class VariablesWindow extends ScrollableWindow {
+public class TurtleStateWindow extends ScrollableWindow {
     private static final boolean SORTS_ALPHABETICALLY = false;
-    private static final int MAX_LINES_DISPLAYED = 50;
-    private static final String TITLE = "Variables";
+    private static final int MAX_LINES_DISPLAYED = 5;
+    private static final String TITLE = "Turtle State";
 
     @Override
     protected int getMaxLinesDisplayed() {

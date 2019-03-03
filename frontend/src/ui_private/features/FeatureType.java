@@ -9,7 +9,8 @@ import ui_private.features.selectors.BackgroundColorSelector;
 import ui_private.features.selectors.PastCommandsSelector;
 import ui_private.features.selectors.UserCommandsSelector;
 //import ui_public.UserCommandsWindow;
-import ui_public.VariablesWindow;
+import ui_private.features.scrollable_windows.VariablesWindow;
+import ui_private.features.scrollable_windows.TurtleStateWindow;
 
 public enum FeatureType {
     PEN_COLOR_CHOOSER(PenColorSelector.class),
@@ -20,7 +21,8 @@ public enum FeatureType {
     PAST_COMMANDS_SELECTOR(PastCommandsSelector.class),
     //USER_COMMANDS_WINDOW(UserCommandsWindow.class),
     USER_COMMANDS_SELECTOR(UserCommandsSelector.class),
-    VARIABLES_WINDOW(VariablesWindow.class);
+    VARIABLES_WINDOW(VariablesWindow.class),
+    TURTLESTATE_WINDOW(TurtleStateWindow.class);
 
 
     private Class<? extends Feature> myClass;
