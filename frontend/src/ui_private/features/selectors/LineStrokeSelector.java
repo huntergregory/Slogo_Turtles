@@ -8,7 +8,7 @@ import ui_private.turtles.LineStroke;
 
 import java.util.ArrayList;
 
-public class LineStrokeSelector extends Selector<String> {
+public class LineStrokeSelector extends Selector {
     private static final ObservableList STROKES = constructList();
     private static final String TITLE = "Line Stroke";
 

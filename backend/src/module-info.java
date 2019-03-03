@@ -1,4 +1,6 @@
 module backend {
-    exports parser_public;
     requires javafx.base;
+    requires java.desktop;
+
+    exports parser_public;
 }

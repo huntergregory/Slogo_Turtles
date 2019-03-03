@@ -7,14 +7,24 @@ to poly [ :numsides :length ]
   ]
 ]
 
-to square [ :side ]
-[
-  poly 4 :side
-]
-
 to triangle [ :side ]
 [
-  poly 3 :side
+  fd :side
+  lt 120
+  fd :side
+  lt 120
+  fd :side
+]
+
+to square [ :side ]
+[
+  fd :side
+  lt 90
+  fd :side
+  lt 90
+  fd :side
+  lt 90
+  fd :side	
 ]
 
 to house [ :size ]
@@ -23,5 +33,6 @@ to house [ :size ]
   fd :size rt 30
   triangle :size
 ]
+
 
 house 100

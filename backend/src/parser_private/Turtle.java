@@ -1,9 +1,12 @@
 package parser_private;
 
+import java.awt.geom.Point2D;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.
@@ -17,8 +20,7 @@ public class Turtle {
     private double myPaneWidth;
     private double myPaneHeight;
 
-    private SimpleDoubleProperty myXProperty;
-    private SimpleDoubleProperty myYProperty;
+    private ObjectProperty<Point2D> myPositionProperty;
     private SimpleDoubleProperty myHeadingProperty;
     private SimpleBooleanProperty myIsShowingProperty;
     private SimpleBooleanProperty myPenIsDownProperty;
@@ -36,8 +38,7 @@ public class Turtle {
     }
 
     private void instantiateProperties() {
-        myXProperty = new SimpleDoubleProperty();
-        myYProperty = new SimpleDoubleProperty();
+        myPositionProperty = new SimpleObjectProperty<>();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
         myPenIsDownProperty = new SimpleBooleanProperty();
@@ -61,8 +62,9 @@ public class Turtle {
     }
 
     public void setPosition(double x, double y) {
-        myXProperty.set(getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0));
-        myYProperty.set(getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0));
+        double newX = getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0);
+        double newY = getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0);
+        myPositionProperty.set(new Point2D.Double(newX, newY));
     }
 
     public void setHeading(double heading) {
@@ -86,12 +88,8 @@ public class Turtle {
         return myTurtleID;
     }
 
-    public DoubleProperty getXProperty() {
-        return myXProperty;
-    }
-
-    public DoubleProperty getYProperty() {
-        return myYProperty;
+    public ObjectProperty<Point2D> getPositionProperty() {
+        return myPositionProperty;
     }
 
     public DoubleProperty getHeadingProperty() {

@@ -1,6 +1,6 @@
 package ui_private.features.selectors;
 /*
-public class BackgroundColorSelector extends Selector<String> {
+public class BackgroundColorSelector extends Selector {
     private static final String LABEL_TEXT = "Background Color";
 
     @Override

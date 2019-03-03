@@ -1,0 +1,38 @@
+to poly [ :length :numsides ]
+[
+  repeat :numsides
+  [
+    fd :length 
+    rt quotient 360 :numsides
+  ]
+]
+
+to square [ :side ]
+[
+  poly :side 4         //This is the problem 
+       # Params get assigned HERE when PARSED
+       # Can assignParams be DELAYED until execution??
+  fd 30
+]
+
+# WE NEED TO MAKE A NEW INSTANCE OF
+ A USER DEFINED COMMAND, NOT REUSE THE SAME ONE
+ON DIFFERENT PARSING
+
+# when poly is executed inside square
+# it does not update numtimes
+# check when numtimes gets set??
+
+to triangle [ :side ]
+[
+  poly :side 3
+  fd 60
+]
+
+# issue: every time poly is called from
+# specifically inside another user defined 
+# command it's side updates but numsides 
+# does not take new value, instead uses
+# old one
+
+# at runtime, subcommands does not include numsides??

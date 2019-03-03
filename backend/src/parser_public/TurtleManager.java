@@ -2,8 +2,10 @@ package parser_public;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import parser_private.Turtle;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 /**
@@ -47,11 +49,11 @@ public class TurtleManager {
     }
 
     public double getX() {
-        return getXProperty(0).getValue();
+        return getPositionProperty(0).getValue().getX();
     }
 
     public double getY() {
-        return getYProperty(0).getValue();
+        return getPositionProperty(0).getValue().getY();
     }
 
     public double getHeading() {
@@ -85,16 +87,10 @@ public class TurtleManager {
         myTurtles.remove(id);
     }
 
-    public DoubleProperty getXProperty(int id) throws NoTurtleException {
+    public ObjectProperty<Point2D> getPositionProperty(int id) throws NoTurtleException {
         if (idOutOfBounds(id))
             throw new NoTurtleException();
-        return myTurtles.get(id).getXProperty();
-    }
-
-    public DoubleProperty getYProperty(int id) throws NoTurtleException {
-        if (idOutOfBounds(id))
-            throw new NoTurtleException();
-        return myTurtles.get(id).getYProperty();
+        return myTurtles.get(id).getPositionProperty();
     }
 
     public DoubleProperty getHeadingProperty(int id) throws NoTurtleException {
