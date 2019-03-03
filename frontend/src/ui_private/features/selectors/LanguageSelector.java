@@ -2,14 +2,20 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import parser_public.InputTranslator;
-import parser_public.ParserException;
+import state_public.InputTranslator;
+import state_public.ParserException;
 
 public class LanguageSelector extends Selector {
     private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
             FXCollections.observableArrayList("English","Chinese","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
+
+    private InputTranslator myInputTranslator;
+
+    public LanguageSelector(InputTranslator inputTranslator) {
+        myInputTranslator = inputTranslator;
+    }
 
     @Override
     protected ObservableList getItemList() {
@@ -20,7 +26,7 @@ public class LanguageSelector extends Selector {
     protected void handleItemSelected(String item) {
         try {
             System.out.println("language here");
-            InputTranslator.getInstance().changeLanguage(item);
+            myInputTranslator.changeLanguage(item);
         }
         catch (ParserException e) {
             System.out.println("Not a valid language");

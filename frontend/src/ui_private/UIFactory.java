@@ -16,14 +16,16 @@ public class UIFactory {
     private SidePanel myRightPanel;
     private double mySidePanelWidth;
     private CommandParser myBackend;
+    private StateManager myStateManager;
 
-    public UIFactory(CommandParser backend, double width, double height) {
+    public UIFactory(CommandParser backend, StateManager stateManager, double width, double height) {
         mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
         var terminalHeight = height / 6.0;
+        myStateManager = stateManager;
         myTerminal = new CommandTerminal(myBackend); //FIXME
-        myTurtleDisplay = new TurtleDisplay(turtlePanelWidth, turtlePaneHeight);
+        myTurtleDisplay = new TurtleDisplay(myStateManager.getTurtleManager(), turtlePanelWidth, turtlePaneHeight);
         myLeftPanel = new SidePanel(mySidePanelWidth);
         myRightPanel = new SidePanel(mySidePanelWidth);
         myBackend = backend;

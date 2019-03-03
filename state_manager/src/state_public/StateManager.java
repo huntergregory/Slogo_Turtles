@@ -8,30 +8,25 @@ import java.util.List;
 
 public class StateManager {
 
-    public static final List<Palette> defaultPalettes = Collections.unmodifiableList(
-        new ArrayList<>() {{
-            add(new Palette(0));
-        }}
-    );
+
 
     private TurtleManager myTurtleManager;
 
     private GlobalCommands myCommands;
     private GlobalVariables myVariables;
     private CommandHistory myCommandHistory;
-    private Palette myBackgroundColor;
     private InputTranslator myInputTranslator;
-    private List<Palette> myPalettes;
+    private PaletteManager myPaletteManager;
+    private Palette myBackgroundColor;
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
-        myTurtleManager = new TurtleManager(myVariables);
+        myTurtleManager = new TurtleManager(myVariables, myPaletteManager);
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
-        myPalettes = new ArrayList<>();
-        myPalettes.addAll(defaultPalettes);
-        myBackgroundColor = myPalettes.get(0);
         myInputTranslator = new InputTranslator();
+        myPaletteManager = new PaletteManager();
+        myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
     }
 
     public TurtleManager getTurtleManager() {
@@ -58,8 +53,8 @@ public class StateManager {
         return myInputTranslator;
     }
 
-    public List<Palette> getPalettes() {
-        return myPalettes;
+    public PaletteManager getPaletteManager() {
+        return myPaletteManager;
     }
 
 }

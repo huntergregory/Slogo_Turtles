@@ -10,20 +10,22 @@ import javafx.scene.paint.Color;
  */
 public class Palette {
 
+    private static int id_count = 0;
 
     private SimpleIntegerProperty myId;
     private SimpleObjectProperty<Color> myColor;
 
-    public Palette(int id) {
-        this(id, 0, 0, 0);
+    public Palette() {
+        this(0, 0, 0);
     }
 
-    public Palette(int id, int red, int green, int blue) {
-        this(id, Color.rgb(red, green, blue));
+    public Palette(int red, int green, int blue) {
+        this(Color.rgb(red, green, blue));
     }
 
-    public Palette(int id, Color color) {
-        myId = new SimpleIntegerProperty(id);
+    public Palette(Color color) {
+        myId = new SimpleIntegerProperty(id_count);
+        id_count++;
         myColor = new SimpleObjectProperty<>(color);
     }
 
