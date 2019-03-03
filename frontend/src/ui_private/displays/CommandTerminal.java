@@ -31,7 +31,7 @@ public class CommandTerminal {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
         myUndoButton = new Button("UNDO");
-        myParseButton.setOnAction((event) -> undoCommand());
+        myUndoButton.setOnAction((event) -> undoCommand());
         myHelpButton = new Button("HELP");
         myHelpButton.setOnAction((event) -> accessHelp());
         myCommandInput = new TextArea();
