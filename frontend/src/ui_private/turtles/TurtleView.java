@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.paint.Color;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import state_public.TurtleManager;
 
 import java.awt.geom.Point2D;
 
