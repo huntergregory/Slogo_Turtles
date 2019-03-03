@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import parser_public.TurtleManager;
 import ui_private.turtles.ImageTurtleView;
 import ui_private.turtles.LineStroke;
+import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class TurtleDisplay {
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
         TurtleManager.getInstance().initialize(myWidth, myHeight);
-        myTurtleViews.add(new ImageTurtleView(0, getTurtleXOrigin(), getTurtleYOrigin(), myTurtlePane.getChildren()));
+        myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(),getTurtleXOrigin(), getTurtleYOrigin()));
     }
 
     public void setBackgroundColor(Color color) {
