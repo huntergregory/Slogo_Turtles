@@ -24,6 +24,7 @@ public class BackgroundColorSelector extends Selector {
     private static final ObservableList BACKGROUNDCOLORS =
             FXCollections.observableArrayList("RED 1", "BLUE 2", "GREEN 3");
     private String myBackgroundColor;
+    private int myIndex;
 
     @Override
     protected ObservableList getItemList() {
@@ -35,6 +36,7 @@ public class BackgroundColorSelector extends Selector {
         System.out.println("pen here");
         String[] splitted = item.split("\\s+");
         myBackgroundColor = splitted[0];
+        myIndex = Integer.parseInt(splitted[1]);
         //myTurtleDisplay.setPenColor(newColor);
     }
 

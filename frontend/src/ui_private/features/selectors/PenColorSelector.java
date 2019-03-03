@@ -21,9 +21,9 @@ import javafx.collections.ObservableList;
 
 public class PenColorSelector extends Selector {
     private static final String TITLE = "Pen Color";
-    private static final ObservableList PENCOLORS =
-            FXCollections.observableArrayList("RED 1", "BLUE 2", "GREEN 3");
+    private static final ObservableList PENCOLORS = FXCollections.observableArrayList("", "RED 1", "BLUE 2", "GREEN 3");
     private String myPenColor;
+    private int myIndex;
 
     @Override
     protected ObservableList getItemList() {
@@ -35,6 +35,7 @@ public class PenColorSelector extends Selector {
         System.out.println("pen here");
         String[] splitted = item.split("\\s+");
         myPenColor = splitted[0];
+        myIndex = Integer.parseInt(splitted[1]);
         //myTurtleDisplay.setPenColor(newColor);
     }
 
