@@ -1,7 +1,9 @@
 package parser_private.commands.turtle_commands.move_distance_commands;
 
 import parser_private.Command;
+import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
+import state_public.Turtle;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ public abstract class MoveDistanceCommand extends Command {
             double newX = turtle.getPosition().getX() + Math.sin(heading) * distance;
             double newY = turtle.getPosition().getY() - Math.cos(heading) * distance;
             turtle.setPosition(newX, newY);
+            return distance;
         });
 
     }

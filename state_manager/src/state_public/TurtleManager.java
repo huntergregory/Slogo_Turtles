@@ -24,11 +24,13 @@ public class TurtleManager {
         return getActiveTurtles();
     }
 
-    public void runTurtleCommand(Consumer<Turtle> func) {
+    public double runTurtleCommand(ReturnConsumer<Double, Turtle> func) {
+        double retval = 0;
         for (Turtle turtle: myActiveTurtles) {
             myVariables.setVariable("ID", turtle.getID());
-            func.accept(turtle);
+            retval = func.accept(turtle);
         }
+        return retval;
     }
 
 }
