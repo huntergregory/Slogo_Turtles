@@ -5,12 +5,13 @@ import ui_private.features.scrollable_windows.PastCommandsWindow;
 import ui_private.features.selectors.LanguageSelector;
 import ui_private.features.selectors.TurtleImageSelector;
 import ui_private.features.selectors.PenColorSelector;
+import ui_private.features.selectors.BackgroundColorSelector;
 import ui_public.UserCommandsWindow;
 import ui_public.VariablesWindow;
 
 public enum FeatureType {
     PEN_COLOR_CHOOSER(PenColorSelector.class),
-    //BACKGROUND_COLOR_CHOOSER(BackgroundColorChooser.class),
+    BACKGROUND_COLOR_CHOOSER(BackgroundColorSelector.class),
     LANGUAGE_SELECTOR(LanguageSelector.class),
     TURTLE_IMAGE_SELECTOR(TurtleImageSelector.class),
     PAST_COMMANDS_WINDOW(PastCommandsWindow.class),

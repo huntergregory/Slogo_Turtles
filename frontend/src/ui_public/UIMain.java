@@ -51,25 +51,17 @@ public class UIMain extends Application {
 
         addFeatures();
 
-        scene.setOnKeyPressed(e -> handleKeyInput(e.getCode())); //FIXME: unnecessary?
         return scene;
     }
 
     private void addFeatures() {
         myFactory.addLeftFeature(FeatureType.PEN_COLOR_CHOOSER);
-        //myFactory.addFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+        myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
         myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
         myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
         myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
         myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
-    }
-
-    //Delete??
-    private void handleKeyInput (KeyCode code) {
-        if (code == KeyCode.ENTER) {
-
-        }
     }
 
     //TODO: put this in CommandTerminal
