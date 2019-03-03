@@ -1,15 +1,16 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_public.GlobalVariables;
+import state_public.CommandInter;
+
 import java.util.List;
 
 public class RepeatCommand extends Command {
 
-    private Command myTotalIter;
-    private Command myBody;
+    private CommandInter myTotalIter;
+    private CommandInter myBody;
 
-    public RepeatCommand(List<Command> params) {
+    public RepeatCommand(List<CommandInter> params) {
         super(params);
         myTotalIter = params.get(0);
         myBody = params.get(1);
@@ -25,7 +26,7 @@ public class RepeatCommand extends Command {
             // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
             /*myVariables.setVariable(countVarName, i);
               myBody.addVariables(myVariables);*/
-            GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
+            myStateManager.getVariables().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
             retval = myBody.execute();
         }
         return retval; // Final iteration

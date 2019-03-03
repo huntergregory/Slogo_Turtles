@@ -1,15 +1,16 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_public.GlobalVariables;
+import state_public.CommandInter;
+
 import java.util.List;
 
 public class ForCommand extends Command {
 
     ListCommand forParams;
-    Command myBody;
+    CommandInter myBody;
 
-    public ForCommand(List<Command> params) {
+    public ForCommand(List<CommandInter> params) {
         super(params);
         forParams = (ListCommand)params.get(0);
         myBody = params.get(1);
@@ -26,7 +27,7 @@ public class ForCommand extends Command {
             // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
             /*myVariables.setVariable(countVarName, i);
               myBody.addVariables(myVariables);*/ //propagates var changes through body commands
-            GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
+            myStateManager.getVariables().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
             retval = myBody.execute();
         }
         return retval;

@@ -1,15 +1,16 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_public.GlobalVariables;
+import state_public.CommandInter;
+
 import java.util.List;
 
 public class DoTimesCommand extends Command {
 
     private ListCommand myParams;
-    private Command myBody;
+    private CommandInter myBody;
 
-    public DoTimesCommand(List<Command> params) {
+    public DoTimesCommand(List<CommandInter> params) {
         super(params);
         myParams = (ListCommand) params.get(0); // dotimes >>>[]<<< []
         myBody = params.get(1); // dotimes [] >>>[]<<<
