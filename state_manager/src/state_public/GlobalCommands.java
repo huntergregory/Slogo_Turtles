@@ -18,12 +18,12 @@ public class GlobalCommands {
     }
 
     public void addCommand(String commandName, UserDefinedCommandInter newCommand) {
-        StoredUserDefinedCommand newCommand = new StoredUserDefinedCommand(args, body);
+        UserDefinedCommandInter newCommand = new StoredUserDefinedCommand(args, body);
         myStoredCommands.put(commandName, newCommand); // Store or overwrite command type
         myParamCounts.put(commandName, newCommand.getArgumentCount()); // Store param count for new command type
 
         if (myCreatedCommandInstances.containsKey(commandName)) { // Propagate changes through existing references to this command
-            for (StoredUserDefinedCommand command : myCreatedCommandInstances.get(commandName)) {
+            for (UserDefinedCommandInter command : myCreatedCommandInstances.get(commandName)) {
                 command.updateArgsAndBody(args, body); // Do not need to worry about conflicting param numbers between old and new since undef. vars eval to 0
             }
         }
@@ -38,7 +38,7 @@ public class GlobalCommands {
     }
 
     public CommandInter getCommand(String commandName, List<CommandInter> params) {
-        StoredUserDefinedCommand newCommand = new StoredUserDefinedCommand(myStoredCommands.get(commandName));
+        UserDefinedCommandInter newCommand = myStoredCommands.get(commandName).getNewInstance(); // Changed to work with interface
         newCommand.assignParams(params);
         myCreatedCommandInstances.putIfAbsent(commandName, new ArrayList<>());
         myCreatedCommandInstances.get(commandName).add(newCommand);

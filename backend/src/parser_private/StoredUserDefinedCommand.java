@@ -5,7 +5,6 @@ import parser_private.commands.control_commands.VariableCommand;
 import state_public.CommandInter;
 import state_public.UserDefinedCommandInter;
 
-import java.util.Collections;
 import java.util.List;
 
 public class StoredUserDefinedCommand extends Command implements UserDefinedCommandInter {
@@ -32,9 +31,13 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
         this.mySubCommands.add(myBody); // Since this can't happen in the constructor in this case
     }
 
-    public void updateArgsAndBody(ListCommand args, ListCommand body) {
+    public void updateArgsAndBody(CommandInter args, CommandInter body) {
         myArguments = args;
         myBody = body;
+    }
+
+    public UserDefinedCommandInter getNewInstance() {
+        return new StoredUserDefinedCommand(this);
     }
 
     @Override
