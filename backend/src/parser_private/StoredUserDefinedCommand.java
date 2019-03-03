@@ -2,7 +2,6 @@ package parser_private;
 
 import parser_private.commands.control_commands.ListCommand;
 import parser_private.commands.control_commands.VariableCommand;
-import parser_public.GlobalVariables;
 import state_public.CommandInter;
 import state_public.UserDefinedCommandInter;
 
@@ -37,7 +36,7 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
             // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
             /*myVariables.setVariable(countVarName, mySubCommands.get(i).execute());
               myBody.addVariables(myVariables);*/ //propagates var changes through body commands
-            GlobalVariables.getInstance().setVariable(varName, mySubCommands.get(i).execute()); // --- COMMENT THIS TO ENABLE LOCAL ---
+            myStateManager.getVariables().setVariable(varName, mySubCommands.get(i).execute()); // --- COMMENT THIS TO ENABLE LOCAL ---
         }
         return myBody.execute();
     }

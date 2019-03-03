@@ -1,11 +1,13 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
+import state_public.CommandInter;
+
 import java.util.List;
 
 public class AndCommand extends TwoParamBoolCommand {
 
-    public AndCommand(List<Command> params) {
+    public AndCommand(List<CommandInter> params) {
         super(params);
     }
 

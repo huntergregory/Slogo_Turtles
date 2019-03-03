@@ -1,11 +1,13 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
+import state_public.CommandInter;
+
 import java.util.List;
 
 public class EqualCommand extends TwoParamBoolCommand {
 
-    public EqualCommand(List<Command> params) {
+    public EqualCommand(List<CommandInter> params) {
         super(params);
     }
 

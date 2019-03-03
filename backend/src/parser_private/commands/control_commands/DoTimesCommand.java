@@ -25,7 +25,7 @@ public class DoTimesCommand extends Command {
             // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
             /*myVariables.setVariable(countVarName, i);
               myBody.addVariables(myVariables);*/ //propagates var changes through body parser_private.commands
-            GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
+            myStateManager.getVariables().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
             retval = myBody.execute();
         }
         return retval;

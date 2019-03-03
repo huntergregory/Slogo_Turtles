@@ -1,12 +1,13 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
+import state_public.CommandInter;
 
 import java.util.List;
 
 public class OrCommand extends TwoParamBoolCommand {
 
-    public OrCommand(List<Command> params) {
+    public OrCommand(List<CommandInter> params) {
         super(params);
     }
 

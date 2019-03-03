@@ -14,7 +14,7 @@ public class StateManager {
         }}
     );
 
-    private List<Turtle> myTurtles;
+    private TurtleManager myTurtleManager;
 
     private GlobalVariables myVariables;
     private GlobalCommands myCommands;
@@ -24,7 +24,7 @@ public class StateManager {
     private List<Palette> myPalettes;
 
     public StateManager() throws ParserException {
-        myTurtles = new ArrayList<>();
+        myTurtleManager = new TurtleManager();
         myVariables = new GlobalVariables();
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
@@ -34,8 +34,8 @@ public class StateManager {
         myInputTranslator = new InputTranslator();
     }
 
-    public List<Turtle> getTurtles() {
-        return myTurtles;
+    public TurtleManager getTurtleManager() {
+        return myTurtleManager;
     }
 
     public GlobalVariables getVariables() {
