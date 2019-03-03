@@ -27,6 +27,7 @@ public class Turtle {
     private DoubleProperty myHeadingProperty;
     private BooleanProperty myIsShowingProperty;
     private BooleanProperty myShouldEraseLinesProperty;
+    private BooleanProperty myIsActiveProperty;
     private Pen myPen;
 
     /**
@@ -46,6 +47,7 @@ public class Turtle {
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
+        myIsActiveProperty = new SimpleBooleanProperty();
     }
 
     private double getInBoundsNum(double num, double min, double max) {
@@ -82,6 +84,10 @@ public class Turtle {
         myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
+    public void setActive(boolean active) {
+        myIsActiveProperty.set(active);
+    }
+
 
     public IntegerProperty getTurtleIDProperty() {
         return myTurtleID;
@@ -103,6 +109,10 @@ public class Turtle {
         return myShouldEraseLinesProperty;
     }
 
+    public BooleanProperty getActiveProperty() {
+        return myIsActiveProperty;
+    }
+
     public Pen getPen() {
         return myPen;
     }
@@ -122,5 +132,9 @@ public class Turtle {
 
     public boolean getShowing() {
         return myIsShowingProperty.get();
+    }
+
+    public boolean getIsActive() {
+        return myIsActiveProperty.get();
     }
 }

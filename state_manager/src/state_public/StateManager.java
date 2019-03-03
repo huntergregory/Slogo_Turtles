@@ -11,7 +11,6 @@ public class StateManager {
 
 
     private TurtleManager myTurtleManager;
-
     private GlobalCommands myCommands;
     private GlobalVariables myVariables;
     private CommandHistory myCommandHistory;

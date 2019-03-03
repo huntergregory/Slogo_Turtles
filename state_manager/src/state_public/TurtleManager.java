@@ -5,16 +5,16 @@ import java.util.List;
 
 public class TurtleManager {
 
+    public static final String ID_VARNAME = "ID";
+
     private GlobalVariables myVariables;
     private PaletteManager myPaletteManager;
     private List<Turtle> myTurtles;
-    private List<Turtle> myActiveTurtles;
 
     public TurtleManager(GlobalVariables variables, PaletteManager paletteManager) {
         myVariables = variables;
         myPaletteManager = paletteManager;
         myTurtles = new ArrayList<>();
-        myActiveTurtles = new ArrayList<>();
     }
 
     public List<Turtle> getTurtles() {
@@ -30,12 +30,16 @@ public class TurtleManager {
     }
 
     public double runTurtleCommand(ReturnConsumer<Double, Turtle> func) {
-        double retval = 0;
-        for (Turtle turtle: myActiveTurtles) {
-            myVariables.setVariable("ID", turtle.getID());
-            retval = func.accept(turtle);
-        }
-        return retval;
+        var retvalWrapper = new Object() { double retval = 0; };
+        myTurtles.stream().filter(turtle -> turtle.getIsActive())
+                          .forEach((turtle) -> {
+                              myVariables.setVariable(ID_VARNAME, turtle.getID());
+                              retvalWrapper.retval = func.accept(turtle);
+                          });
+        return retvalWrapper.retval;
     }
 
+    public void setTurtleActive(int id) {
+        myTurtles.stream().filter(turtle -> turtle.getID() == id).findFirst().get().setActive(true);
+    }
 }
