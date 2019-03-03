@@ -1,27 +1,29 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
 import parser_private.Command;
+import parser_private.commands.turtle_commands.TurtleCommand;
+import state_public.CommandInter;
+import state_public.Turtle;
 
 import java.util.List;
 
 public class SetTowardsCommand extends TurtleCommand {
 
-    private Command myX;
-    private Command myY;
+    private CommandInter myX;
+    private CommandInter myY;
 
-    public SetTowardsCommand(List<Command> params) {
+    public SetTowardsCommand(List<CommandInter> params) {
         super(params);
         myX = params.get(0);
         myY = params.get(1);
     }
 
-    private double getNewHeading() {
-        double x = myX.execute();
-        double y = - myY.execute();
-        double deltaX = x - myManager.getX();
-        double deltaY = -(y - myManager.getY());
+    private double getNewHeading(Turtle turtle, double xTarget, double yTarget) {
+
+        double deltaX = xTarget - turtle.getPosition().getX();
+        double deltaY = -(yTarget - turtle.getPosition().getY());
         if (deltaX == 0 && deltaY == 0)
-            return myManager.getHeading();
+            return turtle.getHeading();
 
         double newHeading;
         if (deltaY == 0)
@@ -36,9 +38,14 @@ public class SetTowardsCommand extends TurtleCommand {
 
     @Override
     public double runCommand() {
-        double newHeading = getNewHeading();
-        double oldHeading = myManager.getHeading();
-        myManager.setHeading(newHeading);
-        return newHeading - oldHeading;
+        double xTarget = myX.execute();
+        double yTarget = - myY.execute();
+
+        return runTurtleCommand((turtle) -> {
+            double newHeading = getNewHeading(turtle, xTarget, yTarget);
+            double oldHeading = turtle.getHeading();
+            turtle.setHeading(newHeading);
+            return newHeading - oldHeading;
+        });
     }
 }
