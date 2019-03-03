@@ -7,7 +7,7 @@ import state_public.Turtle;
 
 import java.util.List;
 
-public abstract class MoveDistanceCommand extends Command {
+public abstract class MoveDistanceCommand extends TurtleCommand {
 
     private CommandInter myDistance;
     private boolean myGoingForward;
@@ -30,7 +30,7 @@ public abstract class MoveDistanceCommand extends Command {
 
     private void move(double distance) {
         System.out.println("Moving forward with distance " + distance);
-        myStateManager.getTurtleManager().runTurtleCommand((turtle) -> {
+        runTurtleCommand((turtle) -> {
             double heading = Math.toRadians(turtle.getHeading());
             double newX = turtle.getPosition().getX() + Math.sin(heading) * distance;
             double newY = turtle.getPosition().getY() - Math.cos(heading) * distance;

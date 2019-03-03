@@ -16,7 +16,7 @@ public class ClearScreenCommand extends MoveToPositionCommand {
     @Override
     public double runCommand() {
         double retval = super.runCommand();
-        myStateManager.getTurtleManager().runTurtleCommand((turtle) -> {
+        runTurtleCommand((turtle) -> {
             turtle.eraseLines();
             return 0.0;
         });

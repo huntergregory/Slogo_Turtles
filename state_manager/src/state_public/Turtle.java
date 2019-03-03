@@ -119,4 +119,8 @@ public class Turtle {
     public double getHeading() {
         return myHeadingProperty.get();
     }
+
+    public boolean getShowing() {
+        return myIsShowingProperty.get();
+    }
 }

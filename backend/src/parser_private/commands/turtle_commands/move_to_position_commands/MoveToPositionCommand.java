@@ -1,12 +1,13 @@
 package parser_private.commands.turtle_commands.move_to_position_commands;
 
 import parser_private.Command;
+import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
 import state_public.Turtle;
 
 import java.util.List;
 
-public class MoveToPositionCommand extends Command {
+public class MoveToPositionCommand extends TurtleCommand {
 
     CommandInter myNewX;
     CommandInter myNewY;
@@ -32,7 +33,7 @@ public class MoveToPositionCommand extends Command {
         double newX = myNewX.execute();
         double newY = myNewY.execute();
         System.out.println("new position: " + newX + " " + newY);
-        return myStateManager.getTurtleManager().runTurtleCommand((turtle) -> {
+        return runTurtleCommand((turtle) -> {
             double distanceTravelled = getCartesianDistance(turtle, newX, newY);
             turtle.setPosition(newX, - newY);
             return distanceTravelled;
