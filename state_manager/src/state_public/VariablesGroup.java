@@ -19,7 +19,7 @@ public class VariablesGroup {
         myVariableMap.put(variable, value);
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() { //TODO
         return myVariableMap.isEmpty();
     }
 

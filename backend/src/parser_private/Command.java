@@ -19,7 +19,7 @@ public abstract class Command implements CommandInter {
         this.mySubCommands = params;
     }
 
-    public void injectStateManager(StateManager stateManager) {
+    public void injectStateManager(StateManager stateManager) { //TODO
         this.myStateManager = stateManager;
     }
 
