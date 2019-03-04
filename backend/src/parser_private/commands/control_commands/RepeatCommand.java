@@ -1,14 +1,12 @@
 package parser_private.commands.control_commands;
 
-import parser_private.Command;
 import state_public.CommandInter;
 
 import java.util.List;
 
-public class RepeatCommand extends Command {
+public class RepeatCommand extends IterativeCommand {
 
     private CommandInter myTotalIter;
-    private CommandInter myBody;
 
     public RepeatCommand(List<CommandInter> params) {
         super(params);
@@ -20,15 +18,6 @@ public class RepeatCommand extends Command {
     public double runCommand() {
         int limit = (int) myTotalIter.execute();
         String countVarName = "repcount";
-        double retval = 0;
-
-        for (int i = 1; i <= limit; i++) { //TODO remove duplication across dotimes, for, repeat
-            // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
-            /*myVariables.setVariable(countVarName, i);
-              myBody.addVariables(myVariables);*/
-            myStateManager.getVariables().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
-            retval = myBody.execute();
-        }
-        return retval; // Final iteration
+        return iterate(countVarName, 1, limit, 1);
     }
 }
