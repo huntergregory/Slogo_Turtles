@@ -8,23 +8,28 @@ import java.util.Map;
 public class GlobalCommands {
 
     private Map<String, UserDefinedCommandInter> myStoredCommands;
+    private Map<UserDefinedCommandInter, CommandInter> myStoredArgs;
+    private Map<UserDefinedCommandInter, CommandInter> myStoredBodies;
     private Map<String, Integer> myParamCounts;
     private Map<String, List<UserDefinedCommandInter>> myCreatedCommandInstances;
 
     public GlobalCommands() {
         this.myStoredCommands = new HashMap<>();
+        this.myStoredArgs = new HashMap<>();
+        this.myStoredBodies = new HashMap<>();
         this.myParamCounts = new HashMap<>();
         this.myCreatedCommandInstances = new HashMap<>();
     }
 
-    public void addCommand(String commandName, UserDefinedCommandInter newCommand) {
-        UserDefinedCommandInter newCommand = new StoredUserDefinedCommand(args, body);
-        myStoredCommands.put(commandName, newCommand); // Store or overwrite command type
-        myParamCounts.put(commandName, newCommand.getArgumentCount()); // Store param count for new command type
+    public void addCommand(String commandName, CommandInter args, CommandInter body, UserDefinedCommandInter newCommand) { // Gets myArguments, myBody from ToCommand
+        myStoredCommands.put(commandName, newCommand);
+        myStoredArgs.put(newCommand, args); // Store or overwrite command type
+        myStoredBodies.put(newCommand, body);
+        myParamCounts.put(commandName, args.size()); // Store param count for new command type
 
         if (myCreatedCommandInstances.containsKey(commandName)) { // Propagate changes through existing references to this command
             for (UserDefinedCommandInter command : myCreatedCommandInstances.get(commandName)) {
-                command.updateArgsAndBody(args, body); // Do not need to worry about conflicting param numbers between old and new since undef. vars eval to 0
+                command.applyArgsAndBody(args, body); // Do not need to worry about conflicting param numbers between old and new since undef. vars eval to 0
             }
         }
     }
@@ -38,7 +43,10 @@ public class GlobalCommands {
     }
 
     public CommandInter getCommand(String commandName, List<CommandInter> params) {
-        UserDefinedCommandInter newCommand = myStoredCommands.get(commandName).getNewInstance(); // Changed to work with interface
+        UserDefinedCommandInter newCommand = myStoredCommands.get(commandName).getNewInstance(); // Will return UDC with null args and body
+        newCommand.applyArgsAndBody(myStoredArgs.get(myStoredCommands.get(commandName)),
+                myStoredBodies.get(myStoredCommands.get(commandName))); // Get stored args and body
+
         newCommand.assignParams(params);
         myCreatedCommandInstances.putIfAbsent(commandName, new ArrayList<>());
         myCreatedCommandInstances.get(commandName).add(newCommand);

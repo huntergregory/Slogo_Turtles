@@ -6,4 +6,7 @@ public interface CommandInter {
     double runCommand();
     void addVariables(VariablesGroup variables);
     double getVariable(String variable);
+    int size();
+    CommandInter getParam(int index);
+    void injectStateManager(StateManager stateManager);
 }

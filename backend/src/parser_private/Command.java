@@ -21,6 +21,11 @@ public abstract class Command implements CommandInter {
 
     public void injectStateManager(StateManager stateManager) { //TODO
         this.myStateManager = stateManager;
+        if (mySubCommands != null) {
+            for (CommandInter command : mySubCommands) {
+                command.injectStateManager(myStateManager);
+            }
+        }
     }
 
     // Execute constructed command
@@ -44,5 +49,13 @@ public abstract class Command implements CommandInter {
             return myVariables.getVariable(variable);
         }
         return myStateManager.getVariables().getVariable(variable);
+    }
+
+    public int size() {
+        return 1;
+    }
+
+    public CommandInter getParam(int index) {
+        return this;
     }
 }

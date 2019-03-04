@@ -29,7 +29,7 @@ public class CommandParser {
 
     public void parseAndRun(String program) throws ParserException {
         parseProgram(program);
-        myStateManager.getCommandHistory().addCommand(program);
+        //myStateManager.getCommandHistory().addCommand(program); //TODO fix
         runProgram();
     }
 
@@ -44,6 +44,7 @@ public class CommandParser {
         while (myChunkIndex < programChunks.size()) {
             CommandInter nextCommand = makeCommand(programChunks); // Get next command
             myCommandQueue.add(nextCommand);
+            nextCommand.injectStateManager(myStateManager);
             runProgram(); //Execute each full command as it's parsed to allow for To definition and call in same program (as separate commands)
         }
     }
@@ -133,5 +134,20 @@ public class CommandParser {
         while (myCommandQueue.size() > 0) {
             myCommandQueue.remove().execute();
         }
+    }
+
+    public static void main(String[] args) throws ParserException {
+        // ------ TEST CASES ------
+        CommandParser test = new CommandParser(new StateManager());
+        //test.parseAndRun("dotimes [ :john 5 ] [ fd :john ]"); //WORKS
+        //test.parseAndRun("set :bule 1 if :bule [ dotimes [ :john 5 ] [ fd :john ] ]"); //WORKS
+        //test.parseAndRun("dotimes [ :a 2 ] [ dotimes [ :b 4 ] [ fd :a fd :b ] ] fd sum :a :b"); //WORKS
+        //test.parseAndRun("set :a 4 set :b 7 fd :a fd :b fd sum :a :b fd :c"); //WORKS
+        //test.parseAndRun("repeat 5 [ fd :repcount repeat 2 [ fd :repcount ] ] fd :repcount"); //WORKS
+        //test.parseAndRun("fd not or 1 0"); //WORKS
+        //test.parseAndRun("1 and 4"); //THROWS PARSEREXCEPTION AS IT SHOULD
+        //test.parseAndRun("repeat 3 [ make :a sum 8 :repcount fd :a ] fd :a fd :repcount"); //WORKS
+        //test.parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
+        test.parseAndRun("to funca [ :a :b ] [ fd sum :a :b ] to funcb [ :a :b ] [ fd difference :a :b ] to funcc [ :a :b ] [ funca :a :b funcb :a :b ] funcc 9 2");
     }
 }

@@ -23,6 +23,7 @@ public class ListCommand extends Command {
         return mySubCommands.get(index);
     }
 
+    @Override
     public int size() {
         return mySubCommands.size();
     }

@@ -9,20 +9,13 @@ import java.util.List;
 
 public class StoredUserDefinedCommand extends Command implements UserDefinedCommandInter {
 
-    private ListCommand myArguments;
-    private ListCommand myBody;
+    private CommandInter myArguments;
+    private CommandInter myBody;
 
-    public StoredUserDefinedCommand(ListCommand args, ListCommand body) {
-        updateArgsAndBody(args, body);
-    }
+    public StoredUserDefinedCommand() {}
 
-    public StoredUserDefinedCommand(StoredUserDefinedCommand copy) { // COPY CONSTRUCTOR
-        updateArgsAndBody(copy.myArguments, copy.myBody);
-    }
-
-    @Override
-    public int getArgumentCount() {
-        return myArguments.size();
+    private StoredUserDefinedCommand(StoredUserDefinedCommand copy) { // COPY CONSTRUCTOR
+        applyArgsAndBody(copy.myArguments, copy.myBody);
     }
 
     @Override
@@ -31,7 +24,7 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
         this.mySubCommands.add(myBody); // Since this can't happen in the constructor in this case
     }
 
-    public void updateArgsAndBody(CommandInter args, CommandInter body) {
+    public void applyArgsAndBody(CommandInter args, CommandInter body) {
         myArguments = args;
         myBody = body;
     }
