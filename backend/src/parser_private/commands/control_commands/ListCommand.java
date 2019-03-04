@@ -4,7 +4,6 @@ import parser_private.Command;
 import state_public.CommandInter;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ListCommand extends Command {
 
@@ -19,6 +18,7 @@ public class ListCommand extends Command {
         return mySubCommands.get(mySubCommands.size() - 1).execute();
     }
 
+    @Override
     public CommandInter getParam(int index) {
         return mySubCommands.get(index);
     }

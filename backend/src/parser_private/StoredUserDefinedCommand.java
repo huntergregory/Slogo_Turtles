@@ -1,6 +1,5 @@
 package parser_private;
 
-import parser_private.commands.control_commands.ListCommand;
 import parser_private.commands.control_commands.VariableCommand;
 import state_public.CommandInter;
 import state_public.UserDefinedCommandInter;
@@ -24,11 +23,13 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
         this.mySubCommands.add(myBody); // Since this can't happen in the constructor in this case
     }
 
+    @Override
     public void applyArgsAndBody(CommandInter args, CommandInter body) {
         myArguments = args;
         myBody = body;
     }
 
+    @Override
     public UserDefinedCommandInter getNewInstance() {
         return new StoredUserDefinedCommand(this);
     }

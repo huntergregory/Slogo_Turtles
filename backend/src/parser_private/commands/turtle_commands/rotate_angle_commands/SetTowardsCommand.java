@@ -1,6 +1,5 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
-import parser_private.Command;
 import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
 import state_public.Turtle;
