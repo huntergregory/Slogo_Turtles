@@ -47,7 +47,8 @@ public class TurtleDisplay {
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
-        myTurtleManager.addTurtle(myWidth, myHeight);
+        myTurtleManager.setPanelWidthHeight(myWidth, myHeight);
+        myTurtleManager.addTurtle();
         myTurtleViews.add(new ImageTurtleView(0, getTurtleXOrigin(), getTurtleYOrigin(), myTurtlePane.getChildren()));
     }
 

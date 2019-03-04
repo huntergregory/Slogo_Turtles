@@ -22,6 +22,7 @@ public class TellCommand extends Command {
             turtleID = turtlesToTell.getParam(i).execute();
             myStateManager.getTurtleManager().setTurtleActive((int)turtleID);
         }
+        return turtleID;
     }
 
 

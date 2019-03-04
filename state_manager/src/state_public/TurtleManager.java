@@ -11,10 +11,18 @@ public class TurtleManager {
     private PaletteManager myPaletteManager;
     private List<Turtle> myTurtles;
 
+    private double panelWidth;
+    private double panelHeight;
+
     public TurtleManager(GlobalVariables variables, PaletteManager paletteManager) {
         myVariables = variables;
         myPaletteManager = paletteManager;
         myTurtles = new ArrayList<>();
+    }
+
+    public void setPanelWidthHeight(double width, double height) {
+        panelWidth = width;
+        panelHeight = height;
     }
 
     public List<Turtle> getTurtles() {
@@ -25,7 +33,7 @@ public class TurtleManager {
         return getActiveTurtles();
     }
 
-    public void addTurtle(double panelWidth, double panelHeight) {
+    public void addTurtle() {
         myTurtles.add(new Turtle(myTurtles.size(), panelWidth, panelHeight, myPaletteManager.getDefaultPenColor()));
     }
 
@@ -40,6 +48,12 @@ public class TurtleManager {
     }
 
     public void setTurtleActive(int id) {
-        myTurtles.stream().filter(turtle -> turtle.getID() == id).findFirst().get().setActive(true);
+        for (Turtle turtle: myTurtles) {
+            if (turtle.getID() == id) {
+                turtle.setActive(true);
+                return;
+            }
+        }
+        addTurtle();
     }
 }
