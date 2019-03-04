@@ -14,7 +14,7 @@ public class ForCommand extends IterativeCommand {
         myBody = params.get(1);
     }
 
-    public double runCommand() {
+    public double execute() {
         int start = (int) forParams.getParam(1).execute();
         int stop = (int) forParams.getParam(2).execute();
         int increment = (int) forParams.getParam(3).execute();

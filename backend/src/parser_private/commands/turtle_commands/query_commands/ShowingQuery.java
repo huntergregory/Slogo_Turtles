@@ -11,7 +11,7 @@ public class ShowingQuery extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> turtle.getShowing() ? 1.0 : 0.0);
     }
 }

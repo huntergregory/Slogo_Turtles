@@ -35,14 +35,11 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         int numRealParams = mySubCommands.size() - 1;
         for (int i = 0; i < Math.min(numRealParams, myArguments.size()); i++) {
             String varName = ((VariableCommand) myArguments.getParam(i)).getVariableName();
-            // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
-            /*myVariables.setVariable(countVarName, mySubCommands.get(i).execute());
-              myBody.addVariables(myVariables);*/ //propagates var changes through body commands
-            myStateManager.getVariables().setVariable(varName, mySubCommands.get(i).execute()); // --- COMMENT THIS TO ENABLE LOCAL ---
+            myStateManager.getVariables().setVariable(varName, mySubCommands.get(i).execute());
         }
         return myBody.execute();
     }

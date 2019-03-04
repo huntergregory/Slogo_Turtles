@@ -15,7 +15,7 @@ public class SetHeadingCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double newHeading = myNewHeading.execute();
         return runTurtleCommand((turtle) -> {
             double oldHeading = turtle.getHeading();

@@ -15,7 +15,7 @@ public class VariableCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
-        return getVariable(myName);
+    public double execute() {
+        return myStateManager.getVariables().getVariable(myName);
     }
 }

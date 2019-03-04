@@ -15,7 +15,7 @@ public class DoTimesCommand extends IterativeCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         int limit = (int) myParams.getParam(1).execute();
         String countVarName = ((VariableCommand) myParams.getParam(0)).getVariableName();
         return iterate(countVarName, 1, limit, 1);

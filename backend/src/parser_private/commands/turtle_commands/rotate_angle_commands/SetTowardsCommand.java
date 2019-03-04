@@ -36,7 +36,7 @@ public class SetTowardsCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double xTarget = myX.execute();
         double yTarget = - myY.execute();
 

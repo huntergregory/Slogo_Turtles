@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         for (int i = 0; i < mySubCommands.size() - 1; i++)
             mySubCommands.get(i).execute();
         return mySubCommands.get(mySubCommands.size() - 1).execute();

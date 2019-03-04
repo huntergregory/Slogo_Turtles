@@ -15,7 +15,7 @@ public class RepeatCommand extends IterativeCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         int limit = (int) myTotalIter.execute();
         String countVarName = "repcount";
         return iterate(countVarName, 1, limit, 1);

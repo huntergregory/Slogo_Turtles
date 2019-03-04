@@ -28,7 +28,7 @@ public class MoveToPositionCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double newX = myNewX.execute();
         double newY = myNewY.execute();
         System.out.println("new position: " + newX + " " + newY);

@@ -11,7 +11,7 @@ public class YPositionQuery extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> -turtle.getPosition().getY());
     }
 }

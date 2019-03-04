@@ -2,13 +2,11 @@ package parser_private;
 
 import state_public.CommandInter;
 import state_public.StateManager;
-import state_public.VariablesGroup;
 
 import java.util.List;
 
 public abstract class Command implements CommandInter {
 
-    protected VariablesGroup myVariables = new VariablesGroup();
     protected List<CommandInter> mySubCommands;
     protected StateManager myStateManager;
 
@@ -19,7 +17,7 @@ public abstract class Command implements CommandInter {
     }
 
     @Override
-    public void injectStateManager(StateManager stateManager) { //TODO
+    public void injectStateManager(StateManager stateManager) {
         this.myStateManager = stateManager;
         if (mySubCommands != null) {
             for (CommandInter command : mySubCommands) {
@@ -28,32 +26,8 @@ public abstract class Command implements CommandInter {
         }
     }
 
-    // Execute constructed command
     @Override
-    public final double execute() {
-        if (mySubCommands != null) {
-            for (CommandInter command : mySubCommands) {
-                command.addVariables(myVariables);
-            }
-        }
-        return runCommand();
-    }
-
-    @Override
-    public abstract double runCommand();
-
-    @Override
-    public void addVariables(VariablesGroup variables) {
-        this.myVariables = variables; // Share same VariablesGroup between subcommands (for local scope)
-    }
-
-    @Override
-    public double getVariable(String variable) {
-        if (myVariables.hasVariable(variable)) {
-            return myVariables.getVariable(variable);
-        }
-        return myStateManager.getVariables().getVariable(variable);
-    }
+    public abstract double execute();
 
     @Override
     public int size() {

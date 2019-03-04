@@ -14,7 +14,7 @@ abstract class IterativeCommand extends Command {
     }
 
     @Override
-    abstract public double runCommand();
+    abstract public double execute();
 
     double iterate(String countVarName, int start, int stop, int increment) {
         double rtn = 0;

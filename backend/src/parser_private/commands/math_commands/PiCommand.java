@@ -11,7 +11,7 @@ public class PiCommand extends Command {
         super(params);
     }
 
-    public double runCommand() {
+    public double execute() {
         return Math.PI;
     }
 }

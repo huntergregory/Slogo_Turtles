@@ -11,7 +11,7 @@ public class EqualCommand extends TwoParamBoolCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return (myExpression1.execute() == myExpression2.execute()) ? 1 : 0;
     }
 }

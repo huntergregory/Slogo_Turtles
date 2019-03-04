@@ -12,7 +12,7 @@ public class PenDownCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> {
             turtle.getPen().setIsDown(true);
             return 1.0;

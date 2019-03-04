@@ -18,7 +18,7 @@ public class ToCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         if (myBody.isEmpty()) {
             return 0.0; // Failed to create new user command because empty body
         }

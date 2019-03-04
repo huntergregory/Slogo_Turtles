@@ -19,7 +19,7 @@ public class IfElseCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         if (myExpression.execute() != 0) {
             return myTrue.execute();
         }

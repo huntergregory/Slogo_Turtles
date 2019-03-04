@@ -12,7 +12,7 @@ public class HideTurtleCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> {
             turtle.setShowing(false);
             return 0.0;

@@ -11,7 +11,7 @@ public class DifferenceCommand extends TwoParamMathCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return myExpression1.execute() - myExpression2.execute();
     }
 }

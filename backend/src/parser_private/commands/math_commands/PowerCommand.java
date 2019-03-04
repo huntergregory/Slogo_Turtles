@@ -10,7 +10,7 @@ public class PowerCommand extends TwoParamMathCommand {
         super(params);
     }
 
-    public double runCommand() {
+    public double execute() {
         return Math.pow(myExpression1.execute(), myExpression2.execute());
     }
 }

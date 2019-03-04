@@ -10,7 +10,7 @@ public class MinusCommand extends SingleParamMathCommand {
         super(params);
     }
 
-    public double runCommand() {
+    public double execute() {
         return -myExpression.execute();
     }
 }

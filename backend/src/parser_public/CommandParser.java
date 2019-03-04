@@ -3,9 +3,7 @@ package parser_public;
 import parser_private.CommandFactory;
 import parser_private.commands.control_commands.VariableCommand;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Scanner;
 import state_public.CommandInter;
 import state_public.ParserException;
@@ -13,7 +11,6 @@ import state_public.StateManager;
 
 public class CommandParser {
 
-    private Queue<CommandInter> myCommandQueue;
     private int myChunkIndex;
     private static final String WHITESPACE_REGEX = "\\s+";
 
@@ -24,17 +21,10 @@ public class CommandParser {
         myStateManager = stateManager;
         myCommandFactory = new CommandFactory(myStateManager);
         myChunkIndex = 0;
-        myCommandQueue = new LinkedList<>();
     }
 
+    // Parses and executes individual commands until overall input is empty
     public void parseAndRun(String program) throws ParserException {
-        parseProgram(program);
-        //myStateManager.getCommandHistory().addCommand(program); //TODO fix
-        runProgram();
-    }
-
-    // Loops until overall input is empty
-    private void parseProgram(String program) throws ParserException {
         if (program.isEmpty()) {
             throw new ParserException("Empty input string");
         }
@@ -43,22 +33,20 @@ public class CommandParser {
         myChunkIndex = 0;
         while (myChunkIndex < programChunks.size()) {
             CommandInter nextCommand = makeCommand(programChunks); // Get next command
-            myCommandQueue.add(nextCommand);
             nextCommand.injectStateManager(myStateManager);
-            runProgram(); //Execute each full command as it's parsed to allow for To definition and call in same program (as separate commands)
+            nextCommand.execute(); //Execute each full command as it's parsed to allow for To definition and call in same program (as separate commands)
         }
+        //myStateManager.getCommandHistory().addCommand(program); //TODO fix
     }
 
     private List<String> getChunks(String input) throws ParserException {
         List<String> chunks = new ArrayList<>();
-
         Scanner scan = new Scanner(input);
         while (scan.hasNextLine()) {
             String currentLine = scan.nextLine().toLowerCase().strip();
             if (myStateManager.getInputTranslator().isComment(currentLine) || currentLine.isEmpty()) {
                 continue;
             }
-
             String[] currentChunks = currentLine.split(WHITESPACE_REGEX);
             for (String s : currentChunks) {
                 chunks.add(myStateManager.getInputTranslator().getSymbol(s));
@@ -128,12 +116,6 @@ public class CommandParser {
             paramList.add(makeCommand(chunkList));
         }
         myChunkIndex++;
-    }
-
-    private void runProgram() {
-        while (myCommandQueue.size() > 0) {
-            myCommandQueue.remove().execute();
-        }
     }
 
     public static void main(String[] args) throws ParserException {

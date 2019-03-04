@@ -10,7 +10,7 @@ public class NaturalLogCommand extends SingleParamMathCommand {
         super(params);
     }
 
-    public double runCommand() {
+    public double execute() {
         return Math.log(myExpression.execute());
     }
 }
