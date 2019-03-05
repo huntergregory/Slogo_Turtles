@@ -32,6 +32,7 @@ public class CommandFactory {
     public CommandFactory(StateManager stateManager) throws ParserException {
         commandClassNames = new HashMap<>();
         commandParamCounts = new HashMap<>();
+        myStateManager = stateManager;
         initClassMaps();
     }
 
