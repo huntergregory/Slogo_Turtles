@@ -4,6 +4,7 @@ import parser_private.Command;
 import parser_private.commands.control_commands.ListCommand;
 import state_public.CommandInter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TellCommand extends Command {
@@ -18,10 +19,12 @@ public class TellCommand extends Command {
     @Override
     public double execute() {
         double turtleID = 0;
+        List<Integer> ids = new ArrayList<>();
         for (int i = 0; i < turtlesToTell.size(); i++) {
             turtleID = turtlesToTell.getParam(i).execute();
-            myStateManager.getTurtleManager().setTurtleActive((int)turtleID);
+            ids.add((int)turtleID);
         }
+        myStateManager.getTurtleManager().setTurtlesActive(ids);
         return turtleID;
     }
 
