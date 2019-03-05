@@ -1,20 +1,11 @@
-package parser_public;
-
-import parser_private.VariablesGroup;
+package state_public;
 
 public class GlobalVariables {
 
-    private static GlobalVariables instance;
     private VariablesGroup myVariables;
 
-    private GlobalVariables() {
+    public GlobalVariables() {
         this.myVariables = new VariablesGroup();
-    }
-
-    public static GlobalVariables getInstance() {
-        if (instance == null)
-            instance = new GlobalVariables();
-        return instance;
     }
 
     public double getVariable(String name) {

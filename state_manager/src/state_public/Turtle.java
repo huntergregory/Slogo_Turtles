@@ -1,11 +1,13 @@
-package parser_private;
+package state_public;
 
 import java.awt.geom.Point2D;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
@@ -13,36 +15,39 @@ import javafx.beans.property.SimpleObjectProperty;
  * Ensures the turtle stays in display width and height.
  * X and Y properties reflect the coordinates of the turtle view's top left corner.
  * @author Hunter Gregory
+ * @author David Miron
  */
 public class Turtle {
 
-    private int myTurtleID;
     private double myPaneWidth;
     private double myPaneHeight;
 
+    private IntegerProperty myTurtleID;
     private ObjectProperty<Point2D> myPositionProperty;
-    private SimpleDoubleProperty myHeadingProperty;
-    private SimpleBooleanProperty myIsShowingProperty;
-    private SimpleBooleanProperty myPenIsDownProperty;
-    private SimpleBooleanProperty myShouldEraseLinesProperty;
+    private DoubleProperty myHeadingProperty;
+    private BooleanProperty myIsShowingProperty;
+    private BooleanProperty myShouldEraseLinesProperty;
+    private BooleanProperty myIsActiveProperty;
+    private Pen myPen;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
      */
-    public Turtle(int turtID, double pwidth, double pheight) {
-        myTurtleID = turtID;
+    public Turtle(int turtleID, double pwidth, double pheight, Palette penColor) {
         myPaneWidth = pwidth;
         myPaneHeight = pheight;
-        instantiateProperties();
+        myPen = new Pen(penColor);
+        instantiateProperties(turtleID);
         setDefaultState();
     }
 
-    private void instantiateProperties() {
+    private void instantiateProperties(int turtleID) {
+        myTurtleID = new SimpleIntegerProperty(turtleID);
         myPositionProperty = new SimpleObjectProperty<>();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
-        myPenIsDownProperty = new SimpleBooleanProperty();
         myShouldEraseLinesProperty = new SimpleBooleanProperty();
+        myIsActiveProperty = new SimpleBooleanProperty();
     }
 
     private double getInBoundsNum(double num, double min, double max) {
@@ -57,7 +62,6 @@ public class Turtle {
         setPosition(0,0);
         setHeading(0);
         setShowing(true);
-        setPenDown(true);
         myShouldEraseLinesProperty.set(false);
     }
 
@@ -75,16 +79,17 @@ public class Turtle {
         myIsShowingProperty.set(bool);
     }
 
-    public void setPenDown(boolean bool) {
-        myPenIsDownProperty.set(bool);
-    }
-
     public void eraseLines() {
         myShouldEraseLinesProperty.set(true);
         myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
-    public int getTurtleID() {
+    public void setActive(boolean active) {
+        myIsActiveProperty.set(active);
+    }
+
+
+    public IntegerProperty getTurtleIDProperty() {
         return myTurtleID;
     }
 
@@ -96,15 +101,40 @@ public class Turtle {
         return myHeadingProperty;
     }
 
-    public BooleanProperty getDownProperty() {
-        return myPenIsDownProperty;
-    }
-
     public BooleanProperty getShowingProperty() {
         return myIsShowingProperty;
     }
 
     public BooleanProperty getEraseProperty() {
         return myShouldEraseLinesProperty;
+    }
+
+    public BooleanProperty getActiveProperty() {
+        return myIsActiveProperty;
+    }
+
+    public Pen getPen() {
+        return myPen;
+    }
+
+
+    public int getID() {
+        return myTurtleID.get();
+    }
+
+    public Point2D getPosition() {
+        return myPositionProperty.get();
+    }
+
+    public double getHeading() {
+        return myHeadingProperty.get();
+    }
+
+    public boolean getShowing() {
+        return myIsShowingProperty.get();
+    }
+
+    public boolean getIsActive() {
+        return myIsActiveProperty.get();
     }
 }

@@ -64,23 +64,21 @@ MakeUserInstruction=control_commands.ToCommand:3
 #
 # Display Commands
 #
-SetBackground=display_commands.SetBackgroundCommand:0
-SetPenColor=display_commands.SetPenColorCommand:0
-SetPenSize=display_commands.SetPenSizeCommand:0
-SetShape=display_commands.SetShapeCommand:0
-SetPalette=display_commands.SetPaletteCommand:0
+SetBackground=display_commands.SetBackgroundCommand:1
+SetPenColor=display_commands.SetPenColorCommand:1
+SetPenSize=display_commands.SetPenSizeCommand:1
+SetShape=display_commands.SetShapeCommand:1
+SetPalette=display_commands.SetPaletteCommand:4
 GetPenColor=display_commands.GetPenColorCommand:0
 GetShape=display_commands.GetShapeCommand:0
-Stamp=display_commands.StampCommand:0
-ClearStamps=display_commands.ClearStampsCommand:0
 #
 # Multiple Turtle Commands
 #
 ID=multiple_turtle_commands.IDCommand:0
 Turtles=multiple_turtle_commands.TurtlesCommand:0
-Tell=multiple_turtle_commands.TellCommand:0
-Ask=multiple_turtle_commands.AskCommand:0
-AskWith=multiple_turtle_commands.AskWithCommand:0
+Tell=multiple_turtle_commands.TellCommand:1
+Ask=multiple_turtle_commands.AskCommand:2
+AskWith=multiple_turtle_commands.AskWithCommand:2
 #
 # Custom Commands
 #

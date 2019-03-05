@@ -5,13 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
 import parser_public.CommandParser;
-import parser_public.ParserException;
-import javafx.event.ActionEvent;
 
 import java.awt.*;
 import java.net.URL;
+
+import state_public.ParserException;
+
 import java.util.ArrayList;
+
 
 public class CommandTerminal {
     public static final double PARSE_BUTTON_HEIGHT = 50;
@@ -26,8 +29,9 @@ public class CommandTerminal {
     private Button myHelpButton;
     private TextArea myCommandInput;
     private String myCommand;
+    private CommandParser myBackend;
 
-    public CommandTerminal() {
+    public CommandTerminal(CommandParser backend) {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
         myUndoButton = new Button("UNDO");
@@ -46,7 +50,7 @@ public class CommandTerminal {
         myCommandInput.setText("");
         myCommandInput.setPromptText(PROMPT);
         try {
-            CommandParser.getInstance().parseAndRun(myCommand);
+            myBackend.parseAndRun(myCommand);
         }
         catch (ParserException e) {
             myCommandInput.setPromptText("--" + e.getMessage() + "-- Enter a valid command");

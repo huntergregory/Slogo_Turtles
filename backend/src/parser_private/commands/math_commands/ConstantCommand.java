@@ -12,7 +12,7 @@ public class ConstantCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return this.value;
     }
 }

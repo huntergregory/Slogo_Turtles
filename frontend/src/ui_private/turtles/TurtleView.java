@@ -7,9 +7,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.paint.Color;
-import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import state_public.TurtleManager;
 
 import java.awt.geom.Point2D;
 
@@ -23,7 +23,7 @@ public abstract class TurtleView {
     static final double HEIGHT = 20;
     private static final String CSS_TAG = "turtle";
 
-    Node myNode; //must be accessed by subclass
+    protected Node myNode; //must be accessed by subclass
 
     private int myID;
     private ObservableList myModifiableList;
@@ -90,10 +90,10 @@ public abstract class TurtleView {
     }
 
     private void bindProperties() {
-        var manager = TurtleManager.getInstance();
-        myPositionProperty.bind(manager.getPositionProperty(myID));
-        myHeadingProperty.bind(manager.getHeadingProperty(myID));
-        myIsShowingProperty.bind(manager.getShowingProperty(myID));
+        //var manager = TurtleManager.getInstance();
+        //myPositionProperty.bind(manager.getPositionProperty(myID));
+        //myHeadingProperty.bind(manager.getHeadingProperty(myID));
+        //myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
     private void updatePosition(Point2D oldPoint, Point2D newPoint) {

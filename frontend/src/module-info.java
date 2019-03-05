@@ -6,4 +6,5 @@ module frontend {
     requires java.desktop;
 
     requires backend;
+    requires state_manager;
 }

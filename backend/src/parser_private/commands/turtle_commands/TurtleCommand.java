@@ -1,18 +1,20 @@
 package parser_private.commands.turtle_commands;
 
 import parser_private.Command;
-import parser_public.TurtleManager;
+import state_public.CommandInter;
+import state_public.ReturnConsumer;
+import state_public.Turtle;
 
 import java.util.List;
 
-/**
- * Class created solely to prevent repeatedly calling getInstance on TurtleManager.
- * @author Hunter Gregory
- */
 public abstract class TurtleCommand extends Command {
-    protected TurtleManager myManager = TurtleManager.getInstance();
 
-    public TurtleCommand(List<Command> params) {
+    public TurtleCommand(List<CommandInter> params) {
         super(params);
     }
+
+    protected double runTurtleCommand(ReturnConsumer<Double, Turtle> func) {
+        return myStateManager.getTurtleManager().runTurtleCommand(func);
+    }
+
 }

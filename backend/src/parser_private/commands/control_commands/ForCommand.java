@@ -1,34 +1,24 @@
 package parser_private.commands.control_commands;
 
-import parser_private.Command;
-import parser_public.GlobalVariables;
+import state_public.CommandInter;
+
 import java.util.List;
 
-public class ForCommand extends Command {
+public class ForCommand extends IterativeCommand {
 
-    ListCommand forParams;
-    Command myBody;
+    private ListCommand forParams;
 
-    public ForCommand(List<Command> params) {
+    public ForCommand(List<CommandInter> params) {
         super(params);
         forParams = (ListCommand)params.get(0);
         myBody = params.get(1);
     }
 
-    public double runCommand() {
+    public double execute() {
         int start = (int) forParams.getParam(1).execute();
         int stop = (int) forParams.getParam(2).execute();
         int increment = (int) forParams.getParam(3).execute();
         String countVarName = ((VariableCommand) forParams.getParam(0)).getVariableName();
-        double retval = 0;
-
-        for (int i = start; i <= stop; i += increment) { //TODO remove duplication across dotimes, for, repeat
-            // --- UNCOMMENT TO ENABLE LOCAL VARIABLE SCOPE ---
-            /*myVariables.setVariable(countVarName, i);
-              myBody.addVariables(myVariables);*/ //propagates var changes through body commands
-            GlobalVariables.getInstance().setVariable(countVarName, i); // --- COMMENT THIS TO ENABLE LOCAL ---
-            retval = myBody.execute();
-        }
-        return retval;
+        return iterate(countVarName, start, stop, increment);
     }
 }

@@ -1,12 +1,11 @@
 package ui_private.displays;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import parser_public.TurtleManager;
+import state_public.TurtleManager;
 import ui_private.turtles.ImageTurtleView;
 import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
@@ -24,17 +23,18 @@ public class TurtleDisplay {
     private LineStroke myPenStroke;
     private Image myImage;
 
-
+    private TurtleManager myTurtleManager;
     private Pane myTurtlePane;
     private ArrayList<TurtleView> myTurtleViews; //TODO: call that class TurtleView
     private double myWidth;
     private double myHeight;
 
-    public TurtleDisplay(double width, double height) {
+    public TurtleDisplay(TurtleManager turtleManager, double width, double height) {
+        myTurtleManager = turtleManager;
         myWidth = width;
         myHeight = height;
         initializePane();
-        initializeTurtles();
+        //initializeTurtles();
     }
 
     private void initializePane() {
@@ -48,8 +48,10 @@ public class TurtleDisplay {
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
-        TurtleManager.getInstance().initialize(myWidth, myHeight);
         myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(),getTurtleXOrigin(), getTurtleYOrigin()));
+        myTurtleManager.setPanelWidthHeight(myWidth, myHeight);
+        myTurtleManager.addTurtle();
+        myTurtleViews.add(new ImageTurtleView(0, getTurtleXOrigin(), getTurtleYOrigin(), myTurtlePane.getChildren()));
     }
 
     public void setBackgroundColor(Color color) {

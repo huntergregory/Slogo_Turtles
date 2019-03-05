@@ -1,4 +1,4 @@
-package parser_private;
+package state_public;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,11 +19,11 @@ public class VariablesGroup {
         myVariableMap.put(variable, value);
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() { //TODO
         return myVariableMap.isEmpty();
     }
 
-    boolean hasVariable(String variable) {
+    public boolean hasVariable(String variable) {
         return myVariableMap.containsKey(variable);
     }
 

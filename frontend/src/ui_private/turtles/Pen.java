@@ -2,7 +2,6 @@ package ui_private.turtles;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.paint.Color;
-import parser_public.TurtleManager;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 import ui_private.displays.TurtleDisplay;
@@ -35,9 +34,9 @@ public class Pen {
     }
 
     private void bindProperties() {
-        var manager = TurtleManager.getInstance();
-        myIsDown.bind(manager.getDownProperty(myID));
-        myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
+        //var manager = TurtleManager.getInstance();
+        //myIsDown.bind(manager.getDownProperty(myID));
+        //myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
     void draw(double oldX, double oldY, double newX, double newY) {

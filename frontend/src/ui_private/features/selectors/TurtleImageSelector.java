@@ -1,15 +1,6 @@
 package ui_private.features.selectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import parser_public.TurtleManager;
-import ui_private.displays.TurtleDisplay;
-
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class TurtleImageSelector extends Selector {
     private static final String TITLE = "Turtle Image";
