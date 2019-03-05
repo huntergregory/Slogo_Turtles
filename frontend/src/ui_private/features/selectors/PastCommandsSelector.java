@@ -4,8 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import parser_public.InputTranslator;
-import parser_public.ParserException;
 import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {

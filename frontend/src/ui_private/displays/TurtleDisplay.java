@@ -34,7 +34,7 @@ public class TurtleDisplay {
         myWidth = width;
         myHeight = height;
         initializePane();
-        //initializeTurtles();
+        initializeTurtles();
     }
 
     private void initializePane() {

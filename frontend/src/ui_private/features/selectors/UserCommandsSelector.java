@@ -4,8 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import parser_public.InputTranslator;
-import parser_public.ParserException;
 
 public class UserCommandsSelector extends Selector {
     private static final String TITLE = "User Commands";

@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import parser_public.CommandParser;
-import parser_public.InputTranslator;
-import parser_public.ParserException;
 
 public class MoveTurtleSelector extends Selector {
     private static final String TITLE = "Move Turtle";
@@ -31,13 +29,13 @@ public class MoveTurtleSelector extends Selector {
         }
         else if (item.equals("LT")) {
             myCommand = "lt 90 fd 50";
-        }
+        }/*
         try {
             CommandParser.getInstance().parseAndRun(myCommand);
         }
         catch (ParserException e) {
 
-        }
+        }*/ //FIXME
     }
 
 
