@@ -2,18 +2,18 @@ package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
 import state_public.CommandInter;
-import state_public.UserDefinedCommandInter;
+import state_public.UserCommandInter;
 
 import java.util.List;
 
-public class StoredUserDefinedCommand extends Command implements UserDefinedCommandInter {
+public class UserCommand extends Command implements UserCommandInter {
 
     private CommandInter myArguments;
     private CommandInter myBody;
 
-    public StoredUserDefinedCommand() {}
+    public UserCommand() {}
 
-    private StoredUserDefinedCommand(StoredUserDefinedCommand copy) { // COPY CONSTRUCTOR
+    private UserCommand(UserCommand copy) { // COPY CONSTRUCTOR
         applyArgsAndBody(copy.myArguments, copy.myBody);
     }
 
@@ -30,8 +30,8 @@ public class StoredUserDefinedCommand extends Command implements UserDefinedComm
     }
 
     @Override
-    public UserDefinedCommandInter getNewInstance() {
-        return new StoredUserDefinedCommand(this);
+    public UserCommandInter getNewInstance() {
+        return new UserCommand(this);
     }
 
     @Override

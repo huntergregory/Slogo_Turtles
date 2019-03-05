@@ -90,10 +90,10 @@ public abstract class TurtleView {
     }
 
     private void bindProperties() {
-        var manager = TurtleManager.getInstance();
-        myPositionProperty.bind(manager.getPositionProperty(myID));
-        myHeadingProperty.bind(manager.getHeadingProperty(myID));
-        myIsShowingProperty.bind(manager.getShowingProperty(myID));
+        //var manager = TurtleManager.getInstance();
+        //myPositionProperty.bind(manager.getPositionProperty(myID));
+        //myHeadingProperty.bind(manager.getHeadingProperty(myID));
+        //myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
     private void updatePosition(Point2D oldPoint, Point2D newPoint) {
