@@ -15,7 +15,7 @@ public class InputTranslator {
     private static final String RESOURCES_DIRECTORY = "languages/";
 
     public InputTranslator() throws ParserException {
-        changeLanguage("English");
+        changeLanguage("French");
     }
 
     public void changeLanguage(String language) throws ParserException {
@@ -79,7 +79,7 @@ public class InputTranslator {
         return matches("Constant", text);
     }
 
-    public boolean isGroup(String text) {
+    public boolean isGroupStart(String text) {
         return text.equals("GroupStart");
     }
 

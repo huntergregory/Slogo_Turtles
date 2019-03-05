@@ -59,7 +59,7 @@ public class CommandParser {
     // Loops until individual command hierarchy is satisfied
     private CommandInter makeCommand(List<String> input) throws ParserException {
         String currentChunk = input.get(myChunkIndex);                          // Advance chunk
-        if (myStateManager.getInputTranslator().isGroup(currentChunk)) {
+        if (myStateManager.getInputTranslator().isGroupStart(currentChunk)) {
             myChunkIndex++;
             return groupParse(input);
         }
@@ -92,7 +92,7 @@ public class CommandParser {
         return myStateManager.getCommands().getCommand(command, params);
     }
 
-    private CommandInter groupParse(List<String> input) throws ParserException { //TODO verify operation with other langs
+    private CommandInter groupParse(List<String> input) throws ParserException {
         String baseCommand = input.get(myChunkIndex);
         validateCommand(baseCommand);
         List<CommandInter> params;
@@ -183,5 +183,6 @@ public class CommandParser {
         //test.parseAndRun("fd 50 fd ( sin 90 5 90 ) fd 42"); //WORKS
         //test.parseAndRun("fd ( or 0 1 0 )"); //WORKS
         //test.parseAndRun("fd ( product 2 31 3 )"); //WORKS
+        //test.parseAndRun("dev ( egal? 3 3 ( dev 3 ) ) dev 50"); //WORKS
     }
 }
