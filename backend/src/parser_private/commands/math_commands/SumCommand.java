@@ -4,7 +4,7 @@ import state_public.CommandInter;
 
 import java.util.List;
 
-public class SumCommand extends TwoParamMathCommand {
+public class SumCommand extends MultiParamMathCommand {
 
     public SumCommand(List<CommandInter> params) {
         super(params);
@@ -12,6 +12,10 @@ public class SumCommand extends TwoParamMathCommand {
 
     @Override
     public double execute() {
-        return myExpression1.execute() + myExpression2.execute();
+        double rtn = 0;
+        for (CommandInter exp : myExpressions) {
+            rtn += exp.execute();
+        }
+        return rtn;
     }
 }

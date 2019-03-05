@@ -4,7 +4,7 @@ import state_public.CommandInter;
 
 import java.util.List;
 
-public class RemainderCommand extends TwoParamMathCommand {
+public class RemainderCommand extends MultiParamMathCommand {
 
     public RemainderCommand(List<CommandInter> params) {
         super(params);
@@ -12,6 +12,13 @@ public class RemainderCommand extends TwoParamMathCommand {
 
     @Override
     public double execute() {
-        return myExpression1.execute() % myExpression2.execute();
+        if (myExpressions.isEmpty()) {
+            return 0;
+        }
+        double rtn = myExpressions.get(0).execute();
+        for (int i = 1; i < myExpressions.size(); i++) {
+            rtn %= myExpressions.get(i).execute();
+        }
+        return rtn;
     }
 }
