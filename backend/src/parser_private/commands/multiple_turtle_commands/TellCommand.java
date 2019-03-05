@@ -7,7 +7,7 @@ import state_public.CommandInter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TellCommand extends Command {
+public class TellCommand extends MultipleTurtlesCommand {
 
     private ListCommand turtlesToTell;
 
@@ -18,14 +18,7 @@ public class TellCommand extends Command {
 
     @Override
     public double execute() {
-        double turtleID = 0;
-        List<Integer> ids = new ArrayList<>();
-        for (int i = 0; i < turtlesToTell.size(); i++) {
-            turtleID = turtlesToTell.getParam(i).execute();
-            ids.add((int)turtleID);
-        }
-        myStateManager.getTurtleManager().setTurtlesActive(ids);
-        return turtleID;
+        return tell(turtlesToTell);
     }
 
 

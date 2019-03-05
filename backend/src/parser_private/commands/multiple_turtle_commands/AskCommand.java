@@ -7,7 +7,7 @@ import state_public.CommandInter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AskCommand extends Command {
+public class AskCommand extends MultipleTurtlesCommand {
 
     private ListCommand myTurtles;
     private ListCommand myCommands;
@@ -20,13 +20,7 @@ public class AskCommand extends Command {
 
     @Override
     public double execute() {
-        new TellCommand(new ArrayList<>() {{
-            add(myTurtles);
-        }}).execute();
-
-        double output = myCommands.execute();
-        myStateManager.getTurtleManager().revertActiveTurtles();
-        return output;
+        return ask(myTurtles, myCommands);
     }
 
 
