@@ -1,6 +1,5 @@
 package parser_private.commands.turtle_commands.query_commands;
 
-import parser_private.Command;
 import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
 
@@ -12,7 +11,7 @@ public class HeadingQuery extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> turtle.getHeading());
     }
 }

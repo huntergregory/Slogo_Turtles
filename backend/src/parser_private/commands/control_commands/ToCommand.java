@@ -1,7 +1,7 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_private.StoredUserDefinedCommand;
+import parser_private.UserCommand;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ public class ToCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         if (myBody.isEmpty()) {
             return 0.0; // Failed to create new user command because empty body
         }
-        myStateManager.getCommands().addCommand(myName.getVariableName(), new StoredUserDefinedCommand(myArguments, myBody));
+        myStateManager.getCommands().addCommand(myName.getVariableName(), myArguments, myBody, new UserCommand());
         return 1.0; // Successful creation
     }
 }

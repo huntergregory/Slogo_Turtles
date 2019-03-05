@@ -12,7 +12,7 @@ public class TurtlesCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return myStateManager.getTurtleManager().getTurtles().size();
     }
 

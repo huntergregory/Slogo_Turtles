@@ -1,6 +1,5 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
-import parser_private.Command;
 import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
 
@@ -26,7 +25,7 @@ public abstract class RotateAngleCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double angle = getAngle();
         System.out.println("Rotating " + angle);
         return runTurtleCommand((turtle) -> {

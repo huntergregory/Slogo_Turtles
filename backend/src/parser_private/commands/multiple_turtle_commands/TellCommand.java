@@ -16,7 +16,7 @@ public class TellCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double turtleID = 0;
         for (int i = 0; i < turtlesToTell.size(); i++) {
             turtleID = turtlesToTell.getParam(i).execute();

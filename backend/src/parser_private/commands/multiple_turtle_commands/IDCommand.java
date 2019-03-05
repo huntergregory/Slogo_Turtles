@@ -13,8 +13,8 @@ public class IDCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
-        return getVariable(TurtleManager.ID_VARNAME);
+    public double execute() {
+        return myStateManager.getVariables().getVariable(TurtleManager.ID_VARNAME);
     }
 
 }

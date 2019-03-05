@@ -11,7 +11,7 @@ public class PenDownQuery extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         return runTurtleCommand((turtle) -> turtle.getPen().getIsDown() ? 1.0 : 0.0);
     }
 }

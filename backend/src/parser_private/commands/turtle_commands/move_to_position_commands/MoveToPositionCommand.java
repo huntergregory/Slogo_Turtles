@@ -1,6 +1,5 @@
 package parser_private.commands.turtle_commands.move_to_position_commands;
 
-import parser_private.Command;
 import parser_private.commands.turtle_commands.TurtleCommand;
 import state_public.CommandInter;
 import state_public.Turtle;
@@ -29,7 +28,7 @@ public class MoveToPositionCommand extends TurtleCommand {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         double newX = myNewX.execute();
         double newY = myNewY.execute();
         System.out.println("new position: " + newX + " " + newY);

@@ -17,7 +17,7 @@ public class IfCommand extends Command {
     }
 
     @Override
-    public double runCommand() {
+    public double execute() {
         if (myExpression.execute() != 0) {
             return myBody.execute();
         }

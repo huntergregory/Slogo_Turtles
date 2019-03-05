@@ -1,6 +1,5 @@
 package parser_private.commands.math_commands;
 
-import parser_private.Command;
 import state_public.CommandInter;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public class PowerCommand extends TwoParamMathCommand {
         super(params);
     }
 
-    public double runCommand() {
+    public double execute() {
         return Math.pow(myExpression1.execute(), myExpression2.execute());
     }
 }

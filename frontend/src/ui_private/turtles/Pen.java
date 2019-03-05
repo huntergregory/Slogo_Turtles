@@ -34,9 +34,9 @@ public class Pen {
     }
 
     private void bindProperties() {
-        var manager = TurtleManager.getInstance();
-        myIsDown.bind(manager.getDownProperty(myID));
-        myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
+        //var manager = TurtleManager.getInstance();
+        //myIsDown.bind(manager.getDownProperty(myID));
+        //myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 
     void draw(double oldX, double oldY, double newX, double newY) {
