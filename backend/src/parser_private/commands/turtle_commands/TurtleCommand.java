@@ -5,6 +5,7 @@ import state_public.CommandInter;
 import state_public.Turtle;
 
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class TurtleCommand extends Command {
 
@@ -12,7 +13,7 @@ public abstract class TurtleCommand extends Command {
         super(params);
     }
 
-    protected double runTurtleCommand(ReturnConsumer<Double, Turtle> func) {
+    protected double runTurtleCommand(Function<Turtle, Double> func) {
         return myStateManager.getTurtleManager().runTurtleCommand(func);
     }
 
