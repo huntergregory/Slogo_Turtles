@@ -31,11 +31,19 @@ public abstract class Command implements CommandInter {
 
     @Override
     public int size() {
-        return 1;
+        if (mySubCommands != null) {
+            return mySubCommands.size();
+        }
+        return 0;
     }
 
     @Override
     public CommandInter getParam(int index) {
         return this;
+    }
+
+    @Override
+    public List<CommandInter> getParams() {
+        return mySubCommands;
     }
 }

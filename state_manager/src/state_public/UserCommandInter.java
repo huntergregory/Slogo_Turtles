@@ -8,5 +8,7 @@ public interface UserCommandInter extends CommandInter {
 
     void applyArgsAndBody(CommandInter args, CommandInter Body);
 
+    int size();
+
     UserCommandInter getNewInstance();
 }

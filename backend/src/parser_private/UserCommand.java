@@ -35,6 +35,11 @@ public class UserCommand extends Command implements UserCommandInter {
     }
 
     @Override
+    public int size() {
+        return myArguments.size();
+    }
+
+    @Override
     public double execute() {
         int numRealParams = mySubCommands.size() - 1;
         for (int i = 0; i < Math.min(numRealParams, myArguments.size()); i++) {
