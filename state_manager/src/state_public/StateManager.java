@@ -56,4 +56,8 @@ public class StateManager {
         return myPaletteManager;
     }
 
+    public void setBackgroundColor(int index) {
+
+    }
+
 }
