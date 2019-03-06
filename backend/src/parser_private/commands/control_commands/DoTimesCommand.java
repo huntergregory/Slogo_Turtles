@@ -1,6 +1,6 @@
 package parser_private.commands.control_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class DoTimesCommand extends IterativeCommand {
 
     private ListCommand myParams;
 
-    public DoTimesCommand(List<CommandInter> params) {
+    public DoTimesCommand(List<ICommand> params) {
         super(params);
         myParams = (ListCommand) params.get(0);
         myBody = params.get(1);

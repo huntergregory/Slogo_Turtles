@@ -1,17 +1,17 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class IfElseCommand extends Command {
 
-    private CommandInter myExpression;
-    private CommandInter myTrue;
-    private CommandInter myFalse;
+    private ICommand myExpression;
+    private ICommand myTrue;
+    private ICommand myFalse;
 
-    public IfElseCommand(List<CommandInter> params) {
+    public IfElseCommand(List<ICommand> params) {
         super(params);
         myExpression = params.get(0);
         myTrue = params.get(1);

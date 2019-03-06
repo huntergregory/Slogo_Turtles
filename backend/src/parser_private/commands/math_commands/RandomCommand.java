@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class RandomCommand extends SingleParamMathCommand {
 
-    public RandomCommand(List<CommandInter> params) {
+    public RandomCommand(List<ICommand> params) {
         super(params);
     }
 

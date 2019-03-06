@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class CosineCommand extends SingleParamMathCommand {
 
-    public CosineCommand(List<CommandInter> params) {
+    public CosineCommand(List<ICommand> params) {
         super(params);
     }
 

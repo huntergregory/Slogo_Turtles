@@ -1,12 +1,12 @@
 package parser_private.commands.boolean_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class GreaterThanCommand extends TwoParamBoolCommand {
 
-    public GreaterThanCommand(List<CommandInter> params) {
+    public GreaterThanCommand(List<ICommand> params) {
         super(params);
     }
 

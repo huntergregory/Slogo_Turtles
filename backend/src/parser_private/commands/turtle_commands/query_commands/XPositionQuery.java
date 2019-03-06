@@ -1,12 +1,12 @@
 package parser_private.commands.turtle_commands.query_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class XPositionQuery extends TurtleCommand {
-    public XPositionQuery(List<CommandInter> params) {
+    public XPositionQuery(List<ICommand> params) {
         super(params);
     }
 

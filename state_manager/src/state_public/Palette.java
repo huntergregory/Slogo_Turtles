@@ -29,4 +29,12 @@ public class Palette {
     public SimpleObjectProperty<Color> getColorProperty() {
         return myColor;
     }
+
+    public int getId() {
+        return myId.get();
+    }
+
+    public Color getColor() {
+        return myColor.get();
+    }
 }

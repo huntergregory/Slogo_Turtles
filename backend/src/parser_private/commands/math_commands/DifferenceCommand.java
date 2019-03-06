@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class DifferenceCommand extends MultiParamMathCommand {
 
-    public DifferenceCommand(List<CommandInter> params) {
+    public DifferenceCommand(List<ICommand> params) {
         super(params);
     }
 

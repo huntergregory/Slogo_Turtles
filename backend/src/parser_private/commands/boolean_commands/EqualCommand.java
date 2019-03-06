@@ -1,15 +1,15 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class EqualCommand extends Command {
 
-    private List<CommandInter> myExpressions;
+    private List<ICommand> myExpressions;
 
-    public EqualCommand(List<CommandInter> params) {
+    public EqualCommand(List<ICommand> params) {
         super(params);
         myExpressions = params;
     }
@@ -20,7 +20,7 @@ public class EqualCommand extends Command {
             return 0;
         }
         double eq = myExpressions.get(0).execute();
-        for (CommandInter exp : myExpressions) {
+        for (ICommand exp : myExpressions) {
             if (exp.execute() != eq) {
                 return 0;
             }

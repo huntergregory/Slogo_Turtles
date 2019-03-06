@@ -1,14 +1,14 @@
 package parser_private.commands.control_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class RepeatCommand extends IterativeCommand {
 
-    private CommandInter myTotalIter;
+    private ICommand myTotalIter;
 
-    public RepeatCommand(List<CommandInter> params) {
+    public RepeatCommand(List<ICommand> params) {
         super(params);
         myTotalIter = params.get(0);
         myBody = params.get(1);

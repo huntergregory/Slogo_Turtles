@@ -2,7 +2,7 @@ package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
 import parser_private.commands.math_commands.ConstantCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.ParserException;
 import state_public.StateManager;
 
@@ -43,7 +43,7 @@ public class CommandFactory {
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    public CommandInter createCommand(String commandName, List<CommandInter> args) throws ParserException {
+    public ICommand createCommand(String commandName, List<ICommand> args) throws ParserException {
         if(prelimChecks(commandName) != null) return prelimChecks(commandName);
         if (myStateManager.getInputTranslator().isNormalCommand(commandName)) {
             Class clazz = null;
@@ -120,7 +120,7 @@ public class CommandFactory {
         return 0;
     }
 
-    private CommandInter prelimChecks(String commandName) {
+    private ICommand prelimChecks(String commandName) {
         if (myStateManager.getInputTranslator().isConstant(commandName)) {
             return createConstantCommand(Double.parseDouble(commandName));
         }

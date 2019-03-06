@@ -1,17 +1,15 @@
 package parser_private.commands.multiple_turtle_commands;
 
-import parser_private.Command;
 import parser_private.commands.control_commands.ListCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TellCommand extends MultipleTurtlesCommand {
 
     private ListCommand turtlesToTell;
 
-    public TellCommand(List<CommandInter> params) {
+    public TellCommand(List<ICommand> params) {
         super(params);
         turtlesToTell = (ListCommand)params.get(0);
     }

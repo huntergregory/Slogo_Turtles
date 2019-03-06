@@ -46,4 +46,8 @@ public class Pen {
     public boolean getIsDown() {
         return myIsDownProperty.get();
     }
+
+    public Palette getColor() {
+        return myColorProperty.get();
+    }
 }

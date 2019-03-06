@@ -1,18 +1,16 @@
 package parser_private.commands.multiple_turtle_commands;
 
-import parser_private.Command;
 import parser_private.commands.control_commands.ListCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AskWithCommand extends MultipleTurtlesCommand {
 
-    private CommandInter myCondition;
+    private ICommand myCondition;
     private ListCommand myCommands;
 
-    public AskWithCommand(List<CommandInter> params) {
+    public AskWithCommand(List<ICommand> params) {
         super(params);
         myCondition = params.get(0);
         myCommands = (ListCommand)params.get(1);

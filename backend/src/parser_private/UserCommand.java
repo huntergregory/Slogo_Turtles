@@ -1,15 +1,15 @@
 package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.UserCommandInter;
 
 import java.util.List;
 
 public class UserCommand extends Command implements UserCommandInter {
 
-    private CommandInter myArguments;
-    private CommandInter myBody;
+    private ICommand myArguments;
+    private ICommand myBody;
 
     public UserCommand() {}
 
@@ -18,13 +18,13 @@ public class UserCommand extends Command implements UserCommandInter {
     }
 
     @Override
-    public void assignParams(List<CommandInter> params) {
+    public void assignParams(List<ICommand> params) {
         this.mySubCommands = params;
         this.mySubCommands.add(myBody); // Since this can't happen in the constructor in this case
     }
 
     @Override
-    public void applyArgsAndBody(CommandInter args, CommandInter body) {
+    public void applyArgsAndBody(ICommand args, ICommand body) {
         myArguments = args;
         myBody = body;
     }

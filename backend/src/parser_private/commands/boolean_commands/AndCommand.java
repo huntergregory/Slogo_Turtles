@@ -1,15 +1,15 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class AndCommand extends Command {
 
-    private List<CommandInter> myExpressions;
+    private List<ICommand> myExpressions;
 
-    public AndCommand(List<CommandInter> params) {
+    public AndCommand(List<ICommand> params) {
         super(params);
         myExpressions = params;
     }
@@ -19,7 +19,7 @@ public class AndCommand extends Command {
         if (myExpressions.isEmpty()) {
             return 1;
         }
-        for (CommandInter exp : myExpressions) {
+        for (ICommand exp : myExpressions) {
             if (exp.execute() == 0) {
                 return 0;
             }

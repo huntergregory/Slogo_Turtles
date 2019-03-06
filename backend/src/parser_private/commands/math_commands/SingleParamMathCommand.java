@@ -1,15 +1,15 @@
 package parser_private.commands.math_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 abstract class SingleParamMathCommand extends Command {
 
-    CommandInter myExpression;
+    ICommand myExpression;
 
-    SingleParamMathCommand(List<CommandInter> params) {
+    SingleParamMathCommand(List<ICommand> params) {
         super(params);
         myExpression = params.get(0);
     }

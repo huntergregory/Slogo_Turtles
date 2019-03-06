@@ -3,7 +3,7 @@ package parser_public;
 import parser_private.CommandFactory;
 import java.util.ArrayList;
 import java.util.List;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.ParserException;
 import state_public.StateManager;
 
@@ -29,7 +29,7 @@ public class CommandParser {
         myChunkIndex = 0;
         System.out.println(myInputChunks);
         while (myChunkIndex < myInputChunks.size()) {
-            CommandInter nextCommand = makeNextCommand(); // Get next command
+            ICommand nextCommand = makeNextCommand(); // Get next command
             nextCommand.injectStateManager(myStateManager);
             nextCommand.execute();
         }
@@ -37,16 +37,16 @@ public class CommandParser {
     }
 
     // Loops until individual command hierarchy is satisfied
-    private CommandInter makeNextCommand() throws ParserException {
+    private ICommand makeNextCommand() throws ParserException {
         String currentChunk = myInputChunks.get(myChunkIndex); // Advance chunk
-        List<CommandInter> paramList = getParameters(currentChunk);
+        List<ICommand> paramList = getParameters(currentChunk);
         return myCommandFactory.createCommand(currentChunk, paramList);
     }
 
-    private List<CommandInter> getParameters(String command) throws ParserException {
+    private List<ICommand> getParameters(String command) throws ParserException {
         int numParams = myCommandFactory.getParamCount(command);
         myChunkIndex++;
-        List<CommandInter> paramList = new ArrayList<>();
+        List<ICommand> paramList = new ArrayList<>();
         int i = 0;
         while (i != numParams) {
             if (numParams == -1 && myInputChunks.get(myChunkIndex).matches(".*End")) {

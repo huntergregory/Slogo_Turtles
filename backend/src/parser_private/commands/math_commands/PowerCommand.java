@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class PowerCommand extends MultiParamMathCommand {
 
-    public PowerCommand(List<CommandInter> params) {
+    public PowerCommand(List<ICommand> params) {
         super(params);
     }
 

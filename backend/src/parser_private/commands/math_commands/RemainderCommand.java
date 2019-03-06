@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class RemainderCommand extends MultiParamMathCommand {
 
-    public RemainderCommand(List<CommandInter> params) {
+    public RemainderCommand(List<ICommand> params) {
         super(params);
     }
 

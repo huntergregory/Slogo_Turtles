@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class ProductCommand extends MultiParamMathCommand {
 
-    public ProductCommand(List<CommandInter> params) {
+    public ProductCommand(List<ICommand> params) {
         super(params);
     }
 

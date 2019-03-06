@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class QuotientCommand extends MultiParamMathCommand {
 
-    public QuotientCommand(List<CommandInter> params) {
+    public QuotientCommand(List<ICommand> params) {
         super(params);
     }
 

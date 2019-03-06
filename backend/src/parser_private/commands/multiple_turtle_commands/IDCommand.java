@@ -1,14 +1,14 @@
 package parser_private.commands.multiple_turtle_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.TurtleManager;
 
 import java.util.List;
 
 public class IDCommand extends Command {
 
-    public IDCommand(List<CommandInter> params) {
+    public IDCommand(List<ICommand> params) {
         super(params);
     }
 

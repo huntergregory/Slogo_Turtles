@@ -2,7 +2,7 @@ package parser_private.commands.control_commands;
 
 import parser_private.Command;
 import parser_private.commands.math_commands.ConstantCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -10,15 +10,15 @@ import java.util.List;
 
 public class GroupCommand extends Command {
 
-    public GroupCommand(List<CommandInter> params) {
+    public GroupCommand(List<ICommand> params) {
         super(params);
     }
 
     @Override
     public double execute() {
-        CommandInter model = mySubCommands.get(0);
-        List<CommandInter> commandList = new ArrayList<>();
-        List<CommandInter> nextParams = new ArrayList<>();
+        ICommand model = mySubCommands.get(0);
+        List<ICommand> commandList = new ArrayList<>();
+        List<ICommand> nextParams = new ArrayList<>();
         if (model.size() == 0) {
             commandList = mySubCommands;
         }
@@ -33,7 +33,7 @@ public class GroupCommand extends Command {
         return newCommandList.execute();
     }
 
-    private void sequentialBuild(CommandInter model, List<CommandInter> nextParams, List<CommandInter> commandList) {
+    private void sequentialBuild(ICommand model, List<ICommand> nextParams, List<ICommand> commandList) {
         commandList.add(model);
         int numParams = model.size();
         int countAbs = 1;
@@ -56,15 +56,15 @@ public class GroupCommand extends Command {
         }
     }
 
-    private void multiInputBuild(CommandInter model, List<CommandInter> nextParams, List<CommandInter> commandList) {
+    private void multiInputBuild(ICommand model, List<ICommand> nextParams, List<ICommand> commandList) {
         nextParams.addAll(model.getParams());
         nextParams.addAll(mySubCommands.subList(1, mySubCommands.size()));
         addCommand(model, nextParams, commandList);
     }
 
-    private void addCommand(CommandInter model, List<CommandInter> nextParams, List<CommandInter> commandList) {
+    private void addCommand(ICommand model, List<ICommand> nextParams, List<ICommand> commandList) {
         try {
-            CommandInter newCommand = model.getClass().getConstructor(List.class).newInstance(nextParams);
+            ICommand newCommand = model.getClass().getConstructor(List.class).newInstance(nextParams);
             commandList.add(newCommand); //TODO account for user defined commands
         } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
             //handle error

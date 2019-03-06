@@ -1,15 +1,15 @@
 package parser_private.commands.boolean_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class NotCommand extends Command {
 
-    private CommandInter myExpression;
+    private ICommand myExpression;
 
-    public NotCommand(List<CommandInter> params) {
+    public NotCommand(List<ICommand> params) {
         super(params);
         myExpression = params.get(0);
     }

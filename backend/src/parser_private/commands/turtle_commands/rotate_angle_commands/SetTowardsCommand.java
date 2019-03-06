@@ -1,17 +1,17 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.Turtle;
 
 import java.util.List;
 
 public class SetTowardsCommand extends TurtleCommand {
 
-    private CommandInter myX;
-    private CommandInter myY;
+    private ICommand myX;
+    private ICommand myY;
 
-    public SetTowardsCommand(List<CommandInter> params) {
+    public SetTowardsCommand(List<ICommand> params) {
         super(params);
         myX = params.get(0);
         myY = params.get(1);
