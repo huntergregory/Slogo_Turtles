@@ -2,6 +2,7 @@ package state_public;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class InputTranslator {
     private static final String RESOURCES_DIRECTORY = "languages/";
 
     public InputTranslator() throws ParserException {
-        changeLanguage("English");
+        changeLanguage("French");
     }
 
     public void changeLanguage(String language) throws ParserException {
@@ -59,6 +60,13 @@ public class InputTranslator {
         return false;
     }
 
+    public boolean hasMultiInputGrouping(String command) { //TODO make better
+        String[] validOptions = {"Equal", "NotEqual", "Sum", "Difference", "Quotient", "Product",
+                "Remainder", "Power", "And", "Or"};
+        ArrayList<String> mulCommands = new ArrayList<>(Arrays.asList(validOptions));
+        return mulCommands.contains(command);
+    }
+
     public boolean isComment(String text) {
         return matches("Comment", text);
     }
@@ -69,5 +77,13 @@ public class InputTranslator {
 
     public boolean isConstant(String text) {
         return matches("Constant", text);
+    }
+
+    public boolean isGroupStart(String text) {
+        return text.equals("GroupStart");
+    }
+
+    public boolean isGroupEnd(String text) {
+        return text.equals("GroupEnd");
     }
 }
