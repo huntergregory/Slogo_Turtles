@@ -53,7 +53,7 @@ public class TurtleDisplay {
         myTurtleViews = new ArrayList<>();
         int id = 0;
         myTurtleManager.addTurtle(id);
-        Turtle turtleStates = myTurtleManager.getTurtles().get(id);
+        Turtle turtleStates = myTurtleManager.getTurtle(id);
         myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin()));
     }
 
