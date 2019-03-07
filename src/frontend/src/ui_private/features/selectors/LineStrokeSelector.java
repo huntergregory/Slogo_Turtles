@@ -2,8 +2,6 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import ui_private.turtles.LineStroke;
 
 import java.util.ArrayList;

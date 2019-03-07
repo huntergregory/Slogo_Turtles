@@ -1,6 +1,4 @@
-package ui_public;
-
-import ui_private.features.scrollable_windows.ScrollableWindow;
+package ui_private.features.scrollable_windows;
 
 public class UserCommandsWindow extends ScrollableWindow {
     private static final String TITLE = "User Commands";

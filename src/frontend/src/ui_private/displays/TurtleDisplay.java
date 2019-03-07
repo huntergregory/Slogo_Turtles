@@ -3,17 +3,14 @@ package ui_private.displays;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import state_public.Palette;
 import state_public.Turtle;
 import state_public.TurtleManager;
 import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 //TODO make which turtle type we're using dynamic

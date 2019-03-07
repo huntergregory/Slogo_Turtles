@@ -2,9 +2,6 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {
     private static final String TITLE = "Past Commands";

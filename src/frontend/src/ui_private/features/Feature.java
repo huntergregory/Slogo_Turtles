@@ -7,8 +7,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import ui_private.displays.TurtleDisplay;
-import ui_private.features.exceptions.NodeAlreadyUsedException;
 
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;

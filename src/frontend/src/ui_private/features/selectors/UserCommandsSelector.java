@@ -2,8 +2,6 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 public class UserCommandsSelector extends Selector {
     private static final String TITLE = "User Commands";
