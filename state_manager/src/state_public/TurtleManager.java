@@ -2,6 +2,8 @@ package state_public;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class TurtleManager {
@@ -45,21 +47,42 @@ public class TurtleManager {
         myTurtles.add(new Turtle(id, panelWidth, panelHeight, myPaletteManager.getDefaultPenColor()));
     }
 
-    public double runTurtleCommand(ReturnConsumer<Double, Turtle> func) {
+    public double runTurtleCommand(Function<Turtle, Double> func) {
         var retvalWrapper = new Object() { double retval = 0; };
         myTurtles.stream().filter(turtle -> turtle.getIsActive())
                           .forEach((turtle) -> {
                               myVariables.setVariable(ID_VARNAME, turtle.getID());
-                              retvalWrapper.retval = func.accept(turtle);
+                              retvalWrapper.retval = func.apply(turtle);
                           });
         return retvalWrapper.retval;
     }
 
-    public void setTurtlesActive(List<Integer> ids) {
+    private void saveActiveTurtles() {
         myPreviousActiveTurtles = myTurtles.stream()
                                            .filter(turtle -> turtle.getIsActive())
                                            .map(turtle -> turtle.getID())
                                            .collect(Collectors.toList());
+    }
+
+    public List<Integer> getTurtlesWithCondition(Predicate<Turtle> tester) {
+        saveActiveTurtles();
+        setAllTurtlesInactive();
+        List<Integer> validIDs = new ArrayList<>();
+        myTurtles.forEach(turtle -> {
+            turtle.setActive(true);
+            if (tester.test(turtle))
+                validIDs.add(turtle.getID());
+            turtle.setActive(false);
+        });
+        return validIDs;
+    }
+
+    private void setAllTurtlesInactive() {
+        myTurtles.forEach(turtle -> turtle.setActive(false));
+    }
+
+    public void setTurtlesActive(List<Integer> ids) {
+        saveActiveTurtles();
         setIDsActive(ids);
     }
 

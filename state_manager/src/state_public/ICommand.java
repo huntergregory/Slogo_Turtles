@@ -1,12 +1,16 @@
 package state_public;
 
-public interface CommandInter {
+import java.util.List;
+
+public interface ICommand {
 
     double execute();
 
     int size();
 
-    CommandInter getParam(int index);
+    ICommand getParam(int index);
+
+    List<ICommand> getParams();
 
     void injectStateManager(StateManager stateManager);
 }

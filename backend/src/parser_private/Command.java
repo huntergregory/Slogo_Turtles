@@ -1,18 +1,18 @@
 package parser_private;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.StateManager;
 
 import java.util.List;
 
-public abstract class Command implements CommandInter {
+public abstract class Command implements ICommand {
 
-    protected List<CommandInter> mySubCommands;
+    protected List<ICommand> mySubCommands;
     protected StateManager myStateManager;
 
     public Command() {}
 
-    public Command(List<CommandInter> params) {
+    public Command(List<ICommand> params) {
         this.mySubCommands = params;
     }
 
@@ -20,7 +20,7 @@ public abstract class Command implements CommandInter {
     public void injectStateManager(StateManager stateManager) {
         this.myStateManager = stateManager;
         if (mySubCommands != null) {
-            for (CommandInter command : mySubCommands) {
+            for (ICommand command : mySubCommands) {
                 command.injectStateManager(myStateManager);
             }
         }
@@ -31,11 +31,19 @@ public abstract class Command implements CommandInter {
 
     @Override
     public int size() {
-        return 1;
+        if (mySubCommands != null) {
+            return mySubCommands.size();
+        }
+        return 0;
     }
 
     @Override
-    public CommandInter getParam(int index) {
+    public ICommand getParam(int index) {
         return this;
+    }
+
+    @Override
+    public List<ICommand> getParams() {
+        return mySubCommands;
     }
 }

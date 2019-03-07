@@ -1,4 +1,26 @@
 package parser_private.commands.display_commands;
 
-public class SetPenColorCommand {
+import parser_private.commands.turtle_commands.TurtleCommand;
+import state_public.ICommand;
+
+import java.util.List;
+
+public class SetPenColorCommand extends TurtleCommand {
+
+    private ICommand myIndex;
+
+    public SetPenColorCommand(List<ICommand> params) {
+        super(params);
+        myIndex = params.get(0);
+    }
+
+    @Override
+    public double execute() {
+        int index = (int)myIndex.execute();
+        runTurtleCommand(turtle -> {
+            turtle.getPen().setColor(myStateManager.getPaletteManager().getPalette(index));
+            return 0.0;
+        });
+        return index;
+    }
 }

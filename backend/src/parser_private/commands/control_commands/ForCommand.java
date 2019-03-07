@@ -1,6 +1,6 @@
 package parser_private.commands.control_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class ForCommand extends IterativeCommand {
 
     private ListCommand forParams;
 
-    public ForCommand(List<CommandInter> params) {
+    public ForCommand(List<ICommand> params) {
         super(params);
         forParams = (ListCommand)params.get(0);
         myBody = params.get(1);

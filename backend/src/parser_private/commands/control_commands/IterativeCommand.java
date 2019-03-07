@@ -1,15 +1,15 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 abstract class IterativeCommand extends Command {
 
-    CommandInter myBody;
+    ICommand myBody;
 
-    IterativeCommand(List<CommandInter> params) {
+    IterativeCommand(List<ICommand> params) {
         super(params);
     }
 

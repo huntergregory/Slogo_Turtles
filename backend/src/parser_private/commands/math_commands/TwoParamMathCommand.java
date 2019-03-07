@@ -1,16 +1,16 @@
 package parser_private.commands.math_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 abstract class TwoParamMathCommand extends Command {
 
-    CommandInter myExpression1;
-    CommandInter myExpression2;
+    ICommand myExpression1;
+    ICommand myExpression2;
 
-    TwoParamMathCommand(List<CommandInter> params) {
+    TwoParamMathCommand(List<ICommand> params) {
         super(params);
         this.myExpression1 = params.get(0);
         this.myExpression2 = params.get(1);

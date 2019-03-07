@@ -1,16 +1,16 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class IfCommand extends Command {
 
-    private CommandInter myExpression;
-    private CommandInter myBody;
+    private ICommand myExpression;
+    private ICommand myBody;
 
-    public IfCommand(List<CommandInter> params) {
+    public IfCommand(List<ICommand> params) {
         super(params);
         myExpression = params.get(0);
         myBody = params.get(1);

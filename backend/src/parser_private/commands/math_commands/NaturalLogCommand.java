@@ -1,12 +1,12 @@
 package parser_private.commands.math_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class NaturalLogCommand extends SingleParamMathCommand {
 
-    public NaturalLogCommand(List<CommandInter> params) {
+    public NaturalLogCommand(List<ICommand> params) {
         super(params);
     }
 

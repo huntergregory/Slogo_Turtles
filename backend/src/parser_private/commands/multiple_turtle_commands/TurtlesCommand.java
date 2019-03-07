@@ -1,13 +1,13 @@
 package parser_private.commands.multiple_turtle_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class TurtlesCommand extends Command {
 
-    public TurtlesCommand(List<CommandInter> params) {
+    public TurtlesCommand(List<ICommand> params) {
         super(params);
     }
 
