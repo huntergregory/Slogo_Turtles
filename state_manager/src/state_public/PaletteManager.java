@@ -22,10 +22,6 @@ public class PaletteManager {
         myPalettes.addAll(defaultPalettes);
     }
 
-    public void addPalette(Color color) {
-        myPalettes.add(new Palette(myPalettes.size(), color));
-    }
-
     public Palette getDefaultBackgroundColor() {
         return myPalettes.get(0);
     }
@@ -35,8 +31,14 @@ public class PaletteManager {
     }
 
     public Palette getPalette(int index) {
-        if (index >= myPalettes.size())
-            return myPalettes.get(myPalettes.size() - 1);
-        return myPalettes.get(index);
+        for (Palette palette: myPalettes) {
+            if (palette.getId() == index)
+                return palette;
+        }
+        return myPalettes.get(0);
+    }
+
+    public void setPalette(int index, int red, int green, int blue) {
+        myPalettes.add(new Palette(index, red, green, blue));
     }
 }
