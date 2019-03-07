@@ -3,6 +3,7 @@ package ui_private.features.scrollable_windows;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import state_public.StateManager;
 import ui_private.features.Feature;
 
 import java.util.Collections;
@@ -17,8 +18,8 @@ public abstract class ScrollableWindow extends Feature {
     private TextArea myTextArea;
     private LinkedList<String> myTextChain;
 
-    public ScrollableWindow() {
-        super(false);
+    public ScrollableWindow(StateManager manager) {
+        super(manager);
         myTextChain = new LinkedList<>();
         myTextArea = new TextArea(getText());
         myScrollPane = new ScrollPane(myTextArea);
@@ -51,4 +52,7 @@ public abstract class ScrollableWindow extends Feature {
     protected Node getMainComponent() {
         return myScrollPane;
     }
+
+    @Override
+    protected boolean getHasHorizontalLayout() { return true; }
 }

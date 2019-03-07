@@ -1,5 +1,7 @@
 package ui_private.features;
 
+import state_public.StateManager;
+import state_public.TurtleManager;
 import ui_private.features.exceptions.NoFeatureException;
 //import ui_private.features.scrollable_windows.PastCommandsWindow;
 import ui_private.features.selectors.*;
@@ -31,9 +33,9 @@ public enum FeatureType {
         myClass = clazz;
     }
 
-    public Feature getFeature() throws NoFeatureException {
+    public Feature getFeature(StateManager manager) throws NoFeatureException {
         try {
-            Object feature = this.myClass.getDeclaredConstructor().newInstance();
+            Object feature = this.myClass.getDeclaredConstructor(StateManager.class).newInstance(manager);
             return (Feature) feature;
         }
         catch (Exception e) {

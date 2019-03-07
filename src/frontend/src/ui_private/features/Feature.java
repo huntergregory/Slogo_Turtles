@@ -7,6 +7,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import state_public.StateManager;
 
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;
@@ -15,12 +16,12 @@ public abstract class Feature {
     private static final Font FONT = new Font(FONT_FAMILY,FONT_SIZE);
     //TODO: transfer these^ to css
 
+    protected StateManager myStateManager;
     private GridPane myGrid;
     private Label myLabel;
-    private boolean myHasHorizontalLayout;
 
-    protected Feature(boolean hasHorizontalLayout) {
-        myHasHorizontalLayout = hasHorizontalLayout;
+    public Feature(StateManager manager) {
+        myStateManager = manager;
     }
 
     /**
@@ -35,6 +36,9 @@ public abstract class Feature {
      * @return the main feature (selector, scrolling pane, etc.)
      */
     abstract protected Node getMainComponent();
+
+
+    abstract protected boolean getHasHorizontalLayout();
 
     /**
      * @return text for label
@@ -58,7 +62,7 @@ public abstract class Feature {
         if (myGrid != null)
             return myGrid;
         myGrid = new GridPane();
-        if (myHasHorizontalLayout)
+        if (getHasHorizontalLayout())
             createHorizontalGrid();
         else
             createVerticalGrid();

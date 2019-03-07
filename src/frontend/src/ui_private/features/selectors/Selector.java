@@ -3,6 +3,7 @@ package ui_private.features.selectors;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import state_public.StateManager;
 import ui_private.features.Feature;
 
 public abstract class Selector extends Feature {
@@ -10,8 +11,8 @@ public abstract class Selector extends Feature {
 
     private ComboBox<String> myDropBox;
 
-    public Selector() {
-        super(true);
+    public Selector(StateManager manager) {
+        super(manager);
         myDropBox = new ComboBox<>();
         myDropBox.setEditable(false);
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
@@ -37,4 +38,7 @@ public abstract class Selector extends Feature {
     public Node getMainComponent() {
         return myDropBox;
     }
+
+    @Override
+    protected boolean getHasHorizontalLayout() { return true; }
 }

@@ -1,6 +1,7 @@
 package ui_private.features.selectors;
 
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 
 public class TurtleImageSelector extends Selector {
     private static final String TITLE = "Turtle Image";
@@ -16,6 +17,10 @@ public class TurtleImageSelector extends Selector {
         }
         return FXCollections.observableArrayList(images);
     }*/
+
+    public TurtleImageSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

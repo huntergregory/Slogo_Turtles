@@ -18,6 +18,7 @@ public class BackgroundColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 
 public class BackgroundColorSelector extends Selector {
     private static final String TITLE = "Background Color";
@@ -25,6 +26,10 @@ public class BackgroundColorSelector extends Selector {
             FXCollections.observableArrayList("RED 1", "BLUE 2", "GREEN 3");
     private String myBackgroundColor;
     private int myIndex;
+
+    public BackgroundColorSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

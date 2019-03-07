@@ -2,10 +2,15 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 
 public class PastCommandsSelector extends Selector {
     private static final String TITLE = "Past Commands";
     private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList("fd 50");
+
+    public PastCommandsSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

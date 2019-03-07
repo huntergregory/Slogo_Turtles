@@ -59,7 +59,7 @@ public class UIFactory {
 
     private void addFeature(FeatureType type, SidePanel panel) {
         try {
-            var feature = type.getFeature();
+            var feature = type.getFeature(myStateManager);
             panel.addRow(feature.getPane(mySidePanelWidth));
         }
         catch (NoFeatureException e) {
