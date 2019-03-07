@@ -38,7 +38,6 @@ public class UIMain {
         myBackend = backend;
         myStateManager = stateManager;
         init(myStage);
-        setupBindings(myStateManager);
     }
 
     private void init(Stage stage) {
@@ -46,10 +45,6 @@ public class UIMain {
         stage.setScene(myScene);
         stage.setTitle(TITLE);
         stage.show();
-    }
-
-    private void setupBindings(StateManager stateManager) {
-        // TODO
     }
 
     private Scene setupGame (double width, double height, Paint background) {

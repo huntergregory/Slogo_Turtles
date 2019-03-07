@@ -35,8 +35,7 @@ public abstract class TurtleView {
     private Point2D myOldPoint = new Point2D.Double(0, 0);
     private Point2D myNewPoint = new Point2D.Double(0, 0);
     private double myDispXOffset;
-    private double myDispYOffset;   //tradeoff: have to wait until both x and y have been updated to draw and updateOnPositionChange turtle
-                                    //could have created a Coordinate object, but then front and back end would have to share this class
+    private double myDispYOffset;
 
 
     /**

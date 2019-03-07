@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.paint.Color;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
+import state_public.TurtleManager;
 import ui_private.displays.TurtleDisplay;
 
 import java.util.ArrayList;
@@ -11,19 +12,19 @@ import java.util.ArrayList;
 public class Pen {
     public static final String CSS_TAG = "line";
 
-    private int myID;
+    private TurtleManager myTurtleManager;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
     private LineStroke myStroke;
-    private Color myColor;
+    private Color myColor; //TODO remove
     private  SimpleBooleanProperty myIsDown = new SimpleBooleanProperty();
     private  SimpleBooleanProperty myShouldEraseLines = new SimpleBooleanProperty(); //should be true after a clear screen command
 
-    Pen(int id, ObservableList list) {
-        myID = id;
+    Pen(ObservableList list, TurtleManager turtleManager) {
+        myTurtleManager = turtleManager;
         myModifiableList = list;
-        myStroke = TurtleDisplay.DEFAULT_LINE_STROKE;
-        myColor = TurtleDisplay.DEFAULT_PEN_COLOR;
+        myStroke = TurtleDisplay.DEFAULT_LINE_STROKE;  //TODO remove
+        myColor = TurtleDisplay.DEFAULT_PEN_COLOR; //TODO remove
         myLines = new ArrayList<>();
         addEraseListener();
         bindProperties();
@@ -35,7 +36,7 @@ public class Pen {
 
     private void bindProperties() {
         //var manager = TurtleManager.getInstance();
-        //myIsDown.bind(manager.getDownProperty(myID));
+        //myIsDown.bind(.getDownProperty(myID));
         //myShouldEraseLines.bindBidirectional(manager.getEraseProperty(myID));
     }
 

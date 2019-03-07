@@ -5,36 +5,36 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import state_public.Palette;
 import state_public.TurtleManager;
-import ui_private.turtles.ImageTurtleView;
 import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 
 import java.util.ArrayList;
 
+//TODO make which turtle type we're using dynamic
 public class TurtleDisplay {
     private static final String PANE_CSS_CLASS = "pane";
-    public static String DEFAULT_IMAGE_NAME = "tan_turtle.png";
-    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL;
-    public static final Color DEFAULT_PEN_COLOR = Color.BLACK;
-
-    private Color myPenColor;
-    private LineStroke myPenStroke;
-    private Image myImage;
+    public static String DEFAULT_IMAGE_NAME = "tan_turtle.png"; //TODO remove
+    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL; //TODO remove
+    public static final Color DEFAULT_PEN_COLOR = Color.BLACK; //TODO remove
+    private Image myImage; //TODO remove
 
     private TurtleManager myTurtleManager;
     private Pane myTurtlePane;
-    private ArrayList<TurtleView> myTurtleViews; //TODO: call that class TurtleView
+    private ArrayList<TurtleView> myTurtleViews;
     private double myWidth;
     private double myHeight;
 
-    public TurtleDisplay(TurtleManager turtleManager, double width, double height) {
+    public TurtleDisplay(TurtleManager turtleManager, Palette backgroundColor, double width, double height) { // FIXME
         myTurtleManager = turtleManager;
         myWidth = width;
         myHeight = height;
+        myTurtleManager.setPanelWidthHeight(myWidth, myHeight);
         initializePane();
         initializeTurtles();
+        bindBackground(backgroundColor);
     }
 
     private void initializePane() {
@@ -49,14 +49,14 @@ public class TurtleDisplay {
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
         myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(),getTurtleXOrigin(), getTurtleYOrigin()));
-        myTurtleManager.setPanelWidthHeight(myWidth, myHeight);
-        myTurtleManager.addTurtle();
-        myTurtleViews.add(new ImageTurtleView(0, getTurtleXOrigin(), getTurtleYOrigin(), myTurtlePane.getChildren()));
     }
 
-    public void setBackgroundColor(Color color) {
-        myTurtlePane.setBackground(new Background(new BackgroundFill(color, null, null)));
+    private void bindBackground(Palette color) {
+        //myTurtlePane.backgroundProperty().set(new Background(); FIXME
     }
+
+/* TODO: remove
+
 
     public void setPenColor(Color color) {
         for (TurtleView turtleView : myTurtleViews)
@@ -82,6 +82,7 @@ public class TurtleDisplay {
         //FIXME
         //TODO: catch NoTurtleException from TurtleManager
     }
+*/
 
     public Pane getPane() {
         return myTurtlePane;
