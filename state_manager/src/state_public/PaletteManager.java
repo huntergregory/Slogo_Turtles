@@ -15,14 +15,15 @@ public class PaletteManager {
         }}
     );
 
-    private int curr_id;
-
     private List<Palette> myPalettes;
 
     public PaletteManager() {
-        curr_id = defaultPalettes.size();
         myPalettes = new ArrayList<>();
         myPalettes.addAll(defaultPalettes);
+    }
+
+    public void addPalette(Color color) {
+        myPalettes.add(new Palette(myPalettes.size(), color));
     }
 
     public Palette getDefaultBackgroundColor() {
