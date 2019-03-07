@@ -88,6 +88,7 @@ public abstract class TurtleView {
     }
 
     private void move(Point2D oldPoint, Point2D newPoint) {
+        System.out.println("here");
         relocateNode(newPoint);
         myPen.draw(oldPoint.getX() + myDispXOffset,
                 oldPoint.getY() + myDispYOffset,

@@ -51,7 +51,7 @@ public class TurtleDisplay {
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
-        int id = 0;
+        int id = 1;
         myTurtleManager.addTurtle(id);
         Turtle turtleStates = myTurtleManager.getTurtle(id);
         myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin()));
