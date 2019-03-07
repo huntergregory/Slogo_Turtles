@@ -5,10 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
 import parser_public.CommandParser;
+
+import java.awt.*;
+import java.net.URL;
+
 import state_public.ParserException;
 
 import java.util.ArrayList;
+
 
 public class CommandTerminal {
     public static final double PARSE_BUTTON_HEIGHT = 50;
@@ -19,6 +25,8 @@ public class CommandTerminal {
     private GridPane myPane;
     private ArrayList<Node> myChildren;
     private Button myParseButton;
+    private Button myUndoButton;
+    private Button myHelpButton;
     private TextArea myCommandInput;
     private String myCommand;
     private CommandParser myBackend;
@@ -26,10 +34,15 @@ public class CommandTerminal {
     public CommandTerminal(CommandParser backend) {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
+        myUndoButton = new Button("UNDO");
+        myUndoButton.setOnAction((event) -> undoCommand());
+        myHelpButton = new Button("HELP");
+        myHelpButton.setOnAction((event) -> accessHelp());
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
         myCommandInput.setPromptText(PROMPT);//can barely ever see prompt, maybe we just set the text
+        myBackend = backend;
     }
 
     private void sendToParser() {
@@ -45,12 +58,28 @@ public class CommandTerminal {
         }
     }
 
+    private void undoCommand() {
+
+    }
+
+    private void accessHelp() {
+        try {
+            Desktop.getDesktop().browse(new URL("https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php").toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Pane getPane() {
         var gridPane = new GridPane();
         myCommandInput.setPrefWidth(1000); //stretch out text area //FIXME magic number
         myParseButton.setMinWidth(100); //FIXME magic number
         myParseButton.setPrefHeight(60); //stretch out height //FIXME magic number
-        gridPane.addRow(0, myCommandInput, myParseButton);
+        myUndoButton.setMinWidth(100);
+        myUndoButton.setPrefHeight(60);
+        myHelpButton.setMinWidth(100);
+        myHelpButton.setPrefHeight(60);
+        gridPane.addRow(0, myCommandInput, myParseButton, myUndoButton, myHelpButton);
         return gridPane; //FIXME: need to return some pane including commandinput and parsebutton
     }
 }

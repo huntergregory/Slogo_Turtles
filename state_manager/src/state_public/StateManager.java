@@ -20,11 +20,11 @@ public class StateManager {
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
+        myPaletteManager = new PaletteManager();
         myTurtleManager = new TurtleManager(myVariables, myPaletteManager);
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
         myInputTranslator = new InputTranslator();
-        myPaletteManager = new PaletteManager();
         myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
     }
 

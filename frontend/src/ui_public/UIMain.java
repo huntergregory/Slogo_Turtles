@@ -64,25 +64,24 @@ public class UIMain {
 
         addFeatures();
 
-        scene.setOnKeyPressed(e -> handleKeyInput(e.getCode())); //FIXME: unnecessary?
         return scene;
     }
 
     private void addFeatures() {
-        //myFactory.addFeature(FeatureType.PEN_COLOR_CHOOSER);
-        //myFactory.addFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+        myFactory.addLeftFeature(FeatureType.PEN_COLOR_CHOOSER);
+        myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
         myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
         myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
-        myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
-        myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
+        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
+        myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
+        //myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
+        myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
+        myFactory.addLeftFeature(FeatureType.MOVE_TURTLE_SELECTOR);
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
-    }
-
-    //Delete??
-    private void handleKeyInput (KeyCode code) {
-        if (code == KeyCode.ENTER) {
-
-        }
+        myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
+        //myFactory.addRightFeature(FeatureType.FD_BUTTON);
+        myFactory.addRightFeature(FeatureType.PEN_THICKNESS_SLIDER);
+        myFactory.addRightFeature(FeatureType.PEN_UPDOWN_SELECTOR);
     }
 
     //TODO: put this in CommandTerminal
