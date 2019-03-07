@@ -1,5 +1,8 @@
 package state_public;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -15,6 +18,7 @@ public class TurtleManager {
     private List<Turtle> myTurtles;
     private List<Integer> myPreviousActiveTurtles;
     private Palette myBackgroundColor;
+    private ObjectProperty<Turtle> myNewTurtleProperty;
 
     private double panelWidth;
     private double panelHeight;
@@ -24,6 +28,7 @@ public class TurtleManager {
         myPaletteManager = paletteManager;
         myTurtles = new ArrayList<>();
         myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
+        myNewTurtleProperty = new SimpleObjectProperty<>();
     }
 
     public void setPanelWidthHeight(double width, double height) {
@@ -39,18 +44,20 @@ public class TurtleManager {
         return myTurtles.stream().filter(turtle -> turtle.getID() == id).findFirst().get();
     }
 
-    public List<Turtle> getActiveTurtles() {
-        return myTurtles.stream().filter(turtle -> turtle.getIsActive()).collect(Collectors.toList());
+    public ObjectProperty<Turtle> getNewTurtleProperty() {
+        return myNewTurtleProperty;
     }
 
-    public void addTurtle() {
-        addTurtle(myTurtles.size());
+    public List<Turtle> getActiveTurtles() {
+        return myTurtles.stream().filter(turtle -> turtle.getIsActive()).collect(Collectors.toList());
     }
 
     public void addTurtle(int id) {
         if (myTurtles.stream().anyMatch(turtle -> turtle.getID() == id))
             return;
-        myTurtles.add(new Turtle(id, panelWidth, panelHeight, myPaletteManager.getDefaultPenColor()));
+        Turtle newTurtle = new Turtle(id, panelWidth, panelHeight, myPaletteManager.getDefaultPenColor());
+        myTurtles.add(newTurtle);
+        myNewTurtleProperty.set(newTurtle);
     }
 
     public double runTurtleCommand(Function<Turtle, Double> func) {
