@@ -1,9 +1,8 @@
 package ui_private.turtles;
 
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.collections.ObservableList;
 import state_public.Turtle;
 import ui_private.displays.TurtleDisplay;
 

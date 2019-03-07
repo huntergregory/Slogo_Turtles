@@ -3,9 +3,6 @@ package state_public;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CommandHistory {
 
     private ListProperty<String> myHistory;
