@@ -45,7 +45,7 @@ public class Turtle {
         myPositionProperty = new SimpleObjectProperty<>();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
-        myIsActiveProperty = new SimpleBooleanProperty();
+        myIsActiveProperty = new SimpleBooleanProperty(true);
     }
 
     private double getInBoundsNum(double num, double min, double max) {

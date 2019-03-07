@@ -35,6 +35,10 @@ public class TurtleManager {
         return myTurtles;
     }
 
+    public Turtle getTurtle(int id) {
+        return myTurtles.stream().filter(turtle -> turtle.getID() == id).findFirst().get();
+    }
+
     public List<Turtle> getActiveTurtles() {
         return myTurtles.stream().filter(turtle -> turtle.getIsActive()).collect(Collectors.toList());
     }
@@ -85,6 +89,7 @@ public class TurtleManager {
 
     public void setTurtlesActive(List<Integer> ids) {
         saveActiveTurtles();
+        setAllTurtlesInactive();
         setIDsActive(ids);
     }
 
