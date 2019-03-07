@@ -10,7 +10,7 @@ public class StateManager {
     private CommandHistory myCommandHistory;
     private InputTranslator myInputTranslator;
     private PaletteManager myPaletteManager;
-    private Palette myUIColor;
+    private Palette myBackgroundColor;
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
@@ -19,7 +19,7 @@ public class StateManager {
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
         myInputTranslator = new InputTranslator();
-        myUIColor = myPaletteManager.getDefaultBackgroundColor();
+        myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
     }
 
     public TurtleManager getTurtleManager() {
@@ -39,7 +39,7 @@ public class StateManager {
     }
 
     public Palette getBackgroundColor() {
-        return myUIColor;
+        return myBackgroundColor;
     }
 
     public InputTranslator getInputTranslator() {
