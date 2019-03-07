@@ -1,12 +1,12 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class LeftCommand extends RotateAngleCommand {
 
-    public LeftCommand(List<CommandInter> params) {
+    public LeftCommand(List<ICommand> params) {
         super(params, false);
     }
 }

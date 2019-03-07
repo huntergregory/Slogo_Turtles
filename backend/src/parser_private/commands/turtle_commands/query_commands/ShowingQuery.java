@@ -1,12 +1,12 @@
 package parser_private.commands.turtle_commands.query_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class ShowingQuery extends TurtleCommand {
-    public ShowingQuery(List<CommandInter> params) {
+    public ShowingQuery(List<ICommand> params) {
         super(params);
     }
 

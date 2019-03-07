@@ -8,8 +8,8 @@ import java.util.Map;
 public class GlobalCommands {
 
     private Map<String, UserCommandInter> myStoredCommands;
-    private Map<UserCommandInter, CommandInter> myStoredArgs;
-    private Map<UserCommandInter, CommandInter> myStoredBodies;
+    private Map<UserCommandInter, ICommand> myStoredArgs;
+    private Map<UserCommandInter, ICommand> myStoredBodies;
     private Map<String, Integer> myParamCounts;
     private Map<String, List<UserCommandInter>> myCreatedCommandInstances;
 
@@ -21,7 +21,7 @@ public class GlobalCommands {
         this.myCreatedCommandInstances = new HashMap<>();
     }
 
-    public void addCommand(String commandName, CommandInter args, CommandInter body, UserCommandInter newCommand) { // Gets myArguments, myBody from ToCommand
+    public void addCommand(String commandName, ICommand args, ICommand body, UserCommandInter newCommand) { // Gets myArguments, myBody from ToCommand
         myStoredCommands.put(commandName, newCommand);
         myStoredArgs.put(newCommand, args); // Store or overwrite command type
         myStoredBodies.put(newCommand, body);
@@ -42,7 +42,7 @@ public class GlobalCommands {
         return myStoredCommands.keySet().contains(command);
     }
 
-    public CommandInter getCommand(String commandName, List<CommandInter> params) {
+    public ICommand getCommand(String commandName, List<ICommand> params) {
         UserCommandInter newCommand = myStoredCommands.get(commandName).getNewInstance(); // Will return UDC with null args and body
         newCommand.applyArgsAndBody(myStoredArgs.get(myStoredCommands.get(commandName)),
                 myStoredBodies.get(myStoredCommands.get(commandName))); // Get stored args and body

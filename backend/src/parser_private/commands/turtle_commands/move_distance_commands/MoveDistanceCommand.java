@@ -1,16 +1,16 @@
 package parser_private.commands.turtle_commands.move_distance_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public abstract class MoveDistanceCommand extends TurtleCommand {
 
-    private CommandInter myDistance;
+    private ICommand myDistance;
     private boolean myGoingForward;
 
-    MoveDistanceCommand(List<CommandInter> params, boolean goingForward) {
+    MoveDistanceCommand(List<ICommand> params, boolean goingForward) {
         super(params);
         this.myDistance = params.get(0);
         myGoingForward = goingForward;

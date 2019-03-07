@@ -1,16 +1,16 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class MakeVariableCommand extends Command {
 
     private String myName;
-    private CommandInter myExpression;
+    private ICommand myExpression;
 
-    public MakeVariableCommand(List<CommandInter> params) {
+    public MakeVariableCommand(List<ICommand> params) {
         super(params);
         myName = ((VariableCommand) params.get(0)).getVariableName();
         myExpression = params.get(1);

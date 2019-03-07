@@ -1,19 +1,16 @@
 package parser_public;
 
 import parser_private.CommandFactory;
-import parser_private.commands.control_commands.VariableCommand;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.ParserException;
 import state_public.StateManager;
 
 public class CommandParser {
 
     private int myChunkIndex;
-    private static final String WHITESPACE_REGEX = "\\s+";
-
+    private List<String> myInputChunks;
     private StateManager myStateManager;
     private CommandFactory myCommandFactory;
 
@@ -28,94 +25,41 @@ public class CommandParser {
         if (program.isEmpty()) {
             throw new ParserException("Empty input string");
         }
-        List<String> programChunks = getChunks(program);
-        System.out.println(programChunks);
+        myInputChunks = myStateManager.getInputTranslator().getChunks(program);
         myChunkIndex = 0;
-        while (myChunkIndex < programChunks.size()) {
-            CommandInter nextCommand = makeCommand(programChunks); // Get next command
+        System.out.println(myInputChunks);
+        while (myChunkIndex < myInputChunks.size()) {
+            ICommand nextCommand = makeNextCommand(); // Get next command
             nextCommand.injectStateManager(myStateManager);
-            nextCommand.execute(); //Execute each full command as it's parsed to allow for To definition and call in same program (as separate commands)
+            nextCommand.execute();
         }
-        //myStateManager.getCommandHistory().addCommand(program); //TODO fix
-    }
-
-    private List<String> getChunks(String input) throws ParserException {
-        List<String> chunks = new ArrayList<>();
-        Scanner scan = new Scanner(input);
-        while (scan.hasNextLine()) {
-            String currentLine = scan.nextLine().toLowerCase().strip();
-            if (myStateManager.getInputTranslator().isComment(currentLine) || currentLine.isEmpty()) {
-                continue;
-            }
-            String[] currentChunks = currentLine.split(WHITESPACE_REGEX);
-            for (String s : currentChunks) {
-                chunks.add(myStateManager.getInputTranslator().getSymbol(s));
-            }
-        }
-        return chunks;
+        //myStateManager.getCommandHistory().addCommand(program); //TODO
     }
 
     // Loops until individual command hierarchy is satisfied
-    private CommandInter makeCommand(List<String> input) throws ParserException {
-        String currentChunk = input.get(myChunkIndex);                          // Advance chunk
-        if (myStateManager.getInputTranslator().isConstant(currentChunk)) {           // Return constant if constant
-            myChunkIndex++;
-            return myCommandFactory.createConstantCommand(Double.parseDouble(currentChunk));
-        } else if (myStateManager.getInputTranslator().isVariable(currentChunk)) {    // Return new user defined variable reference if need be
-            myChunkIndex++;
-            return new VariableCommand(currentChunk.substring(1));
-        } else if (!myCommandFactory.isNormalCommand(currentChunk)) {
-            if (myChunkIndex > 0 && input.get(myChunkIndex - 1).equals("MakeUserInstruction")) {
-                myChunkIndex++;                                                 // Check if otherwise invalid command is preceded by "to", return new var ref if so
-                return new VariableCommand(currentChunk);
-            }
-            else if (!myStateManager.getCommands().isDefined(currentChunk)) {
-                throw new ParserException("Invalid command");                   // Else, invalid command
-            }
-        }
-        List<CommandInter> paramList = getParameters(currentChunk, input);
-        if (myCommandFactory.isNormalCommand(currentChunk)) {       // Return complete command
-            return myCommandFactory.createCommand(currentChunk, paramList);
-        }
-        return myStateManager.getCommands().getCommand(currentChunk, paramList);
+    private ICommand makeNextCommand() throws ParserException {
+        String currentChunk = myInputChunks.get(myChunkIndex); // Advance chunk
+        List<ICommand> paramList = getParameters(currentChunk);
+        return myCommandFactory.createCommand(currentChunk, paramList);
     }
 
-    private List<CommandInter> getParameters(String command, List<String> input) throws ParserException {
-        int numParams = 0;
-        List<CommandInter> paramList = new ArrayList<>();
-        if (myCommandFactory.isNormalCommand(command)) {         // If we've made it this far, command must already exist, so find it:
-            numParams = myCommandFactory.getParamCount(command); // Normal command takes priority over user defined command of same name
-        }
-        else if (myStateManager.getCommands().isDefined(command)){
-            numParams = myStateManager.getCommands().getParamCount(command); // User defined command
-        }
+    private List<ICommand> getParameters(String command) throws ParserException {
+        int numParams = myCommandFactory.getParamCount(command);
         myChunkIndex++;
-        if (numParams == -1) {                                               // -1 means a list should be created, until an end bracket
-            populateUntilListEnd(paramList, input);
-        }
-        else {
-            populateNParameters(paramList, numParams, input);
+        List<ICommand> paramList = new ArrayList<>();
+        int i = 0;
+        while (i != numParams) {
+            if (numParams == -1 && myInputChunks.get(myChunkIndex).matches(".*End")) {
+                myChunkIndex++;
+                break;
+            }
+            if (myChunkIndex == myInputChunks.size()) {
+                throw new ParserException("Invalid parameter count or unterminated list or group");
+            }
+            paramList.add(makeNextCommand());
+            i++;
         }
         return paramList;
-    }
-
-    private void populateNParameters(List<CommandInter> paramList, int num, List<String> chunkList) throws ParserException {
-        for (int i = 0; i < num; i++) {
-            if (myChunkIndex == chunkList.size()) {
-                throw new ParserException("Invalid parameter count");
-            }
-            paramList.add(makeCommand(chunkList));
-        }
-    }
-
-    private void populateUntilListEnd(List<CommandInter> paramList, List<String> chunkList) throws ParserException {
-        while (!chunkList.get(myChunkIndex).equals("ListEnd")) {
-            if (myChunkIndex == chunkList.size() - 1) {
-                throw new ParserException("Unterminated list");
-            }
-            paramList.add(makeCommand(chunkList));
-        }
-        myChunkIndex++;
     }
 
     public static void main(String[] args) throws ParserException {
@@ -130,6 +74,18 @@ public class CommandParser {
         //test.parseAndRun("1 and 4"); //THROWS PARSEREXCEPTION AS IT SHOULD
         //test.parseAndRun("repeat 3 [ make :a sum 8 :repcount fd :a ] fd :a fd :repcount"); //WORKS
         //test.parseAndRun("ifelse and 1 1 [ fd 4 fd 9 ] [ fd 6 fd 7 ]"); //WORKS
-        test.parseAndRun("to funca [ :a :b ] [ fd sum :a :b ] to funcb [ :a :b ] [ fd difference :a :b ] to funcc [ :a :b ] [ funca :a :b funcb :a :b ] funcc 9 2");
+        //test.parseAndRun("to funca [ :a :b ] [ fd sum :a :b ] to funcb [ :a :b ] [ fd difference :a :b ] to funcc [ :a :b ] [ funca :a :b funcb :a :b ] funcc 9 2"); //WORKS
+        //test.parseAndRun("fd 1 ( goto 5 6 7 8 fd 50 4 )"); //WORKS
+        //test.parseAndRun("[ fd 4 fd 4 fd 3 ]"); //WORKS
+        //test.parseAndRun("fd 50 fd ( sin 90 5 90 ) fd 42"); //WORKS
+        //test.parseAndRun("fd ( or 0 1 0 )"); //WORKS
+        //test.parseAndRun("fd ( product 2 31 3 )"); //WORKS
+        //test.parseAndRun("dev ( egal? 3 3 ( dev 3 ) ) dev 50"); //WORKS
+        //test.parseAndRun("fd ( equal? 3 3 ( fd 3 ) ) fd 50"); //WORKS
+        //test.parseAndRun("( fd 50 )"); //WORKS
+        //test.parseAndRun("dfsdf weotiwe wfw to wfw [ :d :dfsdf ] [ if [ equal? :d 8 ] [ ( fd :d :dfsdf ) ] ] wfw sum 6 2 9"); //WORKS
+        //test.parseAndRun("to xcor [ :a ] [ fd sum 3 5 ] xcor 5"); //Throws error when trying to overwrite, works
+        //test.parseAndRun("dev 20"); //WORKS
+        //test.parseAndRun("( xcor 4 5 fd 6 7 )"); //WORKS
     }
 }

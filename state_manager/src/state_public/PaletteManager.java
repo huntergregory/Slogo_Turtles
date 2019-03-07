@@ -15,12 +15,9 @@ public class PaletteManager {
         }}
     );
 
-    private int curr_id;
-
     private List<Palette> myPalettes;
 
     public PaletteManager() {
-        curr_id = defaultPalettes.size();
         myPalettes = new ArrayList<>();
         myPalettes.addAll(defaultPalettes);
     }
@@ -31,5 +28,17 @@ public class PaletteManager {
 
     public Palette getDefaultPenColor() {
         return myPalettes.get(1);
+    }
+
+    public Palette getPalette(int index) {
+        for (Palette palette: myPalettes) {
+            if (palette.getId() == index)
+                return palette;
+        }
+        return myPalettes.get(0);
+    }
+
+    public void setPalette(int index, int red, int green, int blue) {
+        myPalettes.add(new Palette(index, red, green, blue));
     }
 }

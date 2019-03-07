@@ -83,3 +83,4 @@ AskWith=multiple_turtle_commands.AskWithCommand:2
 # Custom Commands
 #
 ListStart=control_commands.ListCommand:-1
+GroupStart=control_commands.GroupCommand:-1

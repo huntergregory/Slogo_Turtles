@@ -1,17 +1,17 @@
 package parser_private.commands.turtle_commands.move_to_position_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 import state_public.Turtle;
 
 import java.util.List;
 
 public class MoveToPositionCommand extends TurtleCommand {
 
-    CommandInter myNewX;
-    CommandInter myNewY;
+    ICommand myNewX;
+    ICommand myNewY;
 
-    MoveToPositionCommand(List<CommandInter> params) {
+    MoveToPositionCommand(List<ICommand> params) {
         super(params);
         if (params.size() != 0) {
             myNewX = params.get(0);

@@ -1,11 +1,11 @@
 package parser_private.commands.turtle_commands.move_distance_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class BackCommand extends MoveDistanceCommand {
-    public BackCommand(List<CommandInter> params) {
+    public BackCommand(List<ICommand> params) {
         super(params, false);
     }
 }

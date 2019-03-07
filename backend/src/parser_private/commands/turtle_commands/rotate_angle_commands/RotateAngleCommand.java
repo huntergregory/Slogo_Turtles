@@ -1,16 +1,16 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
 import parser_private.commands.turtle_commands.TurtleCommand;
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public abstract class RotateAngleCommand extends TurtleCommand {
 
-    private CommandInter myAngle;
+    private ICommand myAngle;
     private boolean myGoingRight;
 
-    RotateAngleCommand(List<CommandInter> params, boolean goingRight) {
+    RotateAngleCommand(List<ICommand> params, boolean goingRight) {
         super(params);
         myAngle = params.get(0);
         myGoingRight = goingRight;

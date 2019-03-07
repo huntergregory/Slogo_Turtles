@@ -2,16 +2,20 @@ package state_public;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputTranslator {
 
-    private static List<Map.Entry<String, Pattern>> myCurrentLanguage;
-    private static final String RESOURCES_DIRECTORY = "languages/";
+    private List<Map.Entry<String, Pattern>> myCurrentLanguage;
+    private static final String LANGUAGES_DIRECTORY = "languages/";
+    private static final String MULTI_INPUT_FILENAME = "MultiInputEnabled";
+    private static final String WHITESPACE_REGEX = "\\s+";
 
     public InputTranslator() throws ParserException {
         changeLanguage("English");
@@ -32,7 +36,7 @@ public class InputTranslator {
     }
 
     private void addPatterns(String filename) {
-        ResourceBundle resources = ResourceBundle.getBundle(RESOURCES_DIRECTORY + filename.replace(".properties", ""));
+        ResourceBundle resources = ResourceBundle.getBundle(LANGUAGES_DIRECTORY + filename.replace(".properties", ""));
         for (String key : Collections.list(resources.getKeys())) {
             String translation = resources.getString(key);
             myCurrentLanguage.add(new AbstractMap.SimpleEntry<>(key,
@@ -40,7 +44,7 @@ public class InputTranslator {
         }
     }
 
-    public String getSymbol(String symbol) throws ParserException {
+    private String getSymbol(String symbol) throws ParserException {
         for (Map.Entry<String, Pattern> entry : myCurrentLanguage) {
             if (entry.getValue().matcher(symbol).matches()) {
                 if (!entry.getKey().equals("Constant") && !entry.getKey().equals("Variable") && !entry.getKey().equals("Command")) {
@@ -53,13 +57,45 @@ public class InputTranslator {
     }
 
     private boolean matches(String property, String text) {
-        for (Map.Entry<String, Pattern> entry: myCurrentLanguage)
+        for (Map.Entry<String, Pattern> entry : myCurrentLanguage)
             if (entry.getKey().equals(property))
                 return entry.getValue().matcher(text).matches();
         return false;
     }
 
-    public boolean isComment(String text) {
+    // returns true if command is defined in keyset (Commands are still original text)
+    public boolean isNormalCommand(String command) {
+        for (Map.Entry<String, Pattern> entry : myCurrentLanguage) {
+            if (entry.getKey().equals(command)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasMultiInputGrouping(String command) {
+        command = command.substring(command.lastIndexOf(".") + 1);
+        ResourceBundle validOptions = ResourceBundle.getBundle(MULTI_INPUT_FILENAME);
+        return Collections.list(validOptions.getKeys()).contains(command);
+    }
+
+    public List<String> getChunks(String input) throws ParserException {
+        List<String> chunks = new ArrayList<>();
+        Scanner scan = new Scanner(input);
+        while (scan.hasNextLine()) {
+            String currentLine = scan.nextLine().toLowerCase().strip();
+            if (isComment(currentLine) || currentLine.isEmpty()) {
+                continue;
+            }
+            String[] currentChunks = currentLine.split(WHITESPACE_REGEX);
+            for (String s : currentChunks) {
+                chunks.add(getSymbol(s));
+            }
+        }
+        return chunks;
+    }
+
+    private boolean isComment(String text) {
         return matches("Comment", text);
     }
 

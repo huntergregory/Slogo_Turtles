@@ -1,12 +1,12 @@
 package parser_private.commands.turtle_commands.move_to_position_commands;
 
-import state_public.CommandInter;
+import state_public.ICommand;
 
 import java.util.List;
 
 public class GoToCommand extends MoveToPositionCommand {
 
-    public GoToCommand(List<CommandInter> params) {
+    public GoToCommand(List<ICommand> params) {
         super(params);
     }
 }
