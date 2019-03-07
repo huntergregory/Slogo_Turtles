@@ -26,7 +26,6 @@ public class Turtle {
     private ObjectProperty<Point2D> myPositionProperty;
     private DoubleProperty myHeadingProperty;
     private BooleanProperty myIsShowingProperty;
-    private BooleanProperty myShouldEraseLinesProperty;
     private BooleanProperty myIsActiveProperty;
     private Pen myPen;
 
@@ -46,7 +45,6 @@ public class Turtle {
         myPositionProperty = new SimpleObjectProperty<>();
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
-        myShouldEraseLinesProperty = new SimpleBooleanProperty();
         myIsActiveProperty = new SimpleBooleanProperty();
     }
 
@@ -62,7 +60,6 @@ public class Turtle {
         setPosition(0,0);
         setHeading(0);
         setShowing(true);
-        myShouldEraseLinesProperty.set(false);
     }
 
     public void setPosition(double x, double y) {
@@ -80,8 +77,7 @@ public class Turtle {
     }
 
     public void eraseLines() {
-        myShouldEraseLinesProperty.set(true);
-        myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
+        myPen.eraseLines();
     }
 
     public void setActive(boolean active) {
@@ -105,10 +101,6 @@ public class Turtle {
         return myIsShowingProperty;
     }
 
-    public BooleanProperty getEraseProperty() {
-        return myShouldEraseLinesProperty;
-    }
-
     public BooleanProperty getActiveProperty() {
         return myIsActiveProperty;
     }
@@ -116,7 +108,6 @@ public class Turtle {
     public Pen getPen() {
         return myPen;
     }
-
 
     public int getID() {
         return myTurtleID.get();
