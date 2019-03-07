@@ -24,10 +24,10 @@ public class Main extends Application {
 
     private void createWorkspace() {
         Stage stage = new Stage();
-        //StateManager stateManager = new StateManager();
-        //CommandParser backend = new CommandParser(stateManager);
-        //UIMain workspace = new UIMain(myWorkspaces.size(), stage, backend, stateManager);
-        //myWorkspaces.add(workspace);
+        StateManager stateManager = new StateManager();
+        CommandParser backend = new CommandParser(stateManager);
+        UIMain workspace = new UIMain(myWorkspaces.size(), stage, backend, stateManager);
+        myWorkspaces.add(workspace);
     }
 
 }

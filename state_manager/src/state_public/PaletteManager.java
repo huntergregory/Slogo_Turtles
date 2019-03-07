@@ -32,4 +32,10 @@ public class PaletteManager {
     public Palette getDefaultPenColor() {
         return myPalettes.get(1);
     }
+
+    public Palette getPalette(int index) {
+        if (index >= myPalettes.size())
+            return myPalettes.get(myPalettes.size() - 1);
+        return myPalettes.get(index);
+    }
 }

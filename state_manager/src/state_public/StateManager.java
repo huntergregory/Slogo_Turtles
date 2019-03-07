@@ -57,7 +57,7 @@ public class StateManager {
     }
 
     public void setBackgroundColor(int index) {
-
+        myBackgroundColor = myPaletteManager.getPalette(index);
     }
 
 }
