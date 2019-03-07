@@ -1,11 +1,5 @@
 package state_public;
 
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class StateManager {
 
 

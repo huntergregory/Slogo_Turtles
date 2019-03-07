@@ -1,5 +1,6 @@
 package state_public;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -7,16 +8,24 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Pen {
 
     public static final int DEFAULT_THICKNESS = 3;
-    public static final boolean DEFAULT_ISDOWN = true;
+    public static final boolean DEFAULT_IS_DOWN = true;
+    public static final boolean DEFAULT_SHOULD_ERASE = false;
 
     private SimpleObjectProperty<Palette> myColorProperty;
     private SimpleIntegerProperty myThicknessProperty;
     private SimpleBooleanProperty myIsDownProperty;
+    private SimpleBooleanProperty myShouldEraseLinesProperty;
 
     public Pen(Palette color) {
         myColorProperty = new SimpleObjectProperty<>(color);
         myThicknessProperty = new SimpleIntegerProperty(DEFAULT_THICKNESS);
-        myIsDownProperty = new SimpleBooleanProperty(DEFAULT_ISDOWN);
+        myIsDownProperty = new SimpleBooleanProperty(DEFAULT_IS_DOWN);
+        myShouldEraseLinesProperty = new SimpleBooleanProperty(DEFAULT_SHOULD_ERASE);
+    }
+
+    public void eraseLines() {
+        myShouldEraseLinesProperty.set(true);
+        myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
     }
 
     public void setColor(Palette color) {
@@ -31,7 +40,7 @@ public class Pen {
         myIsDownProperty.set(isDown);
     }
 
-    public SimpleObjectProperty<Palette> getColorProperty() {
+    public SimpleObjectProperty<Palette> getPaletteProperty() {
         return myColorProperty;
     }
 
@@ -41,6 +50,10 @@ public class Pen {
 
     public SimpleBooleanProperty getIsDownProperty() {
         return this.myIsDownProperty;
+    }
+
+    public BooleanProperty getEraseProperty() {
+        return myShouldEraseLinesProperty;
     }
 
     public boolean getIsDown() {
