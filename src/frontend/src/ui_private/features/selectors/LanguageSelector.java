@@ -12,8 +12,6 @@ public class LanguageSelector extends Selector {
             FXCollections.observableArrayList("Chinese", "English","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
 
-    private InputTranslator myInputTranslator;
-
     public LanguageSelector(StateManager manager) {
         super(manager);
     }
@@ -27,7 +25,7 @@ public class LanguageSelector extends Selector {
     protected void handleItemSelected(String item) {
         try {
             System.out.println("language here");
-            myInputTranslator.changeLanguage(item);
+            myStateManager.getInputTranslator().changeLanguage(item);
         }
         catch (ParserException e) {
             System.out.println("Not a valid language");
