@@ -12,6 +12,7 @@ public class TurtleManager {
     private PaletteManager myPaletteManager;
     private List<Turtle> myTurtles;
     private List<Integer> myPreviousActiveTurtles;
+    private Palette myBackgroundColor;
 
     private double panelWidth;
     private double panelHeight;
@@ -20,6 +21,7 @@ public class TurtleManager {
         myVariables = variables;
         myPaletteManager = paletteManager;
         myTurtles = new ArrayList<>();
+        myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
     }
 
     public void setPanelWidthHeight(double width, double height) {
@@ -78,5 +80,9 @@ public class TurtleManager {
 
     public void revertActiveTurtles() {
         setIDsActive(myPreviousActiveTurtles);
+    }
+
+    public Palette getBackgroundColor() {
+        return myBackgroundColor;
     }
 }

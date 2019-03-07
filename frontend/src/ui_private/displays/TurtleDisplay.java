@@ -3,6 +3,7 @@ package ui_private.displays;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import state_public.Palette;
@@ -11,6 +12,7 @@ import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 //TODO make which turtle type we're using dynamic
@@ -27,14 +29,14 @@ public class TurtleDisplay {
     private double myWidth;
     private double myHeight;
 
-    public TurtleDisplay(TurtleManager turtleManager, Palette backgroundColor, double width, double height) { // FIXME
+    public TurtleDisplay(TurtleManager turtleManager, double width, double height) { // FIXME
         myTurtleManager = turtleManager;
         myWidth = width;
         myHeight = height;
         myTurtleManager.setPanelWidthHeight(myWidth, myHeight);
         initializePane();
         initializeTurtles();
-        bindBackground(backgroundColor);
+        bindBackground();
     }
 
     private void initializePane() {
@@ -51,8 +53,14 @@ public class TurtleDisplay {
         myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(),getTurtleXOrigin(), getTurtleYOrigin()));
     }
 
-    private void bindBackground(Palette color) {
-        //myTurtlePane.backgroundProperty().set(new Background(); FIXME
+    private void bindBackground() {
+        myTurtleManager.getBackgroundColor().getColorProperty().addListener((o, oldVal, newVal) -> setBackground(newVal));
+    }
+
+    private void setBackground(Color color) {
+        BackgroundFill oldFill = myTurtlePane.getBackground().getFills().get(0);
+        BackgroundFill newFill = new BackgroundFill(color, oldFill.getRadii(), oldFill.getInsets());
+        myTurtlePane.setBackground(new Background(newFill));
     }
 
 /* TODO: remove

@@ -1,11 +1,5 @@
 package state_public;
 
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class StateManager {
 
 
@@ -16,7 +10,7 @@ public class StateManager {
     private CommandHistory myCommandHistory;
     private InputTranslator myInputTranslator;
     private PaletteManager myPaletteManager;
-    private Palette myBackgroundColor;
+    private Palette myUIColor;
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
@@ -25,7 +19,7 @@ public class StateManager {
         myCommands = new GlobalCommands();
         myCommandHistory = new CommandHistory();
         myInputTranslator = new InputTranslator();
-        myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
+        myUIColor = myPaletteManager.getDefaultBackgroundColor();
     }
 
     public TurtleManager getTurtleManager() {
@@ -45,7 +39,7 @@ public class StateManager {
     }
 
     public Palette getBackgroundColor() {
-        return myBackgroundColor;
+        return myUIColor;
     }
 
     public InputTranslator getInputTranslator() {
