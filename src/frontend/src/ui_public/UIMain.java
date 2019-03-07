@@ -62,19 +62,70 @@ public class UIMain {
     }
 
     private void addFeatures() {
+//        addPenColorChooser();
+//        //myFactory.addLeftFeature(FeatureType.PEN_COLOR_CHOOSER);
+//        addBackgroundColorChooser();
+//        //myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+//        addLanguageSelector();
+//        //myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
+//        addTurtleImageSelector();
+//        //myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
+//        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
+//        addPastCommandsSelector();
+//        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
+//        //myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
+//        addUserCommandsSelector();
+//        //myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
+//        addMoveTurtleSelector();
+//        //myFactory.addLeftFeature(FeatureType.MOVE_TURTLE_SELECTOR);
+//        myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
+//        myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
+//        //myFactory.addRightFeature(FeatureType.FD_BUTTON);
+//        myFactory.addRightFeature(FeatureType.PEN_THICKNESS_SLIDER);
+//        myFactory.addRightFeature(FeatureType.PEN_UPDOWN_SELECTOR);
+    }
+
+    private void addPenColorChooser() {
         myFactory.addLeftFeature(FeatureType.PEN_COLOR_CHOOSER);
+    }
+
+    private void addBackgroundColorChooser() {
         myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
+    }
+
+    private void addLanguageSelector() {
         myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
+    }
+
+    private void addTurtleImageSelector() {
         myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
-        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
+    }
+
+    private void addPastCommandsSelector() {
         myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
-        //myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
+    }
+
+    private void addUserCommandsSelector() {
         myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
+    }
+
+    private void addMoveTurtleSelector() {
         myFactory.addLeftFeature(FeatureType.MOVE_TURTLE_SELECTOR);
+    }
+
+    private void addVariablesWindow() {
         myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
+    }
+
+    private void addTurtleStateWindow() {
         myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
-        //myFactory.addRightFeature(FeatureType.FD_BUTTON);
+    }
+
+    private void addPenThicknessSlider() {
         myFactory.addRightFeature(FeatureType.PEN_THICKNESS_SLIDER);
+    }
+
+    private void addPenUpDownSelector() {
         myFactory.addRightFeature(FeatureType.PEN_UPDOWN_SELECTOR);
     }
 

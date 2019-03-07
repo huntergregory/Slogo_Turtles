@@ -1,6 +1,7 @@
 package entry;
 
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import parser_public.CommandParser;
 import state_public.ParserException;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
+
+    private static final String NEW_WORKSPACE_KEY = "n";
 
     private List<UIMain> myWorkspaces;
 
@@ -25,6 +28,13 @@ public class Main extends Application {
 
     private void createWorkspace() {
         Stage stage = new Stage();
+        stage.addEventHandler(KeyEvent.KEY_PRESSED, (k) -> {
+            if (k.getText().equals(NEW_WORKSPACE_KEY)) {
+                if (k.isMetaDown()) {
+                    createWorkspace();
+                }
+            }
+        });
         try {
             StateManager stateManager = new StateManager();
             CommandParser backend = new CommandParser(stateManager);
