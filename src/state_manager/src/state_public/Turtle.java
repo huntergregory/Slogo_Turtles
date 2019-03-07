@@ -1,6 +1,5 @@
 package state_public;
 
-import java.awt.geom.Point2D;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -9,6 +8,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+
+import java.awt.geom.Point2D;
 
 /**
  * A backend turtle that employs bindings to relate properties to frontend turtle representation.

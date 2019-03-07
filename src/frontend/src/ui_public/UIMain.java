@@ -1,15 +1,14 @@
 package ui_public;
 
-import parser_public.CommandParser;
-import state_public.ParserException;
-import state_public.StateManager;
-import ui_private.UIFactory;
-
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import parser_public.CommandParser;
+import state_public.ParserException;
+import state_public.StateManager;
+import ui_private.UIFactory;
 import ui_private.features.FeatureType;
 
 /**

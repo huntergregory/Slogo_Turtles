@@ -1,11 +1,12 @@
 package parser_public;
 
 import parser_private.CommandFactory;
-import java.util.ArrayList;
-import java.util.List;
 import state_public.ICommand;
 import state_public.ParserException;
 import state_public.StateManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandParser {
 

@@ -1,12 +1,20 @@
 package ui_private.features;
 
 import ui_private.features.exceptions.NoFeatureException;
-//import ui_private.features.scrollable_windows.PastCommandsWindow;
-import ui_private.features.selectors.*;
-//import ui_public.UserCommandsWindow;
-import ui_private.features.scrollable_windows.VariablesWindow;
 import ui_private.features.scrollable_windows.TurtleStateWindow;
+import ui_private.features.scrollable_windows.VariablesWindow;
+import ui_private.features.selectors.BackgroundColorSelector;
+import ui_private.features.selectors.LanguageSelector;
+import ui_private.features.selectors.MoveTurtleSelector;
+import ui_private.features.selectors.PastCommandsSelector;
+import ui_private.features.selectors.PenColorSelector;
+import ui_private.features.selectors.PenUpDownSelector;
+import ui_private.features.selectors.TurtleImageSelector;
+import ui_private.features.selectors.UserCommandsSelector;
 import ui_private.features.sliders.PenThicknessSlider;
+
+//import ui_private.features.scrollable_windows.PastCommandsWindow;
+//import ui_public.UserCommandsWindow;
 
 public enum FeatureType {
     PEN_COLOR_CHOOSER(PenColorSelector.class),

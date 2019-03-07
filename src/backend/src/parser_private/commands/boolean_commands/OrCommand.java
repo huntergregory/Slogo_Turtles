@@ -1,6 +1,5 @@
 package parser_private.commands.boolean_commands;
 
-import parser_private.Command;
 import state_public.ICommand;
 
 import java.util.List;

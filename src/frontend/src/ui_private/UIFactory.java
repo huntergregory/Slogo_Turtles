@@ -3,10 +3,10 @@ package ui_private;
 import javafx.scene.layout.Pane;
 import parser_public.CommandParser;
 import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
-import ui_private.displays.CommandTerminal;
-import ui_private.features.*;
+import ui_private.features.FeatureType;
 import ui_private.features.exceptions.NoFeatureException;
 
 public class UIFactory {

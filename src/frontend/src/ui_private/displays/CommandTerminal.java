@@ -5,14 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-
 import parser_public.CommandParser;
+import state_public.ParserException;
 
 import java.awt.*;
 import java.net.URL;
-
-import state_public.ParserException;
-
 import java.util.ArrayList;
 
 
