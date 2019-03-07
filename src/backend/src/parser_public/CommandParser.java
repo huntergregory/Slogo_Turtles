@@ -87,5 +87,6 @@ public class CommandParser {
         //test.parseAndRun("to xcor [ :a ] [ fd sum 3 5 ] xcor 5"); //Throws error when trying to overwrite, works
         //test.parseAndRun("dev 20"); //WORKS
         //test.parseAndRun("( xcor 4 5 fd 6 7 )"); //WORKS
+        //test.parseAndRun(" fd ( or 0 0 0 ) fd ( or 0 1 0 ) fd ( or 1 1 1 ) fd ( and 0 0 0 ) fd ( and 0 1 0 ) fd ( and 1 1 1 )"); //WORKS
     }
 }

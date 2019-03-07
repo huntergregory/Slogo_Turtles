@@ -8,10 +8,16 @@ import java.util.List;
 public class AndCommand extends Command {
 
     private List<ICommand> myExpressions;
+    private int orToggle;
 
     public AndCommand(List<ICommand> params) {
         super(params);
         myExpressions = params;
+        orToggle = 0;
+    }
+
+    void makeOr() {
+        orToggle = 1;
     }
 
     @Override
@@ -20,10 +26,10 @@ public class AndCommand extends Command {
             return 1;
         }
         for (ICommand exp : myExpressions) {
-            if (exp.execute() == 0) {
-                return 0;
+            if (exp.execute() == orToggle) {
+                return orToggle;
             }
         }
-        return 1;
+        return (orToggle == 1) ? 0 : 1;
     }
 }
