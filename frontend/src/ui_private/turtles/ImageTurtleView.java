@@ -4,14 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.collections.ObservableList;
+import state_public.Turtle;
 import ui_private.displays.TurtleDisplay;
 
 public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;
 
-    public ImageTurtleView(int id, double xOrigin, double yOrigin, ObservableList list) {
-        super(id, list, xOrigin, yOrigin);
+    public ImageTurtleView(int id, ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
+        super(id, list, turtle, dispOffsetX, dispOffsetY);
     }
 
     @Override

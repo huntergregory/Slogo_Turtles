@@ -7,6 +7,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import state_public.Palette;
+import state_public.Turtle;
 import state_public.TurtleManager;
 import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
@@ -50,7 +51,10 @@ public class TurtleDisplay {
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();
-        myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(),getTurtleXOrigin(), getTurtleYOrigin()));
+        int id = 0;
+        myTurtleManager.addTurtle(id);
+        Turtle turtleStates = myTurtleManager.getTurtles().get(id);
+        myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin()));
     }
 
     private void bindBackground() {
