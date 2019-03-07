@@ -54,5 +54,5 @@ public abstract class ScrollableWindow extends Feature {
     }
 
     @Override
-    protected boolean getHasHorizontalLayout() { return true; }
+    protected boolean getHasHorizontalLayout() { return false; }
 }
