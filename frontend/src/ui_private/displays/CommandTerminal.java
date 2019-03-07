@@ -42,6 +42,7 @@ public class CommandTerminal {
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
         myCommandInput.setPromptText(PROMPT);//can barely ever see prompt, maybe we just set the text
+        myBackend = backend;
     }
 
     private void sendToParser() {

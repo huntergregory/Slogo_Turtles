@@ -23,12 +23,12 @@ public class UIFactory {
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
         var terminalHeight = height / 6.0;
+        myBackend = backend;
         myStateManager = stateManager;
         myTerminal = new CommandTerminal(myBackend); //FIXME
         myTurtleDisplay = new TurtleDisplay(myStateManager.getTurtleManager(), turtlePanelWidth, turtlePaneHeight);
         myLeftPanel = new SidePanel(mySidePanelWidth);
         myRightPanel = new SidePanel(mySidePanelWidth);
-        myBackend = backend;
     }
 
     public Pane getLeft() {
