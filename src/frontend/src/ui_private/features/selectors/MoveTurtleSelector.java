@@ -2,10 +2,15 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 
 public class MoveTurtleSelector extends Selector {
     private static final String TITLE = "Move Turtle";
     private static final ObservableList MOVEMENTS = FXCollections.observableArrayList("", "FD", "BK","RT","LT");
+
+    public MoveTurtleSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

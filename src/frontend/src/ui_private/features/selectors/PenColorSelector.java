@@ -18,12 +18,17 @@ public class PenColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 
 public class PenColorSelector extends Selector {
     private static final String TITLE = "Pen Color";
     private static final ObservableList PENCOLORS = FXCollections.observableArrayList("", "RED 1", "BLUE 2", "GREEN 3");
     private String myPenColor;
     private int myIndex;
+
+    public PenColorSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

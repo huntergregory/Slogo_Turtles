@@ -2,6 +2,7 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
 import ui_private.turtles.LineStroke;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class LineStrokeSelector extends Selector {
         return FXCollections.observableArrayList(strokes);
     }
 
+    public LineStrokeSelector(StateManager manager) {
+        super(manager);
+    }
 
     @Override
     protected ObservableList getItemList() {

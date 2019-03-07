@@ -2,14 +2,14 @@ package ui_private.features.sliders;
 
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
+import state_public.StateManager;
 import ui_private.features.Feature;
 
 public abstract class SlogoSlider extends Feature {
-
     private Slider mySlider;
 
-    public SlogoSlider() {
-        super(true);
+    public SlogoSlider(StateManager manager) {
+        super(manager);
         mySlider = new Slider(0, 1, 0.5);
         mySlider.setShowTickMarks(true);
         mySlider.setShowTickLabels(true);
@@ -22,4 +22,7 @@ public abstract class SlogoSlider extends Feature {
     public Node getMainComponent() {
         return mySlider;
     }
+
+    @Override
+    protected boolean getHasHorizontalLayout() { return true; }
 }
