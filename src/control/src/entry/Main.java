@@ -9,8 +9,12 @@ import javafx.application.Application;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import parser_public.CommandParser;
 import state_public.ParserException;
@@ -31,7 +35,9 @@ public class Main extends Application {
     private Stage myStage;
     private Scene myScene;
     private BorderPane myBorderPane;
-    private ToolBar myToolBar;
+    //private ToolBar myToolBar;
+    private MenuBar myMenuBar;
+    private GridPane myFeaturePane;
     private TabPane myTabPane;
     private List<UIBuilder> myWorkspaces;
 
@@ -42,54 +48,108 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         myStage = stage;
+        //initFeatureHBox();
+        setupMenuBar();
+
         initStage();
         createWorkspace();
         showStage();
         UIBuilder.addStyle(myScene);
     }
 
+    private void setupMenuBar() {
+        myMenuBar = new MenuBar();
+        addFileMenu();
+        initFeaturePane();
+        addFeatureMenu();
+    }
+
+    private void addFileMenu() {
+        Menu fileMenu = new Menu("File");
+        myMenuBar.getMenus().add(fileMenu);
+    }
+
+    private void initFeaturePane() {
+        myFeaturePane = new GridPane();
+        String[] features = {"VariablesWindow", "TurtleStateWindow", "LanguageSelector"};
+        for (int k=0; k<features.length; k++) {
+            addRow(features[k], k);
+        }
+    }
+
+    private void addRow(String text, int row) {
+        var label = new Label(text);
+        label.setTextFill(Color.BLACK);
+        new FeatureButton(text, getCurrentWorkspace());
+        myFeaturePane.addRow(row);
+    }
+
+    private void addFeatureMenu() {
+        Menu featureMenu = new Menu("Customize...");
+        CustomMenuItem customizeItem = new CustomMenuItem(myFeaturePane);
+        customizeItem.setHideOnClick(false);
+        featureMenu.getItems().add(customizeItem);
+        myMenuBar.getMenus().add(featureMenu);
+    }
+
+    /*private void initFeatureHBox() {
+        myFeatureHBox = new HBox();
+        VBox leftFeatureVBox = createFeatureVBox();
+        VBox rightCheckBoxVBox = createFeatureVBox();
+        myFeatureHBox.getChildren().addAll(leftFeatureVBox, rightCheckBoxVBox);
+    }
+
+    private VBox createFeatureVBox() {
+        VBox box = new VBox();
+        for (FeatureType type : FeatureType.values()) {
+
+        }
+        return box; //FIXME
+    }*/
+
     private void initStage() {
         myTabPane = new TabPane();
         myTabPane.getTabs().addListener((ListChangeListener) c -> enforceTabPolicy());
-                /*new ListChangeListener<Tab>() {
-            //couldn't do a lambda because the listener class would be ambiguous
-            @Override
-            public void onChanged(Change<? extends Tab> change) {
-                enforceTabPolicy();
-            }
-        });*/
-        createToolbar();
+
+        //createToolbar();
 
         myBorderPane = new BorderPane();
-        myBorderPane.setTop(myToolBar);
+        myBorderPane.setTop(myMenuBar);
         myBorderPane.setCenter(myTabPane);
     }
 
     private void enforceTabPolicy() {
         boolean oneTabLeft = myTabPane.getTabs().size() == 1;
-        System.out.println(oneTabLeft);
         var policy = (oneTabLeft) ? TabPane.TabClosingPolicy.UNAVAILABLE : TabPane.TabClosingPolicy.SELECTED_TAB;
         myTabPane.setTabClosingPolicy(policy);
     }
 
-    private void createToolbar() {
+    /*private void createToolbar() {
         myToolBar = new ToolBar();
         makeButton("New", e -> createWorkspace());
         makeButton("Load", e -> {}); //FIXME
         makeButton("Customize...", e -> showFeatureCheckboxes());
-    }
+    }*/
 
     private void makeButton(String text, EventHandler<ActionEvent> handler) {
         var button = new Button(text);
         button.setOnAction(handler);
-        myToolBar.getItems().add(button);
+        //myToolBar.getItems().add(button);
     }
 
     private void showFeatureCheckboxes() {
-        int currentTab = myTabPane.getSelectionModel().getSelectedIndex();
-        UIBuilder currentWorkspace = myWorkspaces.get(currentTab);
+        //myBorderPane.setCenter(myFeaturePane);
+
+        getCurrentWorkspace();
+
+
         //TODO: add checkboxes and listeners
         //TODO: keep track of current features and their order
+    }
+
+    private void getCurrentWorkspace() {
+        int currentTab = myTabPane.getSelectionModel().getSelectedIndex();
+        UIBuilder currentWorkspace = myWorkspaces.get(currentTab);
     }
 
     private void showStage() {
