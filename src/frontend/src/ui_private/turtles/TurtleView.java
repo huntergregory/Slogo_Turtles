@@ -14,6 +14,7 @@ import java.awt.geom.Point2D;
 public abstract class TurtleView {
     static final double WIDTH = 20;
     static final double HEIGHT = 20;
+    private static final double INACTIVE_OPACITY = 0.6;
     private static final String CSS_TAG = "turtle";
 
     protected Node myNode; //must be accessed by subclass
@@ -40,6 +41,7 @@ public abstract class TurtleView {
         myDispYOffset = dispOffsetY;
 
         initializeNode();
+        myNode.setOnMouseClicked(mouseEvent -> toggleActive());
         myNode.getStyleClass().add(CSS_TAG);
         myModifiableList.add(myNode);
 
@@ -72,19 +74,23 @@ public abstract class TurtleView {
         myPen.setPenColor(color);
     }*/
 
+    private void toggleActive() {
+        boolean wasActive = myTurtleStates.getIsActive();
+        double newOpacity = (wasActive) ? INACTIVE_OPACITY : 1.0;
+        myNode.setOpacity(newOpacity);
+        myTurtleStates.setActive(!wasActive);
+    }
+
+
+    private void bindProperties() {
+        myNode.visibleProperty().bind(myTurtleStates.getShowingProperty());
+    }
+
     private void addPropertyListeners() {
         myTurtleStates.getPositionProperty().addListener((o, oldPosition, newPosition) -> move(oldPosition, newPosition));
         myTurtleStates.getHeadingProperty().addListener((o, oldHeading, newHeading) -> rotate(newHeading));
         myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOnIsActiveChange(newActive));
         myTurtleStates.getTurtleIDProperty().addListener((o, oldID, newID) -> myID = newID.intValue());
-    }
-
-    private void bindProperties() {
-        myNode.visibleProperty().bind(myTurtleStates.getShowingProperty());
-        //var manager = TurtleManager.getInstance();
-        //myPositionProperty.bind(manager.getPositionProperty(myID));
-        //myHeadingProperty.bind(manager.getHeadingProperty(myID));
-        //myIsShowingProperty.bind(manager.getShowingProperty(myID));
     }
 
     private void move(Point2D oldPoint, Point2D newPoint) {
