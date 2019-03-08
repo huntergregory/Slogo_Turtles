@@ -3,6 +3,7 @@ package ui_private.features.selectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import state_public.Turtle;
 import ui_private.ResourceBundleHelper;
 import ui_private.displays.CommandTerminal;
 
@@ -28,9 +29,13 @@ public class LineStrokeSelector extends Selector {
     protected void handleItemSelected(String item) {
         try {
             String[] strokeStrings = myResourceHelper.getInfo(item).split(", ");
-            double[] strokes = new double[strokeStrings.length];
+            Double[] strokes = new Double[strokeStrings.length];
             for (int k = 0; k < strokes.length; k++) {
                 strokes[k] = Double.parseDouble(strokeStrings[k]);
+            }
+
+            for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
+                turtle.getPen().setStrokes(strokes);
             }
         }
         catch (NumberFormatException e) {

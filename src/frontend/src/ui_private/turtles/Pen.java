@@ -36,6 +36,20 @@ public class Pen {
         setStyle();
     }
 
+
+    protected void erase() {
+        myModifiableList.removeAll(myLines);
+        myLines = new ArrayList<>();
+    }
+
+
+    private void addListeners() {
+        myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
+        myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> setThickness(newThickness.doubleValue()));
+        myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
+        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> setStroke(oldStrokes, newStrokes));
+    }
+
     // Currently uses the methods that loop through every line, even though this is called for just styling one line.
     // This inefficiency won't matter when there are a relatively small number of lines
     //TODO: if user is expected to draw many lines, consider making analogous methods for a single, newly created line
@@ -43,12 +57,8 @@ public class Pen {
     private void setStyle() {
         setPenColor(myPenStates.getPaletteProperty().getValue());
         setThickness(myPenStates.getThicknessProperty().getValue());
-        //setStroke()
-    }
-
-    private void setThickness(double thickness) {
-        for (Line line : myLines)
-            line.setStrokeWidth(thickness);
+        var currentStrokes = myPenStates.getStrokesProperty().getValue();
+        setStroke(currentStrokes, currentStrokes);
     }
 
 
@@ -61,25 +71,18 @@ public class Pen {
     }
 
 
-    private void addListeners() {
-        myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
-        myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> {}); //FIXME //setThickness(newThickness.));
-        myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
-        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> setStroke(newStrokes));
+    private void setThickness(double thickness) {
+        for (Line line : myLines)
+            line.setStrokeWidth(thickness);
     }
 
 
-    protected void setStroke(ObservableList<Double> strokes) {
+    protected void setStroke(ObservableList<Double> oldStrokes, ObservableList<Double> newStrokes) {
         for (Line line : myLines) {
-            line.getStrokeDashArray().removeAll();
-            for (double stroke : strokes)
+            if (oldStrokes != null)
+                line.getStrokeDashArray().removeAll(oldStrokes);
+            for (double stroke : newStrokes)
                 line.getStrokeDashArray().add(stroke);
         }
-    }
-
-
-    protected void erase() {
-        myModifiableList.removeAll(myLines);
-        myLines = new ArrayList<>();
     }
 }
