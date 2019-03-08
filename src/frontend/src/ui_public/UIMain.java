@@ -3,14 +3,12 @@ package ui_public;
 import parser_public.CommandParser;
 import state_public.ParserException;
 import state_public.StateManager;
-import ui_private.UIFactory;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import ui_private.features.FeatureType;
 
 /**
  *
@@ -26,14 +24,14 @@ public class UIMain {
     private Stage myStage;
     private Scene myScene;
     private BorderPane myPane;
-    private UIFactory myFactory;
+    private UIBuilder myFactory;
     private StateManager myStateManager;
     private CommandParser myBackend;
     private int myWorkspaceID;
 
-    public UIMain(int workspaceID, Stage stage, CommandParser backend, StateManager stateManager) {
+    public UIMain(int workspaceID, CommandParser backend, StateManager stateManager, double width, double height) {
         myWorkspaceID = workspaceID;
-        myStage = stage;
+        //myStage = stage;
         myBackend = backend;
         myStateManager = stateManager;
         init(myStage);
@@ -50,11 +48,11 @@ public class UIMain {
         myPane = new BorderPane();
         var scene = new Scene(myPane, width, height, background);
         scene.getStylesheets().add("style.css");
-        myFactory = new UIFactory(myBackend, myStateManager, WIDTH, HEIGHT);
-        myPane.setLeft(myFactory.getLeft());
+        //myFactory = new UIBuilder(myBackend, myStateManager, WIDTH, HEIGHT);
+        /*myPane.setLeft(myFactory.getLeft());
         myPane.setRight(myFactory.getRight());
         myPane.setCenter(myFactory.getCenter());
-        myPane.setBottom(myFactory.getBottom());
+        myPane.setBottom(myFactory.getBottom());*/
 
         addFeatures();
 
