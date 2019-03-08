@@ -2,13 +2,18 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class MoveTurtleSelector extends Selector {
-    private static final String TITLE = "Move Turtle";
     private static final ObservableList MOVEMENTS = FXCollections.observableArrayList("", "FD", "BK","RT","LT");
 
+    public MoveTurtleSelector(StateManager manager) {
+        super(manager);
+    }
+
     @Override
-    protected ObservableList getItemList() {
+    protected ObservableList<String> getItemList() {
         return MOVEMENTS;
     }
 
@@ -35,9 +40,8 @@ public class MoveTurtleSelector extends Selector {
         }*/ //FIXME
     }
 
-
     @Override
-    protected String getLabelText() {
-        return TITLE;
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 }

@@ -42,6 +42,10 @@ public class CommandTerminal {
         myBackend = backend;
     }
 
+    public void setText(String command) {
+        myCommandInput.setText(command);
+    }
+
     private void sendToParser() {
         myCommand = myCommandInput.getText();
         System.out.println(myCommand); //TODO remove before submission

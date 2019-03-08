@@ -4,7 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 import state_public.Palette;
 
+import java.awt.*;
 import java.util.ArrayList;
+
 
 /**
  * Creates or erases lines dynamically based on changes in a turtle's pen states.
@@ -17,7 +19,6 @@ public class Pen {
     private state_public.Pen myPenStates;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
-
 
     Pen(ObservableList list, state_public.Pen penStates) {
         myPenStates = penStates;
@@ -32,9 +33,23 @@ public class Pen {
             return;
         Line line = new Line(oldX, oldY, newX, newY);
         line.getStyleClass().add(CSS_TAG);
-        setStyle();
         myLines.add(line);
         myModifiableList.add(line);
+        setStyle();
+    }
+
+
+    protected void erase() {
+        myModifiableList.removeAll(myLines);
+        myLines = new ArrayList<>();
+    }
+
+
+    private void addListeners() {
+        myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
+        myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> setThickness(newThickness.doubleValue()));
+        myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
+        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> lineStroke(oldStrokes, newStrokes));
     }
 
     // Currently uses the methods that loop through every line, even though this is called for just styling one line.
@@ -42,15 +57,11 @@ public class Pen {
     //TODO: if user is expected to draw many lines, consider making analogous methods for a single, newly created line
     // instead of all lines
     private void setStyle() {
+        System.out.println("PALETTE: " + myPenStates.getPaletteProperty().getValue());
         setPenColor(myPenStates.getPaletteProperty().getValue());
-        //setThickness(myPenStates.getThicknessProperty().getValue()); FIXME: THICKNESS for lines
-        //setStroke()
-    }
-
-
-
-    private void setThickness(Double thickness) {
-        //TODO
+        setThickness(myPenStates.getThicknessProperty().getValue());
+        var currentStrokes = myPenStates.getStrokesProperty().getValue();
+        lineStroke(currentStrokes, currentStrokes);
     }
 
 
@@ -58,30 +69,26 @@ public class Pen {
     protected void setPenColor(Palette palette) {
         for (Line line : myLines) {
             var color = palette.getColorProperty().getValue();
+            System.out.println("PEN COLOR: " + color);
             line.setStroke(color);
         }
     }
 
 
-    private void addListeners() {
-        myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
-        myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> {}); //FIXME //setThickness(newThickness.));
-        myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
+    private void setThickness(double thickness) {
+        for (Line line : myLines)
+            line.setStrokeWidth(thickness);
     }
 
 
-    //TODO: remove if we decide on having each turtle have its own stroke and pen color
-/*    protected void setStroke(LineStroke stroke) {
-        myStroke = stroke;
-        for (Line line : myLines) {
-            line.getStrokeDashArray().removeAll(); //might need to remove each number individually before updating myStroke
-            setStyle(line);
+    protected void lineStroke(ObservableList<Double> oldStrokes, ObservableList<Double> newStrokes) {
+        if (newStrokes != null) {
+            for (Line line : myLines) {
+                if (oldStrokes != null)
+                    line.getStrokeDashArray().removeAll(oldStrokes);
+                for (double stroke : newStrokes)
+                    line.getStrokeDashArray().add(stroke);
+            }
         }
-    }*/
-
-
-    protected void erase() {
-        myModifiableList.removeAll(myLines);
-        myLines = new ArrayList<>();
     }
 }

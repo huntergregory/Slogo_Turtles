@@ -2,44 +2,49 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import ui_private.turtles.LineStroke;
+import state_public.StateManager;
+import state_public.Turtle;
+import ui_private.ResourceBundleHelper;
+import ui_private.displays.CommandTerminal;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 public class LineStrokeSelector extends Selector {
-    private static final ObservableList STROKES = constructList();
-    private static final String TITLE = "Line Stroke";
+    private static final String STROKE_PROPERTIES = "line_stroke";
+    private static final ResourceBundleHelper myResourceHelper = new ResourceBundleHelper(STROKE_PROPERTIES);
+    private static final ObservableList STROKES = FXCollections.observableArrayList(myResourceHelper.getAllLabels());
 
-    private static ObservableList constructList() {
-        ArrayList<String> strokes = new ArrayList<>();
-        for (LineStroke stroke : LineStroke.values())
-            strokes.add(stroke.getText());
-        return FXCollections.observableArrayList(strokes);
+    public LineStrokeSelector(StateManager manager) {
+        super(manager);
     }
 
-
     @Override
-    protected ObservableList getItemList() {
-        return null;
+    protected ObservableList<String> getItemList() {
+        return STROKES;
     }
 
     @Override
     protected void handleItemSelected(String item) {
-        var stroke = getLineStroke(item);
-        if (stroke != null)
-            return; //TurtleManager.getInstance().setStroke(stroke) //FIXME
-    }
+        try {
+            String[] strokeStrings = myResourceHelper.getInfo(item).split(", ");
+            Double[] strokes = new Double[strokeStrings.length];
+            for (int k = 0; k < strokes.length; k++) {
+                strokes[k] = Double.parseDouble(strokeStrings[k]);
+            }
 
-    private LineStroke getLineStroke(String item) {
-        for (LineStroke stroke : LineStroke.values()) {
-            if (stroke.getText().equals(item))
-                return stroke;
+            for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
+                turtle.getPen().setStrokes(strokes);
+            }
         }
-        return null;
+        catch (NumberFormatException e) {
+            System.out.println("Couldn't parse stroke array. Check properties file");
+        }
     }
 
     @Override
-    protected String getLabelText() {
-        return TITLE;
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 }

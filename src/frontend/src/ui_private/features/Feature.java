@@ -7,6 +7,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import state_public.StateManager;
 
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;
@@ -15,12 +16,12 @@ public abstract class Feature {
     private static final Font FONT = new Font(FONT_FAMILY,FONT_SIZE);
     //TODO: transfer these^ to css
 
+    protected StateManager myStateManager;
     private GridPane myGrid;
     private Label myLabel;
-    private boolean myHasHorizontalLayout;
 
-    protected Feature(boolean hasHorizontalLayout) {
-        myHasHorizontalLayout = hasHorizontalLayout;
+    public Feature(StateManager manager) {
+        myStateManager = manager;
     }
 
     /**
@@ -36,21 +37,15 @@ public abstract class Feature {
      */
     abstract protected Node getMainComponent();
 
-    /**
-     * @return text for label
-     */
-    abstract protected String getLabelText();
 
+    abstract protected boolean getHasHorizontalLayout();
 
     /**
-     * @return title describing the feature. Will be displayed near the main feature
+     * Must be called before getPane
      */
-    protected Label getLabel() {
-        if (myLabel != null)
-            return myLabel;
-        myLabel = new Label(getLabelText());
+    public void setLabelText(String text) {
+        myLabel = new Label(text);
         myLabel.setFont(FONT);
-        return myLabel;
     }
 
 
@@ -58,7 +53,7 @@ public abstract class Feature {
         if (myGrid != null)
             return myGrid;
         myGrid = new GridPane();
-        if (myHasHorizontalLayout)
+        if (getHasHorizontalLayout())
             createHorizontalGrid();
         else
             createVerticalGrid();
@@ -69,15 +64,15 @@ public abstract class Feature {
 
     private void centerItems() {
         myGrid.setHalignment(getMainComponent(), HPos.CENTER);
-        myGrid.setHalignment(getLabel(), HPos.CENTER);
+        myGrid.setHalignment(myLabel, HPos.CENTER);
     }
 
     private void createVerticalGrid() {
-        myGrid.addColumn(0, getLabel(), getMainComponent());
+        myGrid.addColumn(0, myLabel, getMainComponent());
     }
 
     private void createHorizontalGrid() {
-        myGrid.addRow(0, getLabel(), getMainComponent());
+        myGrid.addRow(0, myLabel, getMainComponent());
         expandToFullWidth();
     }
 

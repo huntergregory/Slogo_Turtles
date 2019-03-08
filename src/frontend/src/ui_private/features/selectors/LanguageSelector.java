@@ -4,21 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.InputTranslator;
 import state_public.ParserException;
+import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class LanguageSelector extends Selector {
-    private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
             FXCollections.observableArrayList("Chinese", "English","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
 
-    private InputTranslator myInputTranslator;
-
-    public LanguageSelector(InputTranslator inputTranslator) {
-        myInputTranslator = inputTranslator;
+    public LanguageSelector(StateManager manager) {
+        super(manager);
     }
 
     @Override
-    protected ObservableList getItemList() {
+    protected ObservableList<String> getItemList() {
         return LANGUAGES;
     }
 
@@ -26,7 +25,7 @@ public class LanguageSelector extends Selector {
     protected void handleItemSelected(String item) {
         try {
             System.out.println("language here");
-            myInputTranslator.changeLanguage(item);
+            myStateManager.getInputTranslator().changeLanguage(item);
         }
         catch (ParserException e) {
             System.out.println("Not a valid language");
@@ -34,7 +33,7 @@ public class LanguageSelector extends Selector {
     }
 
     @Override
-    protected String getLabelText() {
-        return TITLE;
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 }

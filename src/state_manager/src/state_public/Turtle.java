@@ -117,6 +117,14 @@ public class Turtle {
         return myPositionProperty.get();
     }
 
+    public double getX() {
+        return myPositionProperty.get().getX();
+    }
+
+    public double getY() {
+        return myPositionProperty.get().getY();
+    }
+
     public double getHeading() {
         return myHeadingProperty.get();
     }

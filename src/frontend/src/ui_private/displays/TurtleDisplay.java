@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import state_public.Turtle;
 import state_public.TurtleManager;
-import ui_private.turtles.LineStroke;
 import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 public class TurtleDisplay {
     private static final String PANE_CSS_CLASS = "pane";
     public static String DEFAULT_IMAGE_NAME = "tan_turtle.png"; //TODO remove
-    public static final LineStroke DEFAULT_LINE_STROKE = LineStroke.NORMAL; //TODO remove
     public static final Color DEFAULT_PEN_COLOR = Color.BLACK; //TODO remove
     private Image myImage; //TODO remove
 
@@ -51,7 +49,8 @@ public class TurtleDisplay {
         int id = 1;
         myTurtleManager.addTurtle(id);
         Turtle turtleStates = myTurtleManager.getTurtle(id);
-        myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin()));
+        var newTurtle = new TriangleTurtleView(myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin());
+        myTurtleViews.add(newTurtle);
     }
 
     private void bindBackground() {

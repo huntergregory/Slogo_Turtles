@@ -3,5 +3,6 @@ module control {
     requires backend;
     requires state_manager;
     requires javafx.graphics;
-    exports entry;
+    requires javafx.controls;
+    exports main;
 }

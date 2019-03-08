@@ -25,20 +25,26 @@ public class SidePanel {
         myNormalWidth = width;
         myChildren = new ArrayList<>();
         myNumRows = 0;
-    }
-
-
-    public void addRow(Node node) {
-        if (myNumRows == 0)
-            expandPanel();
-        myPane.addRow(myNumRows, node);
-        myChildren.add(node);
-        myNumRows += 1;
+        updatePanelSize();
     }
 
 
     public Pane getPane() {
         return myPane;
+    }
+
+
+    public void addRow(Node node) {
+        myPane.addRow(myNumRows, node);
+        myChildren.add(node);
+        myNumRows += 1;
+        updatePanelSize();
+    }
+
+    public void removeRow(int index) {
+        myPane.getChildren().remove(index);
+        myNumRows -= 1;
+        updatePanelSize();
     }
 
 
@@ -50,8 +56,20 @@ public class SidePanel {
     }
 
 
+    private void updatePanelSize() {
+        if (myNumRows >= 1)
+            expandPanel();
+        else
+            shrinkPanel();
+    }
+
     private void expandPanel() {
         myPane.setMinWidth(myNormalWidth);
         myPane.setMaxWidth(myNormalWidth);
+    }
+
+    private void shrinkPanel() {
+        myPane.setMinWidth(0);
+        myPane.setMaxWidth(0);
     }
 }
