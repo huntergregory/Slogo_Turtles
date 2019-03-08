@@ -147,9 +147,9 @@ public class Main extends Application {
         //TODO: keep track of current features and their order
     }
 
-    private void getCurrentWorkspace() {
+    private UIBuilder getCurrentWorkspace() {
         int currentTab = myTabPane.getSelectionModel().getSelectedIndex();
-        UIBuilder currentWorkspace = myWorkspaces.get(currentTab);
+        return myWorkspaces.get(currentTab);
     }
 
     private void showStage() {
