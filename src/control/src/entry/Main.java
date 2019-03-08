@@ -10,11 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import parser_public.CommandParser;
 import state_public.ParserException;
@@ -30,6 +27,9 @@ public class Main extends Application {
     private static final double HEIGHT = 750;
     private static final Paint BACKGROUND = Color.WHITE;
     private static final String TITLE = "SLogo";
+    private static final double MENU_H_GAP = 10;
+    private static final double MENU_V_GAP = 10;
+    private static final String STYLE_SHEET = "style.css";
     private static final String NEW_WORKSPACE_KEY = "n";
 
     private Stage myStage;
@@ -56,6 +56,7 @@ public class Main extends Application {
         showStage();
 
         UIBuilder.addStyle(myScene);
+        this.addStyle();
         getCurrentWorkspace().addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
         getCurrentWorkspace().addLeftFeature(FeatureType.VARIABLES_WINDOW);
         getCurrentWorkspace().addRightFeature(FeatureType.TURTLESTATE_WINDOW);
@@ -87,6 +88,8 @@ public class Main extends Application {
 
     private void initFeaturePane() {
         myFeaturePane = new GridPane();
+        myFeaturePane.setHgap(MENU_H_GAP);
+        myFeaturePane.setVgap(MENU_V_GAP);
         String[] features = {"VariablesWindow", "TurtleStateWindow", "LanguageSelector"};
         for (int k=0; k<features.length; k++) {
             addRow(features[k], k);
@@ -94,14 +97,14 @@ public class Main extends Application {
     }
 
     private void addRow(String text, int row) {
-        var label = new Label(text);
-        label.setTextFill(Color.BLACK);
-        new FeatureButton(text, getCurrentWorkspace());
-        myFeaturePane.addRow(row);
+        var featureButton = new FeatureGridItem(text, getCurrentWorkspace());
+        myFeaturePane.addRow(row, featureButton.getLabel(), featureButton.getButton());
     }
 
     private void addFeatureMenu() {
         Menu featureMenu = new Menu("Customize...");
+        featureMenu.getStyleClass().add("column-filter");
+
         CustomMenuItem customizeItem = new CustomMenuItem(myFeaturePane);
         customizeItem.setHideOnClick(false);
         featureMenu.getItems().add(customizeItem);
@@ -204,4 +207,7 @@ public class Main extends Application {
         });*/
     }
 
+    private void addStyle() {
+        myScene.getStylesheets().add(STYLE_SHEET); //css not working for menu highlight
+    }
 }

@@ -1,0 +1,17 @@
+/* adapted from https://stackoverflow.com/questions/35955382/javafx-get-rid-of-custommenuitem-blue-highlight */
+.column-filter .menu {
+    -fx-background-color: white;
+}
+
+.column-filter .menu:focused {
+    -fx-background-color: white;
+}
+
+.column-filter .custom-menu-item {
+    -fx-background-color: white;
+    -fx-padding: 0;
+}
+
+.column-filter .custom-menu-item:focused {
+    -fx-background-color: white;
+}
