@@ -5,7 +5,6 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class TurtleImageSelector extends Selector {
-    private static final String TITLE = "Turtle Image";
     private static final String[] IMAGE_NAMES = {"tan_turtle.png"}; //TODO: include names
     //private ObservableList IMAGES = constructList(); //can't be static because getClass can't be in a static method
 //FIXME
@@ -37,10 +36,5 @@ public class TurtleImageSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 }

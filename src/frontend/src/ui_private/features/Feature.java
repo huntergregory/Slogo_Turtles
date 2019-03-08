@@ -41,20 +41,11 @@ public abstract class Feature {
     abstract protected boolean getHasHorizontalLayout();
 
     /**
-     * @return text for label
+     * Must be called before getPane
      */
-    abstract protected String getLabelText();
-
-
-    /**
-     * @return title describing the feature. Will be displayed near the main feature
-     */
-    protected Label getLabel() {
-        if (myLabel != null)
-            return myLabel;
-        myLabel = new Label(getLabelText());
+    public void setLabelText(String text) {
+        myLabel = new Label(text);
         myLabel.setFont(FONT);
-        return myLabel;
     }
 
 
@@ -73,15 +64,15 @@ public abstract class Feature {
 
     private void centerItems() {
         myGrid.setHalignment(getMainComponent(), HPos.CENTER);
-        myGrid.setHalignment(getLabel(), HPos.CENTER);
+        myGrid.setHalignment(myLabel, HPos.CENTER);
     }
 
     private void createVerticalGrid() {
-        myGrid.addColumn(0, getLabel(), getMainComponent());
+        myGrid.addColumn(0, myLabel, getMainComponent());
     }
 
     private void createHorizontalGrid() {
-        myGrid.addRow(0, getLabel(), getMainComponent());
+        myGrid.addRow(0, myLabel, getMainComponent());
         expandToFullWidth();
     }
 
