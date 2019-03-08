@@ -17,5 +17,6 @@ public class PastCommandsSelector extends Selector {
     @Override
     protected void handleItemSelected(String item) {
         myCommandTerminal.setText(item);
+        myCommandTerminal.sendToParser();
     }
 }

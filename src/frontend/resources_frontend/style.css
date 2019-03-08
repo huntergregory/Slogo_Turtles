@@ -16,3 +16,8 @@
     -fx-background-color: transparent;
     -fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 0);
 }
+
+.combo-box-popup > .list-view {
+    -fx-max-width: 100;
+    -fx-max-height: 200;
+}

@@ -16,6 +16,7 @@ public class CommandHistory {
 
     public void addCommand(String program) {
         ObservableList<String> observableList = myHistory.getValue();
+        observableList.remove(program);
         observableList.add(program);
         myHistory.set(observableList);
     }

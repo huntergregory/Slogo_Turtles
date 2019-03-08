@@ -40,7 +40,7 @@ public class CommandTerminal {
         myCommandInput.setText(command);
     }
 
-    private void sendToParser() {
+    public void sendToParser() {
         myCommand = myCommandInput.getText();
         myCommandInput.setText("");
         myCommandInput.setPromptText(PROMPT);

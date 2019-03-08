@@ -49,17 +49,21 @@ public class MoveTurtleSelector extends Feature {
 
     private void up() {
         myCommandTerminal.setText("fd 50");
+        myCommandTerminal.sendToParser();
     }
 
     private void down() {
         myCommandTerminal.setText("bk 50");
+        myCommandTerminal.sendToParser();
     }
 
     private void left() {
         myCommandTerminal.setText("lt 90 fd 50");
+        myCommandTerminal.sendToParser();
     }
 
     private void right() {
         myCommandTerminal.setText("rt 90 fd 50");
+        myCommandTerminal.sendToParser();
     }
 }
