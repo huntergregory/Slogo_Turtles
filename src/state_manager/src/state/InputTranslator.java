@@ -1,5 +1,10 @@
 package state;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.io.File;
+import java.lang.reflect.Array;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,12 +17,15 @@ import java.util.regex.Pattern;
 public class InputTranslator {
 
     private List<Map.Entry<String, Pattern>> myCurrentLanguage;
+    private ObservableList<String> myLanguageList = FXCollections.observableList(new ArrayList<>());
     private static final String LANGUAGES_DIRECTORY = "languages/";
+    private static final File LANG_FOLDER_FILE = new File(System.getProperty("user.dir") + "/src/state_manager/resources_state_manager/languages");
     private static final String MULTI_INPUT_FILENAME = "MultiInputEnabled";
     private static final String WHITESPACE_REGEX = "\\s+";
 
     public InputTranslator() throws ParserException {
         changeLanguage("English");
+        populateLanguageList();
     }
 
     public void changeLanguage(String language) throws ParserException {
@@ -92,6 +100,22 @@ public class InputTranslator {
             }
         }
         return chunks;
+    }
+
+    private void populateLanguageList() {
+        File[] fileList = LANG_FOLDER_FILE.listFiles();
+        if (fileList != null) {
+            for (File file : fileList) {
+                String name = file.getName().substring(0, file.getName().indexOf('.'));
+                if (!name.equals("Syntax")) {
+                    myLanguageList.add(name);
+                }
+            }
+        }
+    }
+
+    public ObservableList<String> getLanguages() {
+        return myLanguageList;
     }
 
     private boolean isComment(String text) {
