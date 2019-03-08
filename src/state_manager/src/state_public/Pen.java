@@ -7,9 +7,9 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Pen {
 
-    public static final int DEFAULT_THICKNESS = 3;
-    public static final boolean DEFAULT_IS_DOWN = true;
-    public static final boolean DEFAULT_SHOULD_ERASE = false;
+    private static final int DEFAULT_THICKNESS = 3;
+    private static final boolean DEFAULT_IS_DOWN = true;
+    private static final boolean DEFAULT_SHOULD_ERASE = false;
 
     private SimpleObjectProperty<Palette> myColorProperty;
     private SimpleIntegerProperty myThicknessProperty;

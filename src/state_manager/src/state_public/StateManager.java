@@ -2,8 +2,6 @@ package state_public;
 
 public class StateManager {
 
-
-
     private TurtleManager myTurtleManager;
     private GlobalCommands myCommands;
     private GlobalVariables myVariables;

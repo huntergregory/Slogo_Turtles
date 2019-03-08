@@ -85,7 +85,6 @@ public class Turtle {
         myIsActiveProperty.set(active);
     }
 
-
     public IntegerProperty getTurtleIDProperty() {
         return myTurtleID;
     }
