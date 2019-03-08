@@ -25,7 +25,7 @@ public abstract class ScrollableWindow extends Feature {
         super(manager);
         myHBox = new HBox();
         myTextChain = new LinkedList<>();
-        myTextArea = new TextArea(getText());
+        myTextArea = new TextArea();
         myScrollPane = new ScrollPane(myTextArea);
         refresh = new Button("Refresh");
         refresh.setMinWidth(80);
@@ -37,24 +37,28 @@ public abstract class ScrollableWindow extends Feature {
         myHBox.getChildren().add(refresh);
     }
 
-    protected void addText(String newString) {
-        myTextChain.addFirst(newString);
-        if (SORTS_ALPHABETICALLY)
-            Collections.sort(myTextChain, Comparator.reverseOrder());
-        myTextArea.setText(getText());
+    protected void clearText() {
+        myTextArea.setText("");
     }
 
-    private String getText() {
-        StringBuilder builder = new StringBuilder();
-        int maxLines = MAX_LINES_DISPLAYED;
-        for (String line : myTextChain) {
-            if (maxLines <= 0)
-                break;
-            builder.append(line + "\n");
-            maxLines -= 1;
-        }
-        return builder.toString();
+    protected void addText(String newString) {
+        //myTextChain.addFirst(newString);
+        //if (SORTS_ALPHABETICALLY)
+            //Collections.sort(myTextChain, Comparator.reverseOrder());
+        myTextArea.setText(newString);
     }
+
+////    private String getText() {
+////        StringBuilder builder = new StringBuilder();
+////        int maxLines = MAX_LINES_DISPLAYED;
+////        for (String line : myTextChain) {
+////            if (maxLines <= 0)
+////                break;
+////            builder.append(line + "\n");
+////            maxLines -= 1;
+////        }
+////        return builder.toString();
+//    }
 
     abstract protected void refreshWindow();
 

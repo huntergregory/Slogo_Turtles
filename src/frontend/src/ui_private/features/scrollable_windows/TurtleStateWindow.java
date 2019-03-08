@@ -22,7 +22,7 @@ public class TurtleStateWindow extends ScrollableWindow {
 
     // current state of a turtle (i.e., its ID, position, heading) and its pen (i.e., up/down, color, thickness)
     protected void getTurtleState() {
-        String myTurtleState = "";
+        clearText();
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             String currentTurtleState = "";
             double x = turtle.getX();
