@@ -57,10 +57,6 @@ public class Main extends Application {
 
         UIBuilder.addStyle(myScene);
         this.addStyle();
-        getCurrentWorkspace().addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
-        getCurrentWorkspace().addLeftFeature(FeatureType.VARIABLES_WINDOW);
-        getCurrentWorkspace().addRightFeature(FeatureType.TURTLESTATE_WINDOW);
-        getCurrentWorkspace().addRightFeature(FeatureType.USER_COMMANDS_SELECTOR);
     }
 
     private void initTabPane() {
@@ -90,7 +86,7 @@ public class Main extends Application {
         myFeaturePane = new GridPane();
         myFeaturePane.setHgap(MENU_H_GAP);
         myFeaturePane.setVgap(MENU_V_GAP);
-        String[] features = {"VariablesWindow", "TurtleStateWindow", "LanguageSelector"};
+        String[] features = getCurrentWorkspace().getFeatureNames();
         for (int k=0; k<features.length; k++) {
             addRow(features[k], k);
         }
@@ -172,7 +168,7 @@ public class Main extends Application {
         try {
             StateManager stateManager = new StateManager();
             CommandParser backend = new CommandParser(stateManager);
-            UIBuilder workspace = new UIBuilder(myWorkspaces.size(), backend, stateManager, WIDTH, HEIGHT);
+            UIBuilder workspace = new UIBuilder(backend, stateManager, WIDTH, HEIGHT);
             addTab(workspace);
             myWorkspaces.add(workspace);
         } catch (ParserException e) {
