@@ -11,13 +11,4 @@ public abstract class CommandTerminalFeature extends Selector {
     public CommandTerminalFeature(StateManager manager) {
         super(manager);
     }
-
-    /**
-     * Must be called right after the constructor to avoid null pointer exceptions.
-     * @param terminal
-     */
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
-    }
-
 }

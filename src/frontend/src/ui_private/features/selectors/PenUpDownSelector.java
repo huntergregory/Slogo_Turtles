@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
-import ui_private.displays.CommandTerminal;
 
 public class PenUpDownSelector extends Selector {
     private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
@@ -32,11 +31,6 @@ public class PenUpDownSelector extends Selector {
         for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             turtle.getPen().setIsDown(isDown);
         }
-    }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
     }
 
     protected String getPenColor() {

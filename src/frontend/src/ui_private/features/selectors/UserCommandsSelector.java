@@ -3,7 +3,6 @@ package ui_private.features.selectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state.StateManager;
-import ui_private.displays.CommandTerminal;
 
 public class UserCommandsSelector extends Selector {
     private static final ObservableList USERCOMMANDS = FXCollections.observableArrayList("","a","b","c");
@@ -20,10 +19,5 @@ public class UserCommandsSelector extends Selector {
     @Override
     protected void handleItemSelected(String item) {
         myCommandTerminal.setText(item);
-    }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
     }
 }

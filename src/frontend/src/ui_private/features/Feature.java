@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import state.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;
@@ -19,6 +20,7 @@ public abstract class Feature {
     protected StateManager myStateManager;
     private GridPane myGrid;
     private Label myLabel;
+    protected CommandTerminal myCommandTerminal;
 
     public Feature(StateManager manager) {
         myStateManager = manager;
@@ -87,5 +89,9 @@ public abstract class Feature {
         myGrid.setMaxWidth(width);
         myGrid.setMinWidth(width);
         myGrid.setPrefHeight(VERTICAL_STRETCH_NUMBER); //stretch stuff out vertically
+    }
+
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 }

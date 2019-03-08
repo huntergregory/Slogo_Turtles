@@ -1,47 +1,65 @@
 package ui_private.features.selectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import state.StateManager;
-import ui_private.displays.CommandTerminal;
+import ui_private.features.Feature;
+import ui_private.features.exceptions.NoFeatureException;
 
-public class MoveTurtleSelector extends Selector {
-    private static final ObservableList MOVEMENTS = FXCollections.observableArrayList("", "FD", "BK","RT","LT");
+import java.lang.reflect.Method;
+
+public class MoveTurtleSelector extends Feature {
+
+    private GridPane myControlPane;
 
     public MoveTurtleSelector(StateManager manager) {
         super(manager);
+        myControlPane = new GridPane();
+        myControlPane.add(makeButton("Up"), 1, 0);
+        myControlPane.add(makeButton("Left"), 0, 1);
+        myControlPane.add(makeButton("Down"), 1, 1);
+        myControlPane.add(makeButton("Right"), 2, 1);
+    }
+
+    private Button makeButton(String text) {
+        Button b = new Button(text);
+        b.setPrefSize(50, 50);
+        b.setOnAction(handler -> {
+            try {
+                Method m = this.getClass().getDeclaredMethod(text.toLowerCase(), new Class[0]);
+                m.invoke(this, new Object[0]);
+            }
+            catch (Exception e) {
+                throw new NoFeatureException();
+            }
+        });
+        return b;
     }
 
     @Override
-    protected ObservableList<String> getItemList() {
-        return MOVEMENTS;
+    protected Node getMainComponent() {
+        return myControlPane;
     }
 
     @Override
-    protected void handleItemSelected(String item) {
-        String myCommand = "";
-        if (item.equals("FD")) {
-            myCommand = "fd 50";
-        }
-        else if (item.equals("BK")) {
-            myCommand = "bk 50";
-        }
-        else if (item.equals("RT")) {
-            myCommand = "rt 90 fd 50";
-        }
-        else if (item.equals("LT")) {
-            myCommand = "lt 90 fd 50";
-        }/*
-        try {
-            CommandParser.getInstance().parseAndRun(myCommand);
-        }
-        catch (ParserException e) {
-
-        }*/ //FIXME
+    protected boolean getHasHorizontalLayout() {
+        return true;
     }
 
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
+    private void up() {
+        myCommandTerminal.setText("fd 50");
+    }
+
+    private void down() {
+        myCommandTerminal.setText("bk 50");
+    }
+
+    private void left() {
+        myCommandTerminal.setText("lt 90 fd 50");
+    }
+
+    private void right() {
+        myCommandTerminal.setText("rt 90 fd 50");
     }
 }

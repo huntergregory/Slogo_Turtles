@@ -25,9 +25,7 @@ public class FeatureFactory {
             var clazz = Class.forName(FEATURE_PATH + myResourceHelper.getInfo(label));
             var feature = (Feature) clazz.getDeclaredConstructor(StateManager.class).newInstance(myStateManager);
 
-            if (feature instanceof Selector) {
-                ((Selector) feature).setCommandTerminal(myCommandTerminal); //TODO
-            }
+            feature.setCommandTerminal(myCommandTerminal);
 
             feature.setLabelText(label);
             return feature;

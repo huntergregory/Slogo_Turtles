@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
 import ui_private.ResourceBundleHelper;
-import ui_private.displays.CommandTerminal;
 
 public class LineStrokeSelector extends Selector {
     private static final String STROKE_PROPERTIES = "line_stroke";
@@ -38,10 +37,5 @@ public class LineStrokeSelector extends Selector {
         catch (NumberFormatException e) {
             System.out.println("Couldn't parse stroke array. Check properties file");
         }
-    }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
     }
 }

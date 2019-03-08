@@ -3,7 +3,6 @@ package ui_private.features.selectors;
 import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
-import ui_private.displays.CommandTerminal;
 
 public class PenColorSelector extends Selector {
 
@@ -24,10 +23,4 @@ public class PenColorSelector extends Selector {
             turtle.getPen().setColor(myStateManager.getPaletteManager().getPalette(myIndex));
         }
     }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
-    }
-
 }

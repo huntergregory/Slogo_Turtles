@@ -91,9 +91,9 @@ translated Class names for reflection, list of Commands that support multiple in
 
 #### Known bugs:
 - Save/load functionality not implemented for turtle state
-- UI does not display user defined commands, command history
+- UI does not display user defined commands
 - UI requires refresh button to update variable view
-- UI does not allow for clicking on past or defined commands to execute them
+- UI does not allow for clicking on past or defined commands to immediately execute them
 - UI Undo button does not work
 - UI does not allow for editing user defined variables outside of commands
 - UI does not incorporate click-to-toggle for active turtles

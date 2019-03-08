@@ -1,12 +1,12 @@
 package ui_private.features.scrollable_windows;
 
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import state.StateManager;
 import ui_private.features.Feature;
-import javafx.scene.control.Button;
 
 import java.util.LinkedList;
 

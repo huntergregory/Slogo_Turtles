@@ -3,7 +3,6 @@ package ui_private.features.selectors;
 import javafx.collections.ObservableList;
 import state.ParserException;
 import state.StateManager;
-import ui_private.displays.CommandTerminal;
 
 public class LanguageSelector extends Selector {
 
@@ -25,10 +24,5 @@ public class LanguageSelector extends Selector {
         catch (ParserException e) {
             System.out.println("Not a valid language");
         }
-    }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
     }
 }

@@ -2,7 +2,6 @@ package ui_private.features.selectors;
 
 import javafx.collections.ObservableList;
 import state.StateManager;
-import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {
 
@@ -20,10 +19,5 @@ public class BackgroundColorSelector extends Selector {
         String[] splitted = item.split("\\s+");
         int myIndex = Integer.parseInt(splitted[0]);
         myStateManager.setBackgroundColor(myIndex);
-    }
-
-    @Override
-    public void setCommandTerminal(CommandTerminal terminal) {
-        myCommandTerminal = terminal;
     }
 }
