@@ -1,5 +1,5 @@
 module state_manager {
-    exports state_public;
+    exports state;
     requires javafx.base;
     requires javafx.graphics;
     requires java.desktop;

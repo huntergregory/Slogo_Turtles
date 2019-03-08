@@ -1,7 +1,7 @@
 package parser_private;
 
-import state_public.ICommand;
-import state_public.StateManager;
+import state.ICommand;
+import state.StateManager;
 
 import java.util.List;
 

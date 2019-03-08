@@ -3,7 +3,7 @@ package ui_private.turtles;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import state_public.Turtle;
+import state.Turtle;
 import ui_private.displays.TurtleDisplay;
 
 public class ImageTurtleView extends TurtleView {

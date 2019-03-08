@@ -1,8 +1,8 @@
 package parser_private.commands.multiple_turtle_commands;
 
 import parser_private.Command;
-import state_public.ICommand;
-import state_public.TurtleManager;
+import state.ICommand;
+import state.TurtleManager;
 
 import java.util.List;
 

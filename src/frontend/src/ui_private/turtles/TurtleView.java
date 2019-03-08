@@ -2,7 +2,7 @@ package ui_private.turtles;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import state_public.Turtle;
+import state.Turtle;
 
 import java.awt.geom.Point2D;
 

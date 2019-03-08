@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 public class ParserException extends Exception {
     public ParserException(String message) {

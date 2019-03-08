@@ -2,8 +2,8 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import state_public.StateManager;
-import state_public.Turtle;
+import state.StateManager;
+import state.Turtle;
 import ui_private.displays.CommandTerminal;
 
 public class PenUpDownSelector extends Selector {

@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 import javafx.scene.paint.Color;
 

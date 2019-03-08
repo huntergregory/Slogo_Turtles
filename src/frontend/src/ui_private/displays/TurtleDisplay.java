@@ -5,8 +5,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import state_public.Turtle;
-import state_public.TurtleManager;
+import state.Turtle;
+import state.TurtleManager;
 import ui_private.turtles.TriangleTurtleView;
 import ui_private.turtles.TurtleView;
 

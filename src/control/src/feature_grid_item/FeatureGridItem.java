@@ -3,7 +3,7 @@ package feature_grid_item;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import ui_public.UIBuilder;
+import ui.UIBuilder;
 
 public class FeatureGridItem {
     private static final String LEFT_TEXT = "L";

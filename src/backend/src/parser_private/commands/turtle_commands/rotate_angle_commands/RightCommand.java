@@ -1,6 +1,6 @@
 package parser_private.commands.turtle_commands.rotate_angle_commands;
 
-import state_public.ICommand;
+import state.ICommand;
 
 import java.util.List;
 

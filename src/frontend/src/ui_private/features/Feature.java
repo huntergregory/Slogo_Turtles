@@ -7,7 +7,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import state_public.StateManager;
+import state.StateManager;
 
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;

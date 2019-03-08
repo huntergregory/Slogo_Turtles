@@ -1,7 +1,7 @@
 package ui_private.features.scrollable_windows;
 
-import state_public.StateManager;
-import state_public.Turtle;
+import state.StateManager;
+import state.Turtle;
 
 public class TurtleStateWindow extends ScrollableWindow {
     private static final String TITLE = "Turtle State";

@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;

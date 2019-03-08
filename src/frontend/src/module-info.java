@@ -1,5 +1,5 @@
 module frontend {
-    exports ui_public;
+    exports ui;
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;

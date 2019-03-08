@@ -1,8 +1,8 @@
 package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
-import state_public.ICommand;
-import state_public.IUserCommand;
+import state.ICommand;
+import state.IUserCommand;
 
 import java.util.List;
 

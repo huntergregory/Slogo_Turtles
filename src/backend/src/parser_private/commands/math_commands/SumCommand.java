@@ -1,6 +1,6 @@
 package parser_private.commands.math_commands;
 
-import state_public.ICommand;
+import state.ICommand;
 
 import java.util.List;
 

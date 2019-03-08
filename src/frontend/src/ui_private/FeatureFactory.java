@@ -1,6 +1,6 @@
 package ui_private;
 
-import state_public.StateManager;
+import state.StateManager;
 import ui_private.displays.CommandTerminal;
 import ui_private.features.Feature;
 import ui_private.features.exceptions.NoFeatureException;

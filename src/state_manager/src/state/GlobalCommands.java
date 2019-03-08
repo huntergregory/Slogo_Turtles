@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 import java.util.ArrayList;
 import java.util.HashMap;

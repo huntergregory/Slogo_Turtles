@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;

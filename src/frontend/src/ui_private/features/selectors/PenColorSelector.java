@@ -17,14 +17,9 @@ public class PenColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.paint.Color;
-import state_public.Palette;
-import state_public.StateManager;
-import state_public.Turtle;
+import state.StateManager;
+import state.Turtle;
 import ui_private.displays.CommandTerminal;
-
-import java.awt.*;
-import java.lang.reflect.Field;
 
 public class PenColorSelector extends Selector {
     private static final ObservableList PENCOLORS = FXCollections.observableArrayList("PINK 1", "BLUE 2", "GREEN 3", "WHITE 4", "BLACK 5");

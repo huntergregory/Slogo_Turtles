@@ -1,9 +1,9 @@
-package parser_public;
+package parser;
 
 import parser_private.CommandFactory;
-import state_public.ICommand;
-import state_public.ParserException;
-import state_public.StateManager;
+import state.ICommand;
+import state.ParserException;
+import state.StateManager;
 
 import java.util.ArrayList;
 import java.util.List;

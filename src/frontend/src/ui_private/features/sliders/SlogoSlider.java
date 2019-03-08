@@ -2,7 +2,7 @@ package ui_private.features.sliders;
 
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
-import state_public.StateManager;
+import state.StateManager;
 import ui_private.features.Feature;
 
 public abstract class SlogoSlider extends Feature {

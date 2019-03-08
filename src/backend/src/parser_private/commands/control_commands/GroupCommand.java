@@ -2,8 +2,8 @@ package parser_private.commands.control_commands;
 
 import parser_private.Command;
 import parser_private.commands.math_commands.ConstantCommand;
-import state_public.ICommand;
-import state_public.IUserCommand;
+import state.ICommand;
+import state.IUserCommand;
 
 import java.util.ArrayList;
 import java.util.List;

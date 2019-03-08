@@ -2,9 +2,8 @@ package ui_private.turtles;
 
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
-import state_public.Palette;
+import state.Palette;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -16,11 +15,11 @@ import java.util.ArrayList;
 public class Pen {
     public static final String CSS_TAG = "line";
 
-    private state_public.Pen myPenStates;
+    private state.Pen myPenStates;
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
 
-    Pen(ObservableList list, state_public.Pen penStates) {
+    Pen(ObservableList list, state.Pen penStates) {
         myPenStates = penStates;
         myModifiableList = list;
         myLines = new ArrayList<>();

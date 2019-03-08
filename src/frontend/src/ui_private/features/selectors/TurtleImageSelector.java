@@ -2,7 +2,7 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import state_public.StateManager;
+import state.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class TurtleImageSelector extends Selector {

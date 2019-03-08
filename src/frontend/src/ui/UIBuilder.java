@@ -1,9 +1,9 @@
-package ui_public;
+package ui;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import parser_public.CommandParser;
-import state_public.StateManager;
+import parser.CommandParser;
+import state.StateManager;
 import ui_private.FeatureFactory;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
@@ -11,11 +11,8 @@ import ui_private.displays.CommandTerminal;
 import ui_private.features.exceptions.NoFeatureException;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class UIBuilder {

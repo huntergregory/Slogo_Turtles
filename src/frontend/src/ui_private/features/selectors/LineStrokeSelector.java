@@ -2,14 +2,10 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import state_public.StateManager;
-import state_public.Turtle;
+import state.StateManager;
+import state.Turtle;
 import ui_private.ResourceBundleHelper;
 import ui_private.displays.CommandTerminal;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
 
 public class LineStrokeSelector extends Selector {
     private static final String STROKE_PROPERTIES = "line_stroke";

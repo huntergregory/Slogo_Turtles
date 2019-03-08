@@ -2,9 +2,9 @@ package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
 import parser_private.commands.math_commands.ConstantCommand;
-import state_public.ICommand;
-import state_public.ParserException;
-import state_public.StateManager;
+import state.ICommand;
+import state.ParserException;
+import state.StateManager;
 
 import java.io.File;
 import java.io.IOException;

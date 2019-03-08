@@ -2,9 +2,8 @@ package ui_private.features.selectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import state_public.InputTranslator;
-import state_public.ParserException;
-import state_public.StateManager;
+import state.ParserException;
+import state.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class LanguageSelector extends Selector {

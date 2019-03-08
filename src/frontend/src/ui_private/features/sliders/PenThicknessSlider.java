@@ -1,7 +1,7 @@
 package ui_private.features.sliders;
 
-import state_public.StateManager;
-import state_public.Turtle;
+import state.StateManager;
+import state.Turtle;
 
 public class PenThicknessSlider extends SlogoSlider {
 

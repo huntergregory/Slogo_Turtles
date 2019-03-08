@@ -1,4 +1,4 @@
-package state_public;
+package state;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;

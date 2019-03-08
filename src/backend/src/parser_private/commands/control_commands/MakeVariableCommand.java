@@ -1,7 +1,7 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import state_public.ICommand;
+import state.ICommand;
 
 import java.util.List;
 

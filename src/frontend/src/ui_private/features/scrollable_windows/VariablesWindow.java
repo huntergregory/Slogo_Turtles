@@ -1,9 +1,8 @@
 package ui_private.features.scrollable_windows;
 
-import state_public.StateManager;
+import state.StateManager;
 
 import java.util.Map;
-import java.util.HashMap;
 
 public class VariablesWindow extends ScrollableWindow {
     private static final String TITLE = "Variables";

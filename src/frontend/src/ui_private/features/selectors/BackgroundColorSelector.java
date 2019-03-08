@@ -17,9 +17,7 @@ public class BackgroundColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.paint.Color;
-import state_public.Palette;
-import state_public.StateManager;
+import state.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {

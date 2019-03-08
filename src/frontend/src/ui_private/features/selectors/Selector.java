@@ -3,7 +3,7 @@ package ui_private.features.selectors;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import state_public.StateManager;
+import state.StateManager;
 import ui_private.features.Feature;
 import ui_private.displays.CommandTerminal;
 
