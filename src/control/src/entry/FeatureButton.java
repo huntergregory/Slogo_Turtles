@@ -25,8 +25,19 @@ public class FeatureButton {
     }
 
     private void updateButton() {
+        incrementState();
+        if (myState == UNUSED) {
+        }
+        else if (myState == LEFT) {
+
+        }
+        else if (myState == RIGHT) {
+
+        }
+    }
+
+    private void incrementState() {
         myState += 1;
         myState %= 3;
-
     }
 }

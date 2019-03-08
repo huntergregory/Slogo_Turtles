@@ -48,17 +48,29 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         myStage = stage;
-        //initFeatureHBox();
-        setupMenuBar();
-
-        initStage();
+        initTabPane();
         createWorkspace();
+        setupMenuBar();
+        initBorderPane();
+
         showStage();
+
         UIBuilder.addStyle(myScene);
         getCurrentWorkspace().addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
         getCurrentWorkspace().addLeftFeature(FeatureType.VARIABLES_WINDOW);
-        getCurrentWorkspace().addLeftFeature(FeatureType.TURTLESTATE_WINDOW);
-        getCurrentWorkspace().addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
+        getCurrentWorkspace().addRightFeature(FeatureType.TURTLESTATE_WINDOW);
+        getCurrentWorkspace().addRightFeature(FeatureType.USER_COMMANDS_SELECTOR);
+    }
+
+    private void initTabPane() {
+        myTabPane = new TabPane();
+        myTabPane.getTabs().addListener((ListChangeListener) c -> enforceTabPolicy());
+    }
+
+    private void initBorderPane() {
+        myBorderPane = new BorderPane();
+        myBorderPane.setTop(myMenuBar);
+        myBorderPane.setCenter(myTabPane);
     }
 
     private void setupMenuBar() {
@@ -110,17 +122,6 @@ public class Main extends Application {
         }
         return box; //FIXME
     }*/
-
-    private void initStage() {
-        myTabPane = new TabPane();
-        myTabPane.getTabs().addListener((ListChangeListener) c -> enforceTabPolicy());
-
-        //createToolbar();
-
-        myBorderPane = new BorderPane();
-        myBorderPane.setTop(myMenuBar);
-        myBorderPane.setCenter(myTabPane);
-    }
 
     private void enforceTabPolicy() {
         boolean oneTabLeft = myTabPane.getTabs().size() == 1;
