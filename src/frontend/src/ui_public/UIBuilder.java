@@ -10,6 +10,12 @@ import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
 import ui_private.features.exceptions.NoFeatureException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class UIBuilder {
@@ -70,6 +76,17 @@ public class UIBuilder {
 
     public String[] getFeatureNames() {
         return myFeatureFactory.getFeatureNames();
+    }
+
+    // line 84 copied from https://www.journaldev.com/875/java-read-file-to-string
+    public void setText(File file) {
+        try {
+            String content = new String(Files.readAllBytes(file.toPath()));
+            myTerminal.setText(content);
+        }
+        catch (IOException e) {
+            System.out.println("Couldn't read the file"); //Shouldn't happen
+        }
     }
 
     private void initBorderPane() {
