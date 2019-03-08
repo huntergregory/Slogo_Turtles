@@ -59,35 +59,6 @@ public class TurtleDisplay {
         myTurtlePane.setBackground(new Background(newFill));
     }
 
-/* TODO: remove
-
-
-    public void setPenColor(Color color) {
-        for (TurtleView turtleView : myTurtleViews)
-            turtleView.setPenColor(color);
-    }
-
-    public void setTurtleImage(Image image) {
-        if (myImage == null)
-            myImage = new Image(getClass().getClassLoader().getResourceAsStream(DEFAULT_IMAGE_NAME));
-
-        for (TurtleView turtleView : myTurtleViews) {
-            if (!(turtleView instanceof ImageTurtleView))
-                continue;
-            ((ImageTurtleView) turtleView).setImage(myImage);
-        }
-    }
-
-    public void addTurtle() {
-        //FIXME
-    }
-
-    public void removeTurtle() {
-        //FIXME
-        //TODO: catch NoTurtleException from TurtleManager
-    }
-*/
-
     public Pane getPane() {
         return myTurtlePane;
     }
