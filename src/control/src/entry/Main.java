@@ -55,6 +55,10 @@ public class Main extends Application {
         createWorkspace();
         showStage();
         UIBuilder.addStyle(myScene);
+        getCurrentWorkspace().addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
+        getCurrentWorkspace().addLeftFeature(FeatureType.VARIABLES_WINDOW);
+        getCurrentWorkspace().addLeftFeature(FeatureType.TURTLESTATE_WINDOW);
+        getCurrentWorkspace().addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
     }
 
     private void setupMenuBar() {
