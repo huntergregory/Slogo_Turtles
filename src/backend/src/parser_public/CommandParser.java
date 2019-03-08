@@ -32,7 +32,11 @@ public class CommandParser {
         while (myChunkIndex < myInputChunks.size()) {
             ICommand nextCommand = makeNextCommand(); // Get next command
             nextCommand.injectStateManager(myStateManager);
-            nextCommand.execute();
+            try {
+                nextCommand.execute();
+            } catch (IndexOutOfBoundsException | ClassCastException e) {
+                throw new ParserException("Invalid listed parameter count or parameter type for command");
+            }
         }
         //myStateManager.getCommandHistory().addCommand(program); //TODO
     }
