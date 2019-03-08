@@ -6,7 +6,6 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class MoveTurtleSelector extends Selector {
-    private static final String TITLE = "Move Turtle";
     private static final ObservableList MOVEMENTS = FXCollections.observableArrayList("", "FD", "BK","RT","LT");
 
     public MoveTurtleSelector(StateManager manager) {
@@ -44,10 +43,5 @@ public class MoveTurtleSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 }

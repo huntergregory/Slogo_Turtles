@@ -33,6 +33,8 @@ public class FeatureFactory {
             if (feature instanceof Selector) {
                 ((Selector) feature).setCommandTerminal(myCommandTerminal); //TODO
             }
+
+            feature.setLabelText(label);
             return feature;
         }
         catch (Exception e) {

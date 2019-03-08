@@ -8,7 +8,6 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class LanguageSelector extends Selector {
-    private static final String TITLE = "Language";
     private static final ObservableList LANGUAGES =
             FXCollections.observableArrayList("Chinese", "English","French","German","Italian",
                                                     "Portuguese","Russian","Spanish","Syntax","Urdu");
@@ -36,10 +35,5 @@ public class LanguageSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 }

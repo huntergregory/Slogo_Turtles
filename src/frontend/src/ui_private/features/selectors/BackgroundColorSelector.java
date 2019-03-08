@@ -22,7 +22,6 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {
-    private static final String TITLE = "Background Color";
     private static final ObservableList BACKGROUNDCOLORS =
             FXCollections.observableArrayList("","RED 1", "BLUE 2", "GREEN 3");
     private String myBackgroundColor;
@@ -51,11 +50,6 @@ public class BackgroundColorSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 
     protected String getPenColor() {

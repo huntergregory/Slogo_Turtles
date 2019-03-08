@@ -6,7 +6,6 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class UserCommandsSelector extends Selector {
-    private static final String TITLE = "User Commands";
     private static final ObservableList USERCOMMANDS = FXCollections.observableArrayList("","a","b","c");
 
     public UserCommandsSelector(StateManager manager) {
@@ -27,10 +26,5 @@ public class UserCommandsSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 }

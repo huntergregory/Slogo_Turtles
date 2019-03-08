@@ -7,7 +7,6 @@ import state_public.Turtle;
 import ui_private.displays.CommandTerminal;
 
 public class PenUpDownSelector extends Selector {
-    private static final String TITLE = "Pen Up/Down";
     private  ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     private String myPenState;
 
@@ -37,11 +36,6 @@ public class PenUpDownSelector extends Selector {
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 
     protected String getPenColor() {

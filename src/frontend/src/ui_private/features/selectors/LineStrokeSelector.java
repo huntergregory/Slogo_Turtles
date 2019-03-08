@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class LineStrokeSelector extends Selector {
     private static final ObservableList STROKES = constructList();
-    private static final String TITLE = "Line Stroke";
 
     private static ObservableList constructList() {
         ArrayList<String> strokes = new ArrayList<>();
@@ -46,10 +45,5 @@ public class LineStrokeSelector extends Selector {
                 return stroke;
         }
         return null;
-    }
-
-    @Override
-    protected String getLabelText() {
-        return TITLE;
     }
 }

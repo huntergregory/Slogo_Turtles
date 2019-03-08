@@ -18,6 +18,7 @@ public abstract class Selector extends Feature {
         myDropBox = new ComboBox<>();
         myDropBox.setEditable(false);
         myDropBox.itemsProperty().set(getItemList());
+        System.out.println(myDropBox.getItems().size());
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
         myDropBox.getSelectionModel().selectFirst();
         myDropBox.valueProperty().addListener((o, oldVal, newVal) -> handleItemSelected(newVal));
