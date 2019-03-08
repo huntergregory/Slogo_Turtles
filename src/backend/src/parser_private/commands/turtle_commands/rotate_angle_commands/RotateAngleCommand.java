@@ -27,7 +27,6 @@ public abstract class RotateAngleCommand extends TurtleCommand {
     @Override
     public double execute() {
         double angle = getAngle();
-        System.out.println("Rotating " + angle);
         return runTurtleCommand((turtle) -> {
             turtle.setHeading(angle + turtle.getHeading());
             return Math.abs(angle);

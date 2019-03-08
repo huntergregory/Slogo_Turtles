@@ -19,7 +19,6 @@ public class UserCommandsSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println(item);
         myCommandTerminal.setText(item);
     }
 

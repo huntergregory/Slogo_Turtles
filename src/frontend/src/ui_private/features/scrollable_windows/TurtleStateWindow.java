@@ -24,7 +24,6 @@ public class TurtleStateWindow extends ScrollableWindow {
             currentTurtleState += ("Pen Down: " + turtle.getPen().getIsDown() + "\n");
             currentTurtleState += ("Pen Color: " + turtle.getPen().getColor() + "\n");
             currentTurtleState += ("Pen Thickness: " + turtle.getPen().getThicknessProperty() + "\n");
-            System.out.println(currentTurtleState);
             addText(currentTurtleState);
         }
     }

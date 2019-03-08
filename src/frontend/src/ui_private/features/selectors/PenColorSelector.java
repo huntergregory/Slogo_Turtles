@@ -5,7 +5,6 @@ public class PenColorSelector extends Selector {
 
     @Override
     void handleNewColor(Color newColor) {
-        System.out.println("pen here");
         myTurtleDisplay.setPenColor(newColor);
     }
 

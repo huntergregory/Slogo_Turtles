@@ -30,7 +30,6 @@ public class SetTowardsCommand extends TurtleCommand {
         else {
             double upLeftOrUpRightHeading = Math.toDegrees(Math.atan(deltaX / deltaY));
             newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + 180;
-            System.out.println("set heading: " + newHeading);
         }
         return newHeading;
     }

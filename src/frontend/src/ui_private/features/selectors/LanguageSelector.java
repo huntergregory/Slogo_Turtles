@@ -24,7 +24,6 @@ public class LanguageSelector extends Selector {
     @Override
     protected void handleItemSelected(String item) {
         try {
-            System.out.println("language here");
             myStateManager.getInputTranslator().changeLanguage(item);
         }
         catch (ParserException e) {

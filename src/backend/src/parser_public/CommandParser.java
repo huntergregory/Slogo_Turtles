@@ -28,7 +28,6 @@ public class CommandParser {
         }
         myInputChunks = myStateManager.getInputTranslator().getChunks(program);
         myChunkIndex = 0;
-        System.out.println(myInputChunks);
         while (myChunkIndex < myInputChunks.size()) {
             ICommand nextCommand = makeNextCommand(); // Get next command
             nextCommand.injectStateManager(myStateManager);

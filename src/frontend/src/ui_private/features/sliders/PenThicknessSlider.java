@@ -13,7 +13,6 @@ public class PenThicknessSlider extends SlogoSlider {
 
     @Override
     protected void handleItemSelected(Number item) {
-        System.out.println(item);
         double myThickness = item.doubleValue();
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             turtle.getPen().setThickness(myThickness);

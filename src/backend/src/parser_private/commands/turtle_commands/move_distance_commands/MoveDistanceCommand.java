@@ -27,7 +27,6 @@ public abstract class MoveDistanceCommand extends TurtleCommand {
     }
 
     private void move(double distance) {
-        System.out.println("Moving forward with distance " + distance);
         runTurtleCommand((turtle) -> {
             double heading = Math.toRadians(turtle.getHeading());
             double newX = turtle.getPosition().getX() + Math.sin(heading) * distance;

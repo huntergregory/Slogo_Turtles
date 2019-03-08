@@ -5,7 +5,6 @@ public class BackgroundColorSelector extends Selector {
 
     @Override
     void handleNewColor(Color newColor) {
-        System.out.println("background here");
         myTurtleDisplay.setBackgroundColor(newColor);
     }
 

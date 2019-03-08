@@ -48,7 +48,6 @@ public class CommandTerminal {
 
     private void sendToParser() {
         myCommand = myCommandInput.getText();
-        System.out.println(myCommand); //TODO remove before submission
         myCommandInput.setText("");
         myCommandInput.setPromptText(PROMPT);
         try {

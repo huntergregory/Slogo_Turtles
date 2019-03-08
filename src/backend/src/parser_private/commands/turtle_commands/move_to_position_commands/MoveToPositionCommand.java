@@ -31,7 +31,6 @@ public class MoveToPositionCommand extends TurtleCommand {
     public double execute() {
         double newX = myNewX.execute();
         double newY = myNewY.execute();
-        System.out.println("new position: " + newX + " " + newY);
         return runTurtleCommand((turtle) -> {
             double distanceTravelled = getCartesianDistance(turtle, newX, newY);
             turtle.setPosition(newX, - newY);

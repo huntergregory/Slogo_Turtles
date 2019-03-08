@@ -57,7 +57,6 @@ public class Pen {
     //TODO: if user is expected to draw many lines, consider making analogous methods for a single, newly created line
     // instead of all lines
     private void setStyle() {
-        System.out.println("PALETTE: " + myPenStates.getPaletteProperty().getValue());
         setPenColor(myPenStates.getPaletteProperty().getValue());
         setThickness(myPenStates.getThicknessProperty().getValue());
         var currentStrokes = myPenStates.getStrokesProperty().getValue();
@@ -69,7 +68,6 @@ public class Pen {
     protected void setPenColor(Palette palette) {
         for (Line line : myLines) {
             var color = palette.getColorProperty().getValue();
-            System.out.println("PEN COLOR: " + color);
             line.setStroke(color);
         }
     }

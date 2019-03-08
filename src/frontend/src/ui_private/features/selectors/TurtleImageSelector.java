@@ -19,7 +19,6 @@ public class TurtleImageSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("here");
         //TurtleManager.getInstance().setTurtleImage(item);   FIXME
     }
 
