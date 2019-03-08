@@ -4,7 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.shape.Line;
 import state_public.Palette;
 
+import java.awt.*;
 import java.util.ArrayList;
+
 
 /**
  * Creates or erases lines dynamically based on changes in a turtle's pen states.
@@ -47,7 +49,7 @@ public class Pen {
         myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
         myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> setThickness(newThickness.doubleValue()));
         myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
-        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> setStroke(oldStrokes, newStrokes));
+        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> lineStroke(oldStrokes, newStrokes));
     }
 
     // Currently uses the methods that loop through every line, even though this is called for just styling one line.
@@ -55,10 +57,11 @@ public class Pen {
     //TODO: if user is expected to draw many lines, consider making analogous methods for a single, newly created line
     // instead of all lines
     private void setStyle() {
+        System.out.println("PALETTE: " + myPenStates.getPaletteProperty().getValue());
         setPenColor(myPenStates.getPaletteProperty().getValue());
         setThickness(myPenStates.getThicknessProperty().getValue());
         var currentStrokes = myPenStates.getStrokesProperty().getValue();
-        setStroke(currentStrokes, currentStrokes);
+        lineStroke(currentStrokes, currentStrokes);
     }
 
 
@@ -66,6 +69,7 @@ public class Pen {
     protected void setPenColor(Palette palette) {
         for (Line line : myLines) {
             var color = palette.getColorProperty().getValue();
+            System.out.println("PEN COLOR: " + color);
             line.setStroke(color);
         }
     }
@@ -77,12 +81,14 @@ public class Pen {
     }
 
 
-    protected void setStroke(ObservableList<Double> oldStrokes, ObservableList<Double> newStrokes) {
-        for (Line line : myLines) {
-            if (oldStrokes != null)
-                line.getStrokeDashArray().removeAll(oldStrokes);
-            for (double stroke : newStrokes)
-                line.getStrokeDashArray().add(stroke);
+    protected void lineStroke(ObservableList<Double> oldStrokes, ObservableList<Double> newStrokes) {
+        if (newStrokes != null) {
+            for (Line line : myLines) {
+                if (oldStrokes != null)
+                    line.getStrokeDashArray().removeAll(oldStrokes);
+                for (double stroke : newStrokes)
+                    line.getStrokeDashArray().add(stroke);
+            }
         }
     }
 }

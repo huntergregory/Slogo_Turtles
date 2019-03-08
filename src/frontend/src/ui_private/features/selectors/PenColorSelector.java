@@ -18,6 +18,7 @@ public class PenColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.paint.Color;
 import state_public.Palette;
 import state_public.StateManager;
 import state_public.Turtle;
@@ -28,8 +29,6 @@ import java.lang.reflect.Field;
 
 public class PenColorSelector extends Selector {
     private static final ObservableList PENCOLORS = FXCollections.observableArrayList("BLACK 0", "RED 1", "BLUE 2", "GREEN 3");
-    private Color myPenColor;
-    private int myIndex;
 
     public PenColorSelector(StateManager manager) {
         super(manager);
@@ -42,14 +41,24 @@ public class PenColorSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("CHANGING PEN COLOR");
         String[] splitted = item.split("\\s+");
         int myIndex = Integer.parseInt(splitted[1]);
-        System.out.println(myIndex);
-        for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
-            turtle.getPen().setPenColor(myIndex);
+        Color color;
+        if (myIndex == 0) {
+            color = Color.BLACK;
         }
-        System.out.println("SUCCESS PEN COLOR");
+        else if (myIndex == 1) {
+            color = Color.RED;
+        }
+        else if (myIndex == 2) {
+            color = Color.BLUE;
+        }
+        else {
+            color = Color.GREEN;
+        }
+        for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
+            turtle.getPen().getPaletteProperty().getValue().getColorProperty().set(color);
+        }
     }
 
     @Override

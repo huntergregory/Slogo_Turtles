@@ -35,6 +35,7 @@ public class PaletteManager {
     public Palette getPalette(int index) {
         for (Palette palette: myPalettes) {
             if (palette.getId() == index)
+                System.out.println("INDEX: " + index);
                 return palette;
         }
         return myPalettes.get(0);
