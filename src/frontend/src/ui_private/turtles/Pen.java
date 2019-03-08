@@ -43,14 +43,13 @@ public class Pen {
     // instead of all lines
     private void setStyle() {
         setPenColor(myPenStates.getPaletteProperty().getValue());
-        //setThickness(myPenStates.getThicknessProperty().getValue()); FIXME: THICKNESS for lines
+        setThickness(myPenStates.getThicknessProperty().getValue());
         //setStroke()
     }
 
-
-
-    private void setThickness(Double thickness) {
-        //TODO
+    private void setThickness(double thickness) {
+        for (Line line : myLines)
+            line.setStrokeWidth(thickness);
     }
 
 
