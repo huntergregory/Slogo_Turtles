@@ -14,11 +14,13 @@ public class VariablesWindow extends ScrollableWindow {
     }
 
     protected void getVariables() {
+        clearText();
         myVariablesMap = myStateManager.getVariables().getVariablesGroup().getMap();
         String myVariable = "";
-        for (Map.Entry<String,Double> entry : myVariablesMap.entrySet())
+        for (Map.Entry<String,Double> entry : myVariablesMap.entrySet()) {
             myVariable += ( entry.getKey() + "=" + entry.getValue() + "\n");
             addText(myVariable);
+        }
     }
 
     @Override
