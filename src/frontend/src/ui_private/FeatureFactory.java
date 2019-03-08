@@ -1,4 +1,4 @@
-package ui_public;
+package ui_private;
 
 import state_public.StateManager;
 import ui_private.displays.CommandTerminal;

@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import parser_public.CommandParser;
 import state_public.ParserException;
 import state_public.StateManager;
-import ui_public.FeatureType;
 import ui_public.UIBuilder;
 
 import java.util.ArrayList;

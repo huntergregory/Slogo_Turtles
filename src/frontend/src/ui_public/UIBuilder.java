@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import parser_public.CommandParser;
 import state_public.StateManager;
+import ui_private.FeatureFactory;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
