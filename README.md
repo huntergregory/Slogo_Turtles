@@ -71,7 +71,6 @@ translated Class names for reflection, list of Commands that support multiple in
 - Click the new tab button
 
 #### Assumptions:
-
 * Backend
     * Variable scope - It was not made clear in the assignment description if variables
     should have scope within subroutines. We chose to make all variables global for simplicity.
@@ -100,6 +99,7 @@ translated Class names for reflection, list of Commands that support multiple in
 - UI does not incorporate click-to-toggle for active turtles
 - UI does not allow for turtle shape to change
 - Background color cannot be set to first palette in list
+- Background color resets when certain areas of the workspace are clicked
 - Clearscreen command leaves a line from last turtle position to center
 - Multiple turtles functionality largely untested
 
