@@ -15,9 +15,13 @@ public class Pen {
     private SimpleIntegerProperty myThicknessProperty;
     private SimpleBooleanProperty myIsDownProperty;
     private SimpleBooleanProperty myShouldEraseLinesProperty;
+    private Palette myPalette;
+    private PaletteManager myPaletteManager;
 
     public Pen(Palette color) {
         myColorProperty = new SimpleObjectProperty<>(color);
+        myPalette = color;
+        myPaletteManager = new PaletteManager();
         myThicknessProperty = new SimpleIntegerProperty(DEFAULT_THICKNESS);
         myIsDownProperty = new SimpleBooleanProperty(DEFAULT_IS_DOWN);
         myShouldEraseLinesProperty = new SimpleBooleanProperty(DEFAULT_SHOULD_ERASE);
@@ -26,6 +30,10 @@ public class Pen {
     public void eraseLines() {
         myShouldEraseLinesProperty.set(true);
         myShouldEraseLinesProperty.set(false); // Reset to false after listener deletes lines
+    }
+
+    public void setPenColor(int index) {
+        myPalette = myPaletteManager.getPalette(index);
     }
 
     public void setColor(Palette color) {

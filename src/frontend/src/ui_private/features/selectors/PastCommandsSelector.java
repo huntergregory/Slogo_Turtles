@@ -3,10 +3,11 @@ package ui_private.features.selectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {
     private static final String TITLE = "Past Commands";
-    private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList("fd 50");
+    private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList("","fd 50","bk 100");
 
     public PastCommandsSelector(StateManager manager) {
         super(manager);
@@ -19,14 +20,13 @@ public class PastCommandsSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-//        try {
-//            System.out.println("language here");
-//            InputTranslator.getInstance().changeLanguage(item);
-//        }
-//        catch (ParserException e) {
-//            System.out.println("Not a valid language");
-//        }
+        System.out.println(item);
+        myCommandTerminal.setText(item);
+    }
 
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override

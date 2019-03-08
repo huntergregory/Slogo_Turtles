@@ -19,11 +19,12 @@ public class BackgroundColorSelector extends Selector {
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {
     private static final String TITLE = "Background Color";
     private static final ObservableList BACKGROUNDCOLORS =
-            FXCollections.observableArrayList("RED 1", "BLUE 2", "GREEN 3");
+            FXCollections.observableArrayList("","RED 1", "BLUE 2", "GREEN 3");
     private String myBackgroundColor;
     private int myIndex;
 
@@ -38,11 +39,18 @@ public class BackgroundColorSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("pen here");
+        System.out.println("background color");
         String[] splitted = item.split("\\s+");
         myBackgroundColor = splitted[0];
         myIndex = Integer.parseInt(splitted[1]);
+        System.out.println(myIndex);
+        myStateManager.setBackgroundColor(myIndex);
         //myTurtleDisplay.setPenColor(newColor);
+    }
+
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override

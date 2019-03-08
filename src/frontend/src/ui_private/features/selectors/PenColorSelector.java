@@ -18,12 +18,18 @@ public class PenColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import state_public.Palette;
 import state_public.StateManager;
+import state_public.Turtle;
+import ui_private.displays.CommandTerminal;
+
+import java.awt.*;
+import java.lang.reflect.Field;
 
 public class PenColorSelector extends Selector {
     private static final String TITLE = "Pen Color";
     private static final ObservableList PENCOLORS = FXCollections.observableArrayList("", "RED 1", "BLUE 2", "GREEN 3");
-    private String myPenColor;
+    private Color myPenColor;
     private int myIndex;
 
     public PenColorSelector(StateManager manager) {
@@ -37,11 +43,19 @@ public class PenColorSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("pen here");
+        System.out.println("CHANGING PEN COLOR");
         String[] splitted = item.split("\\s+");
-        myPenColor = splitted[0];
-        myIndex = Integer.parseInt(splitted[1]);
-        //myTurtleDisplay.setPenColor(newColor);
+        int myIndex = Integer.parseInt(splitted[1]);
+        System.out.println(myIndex);
+        for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
+            turtle.getPen().setPenColor(myIndex);
+        }
+        System.out.println("SUCCESS PEN COLOR");
+    }
+
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override
@@ -49,7 +63,7 @@ public class PenColorSelector extends Selector {
         return TITLE;
     }
 
-    protected String getPenColor() {
+    protected Color getPenColor() {
         return myPenColor;
     }
 }

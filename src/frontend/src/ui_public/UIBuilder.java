@@ -63,7 +63,7 @@ public class UIBuilder {
 
     private void addFeature(FeatureType type, SidePanel panel) {
         try {
-            var feature = type.getFeature(myStateManager);
+            var feature = type.getFeature(myStateManager, myTerminal);
             panel.addRow(feature.getPane(mySidePanelWidth));
         }
         catch (NoFeatureException e) {

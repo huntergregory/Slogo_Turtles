@@ -3,6 +3,7 @@ package ui_public;
 import state_public.StateManager;
 import state_public.TurtleManager;
 import ui_private.features.Feature;
+import ui_private.displays.CommandTerminal;
 import ui_private.features.exceptions.NoFeatureException;
 //import ui_private.features.scrollable_windows.PastCommandsWindow;
 import ui_private.features.selectors.*;
@@ -34,9 +35,12 @@ public enum FeatureType {
         myClass = clazz;
     }
 
-    public Feature getFeature(StateManager manager) throws NoFeatureException {
+    public Feature getFeature(StateManager manager, CommandTerminal terminal) throws NoFeatureException {
         try {
             Object feature = this.myClass.getDeclaredConstructor(StateManager.class).newInstance(manager);
+            if (feature instanceof Selector) {
+                ((Selector) feature).setCommandTerminal(terminal);
+            }
             return (Feature) feature;
         }
         catch (Exception e) {

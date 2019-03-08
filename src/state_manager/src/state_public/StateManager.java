@@ -1,7 +1,8 @@
 package state_public;
 
-public class StateManager {
+import java.awt.*;
 
+public class StateManager {
 
 
     private TurtleManager myTurtleManager;
@@ -11,6 +12,7 @@ public class StateManager {
     private InputTranslator myInputTranslator;
     private PaletteManager myPaletteManager;
     private Palette myBackgroundColor;
+    private Palette myPenColor;
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
@@ -20,6 +22,7 @@ public class StateManager {
         myCommandHistory = new CommandHistory();
         myInputTranslator = new InputTranslator();
         myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
+        myPenColor = myPaletteManager.getDefaultPenColor();
     }
 
     public TurtleManager getTurtleManager() {

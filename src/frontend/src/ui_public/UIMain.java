@@ -60,21 +60,25 @@ public class UIMain {
     }
 
     private void addFeatures() {
-//        addPenColorChooser();
+        addPenColorChooser();
 //        //myFactory.addLeftFeature(FeatureType.PEN_COLOR_CHOOSER);
-//        addBackgroundColorChooser();
+        addBackgroundColorChooser();
 //        //myFactory.addLeftFeature(FeatureType.BACKGROUND_COLOR_CHOOSER);
-//        addLanguageSelector();
+        addLanguageSelector();
 //        //myFactory.addLeftFeature(FeatureType.LANGUAGE_SELECTOR);
-//        addTurtleImageSelector();
+        addTurtleImageSelector();
 //        //myFactory.addLeftFeature(FeatureType.TURTLE_IMAGE_SELECTOR);
 //        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_WINDOW);
-//        addPastCommandsSelector();
+        addPastCommandsSelector();
 //        //myFactory.addLeftFeature(FeatureType.PAST_COMMANDS_SELECTOR);
 //        //myFactory.addRightFeature(FeatureType.USER_COMMANDS_WINDOW);
-//        addUserCommandsSelector();
+        addUserCommandsSelector();
 //        //myFactory.addLeftFeature(FeatureType.USER_COMMANDS_SELECTOR);
-//        addMoveTurtleSelector();
+        addMoveTurtleSelector();
+        addVariablesWindow();
+        addTurtleStateWindow();
+        addPenThicknessSlider();
+        addPenUpDownSelector();
 //        //myFactory.addLeftFeature(FeatureType.MOVE_TURTLE_SELECTOR);
 //        myFactory.addRightFeature(FeatureType.VARIABLES_WINDOW);
 //        myFactory.addRightFeature(FeatureType.TURTLESTATE_WINDOW);
