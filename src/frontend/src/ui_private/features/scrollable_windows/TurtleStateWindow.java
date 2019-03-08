@@ -9,7 +9,6 @@ import java.awt.geom.Point2D;
 
 public class TurtleStateWindow extends ScrollableWindow {
     private static final String TITLE = "Turtle State";
-    private TextArea myTextArea;
 
     public TurtleStateWindow(StateManager manager) {
         super(manager);
@@ -22,7 +21,7 @@ public class TurtleStateWindow extends ScrollableWindow {
     }
 
     // current state of a turtle (i.e., its ID, position, heading) and its pen (i.e., up/down, color, thickness)
-    protected String getTurtleState() {
+    protected void getTurtleState() {
         String myTurtleState = "";
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             String currentTurtleState = "";
@@ -37,7 +36,6 @@ public class TurtleStateWindow extends ScrollableWindow {
             System.out.println(currentTurtleState);
             addText(currentTurtleState);
         }
-        return myTurtleState;
     }
 
     @Override
