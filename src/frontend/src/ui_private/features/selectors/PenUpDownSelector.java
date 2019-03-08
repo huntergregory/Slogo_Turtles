@@ -7,7 +7,7 @@ import ui_private.displays.CommandTerminal;
 
 public class PenUpDownSelector extends Selector {
     private static final String TITLE = "Pen Up/Down";
-    private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
+    private  ObservableList PENSTATES;
     private String myPenState;
 
     public PenUpDownSelector(StateManager manager) {
@@ -15,8 +15,8 @@ public class PenUpDownSelector extends Selector {
     }
 
     @Override
-    protected ObservableList getItemList() {
-        return PENSTATES;
+    protected void setItemList(ObservableList list) {
+        PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     }
 
     @Override
