@@ -18,12 +18,13 @@ public class BackgroundColorSelector extends Selector {
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.paint.Color;
 import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {
     private static final ObservableList BACKGROUNDCOLORS =
-            FXCollections.observableArrayList("","RED 1", "BLUE 2", "GREEN 3");
+            FXCollections.observableArrayList("BLACK 0", "PINK 1", "BLUE 2", "GRAY 3");
     private String myBackgroundColor;
     private int myIndex;
 
@@ -38,13 +39,22 @@ public class BackgroundColorSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("background color");
         String[] splitted = item.split("\\s+");
-        myBackgroundColor = splitted[0];
-        myIndex = Integer.parseInt(splitted[1]);
-        System.out.println(myIndex);
-        myStateManager.setBackgroundColor(myIndex);
-        //myTurtleDisplay.setPenColor(newColor);
+        int myIndex = Integer.parseInt(splitted[1]);
+        Color color;
+        if (myIndex == 0) {
+            color = Color.BLACK;
+        }
+        else if (myIndex == 1) {
+            color = Color.LIGHTPINK;
+        }
+        else if (myIndex == 2) {
+            color = Color.LIGHTBLUE;
+        }
+        else {
+            color = Color.DARKGRAY;
+        }
+        myStateManager.getBackgroundColor().getColorProperty().set(color);
     }
 
     @Override
