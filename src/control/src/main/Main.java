@@ -64,7 +64,7 @@ public class Main extends Application {
     private void initTabPane() {
         myTabPane = new TabPane();
         myTabPane.getTabs().addListener((ListChangeListener<? super Tab>) c -> enforceTabPolicy());
-        myTabPane.selectionModelProperty().addListener(c -> changeFeatureMenu());
+        myTabPane.getSelectionModel().selectedItemProperty().addListener(c -> changeFeatureMenu());
     }
 
     private void enforceTabPolicy() {
@@ -74,8 +74,12 @@ public class Main extends Application {
     }
 
     private void changeFeatureMenu() {
+        if (myFeatureMenu == null)
+            return;
+
         if (myFeatureMenu.getItems().size() > 0)
             myFeatureMenu.getItems().remove(0);
+
         CustomMenuItem menuItem = new CustomMenuItem(getFeaturePane());
         menuItem.setHideOnClick(false);
         myFeatureMenu.getItems().add(menuItem);
