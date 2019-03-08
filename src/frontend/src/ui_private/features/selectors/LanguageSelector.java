@@ -13,6 +13,7 @@ public class LanguageSelector extends Selector {
 
     public LanguageSelector(StateManager manager) {
         super(manager);
+        myDropBox.getSelectionModel().select("English");
     }
 
     @Override
