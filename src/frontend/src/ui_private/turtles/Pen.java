@@ -18,7 +18,6 @@ public class Pen {
     private ObservableList myModifiableList;
     private ArrayList<Line> myLines;
 
-
     Pen(ObservableList list, state_public.Pen penStates) {
         myPenStates = penStates;
         myModifiableList = list;
@@ -66,17 +65,17 @@ public class Pen {
         myPenStates.getPaletteProperty().addListener((o, oldPalette, newPalette) -> setPenColor(newPalette));
         myPenStates.getThicknessProperty().addListener((o, oldThickness, newThickness) -> {}); //FIXME //setThickness(newThickness.));
         myPenStates.getEraseProperty().addListener((o, oldBool, newBool) -> { if (newBool) erase(); });
+        myPenStates.getStrokesProperty().addListener((o, oldStrokes, newStrokes) -> setStroke(newStrokes));
     }
 
 
-    //TODO: remove if we decide on having each turtle have its own stroke and pen color
-/*    protected void setStroke(LineStroke stroke) {
-        myStroke = stroke;
+    protected void setStroke(ObservableList<Double> strokes) {
         for (Line line : myLines) {
-            line.getStrokeDashArray().removeAll(); //might need to remove each number individually before updating myStroke
-            setStyle(line);
+            line.getStrokeDashArray().removeAll();
+            for (double stroke : strokes)
+                line.getStrokeDashArray().add(stroke);
         }
-    }*/
+    }
 
 
     protected void erase() {

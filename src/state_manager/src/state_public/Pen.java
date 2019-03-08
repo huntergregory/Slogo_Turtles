@@ -1,6 +1,7 @@
 package state_public;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 
 public class Pen {
 
@@ -12,6 +13,7 @@ public class Pen {
     private SimpleDoubleProperty myThicknessProperty;
     private SimpleBooleanProperty myIsDownProperty;
     private SimpleBooleanProperty myShouldEraseLinesProperty;
+    private SimpleListProperty<Double> myStrokesProperty;
     private Palette myPalette;
     private PaletteManager myPaletteManager;
 
@@ -22,6 +24,7 @@ public class Pen {
         myThicknessProperty = new SimpleDoubleProperty(DEFAULT_THICKNESS);
         myIsDownProperty = new SimpleBooleanProperty(DEFAULT_IS_DOWN);
         myShouldEraseLinesProperty = new SimpleBooleanProperty(DEFAULT_SHOULD_ERASE);
+        myStrokesProperty = new SimpleListProperty<>();
     }
 
     public void eraseLines() {
@@ -43,6 +46,10 @@ public class Pen {
 
     public void setIsDown(boolean isDown) {
         myIsDownProperty.set(isDown);
+    }
+
+    public void setStrokes(Double[] strokes) {
+        myStrokesProperty.set(FXCollections.observableArrayList(strokes));
     }
 
     public SimpleObjectProperty<Palette> getPaletteProperty() {
@@ -67,5 +74,9 @@ public class Pen {
 
     public Palette getColor() {
         return myColorProperty.get();
+    }
+
+    public SimpleListProperty<Double> getStrokesProperty() {
+        return myStrokesProperty;
     }
 }

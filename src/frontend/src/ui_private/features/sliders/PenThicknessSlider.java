@@ -21,9 +21,4 @@ public class PenThicknessSlider extends SlogoSlider {
 
     }
 
-    @Override
-    protected String getLabelText() {
-        return TITLE;
-    }
-
 }

@@ -24,11 +24,6 @@ public class VariablesWindow extends ScrollableWindow {
     }
 
     @Override
-    protected String getLabelText() {
-        return TITLE;
-    }
-
-    @Override
     public void refreshWindow() {
         getVariables();
     }

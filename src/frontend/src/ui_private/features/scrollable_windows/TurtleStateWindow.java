@@ -15,11 +15,6 @@ public class TurtleStateWindow extends ScrollableWindow {
         getTurtleState();
     }
 
-    @Override
-    protected String getLabelText() {
-        return TITLE;
-    }
-
     // current state of a turtle (i.e., its ID, position, heading) and its pen (i.e., up/down, color, thickness)
     protected void getTurtleState() {
         clearText();

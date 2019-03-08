@@ -3,20 +3,17 @@ package ui_private.features.selectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import ui_private.ResourceBundleHelper;
 import ui_private.displays.CommandTerminal;
-import ui_private.turtles.LineStroke;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 public class LineStrokeSelector extends Selector {
-    private static final ObservableList STROKES = constructList();
-
-    private static ObservableList constructList() {
-        ArrayList<String> strokes = new ArrayList<>();
-        for (LineStroke stroke : LineStroke.values())
-            strokes.add(stroke.getText());
-        return FXCollections.observableArrayList(strokes);
-    }
+    private static final String STROKE_PROPERTIES = "line_stroke";
+    private static final ResourceBundleHelper myResourceHelper = new ResourceBundleHelper(STROKE_PROPERTIES);
+    private static final ObservableList STROKES = FXCollections.observableArrayList(myResourceHelper.getAllLabels());
 
     public LineStrokeSelector(StateManager manager) {
         super(manager);
@@ -29,21 +26,20 @@ public class LineStrokeSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        var stroke = getLineStroke(item);
-        if (stroke != null)
-            return; //TurtleManager.getInstance().setStroke(stroke) //FIXME
+        try {
+            String[] strokeStrings = myResourceHelper.getInfo(item).split(", ");
+            double[] strokes = new double[strokeStrings.length];
+            for (int k = 0; k < strokes.length; k++) {
+                strokes[k] = Double.parseDouble(strokeStrings[k]);
+            }
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Couldn't parse stroke array. Check properties file");
+        }
     }
 
     @Override
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
-    }
-
-    private LineStroke getLineStroke(String item) {
-        for (LineStroke stroke : LineStroke.values()) {
-            if (stroke.getText().equals(item))
-                return stroke;
-        }
-        return null;
     }
 }
