@@ -3,6 +3,7 @@ package state;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class CommandHistory {
 
@@ -14,7 +15,7 @@ public class CommandHistory {
     }
 
     public void addCommand(String program) {
-        var observableList = myHistory.getValue();
+        ObservableList<String> observableList = myHistory.getValue();
         observableList.add(program);
         myHistory.set(observableList);
     }

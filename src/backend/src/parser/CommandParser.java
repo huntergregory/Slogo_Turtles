@@ -37,7 +37,7 @@ public class CommandParser {
                 throw new ParserException("Invalid listed parameter count or parameter type for command");
             }
         }
-        //myStateManager.getCommandHistory().addCommand(program); //TODO
+        myStateManager.getCommandHistory().addCommand(program);
     }
 
     // Loops until individual command hierarchy is satisfied

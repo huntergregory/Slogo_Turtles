@@ -12,6 +12,7 @@ public class PenUpDownSelector extends Selector {
 
     public PenUpDownSelector(StateManager manager) {
         super(manager);
+        myDropBox.getSelectionModel().select("DOWN");
     }
 
     @Override
