@@ -27,7 +27,7 @@ import java.awt.*;
 import java.lang.reflect.Field;
 
 public class PenColorSelector extends Selector {
-    private ObservableList PENCOLORS = FXCollections.observableArrayList("", "RED 1", "BLUE 2", "GREEN 3");
+    private static final ObservableList PENCOLORS = FXCollections.observableArrayList("BLACK 0", "RED 1", "BLUE 2", "GREEN 3");
     private Color myPenColor;
     private int myIndex;
 
@@ -57,7 +57,4 @@ public class PenColorSelector extends Selector {
         myCommandTerminal = terminal;
     }
 
-    protected Color getPenColor() {
-        return myPenColor;
-    }
 }

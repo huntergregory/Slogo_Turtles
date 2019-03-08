@@ -30,4 +30,8 @@ public class ImageTurtleView extends TurtleView {
             return;
         myImageView.setImage(image);
     }
+
+    public ImageView getImageView() {
+        return myImageView;
+    }
 }
