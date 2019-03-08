@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import state_public.Palette;
 import state_public.StateManager;
 import state_public.Turtle;
+import ui_private.displays.CommandTerminal;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -50,6 +51,11 @@ public class PenColorSelector extends Selector {
             turtle.getPen().setPenColor(myIndex);
         }
         System.out.println("SUCCESS PEN COLOR");
+    }
+
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override

@@ -2,8 +2,9 @@ package ui_private.features;
 
 import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
+import ui_private.features.selectors.Selector;
 
-public abstract class CommandTerminalFeature extends Feature {
+public abstract class CommandTerminalFeature extends Selector {
 
     protected CommandTerminal myCommandTerminal;
 
@@ -18,4 +19,5 @@ public abstract class CommandTerminalFeature extends Feature {
     public void setCommandTerminal(CommandTerminal terminal) {
         myCommandTerminal = terminal;
     }
+
 }

@@ -5,11 +5,13 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import state_public.StateManager;
 import ui_private.features.Feature;
+import ui_private.displays.CommandTerminal;
 
 public abstract class Selector extends Feature {
     private static final int NUM_OPTIONS_SHOWN = 4;
 
     private ComboBox<String> myDropBox;
+    protected CommandTerminal myCommandTerminal;
 
     public Selector(StateManager manager) {
         super(manager);
@@ -33,6 +35,9 @@ public abstract class Selector extends Feature {
      */
     abstract protected void handleItemSelected(String item);
 
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
+    };
 
     @Override
     public Node getMainComponent() {

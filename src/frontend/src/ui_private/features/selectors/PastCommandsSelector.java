@@ -3,6 +3,7 @@ package ui_private.features.selectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {
     private static final String TITLE = "Past Commands";
@@ -27,6 +28,11 @@ public class PastCommandsSelector extends Selector {
 //            System.out.println("Not a valid language");
 //        }
 
+    }
+
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override

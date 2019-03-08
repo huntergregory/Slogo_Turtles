@@ -19,6 +19,7 @@ public class BackgroundColorSelector extends Selector {
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state_public.StateManager;
+import ui_private.displays.CommandTerminal;
 
 public class BackgroundColorSelector extends Selector {
     private static final String TITLE = "Background Color";
@@ -45,6 +46,11 @@ public class BackgroundColorSelector extends Selector {
         System.out.println(myIndex);
         myStateManager.setBackgroundColor(myIndex);
         //myTurtleDisplay.setPenColor(newColor);
+    }
+
+    @Override
+    public void setCommandTerminal(CommandTerminal terminal) {
+        myCommandTerminal = terminal;
     }
 
     @Override
