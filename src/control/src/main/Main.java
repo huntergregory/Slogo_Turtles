@@ -147,8 +147,6 @@ public class Main extends Application {
         featurePane.setVgap(MENU_V_GAP);
 
         String[] totalFeatures = getCurrentWorkspace().getFeatureNames();
-        String[] rightFeatures = getCurrentWorkspace().getRightFeatures();
-        String[] leftFeatures = getCurrentWorkspace().getLeftFeatures();
         for (int k=0; k<totalFeatures.length; k++)
             addRow(totalFeatures[k], featurePane, k);
 
