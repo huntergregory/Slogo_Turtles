@@ -23,7 +23,7 @@ import state_public.StateManager;
 public class BackgroundColorSelector extends Selector {
     private static final String TITLE = "Background Color";
     private static final ObservableList BACKGROUNDCOLORS =
-            FXCollections.observableArrayList("RED 1", "BLUE 2", "GREEN 3");
+            FXCollections.observableArrayList("","RED 1", "BLUE 2", "GREEN 3");
     private String myBackgroundColor;
     private int myIndex;
 
@@ -38,10 +38,12 @@ public class BackgroundColorSelector extends Selector {
 
     @Override
     protected void handleItemSelected(String item) {
-        System.out.println("pen here");
+        System.out.println("background color");
         String[] splitted = item.split("\\s+");
         myBackgroundColor = splitted[0];
         myIndex = Integer.parseInt(splitted[1]);
+        System.out.println(myIndex);
+        myStateManager.setBackgroundColor(myIndex);
         //myTurtleDisplay.setPenColor(newColor);
     }
 

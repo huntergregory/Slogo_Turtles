@@ -10,8 +10,10 @@ public class PaletteManager {
 
     public static final List<Palette> defaultPalettes = Collections.unmodifiableList(
         new ArrayList<>() {{
-            add(new Palette(0, Color.WHITE));
-            add(new Palette(1, Color.DARKGREEN));
+            add(new Palette(0, Color.BLACK));
+            add(new Palette(1, Color.RED));
+            add(new Palette(2, Color.BLUE));
+            add(new Palette(3, Color.GREEN));
         }}
     );
 
