@@ -28,6 +28,7 @@ public class FeatureFactory {
             String key = convertLabelToKey(label);
             var clazz = Class.forName(FEATURE_PATH + resource.getString(key));
             var feature = (Feature) clazz.getDeclaredConstructor(StateManager.class).newInstance(myStateManager);
+            System.out.println("got feature");
 
             if (feature instanceof Selector) {
                 ((Selector) feature).setCommandTerminal(myCommandTerminal); //TODO

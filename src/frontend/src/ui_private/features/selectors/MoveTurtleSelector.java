@@ -11,7 +11,11 @@ public class MoveTurtleSelector extends Selector {
 
     public MoveTurtleSelector(StateManager manager) {
         super(manager);
-        setItemList(MOVEMENTS);
+    }
+
+    @Override
+    protected ObservableList<String> getItemList() {
+        return MOVEMENTS;
     }
 
     @Override

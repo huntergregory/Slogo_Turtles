@@ -30,7 +30,11 @@ public class BackgroundColorSelector extends Selector {
 
     public BackgroundColorSelector(StateManager manager) {
         super(manager);
-        //setItemList(manager.); FIXME
+    }
+
+    @Override
+    protected ObservableList<String> getItemList() {
+        return BACKGROUNDCOLORS; //FIXME
     }
 
     @Override

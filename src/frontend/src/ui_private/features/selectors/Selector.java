@@ -25,13 +25,9 @@ public abstract class Selector extends Feature {
     }
 
     /**
-     * Each subclass must call this at least once
-     * @param list
+     * @return Observable List that will be displayed as the options.
      */
-    protected void setItemList(ObservableList<String> list) {
-        myDropBox.setItems(list);
-        myDropBox.itemsProperty().set(list);
-    }
+    abstract protected ObservableList<String> getItemList();
 
     /**
      * @param item

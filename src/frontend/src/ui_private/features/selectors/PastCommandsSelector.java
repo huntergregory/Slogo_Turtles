@@ -11,12 +11,14 @@ public class PastCommandsSelector extends Selector {
     public PastCommandsSelector(StateManager manager) {
         super(manager);
         setItemList(myStateManager.getCommandHistory().getCommandsProperty());
+        myStateManager.getCommandHistory().addCommand("past command!"); //TODO: remove when backend uses this
     }
 
     @Override
     protected void handleItemSelected(String item) {
         System.out.println(item);
         myCommandTerminal.setText(item);
+        myStateManager.getCommandHistory().addCommand("past command yo!");
     }
 
     @Override

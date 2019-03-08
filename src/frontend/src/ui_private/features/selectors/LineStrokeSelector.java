@@ -21,7 +21,11 @@ public class LineStrokeSelector extends Selector {
 
     public LineStrokeSelector(StateManager manager) {
         super(manager);
-        setItemList(STROKES);
+    }
+
+    @Override
+    protected ObservableList<String> getItemList() {
+        return STROKES;
     }
 
     @Override
