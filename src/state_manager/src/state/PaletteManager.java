@@ -1,5 +1,7 @@
 package state;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class PaletteManager {
 
-    public static final List<Palette> defaultPalettes = Collections.unmodifiableList(
+    private static final List<Palette> defaultPalettes = Collections.unmodifiableList(
         new ArrayList<>() {{
             add(new Palette(1, Color.LIGHTPINK));
             add(new Palette(2, Color.LIGHTBLUE));
@@ -18,26 +20,28 @@ public class PaletteManager {
         }}
     );
 
-    public List<String> getColorNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for (Palette p : defaultPalettes) {
-            names.add(p.getId() + " " + p.getColor());
-        }
-        return names;
-    }
-
     private List<Palette> myPalettes;
+    private ObservableList<String> myPaletteStrings = FXCollections.observableList(new ArrayList<>());
 
     public PaletteManager() {
         myPalettes = new ArrayList<>();
         myPalettes.addAll(defaultPalettes);
+        for (Palette p : defaultPalettes) {
+            myPaletteStrings.add(p.toString());
+        }
     }
 
-    public Palette getDefaultBackgroundColor() {
+    public void setPalette(int index, int red, int green, int blue) {
+        Palette newPalette = new Palette(index, red, green, blue);
+        myPalettes.add(newPalette);
+        myPaletteStrings.add(newPalette.toString());
+    }
+
+    Palette getDefaultBackgroundColor() {
         return myPalettes.get(0);
     }
 
-    public Palette getDefaultPenColor() {
+    Palette getDefaultPenColor() {
         return myPalettes.get(1);
     }
 
@@ -50,7 +54,7 @@ public class PaletteManager {
         return myPalettes.get(0);
     }
 
-    public void setPalette(int index, int red, int green, int blue) {
-        myPalettes.add(new Palette(index, red, green, blue));
+    public ObservableList<String> getPaletteList() {
+        return myPaletteStrings;
     }
 }

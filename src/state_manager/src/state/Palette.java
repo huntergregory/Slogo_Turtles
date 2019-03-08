@@ -13,11 +13,11 @@ public class Palette {
     private SimpleIntegerProperty myId;
     private SimpleObjectProperty<Color> myColor;
 
-    public Palette(int id, int red, int green, int blue) {
+    Palette(int id, int red, int green, int blue) {
         this(id, Color.rgb(red, green, blue));
     }
 
-    public Palette(int id, Color color) {
+    Palette(int id, Color color) {
         myId = new SimpleIntegerProperty(id);
         myColor = new SimpleObjectProperty<>(color);
     }
@@ -32,6 +32,16 @@ public class Palette {
 
     public int getId() {
         return myId.get();
+    }
+
+    @Override
+    public String toString() {
+        return myId.getValue()+ " - " + formattedRGBValue(myColor.getValue());
+    }
+
+    private String formattedRGBValue(Color color) {
+        return "RGB(" + (int)(color.getRed() * 255) + ", " + (int)(color.getGreen() * 255)
+                + ", " + (int)(color.getBlue() * 255) + ")";
     }
 
     public Color getColor() {
