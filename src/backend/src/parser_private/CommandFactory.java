@@ -44,25 +44,19 @@ public class CommandFactory {
      * @param args        The arguments to give to the command
      */
     public ICommand createCommand(String commandName, List<ICommand> args) throws ParserException {
-        if(prelimChecks(commandName) != null) return prelimChecks(commandName);
+        if(prelimChecks(commandName) != null)
+            return prelimChecks(commandName);
         if (myStateManager.getInputTranslator().isNormalCommand(commandName)) {
-            Class clazz = null;
+            Class clazz;
             try {
-
                 clazz = Class.forName("parser_private.commands." + commandClassNames.get(commandName));
                 Constructor constructor = clazz.getConstructor(List.class);
                 Command command = (Command) constructor.newInstance(args);
-
                 Method injection = Command.class.getMethod(INJECTION_METHODNAME, StateManager.class);
                 injection.invoke(command, myStateManager);
-
                 return command;
-
             } catch (ClassNotFoundException e) {
                 throw new ParserException("Class " + commandClassNames.get(commandName) + " not found");
-            } catch (NoSuchMethodException e) {
-                throw new ParserException("Class " + clazz.getName() +
-                        " does not have correct constructor");
             } catch (Exception e) {
                 throw new ParserException("Error instantiating class for command " + commandName + "\n" + e);
             }
@@ -75,33 +69,34 @@ public class CommandFactory {
     }
 
     private void initClassMaps() throws ParserException {
-
         File file = new File(getClass().getClassLoader().getResource(COMMAND_INFO_FILENAME).getFile());
         String path = URLDecoder.decode(file.getAbsolutePath(), StandardCharsets.UTF_8);
         file = new File(path);
 
         try (Scanner scan = new Scanner(file)) {
-
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                if (line.strip().startsWith(COMMENT_CHAR))
-                    continue;
-
-                String[] commandNameSplit = line.strip().split(COMMAND_NAME_DELIMITER);
-                String commandName = commandNameSplit[0];
-
-                String[] commandInfoSplit = commandNameSplit[1].split(COMMAND_INFO_DELIMITER);
-                String commandClassname = commandInfoSplit[0];
-                int commandParamsCount = Integer.parseInt(commandInfoSplit[1]);
-
-                commandClassNames.put(commandName, commandClassname);
-                commandParamCounts.put(commandName, commandParamsCount);
-            }
-
+            parseTextFile(scan);
         } catch (IOException e) {
             throw new ParserException("Unable to read Command Info file");
         } catch (NumberFormatException e) {
             throw new ParserException("Invalid Command Info file format, did not receive integer");
+        }
+    }
+
+    private void parseTextFile(Scanner scan) {
+        while (scan.hasNextLine()) {
+            String line = scan.nextLine();
+            if (line.strip().startsWith(COMMENT_CHAR))
+                continue;
+
+            String[] commandNameSplit = line.strip().split(COMMAND_NAME_DELIMITER);
+            String commandName = commandNameSplit[0];
+
+            String[] commandInfoSplit = commandNameSplit[1].split(COMMAND_INFO_DELIMITER);
+            String commandClassname = commandInfoSplit[0];
+            int commandParamsCount = Integer.parseInt(commandInfoSplit[1]);
+
+            commandClassNames.put(commandName, commandClassname);
+            commandParamCounts.put(commandName, commandParamsCount);
         }
     }
 

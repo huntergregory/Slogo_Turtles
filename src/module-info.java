@@ -1,2 +1,2 @@
-module slogo.parser {
+module slogo {
 }
