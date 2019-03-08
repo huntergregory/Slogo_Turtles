@@ -23,7 +23,7 @@ public class CommandFactory {
     private static final String COMMENT_CHAR = "#";
     private static final String COMMAND_NAME_DELIMITER = "=";
     private static final String COMMAND_INFO_DELIMITER = ":";
-    private static final String INJECTION_METHODNAME = "injectStateManager";
+    private static final String INJECTION_METHOD_NAME = "injectStateManager";
 
     private Map<String, String> commandClassNames;
     private Map<String, Integer> commandParamCounts;
@@ -43,16 +43,15 @@ public class CommandFactory {
      * @param commandName The name of the command
      * @param args        The arguments to give to the command
      */
-    public ICommand createCommand(String commandName, List<ICommand> args) throws ParserException {
-        if(prelimChecks(commandName) != null)
-            return prelimChecks(commandName);
+    public ICommand createCommand(String commandName, List<ICommand> args, boolean overwriteEnable) throws ParserException {
+        if(prelimChecks(commandName, overwriteEnable) != null)
+            return prelimChecks(commandName, overwriteEnable);
         if (myStateManager.getInputTranslator().isNormalCommand(commandName)) {
-            Class clazz;
             try {
-                clazz = Class.forName("parser_private.commands." + commandClassNames.get(commandName));
+                Class clazz = Class.forName("parser_private.commands." + commandClassNames.get(commandName));
                 Constructor constructor = clazz.getConstructor(List.class);
                 Command command = (Command) constructor.newInstance(args);
-                Method injection = Command.class.getMethod(INJECTION_METHODNAME, StateManager.class);
+                Method injection = Command.class.getMethod(INJECTION_METHOD_NAME, StateManager.class);
                 injection.invoke(command, myStateManager);
                 return command;
             } catch (ClassNotFoundException e) {
@@ -105,8 +104,8 @@ public class CommandFactory {
      * @param command The name of the command
      * @return The number of parameters required for the given command
      */
-    public int getParamCount(String command) {
-        if (myStateManager.getCommands().isDefined(command)) {
+    public int getParamCount(String command, boolean overwriteEnable) {
+        if (myStateManager.getCommands().isDefined(command) && !overwriteEnable) {
             return myStateManager.getCommands().getParamCount(command);
         }
         if (myStateManager.getInputTranslator().isNormalCommand(command)) {
@@ -115,13 +114,13 @@ public class CommandFactory {
         return 0;
     }
 
-    private ICommand prelimChecks(String commandName) {
+    private ICommand prelimChecks(String commandName, boolean overwriteEnable) {
         if (myStateManager.getInputTranslator().isConstant(commandName)) {
             return createConstantCommand(Double.parseDouble(commandName));
         }
-        if (!myStateManager.getInputTranslator().isNormalCommand(commandName) &&
-                (myStateManager.getInputTranslator().isVariable(commandName) ||
-                        !myStateManager.getCommands().isDefined(commandName))) {
+        if (myStateManager.getInputTranslator().isVariable(commandName) || // ":var"
+                (!myStateManager.getInputTranslator().isNormalCommand(commandName) && // Don't want to overwrite normal command
+                        (!myStateManager.getCommands().isDefined(commandName) || overwriteEnable))) {
             return new VariableCommand(commandName.replaceAll(":", ""));
         }
         return null;
