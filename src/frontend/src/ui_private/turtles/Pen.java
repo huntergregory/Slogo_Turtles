@@ -32,9 +32,9 @@ public class Pen {
             return;
         Line line = new Line(oldX, oldY, newX, newY);
         line.getStyleClass().add(CSS_TAG);
-        setStyle();
         myLines.add(line);
         myModifiableList.add(line);
+        setStyle();
     }
 
     // Currently uses the methods that loop through every line, even though this is called for just styling one line.
