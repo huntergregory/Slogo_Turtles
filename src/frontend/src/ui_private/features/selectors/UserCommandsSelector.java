@@ -14,8 +14,8 @@ public class UserCommandsSelector extends Selector {
     }
 
     @Override
-    protected void setItemList(ObservableList list) {
-
+    protected ObservableList getItemList() {
+        return USERCOMMANDS;
     }
 
     @Override

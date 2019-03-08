@@ -24,8 +24,8 @@ public class TurtleImageSelector extends Selector {
     }
 
     @Override
-    protected void setItemList(ObservableList list) {
-
+    protected ObservableList getItemList() {
+        return null;
     }
 
     @Override
