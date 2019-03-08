@@ -1,6 +1,5 @@
 package ui_private.displays;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -10,17 +9,12 @@ import state.ParserException;
 
 import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
-
 
 public class CommandTerminal {
-    public static final double PARSE_BUTTON_HEIGHT = 50;
     private static final String PROMPT = "Enter Command";
-    public static final double MAX_WIDTH = 500;
-    public static final double V_GAP = 30;
+    private static final String HELP_URL_1 = "https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+    private static final String HELP_URL_2 = "https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands2_J2W.php";
 
-    private GridPane myPane;
-    private ArrayList<Node> myChildren;
     private Button myParseButton;
     private Button myUndoButton;
     private Button myHelpButton;
@@ -64,7 +58,8 @@ public class CommandTerminal {
 
     private void accessHelp() {
         try {
-            Desktop.getDesktop().browse(new URL("https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php").toURI());
+            Desktop.getDesktop().browse(new URL(HELP_URL_1).toURI());
+            Desktop.getDesktop().browse(new URL(HELP_URL_2).toURI());
         } catch (Exception e) {
             e.printStackTrace();
         }

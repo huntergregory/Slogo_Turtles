@@ -100,7 +100,6 @@ translated Class names for reflection, list of Commands that support multiple in
 - UI does not allow for turtle shape to change
 - Background color cannot be set to first palette in list
 - Background color resets when certain areas of the workspace are clicked
-- Clearscreen command leaves a line from last turtle position to center
 - Multiple turtles functionality largely untested
 
 #### Extra features:
