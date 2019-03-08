@@ -1,15 +1,17 @@
-package ui_private;
+package ui_public;
 
-import javafx.scene.layout.Pane;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import parser_public.CommandParser;
 import state_public.StateManager;
 import ui_private.displays.SidePanel;
 import ui_private.displays.TurtleDisplay;
 import ui_private.displays.CommandTerminal;
-import ui_private.features.*;
 import ui_private.features.exceptions.NoFeatureException;
 
-public class UIFactory {
+public class UIBuilder {
+    private int myWorkspaceID;
+    private BorderPane myBorderPane;
     private TurtleDisplay myTurtleDisplay;
     private SidePanel myLeftPanel;
     private CommandTerminal myTerminal;
@@ -18,35 +20,37 @@ public class UIFactory {
     private CommandParser myBackend;
     private StateManager myStateManager;
 
-    public UIFactory(CommandParser backend, StateManager stateManager, double width, double height) {
+    public UIBuilder(int workspaceID, CommandParser backend, StateManager stateManager, double width, double height) {
         mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
         var terminalHeight = height / 6.0;
+
+        myWorkspaceID = workspaceID;
         myBackend = backend;
         myStateManager = stateManager;
         myTerminal = new CommandTerminal(myBackend); //FIXME
         myTurtleDisplay = new TurtleDisplay(myStateManager.getTurtleManager(), turtlePanelWidth, turtlePaneHeight);
         myLeftPanel = new SidePanel(mySidePanelWidth);
         myRightPanel = new SidePanel(mySidePanelWidth);
+        initBorderPane();
     }
 
-    public Pane getLeft() {
-        return myLeftPanel.getPane();
+    public static final void addStyle(Scene scene) {
+        scene.getStylesheets().add("style.css");
     }
 
-    public Pane getRight() {
-        return myRightPanel.getPane();
+    public BorderPane getContent() {
+        return myBorderPane;
     }
 
-    public Pane getBottom() {
-        return myTerminal.getPane();
+    private void initBorderPane() {
+        myBorderPane = new BorderPane();
+        myBorderPane.setLeft(myLeftPanel.getPane());
+        myBorderPane.setRight(myRightPanel.getPane());
+        myBorderPane.setCenter(myTurtleDisplay.getPane());
+        myBorderPane.setBottom(myTerminal.getPane());
     }
-
-    public Pane getCenter() {
-        return myTurtleDisplay.getPane();
-    }
-
 
     public void addLeftFeature(FeatureType type) {
         addFeature(type, myLeftPanel);

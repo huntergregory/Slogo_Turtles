@@ -1,7 +1,8 @@
-package ui_private.features;
+package ui_public;
 
 import state_public.StateManager;
 import state_public.TurtleManager;
+import ui_private.features.Feature;
 import ui_private.displays.CommandTerminal;
 import ui_private.features.exceptions.NoFeatureException;
 import ui_private.features.selectors.*;
