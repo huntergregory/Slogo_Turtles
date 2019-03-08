@@ -11,8 +11,8 @@ public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;
 
-    public ImageTurtleView(int id, ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
-        super(id, list, turtle, dispOffsetX, dispOffsetY);
+    public ImageTurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
+        super(list, turtle, dispOffsetX, dispOffsetY);
     }
 
     @Override

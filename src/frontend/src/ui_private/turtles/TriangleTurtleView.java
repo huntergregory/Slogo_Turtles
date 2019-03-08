@@ -9,8 +9,8 @@ import state_public.Turtle;
 public class TriangleTurtleView extends TurtleView {
     private static final Paint COLOR = Color.RED;
 
-    public TriangleTurtleView(int id, ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
-        super(id, list, turtle, dispOffsetX, dispOffsetY);
+    public TriangleTurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
+        super(list, turtle, dispOffsetX, dispOffsetY);
     }
 
     @Override

@@ -29,11 +29,12 @@ public abstract class TurtleView {
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
-     * @param id
      * @param list
+     * @param turtle
+     * @param dispOffsetX
+     * @param dispOffsetY
      */
-    TurtleView(int id, ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
-        myID = id;
+    TurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
         myModifiableList = list;
         myTurtleStates = turtle;
         myPen = new Pen(myModifiableList, myTurtleStates.getPen());

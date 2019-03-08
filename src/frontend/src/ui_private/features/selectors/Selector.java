@@ -18,7 +18,6 @@ public abstract class Selector extends Feature {
         myDropBox = new ComboBox<>();
         myDropBox.setEditable(false);
         myDropBox.setVisibleRowCount(NUM_OPTIONS_SHOWN);
-        myDropBox.setItems(getItemList());
         myDropBox.getSelectionModel().selectFirst();
         myDropBox.valueProperty().addListener((o, oldVal, newVal) -> handleItemSelected(newVal));
         //String selectedItem = myDropBox.getSelectionModel().getSelectedItem();
@@ -26,9 +25,12 @@ public abstract class Selector extends Feature {
     }
 
     /**
-     * @return List of selectable items
+     * Each subclass must call this at least once
+     * @param list
      */
-    abstract protected ObservableList getItemList();
+    protected void setItemList(ObservableList list) {
+        myDropBox.setItems(list);
+    }
 
     /**
      * @param item

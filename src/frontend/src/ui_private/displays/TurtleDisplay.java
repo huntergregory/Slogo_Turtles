@@ -51,7 +51,8 @@ public class TurtleDisplay {
         int id = 1;
         myTurtleManager.addTurtle(id);
         Turtle turtleStates = myTurtleManager.getTurtle(id);
-        myTurtleViews.add(new TriangleTurtleView(0, myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin()));
+        var newTurtle = new TriangleTurtleView(myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin());
+        myTurtleViews.add(newTurtle);
     }
 
     private void bindBackground() {
