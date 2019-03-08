@@ -78,6 +78,14 @@ public class UIBuilder {
         return myFeatureFactory.getFeatureNames();
     }
 
+    public String[] getLeftFeatures() {
+        return myLeftFeatureLabels.toArray(new String[0]);
+    }
+
+    public String[] getRightFeatures() {
+        return myRightFeatureLabels.toArray(new String[0]);
+    }
+
     // line 84 copied from https://www.journaldev.com/875/java-read-file-to-string
     public void setText(File file) {
         try {

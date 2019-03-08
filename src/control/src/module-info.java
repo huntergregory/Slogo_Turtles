@@ -4,5 +4,5 @@ module control {
     requires state_manager;
     requires javafx.graphics;
     requires javafx.controls;
-    exports entry;
+    exports main;
 }

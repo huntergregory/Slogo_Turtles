@@ -1,15 +1,13 @@
-package entry;
+package main;
 
+import feature_grid_item.FeatureGridItem;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.application.Application;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
@@ -36,9 +34,10 @@ public class Main extends Application {
 
     private Stage myStage;
     private Scene myScene;
-    private BorderPane myBorderPane;
+    private VBox myVBox;
     private MenuBar myMenuBar;
-    private GridPane myFeaturePane;
+    private Menu myFeatureMenu;
+    private CustomMenuItem oldMenuItem;
     private TabPane myTabPane;
     private List<UIBuilder> myWorkspaces;
 
@@ -52,7 +51,9 @@ public class Main extends Application {
         initTabPane();
         createWorkspace();
         setupMenuBar();
-        initBorderPane();
+
+        myVBox = new VBox(myMenuBar, myTabPane);
+        changeFeatureMenu();
 
         showStage();
 
@@ -60,17 +61,24 @@ public class Main extends Application {
         this.addStyle();
     }
 
-
     private void initTabPane() {
         myTabPane = new TabPane();
-        myTabPane.getTabs().addListener((ListChangeListener) c -> enforceTabPolicy());
+        myTabPane.getTabs().addListener((ListChangeListener<? super Tab>) c -> enforceTabPolicy());
+        myTabPane.selectionModelProperty().addListener(c -> changeFeatureMenu());
     }
-
 
     private void enforceTabPolicy() {
         boolean oneTabLeft = myTabPane.getTabs().size() == 1;
         var policy = (oneTabLeft) ? TabPane.TabClosingPolicy.UNAVAILABLE : TabPane.TabClosingPolicy.SELECTED_TAB;
         myTabPane.setTabClosingPolicy(policy);
+    }
+
+    private void changeFeatureMenu() {
+        if (myFeatureMenu.getItems().size() > 0)
+            myFeatureMenu.getItems().remove(0);
+        CustomMenuItem menuItem = new CustomMenuItem(getFeaturePane());
+        menuItem.setHideOnClick(false);
+        myFeatureMenu.getItems().add(menuItem);
     }
 
 
@@ -97,8 +105,13 @@ public class Main extends Application {
     private void setupMenuBar() {
         myMenuBar = new MenuBar();
         addFileMenu();
-        initFeaturePane();
-        addFeatureMenu();
+        addEmptyFeatureMenu();
+    }
+
+    private void addEmptyFeatureMenu() {
+        myFeatureMenu = new Menu("Customize...");
+        myFeatureMenu.getStyleClass().add("column-filter"); //TODO remove??
+        myMenuBar.getMenus().add(myFeatureMenu);
     }
 
 
@@ -124,32 +137,26 @@ public class Main extends Application {
             getCurrentWorkspace().setText(file);
     }
 
+    private GridPane getFeaturePane() {
+        var featurePane = new GridPane();
+        featurePane.setHgap(MENU_H_GAP);
+        featurePane.setVgap(MENU_V_GAP);
 
-    private void initFeaturePane() {
-        myFeaturePane = new GridPane();
-        myFeaturePane.setHgap(MENU_H_GAP);
-        myFeaturePane.setVgap(MENU_V_GAP);
-        String[] features = getCurrentWorkspace().getFeatureNames();
-        for (int k=0; k<features.length; k++) {
-            addRow(features[k], k);
-        }
+        String[] totalFeatures = getCurrentWorkspace().getFeatureNames();
+        String[] rightFeatures = getCurrentWorkspace().getRightFeatures();
+        String[] leftFeatures = getCurrentWorkspace().getLeftFeatures();
+        for (int k=0; k<totalFeatures.length; k++)
+            addRow(totalFeatures[k], featurePane, k);
+
+        //TODO deal with right and left features
+
+        return featurePane;
     }
 
 
-    private void addRow(String text, int row) {
+    private void addRow(String text, GridPane pane, int row) {
         var featureButton = new FeatureGridItem(text, getCurrentWorkspace());
-        myFeaturePane.addRow(row, featureButton.getLabel(), featureButton.getButton());
-    }
-
-
-    private void addFeatureMenu() {
-        Menu featureMenu = new Menu("Customize...");
-        featureMenu.getStyleClass().add("column-filter");
-
-        CustomMenuItem customizeItem = new CustomMenuItem(myFeaturePane);
-        customizeItem.setHideOnClick(false);
-        featureMenu.getItems().add(customizeItem);
-        myMenuBar.getMenus().add(featureMenu);
+        pane.addRow(row, featureButton.getLabel(), featureButton.getButton());
     }
 
 
@@ -158,15 +165,8 @@ public class Main extends Application {
         return myWorkspaces.get(currentTab);
     }
 
-
-    private void initBorderPane() {
-        myBorderPane = new BorderPane();
-        myBorderPane.setTop(myMenuBar);
-        myBorderPane.setCenter(myTabPane);
-    }
-
     private void showStage() {
-        myScene = new Scene(myBorderPane, WIDTH, HEIGHT, BACKGROUND);
+        myScene = new Scene(myVBox, WIDTH, HEIGHT, BACKGROUND);
         myStage.setScene(myScene);
         myStage.setTitle(TITLE);
         myStage.show();

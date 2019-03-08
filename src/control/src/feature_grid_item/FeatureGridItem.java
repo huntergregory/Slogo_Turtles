@@ -1,4 +1,4 @@
-package entry;
+package feature_grid_item;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,7 +19,7 @@ public class FeatureGridItem {
     private Button myButton;
     private int myState;
 
-    protected FeatureGridItem(String text, UIBuilder workspace) {
+    public FeatureGridItem(String text, UIBuilder workspace) {
         myText = text;
         myWorkspace = workspace;
         myState = 0;
@@ -27,11 +27,11 @@ public class FeatureGridItem {
         initLabel();
     }
 
-    protected Label getLabel() {
+    public Label getLabel() {
         return myLabel;
     }
 
-    protected Button getButton() {
+    public Button getButton() {
         return myButton;
     }
 
