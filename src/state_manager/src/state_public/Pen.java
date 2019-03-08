@@ -1,9 +1,6 @@
 package state_public;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 
 public class Pen {
 
@@ -12,7 +9,7 @@ public class Pen {
     public static final boolean DEFAULT_SHOULD_ERASE = false;
 
     private SimpleObjectProperty<Palette> myColorProperty;
-    private SimpleIntegerProperty myThicknessProperty;
+    private SimpleDoubleProperty myThicknessProperty;
     private SimpleBooleanProperty myIsDownProperty;
     private SimpleBooleanProperty myShouldEraseLinesProperty;
     private Palette myPalette;
@@ -22,7 +19,7 @@ public class Pen {
         myColorProperty = new SimpleObjectProperty<>(color);
         myPalette = color;
         myPaletteManager = new PaletteManager();
-        myThicknessProperty = new SimpleIntegerProperty(DEFAULT_THICKNESS);
+        myThicknessProperty = new SimpleDoubleProperty(DEFAULT_THICKNESS);
         myIsDownProperty = new SimpleBooleanProperty(DEFAULT_IS_DOWN);
         myShouldEraseLinesProperty = new SimpleBooleanProperty(DEFAULT_SHOULD_ERASE);
     }
@@ -40,7 +37,7 @@ public class Pen {
         myColorProperty.set(color);
     }
 
-    public void setThickness(int thickness) {
+    public void setThickness(double thickness) {
         myThicknessProperty.set(thickness);
     }
 
@@ -52,7 +49,7 @@ public class Pen {
         return myColorProperty;
     }
 
-    public SimpleIntegerProperty getThicknessProperty() {
+    public SimpleDoubleProperty getThicknessProperty() {
         return myThicknessProperty;
     }
 

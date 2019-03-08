@@ -10,7 +10,7 @@ public abstract class SlogoSlider extends Feature {
 
     public SlogoSlider(StateManager manager) {
         super(manager);
-        mySlider = new Slider(0, 1, 0.5);
+        mySlider = new Slider(0, 5, 1);
         mySlider.setShowTickMarks(true);
         mySlider.setShowTickLabels(true);
         mySlider.valueProperty().addListener((ov, old_val, new_val) -> handleItemSelected(new_val));
