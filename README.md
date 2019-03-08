@@ -66,9 +66,9 @@ translated Class names for reflection, list of Commands that support multiple in
 * Frontend - CSS stylesheet and turtle images
 
 #### Using the program:
-- Press "PARSE" button to run commands
+- Click "PARSE" button to run commands
 - Use various on-screen controls to manipulate aspects of the environment
-- Press Ctrl+N to create new workspace
+- Click the new tab button
 
 #### Assumptions:
 
@@ -91,20 +91,20 @@ translated Class names for reflection, list of Commands that support multiple in
 * Frontend
 
 #### Known bugs:
-- Save/load functionality not implemented
+- Save/load functionality not implemented for turtle state
 - UI does not display user defined commands, command history
 - UI does not allow for clicking on past or defined commands to execute them
 - UI Undo button does not work
 - UI Help button does not include added commands from the final sprint
 - UI does not allow for editing user defined commands outside of commands
-- UI does not incorporate for click-to-toggle active turtles
-- Pen color does not apply to most recent line
+- UI does not incorporate click-to-toggle for active turtles
+- UI pen color selector, image selector do not work properly
 - Clearscreen command leaves a line from last turtle position to center
 - Multiple turtles functionality largely untested
-- Windows users cannot open new window via keyboard
 
 #### Extra features:
 - Grouping was added from the "Challenging Extensions list"
+- The option was implemented to load a text file into the workspace.
 
 #### Assignment impressions:
 Harry - Many of the design specifications for the backend were left frustratingly ambiguous.
