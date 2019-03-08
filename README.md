@@ -94,13 +94,13 @@ translated Class names for reflection, list of Commands that support multiple in
 - UI does not display user defined commands, command history
 - UI does not allow for clicking on past or defined commands to execute them
 - UI Undo button does not work
-- UI Help button does not include added commands from the final sprint
 - UI does not allow for editing user defined commands outside of commands
 - UI does not incorporate click-to-toggle for active turtles
 - UI does not allow for turtle shape to change
 - Background color cannot be set to first palette in list
 - Background color resets when certain areas of the workspace are clicked
 - Multiple turtles functionality largely untested
+- UI dropdown defaults are not what are currently selected
 
 #### Extra features:
 - Grouping was added from the "Challenging Extensions list"

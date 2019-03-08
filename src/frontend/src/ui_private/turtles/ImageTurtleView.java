@@ -9,6 +9,7 @@ import ui_private.displays.TurtleDisplay;
 public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;
+    private static String DEFAULT_IMAGE_NAME = "tan_turtle.png"; //TODO
 
     public ImageTurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
         super(list, turtle, dispOffsetX, dispOffsetY);
@@ -16,7 +17,7 @@ public class ImageTurtleView extends TurtleView {
 
     @Override
     protected void initializeNode() {
-        var image = new Image(getClass().getClassLoader().getResourceAsStream(TurtleDisplay.DEFAULT_IMAGE_NAME));
+        var image = new Image(getClass().getClassLoader().getResourceAsStream(DEFAULT_IMAGE_NAME));
         myImageView = new ImageView(image);
         myImageView.setPreserveRatio(false);
         myImageView.setFitWidth(WIDTH);

@@ -15,10 +15,6 @@ import java.util.ArrayList;
 //TODO make which turtle type we're using dynamic
 public class TurtleDisplay {
     private static final String PANE_CSS_CLASS = "pane";
-    public static String DEFAULT_IMAGE_NAME = "tan_turtle.png"; //TODO remove
-    public static final Color DEFAULT_PEN_COLOR = Color.BLACK; //TODO remove
-    private Image myImage; //TODO remove
-
     private TurtleManager myTurtleManager;
     private Pane myTurtlePane;
     private ArrayList<TurtleView> myTurtleViews;

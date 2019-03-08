@@ -10,6 +10,8 @@ public class SetTowardsCommand extends TurtleCommand {
 
     private ICommand myX;
     private ICommand myY;
+    private static final int RIGHT_ANGLE_DEGREES = 90;
+    private static final int FLIP_ANGLE_DEGREES = 180;
 
     public SetTowardsCommand(List<ICommand> params) {
         super(params);
@@ -18,7 +20,6 @@ public class SetTowardsCommand extends TurtleCommand {
     }
 
     private double getNewHeading(Turtle turtle, double xTarget, double yTarget) {
-
         double deltaX = xTarget - turtle.getPosition().getX();
         double deltaY = -(yTarget - turtle.getPosition().getY());
         if (deltaX == 0 && deltaY == 0)
@@ -26,10 +27,10 @@ public class SetTowardsCommand extends TurtleCommand {
 
         double newHeading;
         if (deltaY == 0)
-            newHeading = (deltaX > 0) ? 90 : -90; // OR 270
+            newHeading = (deltaX > 0) ? RIGHT_ANGLE_DEGREES : RIGHT_ANGLE_DEGREES * -1;
         else {
             double upLeftOrUpRightHeading = Math.toDegrees(Math.atan(deltaX / deltaY));
-            newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + 180;
+            newHeading = (deltaX >= 0 && deltaY > 0 || deltaX <= 0 && deltaY > 0) ? upLeftOrUpRightHeading : upLeftOrUpRightHeading + FLIP_ANGLE_DEGREES;
         }
         return newHeading;
     }
