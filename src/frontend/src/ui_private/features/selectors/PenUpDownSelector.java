@@ -8,7 +8,7 @@ import ui_private.displays.CommandTerminal;
 
 public class PenUpDownSelector extends Selector {
     private static final String TITLE = "Pen Up/Down";
-    private  ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
+    private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     private String myPenState;
 
     public PenUpDownSelector(StateManager manager) {
@@ -24,10 +24,10 @@ public class PenUpDownSelector extends Selector {
     protected void handleItemSelected(String item) {
         boolean isDown;
         if (item == "UP") {
-            isDown = true;
+            isDown = false;
         }
         else  {
-            isDown = false;
+            isDown = true;
         }
         for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             turtle.getPen().setIsDown(isDown);
