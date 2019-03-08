@@ -15,7 +15,11 @@ public class LanguageSelector extends Selector {
 
     public LanguageSelector(StateManager manager) {
         super(manager);
-        setItemList(LANGUAGES);
+    }
+
+    @Override
+    protected ObservableList<String> getItemList() {
+        return LANGUAGES;
     }
 
     @Override
