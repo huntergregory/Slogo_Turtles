@@ -1,8 +1,10 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
+import parser_private.UserCommand;
 import parser_private.commands.math_commands.ConstantCommand;
 import state_public.ICommand;
+import state_public.UserCommandInter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -40,15 +42,12 @@ public class GroupCommand extends Command {
         int countPar = 0;
         while (countAbs < mySubCommands.size()) {
             while (countPar < numParams) {
-                if (countAbs < mySubCommands.size()) {
+                if (countAbs < mySubCommands.size())
                     nextParams.add(mySubCommands.get(countAbs));
-                    countAbs++;
-                    countPar++;
-                }
-                else {
+                else
                     nextParams.add(new ConstantCommand(0)); // Fills in for missing params at end
-                    countAbs++;
-                }
+                countAbs++;
+                countPar++;
             }
             countPar = 0;
             addCommand(model, nextParams, commandList);
@@ -64,9 +63,16 @@ public class GroupCommand extends Command {
 
     private void addCommand(ICommand model, List<ICommand> nextParams, List<ICommand> commandList) {
         try {
-            ICommand newCommand = model.getClass().getConstructor(List.class).newInstance(nextParams);
-            commandList.add(newCommand); //TODO account for user defined commands
-        } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            ICommand newCommand;
+            if (model instanceof UserCommandInter) {
+                newCommand = ((UserCommandInter) model).getNewInstance();
+                ((UserCommandInter) newCommand).assignParams(nextParams);
+            }
+            else {
+                newCommand = model.getClass().getConstructor(List.class).newInstance(nextParams);
+            }
+            commandList.add(newCommand);
+        } catch (Exception e) {
             //handle error
         }
     }
