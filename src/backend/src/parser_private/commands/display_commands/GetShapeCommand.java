@@ -1,4 +1,11 @@
 package parser_private.commands.display_commands;
 
-public class GetShapeCommand {
+import parser_private.Command;
+
+public class GetShapeCommand extends Command {
+
+    @Override
+    public double execute() {
+        return 0.0;
+    }
 }

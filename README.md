@@ -98,7 +98,8 @@ translated Class names for reflection, list of Commands that support multiple in
 - UI Help button does not include added commands from the final sprint
 - UI does not allow for editing user defined commands outside of commands
 - UI does not incorporate click-to-toggle for active turtles
-- UI image selector does not work properly
+- UI does not allow for turtle shape to change
+- Background color cannot be set to first palette in list
 - Clearscreen command leaves a line from last turtle position to center
 - Multiple turtles functionality largely untested
 

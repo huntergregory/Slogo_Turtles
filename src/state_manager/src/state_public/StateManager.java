@@ -1,9 +1,6 @@
 package state_public;
 
-import java.awt.*;
-
 public class StateManager {
-
 
     private TurtleManager myTurtleManager;
     private GlobalCommands myCommands;
@@ -54,7 +51,7 @@ public class StateManager {
     }
 
     public void setBackgroundColor(int index) {
-        myBackgroundColor = myPaletteManager.getPalette(index);
+        myBackgroundColor.getColorProperty().set(myPaletteManager.getPalette(index).getColor());
     }
 
 }

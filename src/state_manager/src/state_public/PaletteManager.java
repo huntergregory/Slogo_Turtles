@@ -10,12 +10,21 @@ public class PaletteManager {
 
     public static final List<Palette> defaultPalettes = Collections.unmodifiableList(
         new ArrayList<>() {{
-            add(new Palette(0, Color.BLACK));
-            add(new Palette(1, Color.RED));
-            add(new Palette(2, Color.BLUE));
-            add(new Palette(3, Color.GREEN));
+            add(new Palette(1, Color.LIGHTPINK));
+            add(new Palette(2, Color.LIGHTBLUE));
+            add(new Palette(3, Color.LIGHTGREEN));
+            add(new Palette(4, Color.WHITE));
+            add(new Palette(5, Color.BLACK));
         }}
     );
+
+    public List<String> getColorNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Palette p : defaultPalettes) {
+            names.add(p.getId() + " " + p.getColor());
+        }
+        return names;
+    }
 
     private List<Palette> myPalettes;
 
@@ -34,9 +43,10 @@ public class PaletteManager {
 
     public Palette getPalette(int index) {
         for (Palette palette: myPalettes) {
-            if (palette.getId() == index)
+            if (palette.getId() == index) {
                 System.out.println("INDEX: " + index);
                 return palette;
+            }
         }
         return myPalettes.get(0);
     }

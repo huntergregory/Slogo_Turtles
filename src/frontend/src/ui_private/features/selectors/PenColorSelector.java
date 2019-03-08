@@ -28,7 +28,7 @@ import java.awt.*;
 import java.lang.reflect.Field;
 
 public class PenColorSelector extends Selector {
-    private static final ObservableList PENCOLORS = FXCollections.observableArrayList("BLACK 0", "RED 1", "BLUE 2", "GREEN 3");
+    private static final ObservableList PENCOLORS = FXCollections.observableArrayList("PINK 1", "BLUE 2", "GREEN 3", "WHITE 4", "BLACK 5");
 
     public PenColorSelector(StateManager manager) {
         super(manager);
@@ -43,21 +43,8 @@ public class PenColorSelector extends Selector {
     protected void handleItemSelected(String item) {
         String[] splitted = item.split("\\s+");
         int myIndex = Integer.parseInt(splitted[1]);
-        Color color;
-        if (myIndex == 0) {
-            color = Color.BLACK;
-        }
-        else if (myIndex == 1) {
-            color = Color.RED;
-        }
-        else if (myIndex == 2) {
-            color = Color.BLUE;
-        }
-        else {
-            color = Color.GREEN;
-        }
         for (Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
-            turtle.getPen().getPaletteProperty().getValue().getColorProperty().set(color);
+            turtle.getPen().setColor(myStateManager.getPaletteManager().getPalette(myIndex));
         }
     }
 
