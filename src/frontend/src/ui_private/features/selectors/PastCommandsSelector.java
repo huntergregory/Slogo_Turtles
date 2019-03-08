@@ -6,6 +6,8 @@ import state_public.StateManager;
 import ui_private.displays.CommandTerminal;
 
 public class PastCommandsSelector extends Selector {
+    private static final ObservableList PASTCOMMANDS = FXCollections.observableArrayList("");
+
     public PastCommandsSelector(StateManager manager) {
         super(manager);
         //setItemList(myStateManager.getCommandHistory().getCommandsProperty());
@@ -14,7 +16,7 @@ public class PastCommandsSelector extends Selector {
 
     @Override
     protected ObservableList getItemList() {
-        return null;
+        return PASTCOMMANDS;
     }
 
 
