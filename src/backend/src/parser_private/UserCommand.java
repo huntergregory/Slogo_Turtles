@@ -2,11 +2,11 @@ package parser_private;
 
 import parser_private.commands.control_commands.VariableCommand;
 import state_public.ICommand;
-import state_public.UserCommandInter;
+import state_public.IUserCommand;
 
 import java.util.List;
 
-public class UserCommand extends Command implements UserCommandInter {
+public class UserCommand extends Command implements IUserCommand {
 
     private ICommand myArguments;
     private ICommand myBody;
@@ -30,7 +30,7 @@ public class UserCommand extends Command implements UserCommandInter {
     }
 
     @Override
-    public UserCommandInter getNewInstance() {
+    public IUserCommand getNewInstance() {
         return new UserCommand(this);
     }
 

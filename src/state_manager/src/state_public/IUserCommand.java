@@ -2,7 +2,7 @@ package state_public;
 
 import java.util.List;
 
-public interface UserCommandInter extends ICommand {
+public interface IUserCommand extends ICommand {
 
     void assignParams(List<ICommand> params);
 
@@ -10,5 +10,5 @@ public interface UserCommandInter extends ICommand {
 
     int size();
 
-    UserCommandInter getNewInstance();
+    IUserCommand getNewInstance();
 }

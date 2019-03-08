@@ -1,12 +1,10 @@
 package parser_private.commands.control_commands;
 
 import parser_private.Command;
-import parser_private.UserCommand;
 import parser_private.commands.math_commands.ConstantCommand;
 import state_public.ICommand;
-import state_public.UserCommandInter;
+import state_public.IUserCommand;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +62,9 @@ public class GroupCommand extends Command {
     private void addCommand(ICommand model, List<ICommand> nextParams, List<ICommand> commandList) {
         try {
             ICommand newCommand;
-            if (model instanceof UserCommandInter) {
-                newCommand = ((UserCommandInter) model).getNewInstance();
-                ((UserCommandInter) newCommand).assignParams(nextParams);
+            if (model instanceof IUserCommand) {
+                newCommand = ((IUserCommand) model).getNewInstance();
+                ((IUserCommand) newCommand).assignParams(nextParams);
             }
             else {
                 newCommand = model.getClass().getConstructor(List.class).newInstance(nextParams);
