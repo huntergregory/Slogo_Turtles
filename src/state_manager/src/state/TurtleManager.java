@@ -117,6 +117,7 @@ public class TurtleManager {
 
 
     public void revertActiveTurtles() {
+        setAllTurtlesInactive();
         setIDsActive(myPreviousActiveTurtles);
     }
 
