@@ -222,6 +222,10 @@ public class Turtle {
         public boolean getShowing();
     
         public boolean getIsActive();
+        
+        public void setAnimationDuration(double duration);
+                
+        public DoubleProperty getAnimationDurationProperty();
 }
 
 public class TurtleManager {

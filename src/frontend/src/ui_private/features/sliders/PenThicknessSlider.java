@@ -17,7 +17,10 @@ public class PenThicknessSlider extends SlogoSlider {
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             turtle.getPen().setThickness(myThickness);
         }
-
     }
 
+    @Override
+    protected double[] getMinMaxCurrentVals() {
+        return DEFAULT_MIN_MAX_CURRENT;
+    }
 }
