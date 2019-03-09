@@ -5,6 +5,9 @@ import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
 
+/**
+ * @author Carter Gay
+ */
 public class TurtleImageSelector extends Selector {
     private static final ObservableList TURTLEIMAGES = FXCollections.observableArrayList("tan_turtle.png", "green_turtle.png", "red_turtle.png");
 

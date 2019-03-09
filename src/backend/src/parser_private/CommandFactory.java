@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 /**
  * @author David Miron
+ * @author Harry Ross
  */
 public class CommandFactory {
 

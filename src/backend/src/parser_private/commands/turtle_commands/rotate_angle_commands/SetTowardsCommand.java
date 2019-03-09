@@ -6,6 +6,10 @@ import state.Turtle;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author Hunter Gregory
+ */
 public class SetTowardsCommand extends TurtleCommand {
 
     private ICommand myX;

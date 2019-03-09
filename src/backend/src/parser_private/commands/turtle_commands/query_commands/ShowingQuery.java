@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class ShowingQuery extends TurtleCommand {
     public ShowingQuery(List<ICommand> params) {
         super(params);

@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class RepeatCommand extends IterativeCommand {
 
     private ICommand myTotalIter;

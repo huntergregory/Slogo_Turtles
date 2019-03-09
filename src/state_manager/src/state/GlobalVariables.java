@@ -1,5 +1,8 @@
 package state;
 
+/**
+ * @author Harry Ross
+ */
 public class GlobalVariables {
 
     private VariablesGroup myVariables;

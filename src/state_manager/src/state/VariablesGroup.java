@@ -3,6 +3,9 @@ package state;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Harry Ross
+ */
 public class VariablesGroup {
 
     private Map<String, Double> myVariableMap;

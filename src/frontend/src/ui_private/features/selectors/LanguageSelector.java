@@ -4,6 +4,10 @@ import javafx.collections.ObservableList;
 import state.ParserException;
 import state.StateManager;
 
+/**
+ * @author Carter Gay
+ * @author Harry Ross
+ */
 public class LanguageSelector extends Selector {
 
     public LanguageSelector(StateManager manager) {

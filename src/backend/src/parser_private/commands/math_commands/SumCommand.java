@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class SumCommand extends MultiParamMathCommand {
 
     public SumCommand(List<ICommand> params) {

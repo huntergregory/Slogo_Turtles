@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * @author David Miron
+ * @author Harry Ross
  */
 public class PaletteManager {
 

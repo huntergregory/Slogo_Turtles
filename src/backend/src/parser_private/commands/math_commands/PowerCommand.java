@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class PowerCommand extends MultiParamMathCommand {
 
     public PowerCommand(List<ICommand> params) {

@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class GoToCommand extends MoveToPositionCommand {
 
     public GoToCommand(List<ICommand> params) {

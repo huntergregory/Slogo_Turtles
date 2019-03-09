@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class NaturalLogCommand extends SingleParamMathCommand {
 
     public NaturalLogCommand(List<ICommand> params) {

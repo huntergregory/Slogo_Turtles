@@ -5,6 +5,9 @@ import parser_private.UserCommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class ToCommand extends Command {
 
     private VariableCommand myName;

@@ -7,6 +7,10 @@ import state.Turtle;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * @author David Miron
+ * @author Harry Ross
+ */
 public abstract class TurtleCommand extends Command {
 
     public TurtleCommand(List<ICommand> params) {

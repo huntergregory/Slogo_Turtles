@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class DifferenceCommand extends MultiParamMathCommand {
 
     public DifferenceCommand(List<ICommand> params) {

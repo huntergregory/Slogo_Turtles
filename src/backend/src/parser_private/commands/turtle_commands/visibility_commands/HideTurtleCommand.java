@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class HideTurtleCommand extends TurtleCommand {
 
     public HideTurtleCommand(List<ICommand> params) {
