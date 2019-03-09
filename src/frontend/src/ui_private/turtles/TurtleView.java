@@ -103,10 +103,6 @@ public abstract class TurtleView {
         myNode.setRotate(newVal.doubleValue());
     }
 
-    private void updateOnIsActiveChange(Boolean bool) {
-        //TODO: change opacity
-    }
-
     /**
      * Call after move if you want Turtles to be drawn above lines drawn.
      */
