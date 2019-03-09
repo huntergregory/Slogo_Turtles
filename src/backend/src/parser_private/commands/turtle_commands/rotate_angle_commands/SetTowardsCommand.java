@@ -41,10 +41,10 @@ public class SetTowardsCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double xTarget = myX.execute();
-        double yTarget = - myY.execute();
-
         return runTurtleCommand((turtle) -> {
+            double xTarget = myX.execute();
+            double yTarget = -myY.execute();
+
             double newHeading = getNewHeading(turtle, xTarget, yTarget);
             double oldHeading = turtle.getHeading();
             turtle.setHeading(newHeading);
