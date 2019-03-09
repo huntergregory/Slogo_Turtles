@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * @author David Miron
+ */
 public class CommandHistory {
 
     private ListProperty<String> myHistory;

@@ -5,6 +5,9 @@ import state.StateManager;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public abstract class Command implements ICommand {
 
     protected List<ICommand> mySubCommands;

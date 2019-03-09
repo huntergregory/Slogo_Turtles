@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class PaletteManager {
 
     private static final List<Palette> defaultPalettes = Collections.unmodifiableList(

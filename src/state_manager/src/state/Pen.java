@@ -3,6 +3,9 @@ package state;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
+/**
+ * @author David Miron
+ */
 public class Pen {
 
     private static final int DEFAULT_THICKNESS = 3;

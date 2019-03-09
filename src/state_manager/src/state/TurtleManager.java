@@ -9,6 +9,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * @author David Miron
+ */
 public class TurtleManager {
 
     public static final String ID_VARNAME = "ID";

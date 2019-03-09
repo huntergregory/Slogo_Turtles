@@ -6,6 +6,9 @@ import state.TurtleManager;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class IDCommand extends Command {
 
     public IDCommand(List<ICommand> params) {

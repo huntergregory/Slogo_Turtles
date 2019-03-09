@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * @author David Miron
+ */
 public class CommandFactory {
 
     private static final String COMMAND_INFO_FILENAME = "CommandInfo.txt";

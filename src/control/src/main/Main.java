@@ -20,6 +20,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author David Miron (createWorkspace)
+ */
 public class Main extends Application {
     private static final double WIDTH = 1000;
     private static final double HEIGHT = 750;

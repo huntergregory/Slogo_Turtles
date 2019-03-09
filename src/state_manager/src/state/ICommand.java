@@ -2,6 +2,9 @@ package state;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public interface ICommand {
 
     double execute();
