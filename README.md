@@ -87,20 +87,19 @@ translated Class names for reflection, list of Commands that support multiple in
     parameters ignore everything inside the group after the command itself without giving an error.
     The rest of the group instead gets executed as a list.
 
-* Frontend
-
-#### Known bugs:
+#### Missing features:
 - Save/load functionality not implemented for turtle state
 - UI Undo button does not work
 - UI does not incorporate click-to-toggle for active turtles
 - UI does not allow for editing user defined variables outside of commands
 
-- UI does not display user defined commands
 - UI requires refresh button to update variable view
 - UI does not allow for turtle shape to change
+- Multiple turtles functionality untested because frontend does not have that support yet
+
+#### Known bugs:
 - Background color cannot be set to first palette in list
 - Background color resets when certain areas of the workspace are clicked
-- Multiple turtles functionality untested because frontend does not have that support yet
 
 #### Extra features:
 - Grouping was added from the "Challenging Extensions list"

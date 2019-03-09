@@ -1,5 +1,10 @@
 package state;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +17,7 @@ public class GlobalCommands {
     private Map<IUserCommand, ICommand> myStoredBodies;
     private Map<String, Integer> myParamCounts;
     private Map<String, List<IUserCommand>> myCreatedCommandInstances;
+    private ListProperty<String> myCommandsProperty;
 
     public GlobalCommands() {
         this.myStoredCommands = new HashMap<>();
@@ -19,6 +25,8 @@ public class GlobalCommands {
         this.myStoredBodies = new HashMap<>();
         this.myParamCounts = new HashMap<>();
         this.myCreatedCommandInstances = new HashMap<>();
+        myCommandsProperty = new SimpleListProperty<>();
+        myCommandsProperty.set(FXCollections.observableArrayList());
     }
 
     public void addCommand(String commandName, ICommand args, ICommand body, IUserCommand newCommand) { // Gets myArguments, myBody from ToCommand
@@ -26,12 +34,19 @@ public class GlobalCommands {
         myStoredArgs.put(newCommand, args); // Store or overwrite command type
         myStoredBodies.put(newCommand, body);
         myParamCounts.put(commandName, args.size()); // Store param count for new command type
+        addToObservableList(commandName);
 
         if (myCreatedCommandInstances.containsKey(commandName)) { // Propagate changes through existing references to this command
             for (IUserCommand command : myCreatedCommandInstances.get(commandName)) {
                 command.applyArgsAndBody(args, body); // Do not need to worry about conflicting param numbers between old and new since undef. vars eval to 0
             }
         }
+    }
+
+    private void addToObservableList(String command) {
+        ObservableList<String> observableList = myCommandsProperty.getValue();
+        observableList.add(command);
+        myCommandsProperty.set(observableList);
     }
 
     public int getParamCount(String command) {
@@ -51,5 +66,9 @@ public class GlobalCommands {
         myCreatedCommandInstances.putIfAbsent(commandName, new ArrayList<>());
         myCreatedCommandInstances.get(commandName).add(newCommand);
         return newCommand;
+    }
+
+    public ListProperty getCommandsList() {
+        return myCommandsProperty;
     }
 }
