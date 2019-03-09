@@ -1,5 +1,5 @@
 package ui_private.turtles;
-
+/*
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.Transition;
@@ -78,3 +78,4 @@ public abstract class AnimatedTurtleView extends TurtleView {
             nextTransition.play();
     }
 }
+*/

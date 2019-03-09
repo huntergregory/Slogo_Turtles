@@ -86,14 +86,14 @@ public abstract class TurtleView {
         myNode.visibleProperty().bind(myTurtleStates.getShowingProperty());
     }
 
-    protected void addPropertyListeners() {
+    private void addPropertyListeners() {
         myTurtleStates.getPositionProperty().addListener((o, oldPosition, newPosition) -> move(oldPosition, newPosition));
         myTurtleStates.getHeadingProperty().addListener((o, oldHeading, newHeading) -> rotate(oldHeading, newHeading));
         myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOpacity(newActive));
     }
 
     private void move(Point2D oldPoint, Point2D newPoint) {
-        myNode.relocate(newPoint.getX(), newPoint.getY());
+        relocateNode(newPoint);
         drawLine(oldPoint, newPoint);
     }
 
