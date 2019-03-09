@@ -22,22 +22,21 @@ public abstract class MoveDistanceCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double distance = myDistance.execute();
-        if (!myGoingForward) {
-            distance *= -1;
-        }
-        move(distance);
-        return Math.abs(distance);
-    }
 
-    private void move(double distance) {
-        runTurtleCommand((turtle) -> {
+        return runTurtleCommand((turtle) -> {
+            double distance = myDistance.execute();
+            if (!myGoingForward) {
+                distance *= -1;
+            }
             double heading = Math.toRadians(turtle.getHeading());
             double newX = turtle.getPosition().getX() + Math.sin(heading) * distance;
             double newY = turtle.getPosition().getY() - Math.cos(heading) * distance;
             turtle.setPosition(newX, newY);
             return distance;
         });
+    }
+
+    private void move(double distance) {
 
     }
 }

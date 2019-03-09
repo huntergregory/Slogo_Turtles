@@ -20,8 +20,8 @@ public class SetHeadingCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double newHeading = myNewHeading.execute();
         return runTurtleCommand((turtle) -> {
+            double newHeading = myNewHeading.execute();
             double oldHeading = turtle.getHeading();
             turtle.setHeading(newHeading);
             return Math.abs(newHeading - oldHeading);
