@@ -29,7 +29,7 @@ public class Turtle {
     private BooleanProperty myIsShowingProperty;
     private BooleanProperty myIsActiveProperty;
     private Pen myPen;
-    private ObjectProperty<TurtleImage> myImageProperty;
+    private ObjectProperty<String> myImageProperty; //could use ObjectProperty<TurtleImage> too if there were a TurtleImageManager
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -71,8 +71,12 @@ public class Turtle {
         myPositionProperty.set(new Point2D.Double(newX, newY));
     }
 
-    public ObjectProperty<TurtleImage> getImageProperty() {
+    public ObjectProperty<String> getImageProperty() {
         return myImageProperty;
+    }
+
+    public void setImageProperty(String name) {
+        myImageProperty.set(name);
     }
 
     public void setHeading(double heading) {
