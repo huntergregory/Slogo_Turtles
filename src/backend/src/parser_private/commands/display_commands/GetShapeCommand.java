@@ -1,6 +1,6 @@
 package parser_private.commands.display_commands;
 
-import parser_private.Command;
+import parser_private.commands.turtle_commands.TurtleCommand;
 import state.ICommand;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author David Miron
  * @author Harry Ross
  */
-public class GetShapeCommand extends Command {
+public class GetShapeCommand extends TurtleCommand {
 
     public GetShapeCommand(List<ICommand> params) {
         super(params);
@@ -17,6 +17,6 @@ public class GetShapeCommand extends Command {
 
     @Override
     public double execute() {
-        return 0.0;
+        return runTurtleCommand((turtle) -> turtle.getImageIndex());
     }
 }

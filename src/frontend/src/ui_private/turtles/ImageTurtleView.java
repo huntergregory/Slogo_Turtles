@@ -4,12 +4,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import state.Turtle;
-import state.TurtleImage;
 
 public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;
-    private static String DEFAULT_IMAGE_NAME = "tan_turtle.png"; //TODO
+    private static String DEFAULT_IMAGE_NAME = "Turtle 1.png"; //TODO
 
     public ImageTurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
         super(list, turtle, dispOffsetX, dispOffsetY);
