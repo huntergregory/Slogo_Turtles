@@ -18,10 +18,9 @@ public abstract class TurtleView {
     private static final String CSS_TAG = "turtle";
 
     protected Node myNode; //must be accessed by subclass
+    protected Turtle myTurtleStates;
 
-    private int myID;
     private ObservableList myModifiableList;
-    private Turtle myTurtleStates;
     private Pen myPen;
     private double myDispXOffset;
     private double myDispYOffset;
@@ -65,23 +64,16 @@ public abstract class TurtleView {
         myModifiableList.remove(myNode);
     }
 
-    //TODO remove all of these public methods if we decide on having each turtle have its own stroke and pen color
-    /*
-    public void setStroke(LineStroke stroke) {
-        myPen.setStroke(stroke);
-    }
-
-    public void setPenColor(Color color) {
-        myPen.setPenColor(color);
-    }*/
-
     private void toggleActive() {
         boolean wasActive = myTurtleStates.getIsActive();
-        double newOpacity = (wasActive) ? INACTIVE_OPACITY : 1.0;
-        myNode.setOpacity(newOpacity);
         myTurtleStates.setActive(!wasActive);
+        updateOpacity(!wasActive);
     }
 
+    private void updateOpacity(boolean isActive) {
+        double newOpacity = (isActive) ? 1.0 : INACTIVE_OPACITY;
+        myNode.setOpacity(newOpacity);
+    }
 
     private void bindProperties() {
         myNode.visibleProperty().bind(myTurtleStates.getShowingProperty());
@@ -90,8 +82,7 @@ public abstract class TurtleView {
     private void addPropertyListeners() {
         myTurtleStates.getPositionProperty().addListener((o, oldPosition, newPosition) -> move(oldPosition, newPosition));
         myTurtleStates.getHeadingProperty().addListener((o, oldHeading, newHeading) -> rotate(newHeading));
-        myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOnIsActiveChange(newActive));
-        myTurtleStates.getTurtleIDProperty().addListener((o, oldID, newID) -> myID = newID.intValue());
+        myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOpacity(newActive));
     }
 
     private void move(Point2D oldPoint, Point2D newPoint) {
@@ -110,10 +101,6 @@ public abstract class TurtleView {
 
     private void rotate(Number newVal) {
         myNode.setRotate(newVal.doubleValue());
-    }
-
-    private void updateOnIsActiveChange(Boolean bool) {
-        //TODO: change opacity
     }
 
     /**

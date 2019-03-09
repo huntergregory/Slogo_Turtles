@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import state.Turtle;
-import ui_private.displays.TurtleDisplay;
+import state.TurtleImage;
 
 public class ImageTurtleView extends TurtleView {
 
@@ -13,6 +13,8 @@ public class ImageTurtleView extends TurtleView {
 
     public ImageTurtleView(ObservableList list, Turtle turtle, double dispOffsetX, double dispOffsetY) {
         super(list, turtle, dispOffsetX, dispOffsetY);
+        bindImage();
+        setImage(myTurtleStates.getImageProperty().getValue());
     }
 
     @Override
@@ -25,13 +27,15 @@ public class ImageTurtleView extends TurtleView {
         myNode = myImageView;
     }
 
-    public void setImage(Image image) {
-        if (myImageView == null)
-            return;
-        myImageView.setImage(image);
+    private void bindImage() {
+        myTurtleStates.getImageProperty().addListener(((o, oldImage, newImage) -> setImage(newImage)));
     }
 
-    public ImageView getImageView() {
-        return myImageView;
+    private void setImage(String fileName) {
+        if (fileName == null)
+            return;
+        Image image = new Image(fileName);
+        if (image != null)
+            myImageView.setImage(image);
     }
 }
