@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import state.Turtle;
 
-public class ImageTurtleView extends AnimatedTurtleView {
+public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;
     private static String DEFAULT_IMAGE_NAME = "Turtle 1.png"; //TODO
