@@ -29,6 +29,7 @@ public class Turtle {
     private BooleanProperty myIsShowingProperty;
     private BooleanProperty myIsActiveProperty;
     private Pen myPen;
+    private ObjectProperty<TurtleImage> myImageProperty;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -47,6 +48,7 @@ public class Turtle {
         myHeadingProperty = new SimpleDoubleProperty();
         myIsShowingProperty = new SimpleBooleanProperty();
         myIsActiveProperty = new SimpleBooleanProperty(true);
+        myImageProperty = new SimpleObjectProperty<>();
     }
 
     private double getInBoundsNum(double num, double min, double max) {
@@ -67,6 +69,10 @@ public class Turtle {
         double newX = getInBoundsNum(x, - myPaneWidth / 2.0, myPaneWidth / 2.0);
         double newY = getInBoundsNum(y, - myPaneHeight / 2.0, myPaneHeight / 2.0);
         myPositionProperty.set(new Point2D.Double(newX, newY));
+    }
+
+    public ObjectProperty<TurtleImage> getImageProperty() {
+        return myImageProperty;
     }
 
     public void setHeading(double heading) {
