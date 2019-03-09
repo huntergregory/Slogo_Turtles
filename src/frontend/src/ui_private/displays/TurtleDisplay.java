@@ -37,7 +37,6 @@ public class TurtleDisplay {
         myTurtlePane.getStyleClass().add(PANE_CSS_CLASS);
     }
 
-
     // Must be called after initializing myPane
     private void initializeTurtles() {
         myTurtleViews = new ArrayList<>();

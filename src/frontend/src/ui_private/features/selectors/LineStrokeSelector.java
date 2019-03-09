@@ -13,7 +13,6 @@ public class LineStrokeSelector extends Selector {
 
     public LineStrokeSelector(StateManager manager) {
         super(manager);
-        myDropBox.getSelectionModel().select("Normal");
     }
 
     @Override
