@@ -8,6 +8,9 @@ import parser.CommandParser;
 import state.ParserException;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class CommandTerminal {
@@ -63,8 +66,9 @@ public class CommandTerminal {
         try {
             Desktop.getDesktop().browse(new URL(HELP_URL_1).toURI());
             Desktop.getDesktop().browse(new URL(HELP_URL_2).toURI());
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        catch (URISyntaxException | IOException e) {
+            System.out.println("Couldn't reach help url.");
         }
     }
 
