@@ -113,7 +113,7 @@ public class Main extends Application {
 
     private void addEmptyFeatureMenu() {
         myFeatureMenu = new Menu("Customize...");
-        myFeatureMenu.getStyleClass().add("column-filter"); //TODO remove??
+        myFeatureMenu.getStyleClass().add("column-filter"); //TODO remove if css not working
         myMenuBar.getMenus().add(myFeatureMenu);
     }
 
@@ -148,8 +148,6 @@ public class Main extends Application {
         String[] totalFeatures = getCurrentWorkspace().getFeatureNames();
         for (int k=0; k<totalFeatures.length; k++)
             addRow(totalFeatures[k], featurePane, k);
-
-        //TODO deal with right and left features
 
         return featurePane;
     }

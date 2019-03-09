@@ -12,7 +12,6 @@ import ui_private.turtles.TurtleView;
 
 import java.util.ArrayList;
 
-//TODO make which turtle type we're using dynamic
 public class TurtleDisplay {
     private static final String PANE_CSS_CLASS = "pane";
     private TurtleManager myTurtleManager;

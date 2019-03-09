@@ -14,6 +14,9 @@ public class CommandTerminal {
     private static final String PROMPT = "Enter Command";
     private static final String HELP_URL_1 = "https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
     private static final String HELP_URL_2 = "https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands2_J2W.php";
+    private static final double COMMAND_STRETCH_WIDTH = 1000;
+    private static final double BUTTON_WIDTH = 100;
+    private static final double BUTTON_STRETCH_HEIGHT = 60;
 
     private Button myParseButton;
     private Button myUndoButton;
@@ -67,14 +70,16 @@ public class CommandTerminal {
 
     public Pane getPane() {
         var gridPane = new GridPane();
-        myCommandInput.setPrefWidth(1000); //stretch out text area //FIXME magic number
-        myParseButton.setMinWidth(100); //FIXME magic number
-        myParseButton.setPrefHeight(60); //stretch out height //FIXME magic number
-        myUndoButton.setMinWidth(100);
-        myUndoButton.setPrefHeight(60);
-        myHelpButton.setMinWidth(100);
-        myHelpButton.setPrefHeight(60);
+        myCommandInput.setPrefWidth(COMMAND_STRETCH_WIDTH); //stretch out text area
+        setButtonSize(myParseButton);
+        setButtonSize(myUndoButton);
+        setButtonSize(myHelpButton);
         gridPane.addRow(0, myCommandInput, myParseButton, myUndoButton, myHelpButton);
-        return gridPane; //FIXME: need to return some pane including commandinput and parsebutton
+        return gridPane;
+    }
+
+    private void setButtonSize(Button button) {
+        button.setMinWidth(BUTTON_WIDTH);
+        button.setPrefHeight(BUTTON_STRETCH_HEIGHT);
     }
 }

@@ -16,8 +16,6 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class UIBuilder {
-    private static final String FEATURE_PROPERTIES = "feature.properties";
-
     private final double mySidePanelWidth;
 
     private BorderPane myBorderPane;
@@ -36,11 +34,10 @@ public class UIBuilder {
         mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
         var turtlePaneHeight = height * 2.0 / 3.0;
-        var terminalHeight = height / 6.0;
 
         myBackend = backend;
         myStateManager = stateManager;
-        myTerminal = new CommandTerminal(myBackend); //FIXME
+        myTerminal = new CommandTerminal(myBackend);
         myTurtleDisplay = new TurtleDisplay(myStateManager.getTurtleManager(), turtlePanelWidth, turtlePaneHeight);
         myLeftPanel = new SidePanel(mySidePanelWidth);
         myRightPanel = new SidePanel(mySidePanelWidth);
@@ -50,7 +47,7 @@ public class UIBuilder {
         initBorderPane();
     }
 
-    public static final void addStyle(Scene scene) {
+    public static void addStyle(Scene scene) {
         scene.getStylesheets().add("style.css");
     }
 
@@ -90,7 +87,7 @@ public class UIBuilder {
             myTerminal.setText(content);
         }
         catch (IOException e) {
-            System.out.println("Couldn't read the file"); //Shouldn't happen
+            System.out.println("Couldn't read the file"); //Shouldn't reach this point
         }
     }
 
@@ -121,6 +118,7 @@ public class UIBuilder {
                 continue;
             panel.removeRow(k);
             labelList.remove(k);
+            break;
         }
     }
 }
