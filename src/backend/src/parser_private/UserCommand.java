@@ -6,6 +6,9 @@ import state.IUserCommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class UserCommand extends Command implements IUserCommand {
 
     private ICommand myArguments;

@@ -5,6 +5,10 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author Hunter Gregory
+ */
 public class SetHeadingCommand extends TurtleCommand {
 
     private ICommand myNewHeading;
@@ -16,8 +20,8 @@ public class SetHeadingCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double newHeading = myNewHeading.execute();
         return runTurtleCommand((turtle) -> {
+            double newHeading = myNewHeading.execute();
             double oldHeading = turtle.getHeading();
             turtle.setHeading(newHeading);
             return Math.abs(newHeading - oldHeading);

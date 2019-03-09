@@ -5,6 +5,10 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author Hunter Gregory
+ */
 public abstract class RotateAngleCommand extends TurtleCommand {
 
     private ICommand myAngle;
@@ -26,8 +30,8 @@ public abstract class RotateAngleCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double angle = getAngle();
         return runTurtleCommand((turtle) -> {
+            double angle = getAngle();
             turtle.setHeading(angle + turtle.getHeading());
             return Math.abs(angle);
         });

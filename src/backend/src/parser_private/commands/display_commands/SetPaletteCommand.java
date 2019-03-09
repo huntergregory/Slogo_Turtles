@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class SetPaletteCommand extends Command {
 
     private ICommand myIndex;

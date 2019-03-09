@@ -4,6 +4,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import state.StateManager;
 
+/**
+ * @author Carter Gay
+ * @author Harry Ross
+ */
 public class UserCommandsSelector extends Selector {
 
     public UserCommandsSelector(StateManager manager) {

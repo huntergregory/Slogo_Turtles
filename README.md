@@ -92,10 +92,7 @@ translated Class names for reflection, list of Commands that support multiple in
 - UI Undo button does not work
 - UI does not incorporate click-to-toggle for active turtles
 - UI does not allow for editing user defined variables outside of commands
-
-- UI requires refresh button to update variable view
-- UI does not allow for turtle shape to change
-- Multiple turtles functionality untested because frontend does not have that support yet
+- UI does not update variables view automatically, requires button
 
 #### Known bugs:
 - Background color cannot be set to first palette in list

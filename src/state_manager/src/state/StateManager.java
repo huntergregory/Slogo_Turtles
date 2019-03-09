@@ -1,5 +1,8 @@
 package state;
 
+/**
+ * @author David Miron
+ */
 public class StateManager {
 
     private TurtleManager myTurtleManager;
@@ -9,7 +12,6 @@ public class StateManager {
     private InputTranslator myInputTranslator;
     private PaletteManager myPaletteManager;
     private Palette myBackgroundColor;
-    private Palette myPenColor;
 
     public StateManager() throws ParserException {
         myVariables = new GlobalVariables();
@@ -19,7 +21,6 @@ public class StateManager {
         myCommandHistory = new CommandHistory();
         myInputTranslator = new InputTranslator();
         myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
-        myPenColor = myPaletteManager.getDefaultPenColor();
     }
 
     public TurtleManager getTurtleManager() {
@@ -38,10 +39,6 @@ public class StateManager {
         return myCommandHistory;
     }
 
-    public Palette getBackgroundColor() {
-        return myBackgroundColor;
-    }
-
     public InputTranslator getInputTranslator() {
         return myInputTranslator;
     }
@@ -53,5 +50,4 @@ public class StateManager {
     public void setBackgroundColor(int index) {
         myBackgroundColor.getColorProperty().set(myPaletteManager.getPalette(index).getColor());
     }
-
 }

@@ -1,5 +1,8 @@
 package state;
 
+/**
+ * @author David Miron
+ */
 public class TurtleImage {
 
     private int myId;

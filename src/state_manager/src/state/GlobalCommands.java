@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Harry Ross
+ */
 public class GlobalCommands {
 
     private Map<String, IUserCommand> myStoredCommands;

@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class CosineCommand extends SingleParamMathCommand {
 
     public CosineCommand(List<ICommand> params) {

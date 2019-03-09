@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class IfCommand extends Command {
 
     private ICommand myExpression;

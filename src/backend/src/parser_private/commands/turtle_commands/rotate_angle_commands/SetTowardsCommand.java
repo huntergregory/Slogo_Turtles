@@ -6,6 +6,10 @@ import state.Turtle;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author Hunter Gregory
+ */
 public class SetTowardsCommand extends TurtleCommand {
 
     private ICommand myX;
@@ -37,10 +41,10 @@ public class SetTowardsCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        double xTarget = myX.execute();
-        double yTarget = - myY.execute();
-
         return runTurtleCommand((turtle) -> {
+            double xTarget = myX.execute();
+            double yTarget = -myY.execute();
+
             double newHeading = getNewHeading(turtle, xTarget, yTarget);
             double oldHeading = turtle.getHeading();
             turtle.setHeading(newHeading);

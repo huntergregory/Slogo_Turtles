@@ -4,6 +4,10 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ * @author Harry Ross
+ */
 public class ForCommand extends IterativeCommand {
 
     private ListCommand forParams;

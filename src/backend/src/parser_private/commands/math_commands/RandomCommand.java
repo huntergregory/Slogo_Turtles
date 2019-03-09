@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class RandomCommand extends SingleParamMathCommand {
 
     public RandomCommand(List<ICommand> params) {

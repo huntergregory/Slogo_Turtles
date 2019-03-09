@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class QuotientCommand extends MultiParamMathCommand {
 
     public QuotientCommand(List<ICommand> params) {

@@ -7,6 +7,9 @@ import state.ICommand;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public abstract class MultipleTurtlesCommand extends Command {
 
     public MultipleTurtlesCommand(List<ICommand> params) {

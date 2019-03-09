@@ -9,6 +9,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * @author David Miron
+ */
 public class TurtleManager {
 
     public static final String ID_VARNAME = "ID";
@@ -114,10 +117,28 @@ public class TurtleManager {
 
 
     public void revertActiveTurtles() {
+        setAllTurtlesInactive();
         setIDsActive(myPreviousActiveTurtles);
     }
 
     public Palette getBackgroundColor() {
         return myBackgroundColor;
+    }
+
+    public void setImageIndex(int index) {
+        if (index > 0 && index <= 3)
+            for (Turtle turtle : myTurtles) {
+                turtle.setImageProperty("Turtle " + index + ".png");
+            }
+    }
+
+    public double getImageIndex() {
+        try {
+            String shortened = myTurtles.get(0).getImageProperty().getValue().substring(myTurtles.get(0).getImageProperty().getValue().indexOf(" ") + 1);
+            String index = shortened.substring(0, shortened.indexOf("."));
+            return Double.parseDouble(index);
+        } catch (NullPointerException e) {
+            return 1;
+        }
     }
 }

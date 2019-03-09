@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class ProductCommand extends MultiParamMathCommand {
 
     public ProductCommand(List<ICommand> params) {

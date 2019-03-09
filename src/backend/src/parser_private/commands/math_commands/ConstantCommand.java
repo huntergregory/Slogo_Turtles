@@ -2,6 +2,9 @@ package parser_private.commands.math_commands;
 
 import parser_private.Command;
 
+/**
+ * @author David Miron
+ */
 public class ConstantCommand extends Command {
 
     private double value;

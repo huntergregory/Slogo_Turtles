@@ -5,6 +5,9 @@ import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
 
+/**
+ * @author Carter Gay
+ */
 public class PenUpDownSelector extends Selector {
     private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     private String myPenState;

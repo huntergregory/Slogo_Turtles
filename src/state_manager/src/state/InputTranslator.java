@@ -14,6 +14,9 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * @author Harry Ross
+ */
 public class InputTranslator {
 
     private List<Map.Entry<String, Pattern>> myCurrentLanguage;
