@@ -23,13 +23,11 @@ Java Documentation
 ------------------------------------------------------------------
 
 #### Starting the project:
-```src/control/src/entry/Main.java``` -> This file will launch and initialize the application.
+```src/control/src/main/Main.java``` -> This file will launch and initialize the application.
 
 #### Testing files:
 Backend: A main method in ```parser.CommandParser``` was used over the course of the project to test
 functionality of the parser without relying on the frontend.
-
-Frontend: ```ui.UIMain``` can be used to test frontend functionality.
 
 Error handling: Our backend throws ParserExceptions if errors occur while parsing that
 the frontend then catches and handles by displaying in the command prompt. These errors include:
