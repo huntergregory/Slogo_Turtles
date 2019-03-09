@@ -92,7 +92,7 @@ public abstract class TurtleView {
         myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOpacity(newActive));
     }
 
-    private void move(Point2D oldPoint, Point2D newPoint) {
+    protected void move(Point2D oldPoint, Point2D newPoint) {
         relocateNode(newPoint);
         drawLine(oldPoint, newPoint);
     }

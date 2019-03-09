@@ -1,5 +1,5 @@
 package ui_private.turtles;
-/*
+
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.Transition;
@@ -45,7 +45,8 @@ public abstract class AnimatedTurtleView extends TurtleView {
         handleTransition(rotateTransition);
     }
 
-    private void move(Point2D oldPoint, Point2D newPoint) {
+    @Override
+    protected void move(Point2D oldPoint, Point2D newPoint) {
         var translateTransition = new TranslateTransition();
         translateTransition.setDuration(Duration.millis(ANIMATION_LENGTH));
         translateTransition.setNode(myNode);
@@ -78,4 +79,3 @@ public abstract class AnimatedTurtleView extends TurtleView {
             nextTransition.play();
     }
 }
-*/
