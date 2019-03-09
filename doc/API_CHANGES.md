@@ -9,6 +9,9 @@ data between front and backend, with each housing visualization and state data, 
 Bindings exist between front and backend to allow for each modification of turtle properties
 between various aspects of the project.
 
+Additionally, we weren't aware that the frontend API should consider allowing multiple features to be added interactively until we read the Piazza post for Slogo FAQ.
+The main part of the frontend API (adding left and right features), remained the same after the change in the middle of sprint 1.
+
 Our external APIs are as follow:
 
 -------------------------------------------
@@ -268,9 +271,27 @@ public class VariablesGroup {
 
 #### Module frontend
 ```java
-public class UIMain {
+public class UIBuilder {
     
-    public UIMain(int workspaceID, Stage stage, CommandParser backend, StateManager stateManager);
+    public UIBuilder(CommandParser backend, StateManager stateManager, double width, double height);
+    
+    public static void addStyle(Scene scene);
+    
+    public BorderPane getContent();
+    
+    public void addLeftFeature(String label);
+    
+    public void addRightFeature(String label);
+    
+    public void removeFeature(String label);
+    
+    public String[] getFeatureNames();
+    
+    public String[] getLeftFeatures();
+    
+    public String[] getRightFeatures();
+    
+    public void setText(File file);
 }
 ```
     
