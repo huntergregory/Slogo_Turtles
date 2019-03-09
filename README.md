@@ -99,8 +99,9 @@ translated Class names for reflection, list of Commands that support multiple in
 - Background color resets when certain areas of the workspace are clicked
 
 #### Extra features:
-- Grouping was added from the "Challenging Extensions list"
+- Grouping was added from the "Challenging Extensions" list
 - The option was implemented to load a text file into the workspace.
+- Animation was added from the "Challenging Extensions" list
 
 #### Assignment impressions:
 Harry - Many of the design specifications for the backend were left frustratingly ambiguous.
