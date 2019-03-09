@@ -8,6 +8,9 @@ import state.IUserCommand;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class GroupCommand extends Command {
 
     public GroupCommand(List<ICommand> params) {

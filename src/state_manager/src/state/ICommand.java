@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * @author David Miron
+ * @author Harry Ross
  */
 public interface ICommand {
 

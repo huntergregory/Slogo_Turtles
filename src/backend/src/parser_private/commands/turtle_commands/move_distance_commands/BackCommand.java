@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class BackCommand extends MoveDistanceCommand {
     public BackCommand(List<ICommand> params) {
         super(params, false);

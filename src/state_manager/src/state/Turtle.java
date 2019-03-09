@@ -79,6 +79,16 @@ public class Turtle {
         myImageProperty.set(name);
     }
 
+    public void setImageIndex(int index) {
+        setImageProperty("Turtle " + index + ".png");
+    }
+
+    public double getImageIndex() {
+        String shortened = myImageProperty.getValue().substring(myImageProperty.getValue().indexOf(" ") + 1);
+        String index = shortened.split(".")[0];
+        return Double.parseDouble(index);
+    }
+
     public void setHeading(double heading) {
         myHeadingProperty.set(heading);
     }

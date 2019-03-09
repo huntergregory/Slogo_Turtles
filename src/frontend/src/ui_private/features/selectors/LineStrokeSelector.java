@@ -6,6 +6,9 @@ import state.StateManager;
 import state.Turtle;
 import ui_private.ResourceBundleHelper;
 
+/**
+ * @author Carter Gay
+ */
 public class LineStrokeSelector extends Selector {
     private static final String STROKE_PROPERTIES = "line_stroke";
     private static final ResourceBundleHelper myResourceHelper = new ResourceBundleHelper(STROKE_PROPERTIES);

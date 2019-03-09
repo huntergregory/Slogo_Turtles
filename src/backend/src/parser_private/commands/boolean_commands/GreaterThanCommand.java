@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class GreaterThanCommand extends TwoParamBoolCommand {
 
     public GreaterThanCommand(List<ICommand> params) {

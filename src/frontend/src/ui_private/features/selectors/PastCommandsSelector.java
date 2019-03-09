@@ -3,6 +3,10 @@ package ui_private.features.selectors;
 import javafx.collections.ObservableList;
 import state.StateManager;
 
+/**
+ * @author Carter Gay
+ * @author Harry Ross
+ */
 public class PastCommandsSelector extends Selector {
 
     public PastCommandsSelector(StateManager manager) {

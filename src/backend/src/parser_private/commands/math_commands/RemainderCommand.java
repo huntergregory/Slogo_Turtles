@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class RemainderCommand extends MultiParamMathCommand {
 
     public RemainderCommand(List<ICommand> params) {

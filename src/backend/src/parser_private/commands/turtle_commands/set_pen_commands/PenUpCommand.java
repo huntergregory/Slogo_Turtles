@@ -5,6 +5,10 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author David Miron
+ */
 public class PenUpCommand extends TurtleCommand {
 
     public PenUpCommand(List<ICommand> params) {

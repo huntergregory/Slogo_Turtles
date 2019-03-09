@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 abstract class SingleParamMathCommand extends Command {
 
     ICommand myExpression;

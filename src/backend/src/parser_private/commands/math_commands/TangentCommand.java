@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class TangentCommand extends SingleParamMathCommand {
 
     public TangentCommand(List<ICommand> params) {

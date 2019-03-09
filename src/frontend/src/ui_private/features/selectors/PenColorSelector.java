@@ -4,6 +4,10 @@ import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
 
+/**
+ * @author Carter Gay
+ * @author Harry Ross
+ */
 public class PenColorSelector extends Selector {
 
     public PenColorSelector(StateManager manager) {

@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class ArcTangentCommand extends SingleParamMathCommand {
 
     public ArcTangentCommand(List<ICommand> params) {

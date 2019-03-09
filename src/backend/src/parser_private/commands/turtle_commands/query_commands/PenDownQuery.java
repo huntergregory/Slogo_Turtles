@@ -5,6 +5,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author David Miron
+ */
 public class PenDownQuery extends TurtleCommand {
     public PenDownQuery(List<ICommand> params) {
         super(params);

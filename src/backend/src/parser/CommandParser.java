@@ -8,6 +8,9 @@ import state.StateManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class CommandParser {
 
     private int myChunkIndex;

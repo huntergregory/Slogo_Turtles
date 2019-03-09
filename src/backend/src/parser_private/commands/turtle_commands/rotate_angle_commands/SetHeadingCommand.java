@@ -5,6 +5,10 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ * @author Hunter Gregory
+ */
 public class SetHeadingCommand extends TurtleCommand {
 
     private ICommand myNewHeading;

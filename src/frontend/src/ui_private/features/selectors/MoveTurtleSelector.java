@@ -9,6 +9,9 @@ import ui_private.features.exceptions.NoFeatureException;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author Harry Ross
+ */
 public class MoveTurtleSelector extends Feature {
 
     private GridPane myControlPane;

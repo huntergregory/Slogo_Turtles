@@ -4,6 +4,9 @@ import state.ICommand;
 
 import java.util.List;
 
+/**
+ * @author Harry Ross
+ */
 public class NotEqualCommand extends EqualCommand {
 
     public NotEqualCommand(List<ICommand> params) {
