@@ -97,7 +97,7 @@ public abstract class TurtleView {
         drawLine(oldPoint, newPoint);
     }
 
-    private void drawLine(Point2D oldPoint, Point2D newPoint) {
+    protected void drawLine(Point2D oldPoint, Point2D newPoint) {
         myPen.draw(oldPoint.getX() + myDispXOffset,
                 oldPoint.getY() + myDispYOffset,
                 newPoint.getX() + myDispXOffset,
