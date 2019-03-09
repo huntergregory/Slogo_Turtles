@@ -17,6 +17,6 @@ public class GetShapeCommand extends TurtleCommand {
 
     @Override
     public double execute() {
-        return runTurtleCommand((turtle) -> turtle.getImageIndex());
+        return myStateManager.getTurtleManager().getImageIndex();
     }
 }

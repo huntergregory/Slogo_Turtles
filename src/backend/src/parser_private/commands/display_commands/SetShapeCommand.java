@@ -21,10 +21,7 @@ public class SetShapeCommand extends TurtleCommand {
     @Override
     public double execute() {
         int index = (int) myIndex.execute();
-        runTurtleCommand(turtle -> {
-            turtle.setImageIndex(index);
-            return 0.0;
-        });
+        myStateManager.getTurtleManager().setImageIndex(index);
         return index;
     }
 }
