@@ -18,6 +18,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * Class that contains operations pertaining to Command creation from translated input String.
+ * Depends on Command objects, StateManager, ParserException.
+ * Ex. CommandFactory cftry = new CommandFactory(stateManager);
+ *     List<ICommand> params = new List<ICommand>();
+ *     params.add(new ConstantCommand(50));
+ *     ICommand newCommand = cftry.createCommand("Forward", params, false);
  * @author David Miron
  * @author Harry Ross
  */
@@ -34,6 +40,11 @@ public class CommandFactory {
 
     private StateManager myStateManager;
 
+    /**
+     * Creates new CommandFactory object with given StateManager inherited from workspace
+     * @param stateManager inherited StateManager object
+     * @throws ParserException when error occurs with resource files
+     */
     public CommandFactory(StateManager stateManager) throws ParserException {
         commandClassNames = new HashMap<>();
         commandParamCounts = new HashMap<>();
@@ -43,9 +54,9 @@ public class CommandFactory {
 
     /**
      * Create an instance of a command
-     *
-     * @param commandName The name of the command
-     * @param args        The arguments to give to the command
+     * @param commandName     The name of the command
+     * @param args            The arguments to give to the command
+     * @param overwriteEnable Whether or not a user defined command is being overwritten
      */
     public ICommand createCommand(String commandName, List<ICommand> args, boolean overwriteEnable) throws ParserException {
         if(prelimChecks(commandName, overwriteEnable) != null)
@@ -106,6 +117,7 @@ public class CommandFactory {
     /**
      * Get the number of parameters required for a command
      * @param command The name of the command
+     * @param overwriteEnable Whether or not a user defined command is being overwritten
      * @return The number of parameters required for the given command
      */
     public int getParamCount(String command, boolean overwriteEnable) {
