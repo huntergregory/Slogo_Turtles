@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
+/**
+ * A workspace that manages user interaction with and display of features, turtles, and command terminal parsing.
+ * Allows for addition, removal, and manipulation of the current features in the UI and their positions on the screen.
+ * @author Hunter Gregory
+ */
 public class UIBuilder {
     private final double mySidePanelWidth;
 
@@ -29,7 +34,13 @@ public class UIBuilder {
     private ArrayList<String> myRightFeatureLabels;
     private ArrayList<String> myLeftFeatureLabels;
 
-
+    /**
+     * Create a UIBuilder workspace
+     * @param backend
+     * @param stateManager
+     * @param width
+     * @param height
+     */
     public UIBuilder(CommandParser backend, StateManager stateManager, double width, double height) {
         mySidePanelWidth = width / 3.0;
         var turtlePanelWidth = width / 3.0;
@@ -47,43 +58,74 @@ public class UIBuilder {
         initBorderPane();
     }
 
+    /**
+     * Adds css stylesheet to the application's scene.
+     * @param scene
+     */
     public static void addStyle(Scene scene) {
         scene.getStylesheets().add("style.css");
     }
 
+    /**
+     * @return UI represented as a BorderPane
+     */
     public BorderPane getContent() {
         return myBorderPane;
     }
 
+    /**
+     * Places the feature with the given name to the left of the screen, if there exists such a feature.
+     * @param label
+     */
     public void addLeftFeature(String label) {
         addFeature(label, myLeftFeatureLabels, myLeftPanel);
     }
 
+    /**
+     * Places the feature with the given name to the right of the screen, if there exists such a feature.
+     * @param label
+     */
     public void addRightFeature(String label) {
         addFeature(label, myRightFeatureLabels, myRightPanel);
     }
 
+    /**
+     * Removes the feature with the given name from the UI if its visible, if there exists such a feature.
+     * @param label
+     */
     public void removeFeature(String label) {
         removeLabelFromPanel(label, myRightFeatureLabels, myRightPanel);
         removeLabelFromPanel(label, myLeftFeatureLabels, myLeftPanel);
     }
 
+    /**
+     * @return an array of all the names of features that can be added to the UI
+     */
     public String[] getFeatureNames() {
         return myFeatureFactory.getFeatureNames();
     }
 
+    /**
+     * @return an array of all the names of features that are currently on the left side of the screen
+     */
     public String[] getLeftFeatures() {
         return myLeftFeatureLabels.toArray(new String[0]);
     }
 
+    /**
+     * @return an array of all the names of features that are currently on the right side of the screen
+     */
     public String[] getRightFeatures() {
         return myRightFeatureLabels.toArray(new String[0]);
     }
 
-    // line 84 copied from https://www.journaldev.com/875/java-read-file-to-string
+    /**
+     * Set the text of the terminal display
+     * @param file
+     */
     public void setText(File file) {
         try {
-            String content = new String(Files.readAllBytes(file.toPath()));
+            String content = new String(Files.readAllBytes(file.toPath())); // copied from https://www.journaldev.com/875/java-read-file-to-string
             myTerminal.setText(content);
         }
         catch (IOException e) {
