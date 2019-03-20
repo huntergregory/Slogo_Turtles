@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The main application of this software system. Combines all aspects of the software system into a workspace.
+ * Manages multiple workspaces in a tab pane, and provides a menu that can be used to interact with the current workspace.
  * @author Hunter Gregory
  * @author David Miron (createWorkspace)
  */
@@ -40,7 +42,6 @@ public class Main extends Application {
     private VBox myVBox;
     private MenuBar myMenuBar;
     private Menu myFeatureMenu;
-    private CustomMenuItem oldMenuItem;
     private TabPane myTabPane;
     private List<UIBuilder> myWorkspaces;
 
