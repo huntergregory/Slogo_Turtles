@@ -11,7 +11,7 @@ The control package serves to initializes the GUI, present a tab system to creat
 and provide a menu through which the user can interact with the current turtle workspace. 
 
 These interactions are mediated through the frontend package, whose external API allows one to customize the UI with certain features, 
-or populate the command terminal with text (say from a file).
+or populate the command terminal with a file.
 The frontend is responsible for updating the display of turtles and their lines, displaying the correct features, 
 and responding to user interaction. 
 
