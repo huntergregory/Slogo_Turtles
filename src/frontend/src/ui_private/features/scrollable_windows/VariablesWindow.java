@@ -4,6 +4,10 @@ import state.StateManager;
 
 import java.util.Map;
 
+/**
+ *
+ * @author Carter Gay
+ */
 public class VariablesWindow extends ScrollableWindow {
     private static final String TITLE = "Variables";
     private Map<String, Double> myVariablesMap;

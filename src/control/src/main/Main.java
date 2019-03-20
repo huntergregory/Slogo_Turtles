@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Hunter Gregory
  * @author David Miron (createWorkspace)
  */
 public class Main extends Application {

@@ -10,6 +10,11 @@ import ui_private.features.Feature;
 
 import java.util.LinkedList;
 
+/**
+ *
+ * @author Carter Gay
+ * @author Hunter Gregory
+ */
 public abstract class ScrollableWindow extends Feature {
     private static final boolean SORTS_ALPHABETICALLY = false;
     private static final int MAX_LINES_DISPLAYED = 50;

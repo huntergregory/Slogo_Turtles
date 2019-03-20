@@ -7,7 +7,7 @@ import state.StateManager;
 import ui_private.features.Feature;
 
 /**
- * @author Carter Gay
+ * @author Hunter Gregory
  */
 public abstract class Selector extends Feature {
     private static final int NUM_OPTIONS_SHOWN = 4;

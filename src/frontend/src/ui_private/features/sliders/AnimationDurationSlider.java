@@ -3,6 +3,10 @@ package ui_private.features.sliders;
 import state.StateManager;
 import state.Turtle;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class AnimationDurationSlider extends SlogoSlider {
     public AnimationDurationSlider(StateManager manager) {
         super(manager);

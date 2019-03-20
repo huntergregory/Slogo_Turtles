@@ -5,6 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import ui.UIBuilder;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class FeatureGridItem {
     private static final String LEFT_TEXT = "L";
     private static final String RIGHT_TEXT = "R";

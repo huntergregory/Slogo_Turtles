@@ -13,6 +13,11 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ *
+ * @author Carter Gay
+ * @author Hunter Gregory
+ */
 public class CommandTerminal {
     private static final String PROMPT = "Enter Command";
     private static final String HELP_URL_1 = "https://www2.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";

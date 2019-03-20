@@ -4,8 +4,11 @@ import state.StateManager;
 import ui_private.displays.CommandTerminal;
 import ui_private.features.Feature;
 import ui_private.features.exceptions.NoFeatureException;
-import ui_private.features.selectors.Selector;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class FeatureFactory {
     private static final String FEATURE_PROPERTIES = "features";
     private static final String FEATURE_PATH = "ui_private.features.";

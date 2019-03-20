@@ -6,6 +6,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import state.Turtle;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class TriangleTurtleView extends TurtleView {
     private static final Paint COLOR = Color.RED;
 

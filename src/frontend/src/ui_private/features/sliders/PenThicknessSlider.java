@@ -3,6 +3,10 @@ package ui_private.features.sliders;
 import state.StateManager;
 import state.Turtle;
 
+/**
+ *
+ * @author Carter Gay
+ */
 public class PenThicknessSlider extends SlogoSlider {
 
     private static final String TITLE = "Pen Thickness";

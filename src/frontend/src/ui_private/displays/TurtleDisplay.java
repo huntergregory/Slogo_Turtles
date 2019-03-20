@@ -12,6 +12,10 @@ import ui_private.turtles.TurtleView;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class TurtleDisplay {
     private static final String PANE_CSS_CLASS = "pane";
     private TurtleManager myTurtleManager;

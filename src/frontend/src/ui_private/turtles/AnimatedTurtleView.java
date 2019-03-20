@@ -12,6 +12,10 @@ import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public abstract class AnimatedTurtleView extends TurtleView {
     private Queue<Transition> myTransitions;
 
