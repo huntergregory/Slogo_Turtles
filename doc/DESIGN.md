@@ -27,10 +27,29 @@ associated commands. It communicates with the state_manager package to get or se
 --- 
 ### Adding New Features
 How to add new features that you can add and use in your customized turtle workspace:
-- Create a concrete extension of the Feature class (class found in frontend/src/ui_private/features)
-    - Path 1: 
-        - Decide whether you want to make a concrete extension of the Selector, Slider, or ScrollableWindow class
 
+*General Walkthrough*
+- Create a concrete extension of the Feature class
+- Add a key with your new feature's name and its class' relative file path in features.properties
+
+*Detailed Walkthrough*
+- Go to frontend/src/ui_private/features
+    - Path 1: 
+        - Decide whether you want to make a concrete extension of the Selector, Slider, or ScrollableWindow class (abstract extensions of Feature)
+        - Extend one of those classes
+    - Path 2:
+        - Create another abstract extension of Feature
+        - Extend that new class
+    - Path 3:
+        - Extend Feature itself with a concrete class
+- Go to frontend/resources_frontend
+- Add a key of your feature's name to features.properties
+    - The key will be the display name. Use an underscore for a space
+- Add a relative path of the feature's class, starting at frontend/src/ui_private/features and using "." instead of a "/"
+
+How to add new state for the frontend and/or backend to use:
+- Go to the state_manager and add a new instance variable of a bindable property in StateManager, TurtleManager, Turtle, etc. (wherever makes sense pedagogically)
+- Add getters and setters for the property
 
 # TODO how to add new backend features
 How to add new commands...
