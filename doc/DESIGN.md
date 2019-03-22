@@ -58,6 +58,25 @@ How to add new commands...
 --- 
 ### Design Decisions & Trade-offs
 
+Frontend
+
+- For the customization of features on the GUI, we fixed the locations of the command terminal and turtle display. The rationale
+behind this decision was to keep the overall layout of the panels constant and that these two features should always be displayed.
+However, the user can customize which selectors or displays are present on the two side panels and whether they are located on the
+left or right panel. This makes sense since not all selectors / displays are vital to using the software.
+
+- We originally planned to use Color Selectors to allow the user to select the background color and pen color. When these colors 
+were required to carry indices, we opted for a set list of six colors to choose from. This severely limits the variety of colors 
+to "draw" with. However, it would have been rather monotonous to construct indices for hundreds of colors for this project. 
+Furthermore, any additional colors can be added with relative ease if desired.
 
 --- 
 ### Assumptions/Simplifications
+
+Frontend
+
+- To run / edit past commands and user commands, our GUI allows the user to select a command from a dropdown menu. The 
+selected command then populates the command terminal, giving the user free reign to alter the command. 
+
+- The user must refresh to see updated user states and variables rather than see changes immediately. We assumed that 
+these views did not have to appear immediately.
