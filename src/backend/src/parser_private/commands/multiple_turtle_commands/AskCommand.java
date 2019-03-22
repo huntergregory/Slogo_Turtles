@@ -19,6 +19,10 @@ public class AskCommand extends MultipleTurtlesCommand {
         myCommands = (ListCommand)params.get(1);
     }
 
+    /**
+     * Run a set of commands on turtles with certain IDs
+     * @return The result of the last executed command
+     */
     @Override
     public double execute() {
         return ask(myTurtles, myCommands);

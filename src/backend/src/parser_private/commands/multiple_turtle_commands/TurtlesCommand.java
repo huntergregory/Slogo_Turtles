@@ -14,6 +14,10 @@ public class TurtlesCommand extends Command {
         super(params);
     }
 
+    /**
+     * Get the number of turtles
+     * @return The number of turtles
+     */
     @Override
     public double execute() {
         return myStateManager.getTurtleManager().getTurtles().size();

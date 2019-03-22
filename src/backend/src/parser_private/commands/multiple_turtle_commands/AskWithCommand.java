@@ -19,6 +19,10 @@ public class AskWithCommand extends MultipleTurtlesCommand {
         myCommands = (ListCommand)params.get(1);
     }
 
+    /**
+     * Run a set of commands who satisfy some condition
+     * @return The result of the last executed command
+     */
     @Override
     public double execute() {
         List<Integer> valid_ids = myStateManager.getTurtleManager()

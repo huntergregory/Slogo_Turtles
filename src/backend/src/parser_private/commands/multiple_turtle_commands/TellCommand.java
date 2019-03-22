@@ -17,6 +17,10 @@ public class TellCommand extends MultipleTurtlesCommand {
         turtlesToTell = (ListCommand)params.get(0);
     }
 
+    /**
+     * Set active turtles with given IDs
+     * @return The last ID told
+     */
     @Override
     public double execute() {
         return tell(turtlesToTell);

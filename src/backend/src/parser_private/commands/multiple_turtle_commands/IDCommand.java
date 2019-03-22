@@ -15,6 +15,10 @@ public class IDCommand extends Command {
         super(params);
     }
 
+    /**
+     * Get the ID of the current active turtle
+     * @return The ID of the current active turtle
+     */
     @Override
     public double execute() {
         return myStateManager.getVariables().getVariable(TurtleManager.ID_VARNAME);

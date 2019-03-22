@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class to hold functionality of running commands for multiple turtles
  * @author David Miron
  */
 public abstract class MultipleTurtlesCommand extends Command {
@@ -31,7 +32,7 @@ public abstract class MultipleTurtlesCommand extends Command {
         return ids;
     }
 
-    public double tell(ListCommand turtles) {
+    protected double tell(ListCommand turtles) {
         return tell(getIDsFromListCommand(turtles));
     }
 
