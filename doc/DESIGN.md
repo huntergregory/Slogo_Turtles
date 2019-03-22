@@ -7,8 +7,8 @@
 
 ### High-Level Overview
 Our software system is composed of four different packages - control, frontend, state_manager, and backend. 
-The control package serves to initializes the GUI, present a tab system to create, delete, or move between turtle workspaces, 
-and provide a menu through which the user can interact with the current turtle workspace. 
+The control module serves to initializes the GUI, present a tab system to create, delete, or move between turtle workspaces, 
+and provide a menu through which the user can interact with the current turtle workspace.
 
 These interactions are mediated through the frontend package, whose external API allows one to customize the UI with certain features, 
 or populate the command terminal with a file.
@@ -17,7 +17,7 @@ and responding to user interaction.
 
 Responding to user interaction and updating display in the frontend are dependent on both the state_manager and backend package.
 The state_manager is the bridge between the front and back end as it provides getters and setters for properties needed in both places.
-This package contains many classes that are simple data containers, however some classes are robust object-oriented classes such as 
+This package contains a few classes that are data containers, but other classes are robust object-oriented classes such as 
 InputTranslator or TurtleManager. The frontend is able to create bindings with or add change listeners to these properties, 
 allowing it to update the display in real time whenever states are changed.
 
@@ -51,9 +51,19 @@ How to add new state for the frontend and/or backend to use:
 - Go to the state_manager and add a new instance variable of a bindable property in StateManager, TurtleManager, Turtle, etc. (wherever makes sense pedagogically)
 - Add getters and setters for the property
 
-# TODO how to add new backend features
-How to add new commands...
-
+# How to add new backend features
+How to add a new command:
+- Create a new object for the new Command that is a child of Command and exists within the backend.commands package.
+- Write the execute method for this command within new object, make sure it passes its parameters with a call to super constructor.
+- Standardized name for new command must be compliant with the global command syntax, i.e. only letters, no numbers or characters
+and must not take the name of a previously defined command in any language
+- Add command class name to state_manager/resources_state_manager/CommandInfo.txt in the format:
+    ```<NewCommandStandardizedName>=<path from backend.commands>.<NewCommandClassName>:<NumberOfParams>```
+- Add language support by adding new command to each language file in state_manager/resources_state_manager/languages
+with the following format:
+    ```<NewCommandStandardizedName> = <NameInLanguage>|<AltNameInLanguage>```
+- Parser and CommandFactory will now recognize new command as valid and create accordingly based on the definition established
+in newly created command class.
 
 --- 
 ### Design Decisions & Trade-offs
