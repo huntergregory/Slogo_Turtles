@@ -5,6 +5,12 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import ui.UIBuilder;
 
+/**
+ * Creates a Label and Button to represent a Feature in a given workspace (UIBuilder).
+ * The Button communicates with the workspace to add, remove, or shift the positioning of the feature with the given name.
+ * The current position of the feature is displayed on the button.
+ * @author Hunter Gregory
+ */
 public class FeatureGridItem {
     private static final String LEFT_TEXT = "L";
     private static final String RIGHT_TEXT = "R";
@@ -15,6 +21,11 @@ public class FeatureGridItem {
     private Label myLabel;
     private Button myButton;
 
+    /**
+     * Create a FeatureGridItem
+     * @param text
+     * @param workspace
+     */
     public FeatureGridItem(String text, UIBuilder workspace) {
         myText = text;
         myWorkspace = workspace;
@@ -22,10 +33,16 @@ public class FeatureGridItem {
         initButton();
     }
 
+    /**
+     * @return Label that displays the feature name
+     */
     public Label getLabel() {
         return myLabel;
     }
 
+    /**
+     * @return toggleable Button that updates and displays the feature's position in the workspace
+     */
     public Button getButton() {
         return myButton;
     }

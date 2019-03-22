@@ -9,6 +9,11 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Carter Gay
+ * @author Hunter Gregory
+ */
 public class SidePanel {
     public static final double V_GAP = 30;
     private static final Color GREEN = Color.web("0x027a50");

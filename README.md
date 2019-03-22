@@ -61,12 +61,17 @@ translated Class names for reflection, list of Commands that support multiple in
     * Format of Multiple Input Enabled properties file:  
     Command class names separated by line
 
-* Frontend - CSS stylesheet and turtle images
+* Frontend - CSS stylesheet, turtle images, and properties files for features
+
+* Control - CSS stylesheet
 
 #### Using the program:
 - Click "PARSE" button to run commands
 - Use various on-screen controls to manipulate aspects of the environment
-- Click the new tab button
+- Click on the File menu button to
+    - create a new workspace tab
+    - load a file into the command terminal text display
+- Click on the Customize... menu button to add features and choose which side to put them on (unique to each workspace). 
 
 #### Assumptions:
 * Backend
@@ -84,13 +89,18 @@ translated Class names for reflection, list of Commands that support multiple in
     defined commands always are executed sequentially when placed in groups. Commands with no
     parameters ignore everything inside the group after the command itself without giving an error.
     The rest of the group instead gets executed as a list.
+    
+* Frontend
+    * Assumes pen features should be applied to all previously drawn lines instead of strictly newly drawn ones.
+        * e.g. changing the pen color or line stroke affects every old line
+    * Assumes turtle display will remain a fixed size
 
 #### Missing features:
 - Save/load functionality not implemented for turtle state
-- UI Undo button does not work
-- UI does not incorporate click-to-toggle for active turtles
+- No undo functionality (challenge feature)
 - UI does not allow for editing user defined variables outside of commands
-- UI does not update variables view automatically, requires button
+- Not possible to automatically update variables or user commands views with current design - must use refresh button
+- Turtles can be shapes too, but switching between shapes and images is not incorporated currently
 
 #### Known bugs:
 - Background color cannot be set to first palette in list
@@ -99,6 +109,7 @@ translated Class names for reflection, list of Commands that support multiple in
 #### Extra features:
 - Grouping was added from the "Challenging Extensions" list
 - The option was implemented to load a text file into the workspace.
+- A line stroke selector was added for the pen.
 - Animation was added from the "Challenging Extensions" list
 
 #### Assignment impressions:
@@ -108,3 +119,6 @@ normal variables as parameters when they were expecting lists, etc.) I'm
 unsure whether or not this was intentional, but making these points clearer from the start,
 even if that meant telling us that areas of the design were intentionally
 ambiguous, would have avoided confusion.
+Hunter - I enjoyed this project, and especially seeing it come together at the end. I was unclear
+of what the frontend api should be at first, and I would have preferred talking more about APIs and maybe
+examples of frontend APIs in class.

@@ -19,6 +19,7 @@ import java.awt.geom.Point2D;
  * @author David Miron
  */
 public class Turtle {
+    private static final double DEFAULT_ANIMATION_DURATION = 1;
 
     private double myPaneWidth;
     private double myPaneHeight;
@@ -30,6 +31,7 @@ public class Turtle {
     private BooleanProperty myIsActiveProperty;
     private Pen myPen;
     private ObjectProperty<String> myImageProperty; //could use ObjectProperty<TurtleImage> too if there were a TurtleImageManager
+    private DoubleProperty myAnimationDurationProperty;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -49,6 +51,7 @@ public class Turtle {
         myIsShowingProperty = new SimpleBooleanProperty();
         myIsActiveProperty = new SimpleBooleanProperty(true);
         myImageProperty = new SimpleObjectProperty<>();
+        myAnimationDurationProperty = new SimpleDoubleProperty();
     }
 
     private double getInBoundsNum(double num, double min, double max) {
@@ -63,6 +66,7 @@ public class Turtle {
         setPosition(0,0);
         setHeading(0);
         setShowing(true);
+        setAnimationDuration(DEFAULT_ANIMATION_DURATION);
     }
 
     public void setPosition(double x, double y) {
@@ -145,5 +149,13 @@ public class Turtle {
 
     public boolean getIsActive() {
         return myIsActiveProperty.get();
+    }
+
+    public void setAnimationDuration(double duration) {
+        myAnimationDurationProperty.set(duration);
+    }
+
+    public DoubleProperty getAnimationDurationProperty() {
+        return myAnimationDurationProperty;
     }
 }

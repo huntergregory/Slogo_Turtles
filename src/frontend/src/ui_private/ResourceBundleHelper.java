@@ -1,11 +1,13 @@
 package ui_private;
 
-import javafx.collections.FXCollections;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public class ResourceBundleHelper {
     private ResourceBundle myResource;
 

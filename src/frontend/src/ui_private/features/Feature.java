@@ -10,12 +10,15 @@ import javafx.scene.text.Font;
 import state.StateManager;
 import ui_private.displays.CommandTerminal;
 
+/**
+ *
+ * @author Hunter Gregory
+ */
 public abstract class Feature {
     private static final double VERTICAL_STRETCH_NUMBER = 1000;
     private static final String FONT_FAMILY = "verdana";
     private static final int FONT_SIZE = 12;
     private static final Font FONT = new Font(FONT_FAMILY,FONT_SIZE);
-    //TODO: transfer these^ to css
 
     protected StateManager myStateManager;
     private GridPane myGrid;
@@ -35,11 +38,13 @@ public abstract class Feature {
 
 
     /**
-     * @return the main feature (selector, scrolling pane, etc.)
+     * @return the main feature (selector, slider, etc.)
      */
     abstract protected Node getMainComponent();
 
-
+    /**
+     * @return true to display feature's label to the left of its main component, false to display above
+     */
     abstract protected boolean getHasHorizontalLayout();
 
     /**
