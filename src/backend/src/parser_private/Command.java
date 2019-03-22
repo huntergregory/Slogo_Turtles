@@ -57,25 +57,15 @@ public abstract class Command implements ICommand {
     }
 
     /**
-<<<<<<< HEAD
-     * Execute the command, calling subcommands' execute methods if necessary
-     * @return The return code of the current command
-=======
      * Executes given Command
      * @return Output of Command execution as a double, depends on Command type
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
      */
     @Override
     public abstract double execute();
 
     /**
-<<<<<<< HEAD
-     * Get the number of subcommands
-     * @return The number of subcommands
-=======
      * Returns size of a Command (number of subcommands) or 0 if no subcommands exist
      * @return Number of subcommands
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
      */
     @Override
     public int size() {
@@ -86,15 +76,9 @@ public abstract class Command implements ICommand {
     }
 
     /**
-<<<<<<< HEAD
-     * Get a param
-     * @param index The index
-     * @return The param
-=======
      * Returns self unless overridden in child command
      * @param index Index of requested parameter (meaningless in this context)
      * @return ICommand of parameter at requested index
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
      */
     @Override
     public ICommand getParam(int index) {
@@ -102,13 +86,8 @@ public abstract class Command implements ICommand {
     }
 
     /**
-<<<<<<< HEAD
-     * Get a list of params
-     * @return All subcommand params
-=======
      * Returns list of all parameters and nested commands of a Command object
      * @return List of subcommands
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
      */
     @Override
     public List<ICommand> getParams() {
