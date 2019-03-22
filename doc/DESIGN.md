@@ -58,7 +58,7 @@ How to add new commands...
 --- 
 ### Design Decisions & Trade-offs
 
-* Frontend
+Frontend
 
 - For the customization of features on the GUI, we fixed the locations of the command terminal and turtle display. The rationale
 behind this decision was to keep the overall layout of the panels constant and that these two features should always be displayed.
@@ -73,7 +73,7 @@ Furthermore, any additional colors can be added with relative ease if desired.
 --- 
 ### Assumptions/Simplifications
 
-* Frontend
+Frontend
 
 - To run / edit past commands and user commands, our GUI allows the user to select a command from a dropdown menu. The 
 selected command then populates the command terminal, giving the user free reign to alter the command. 
