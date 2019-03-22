@@ -17,6 +17,10 @@ public class SetBackgroundCommand extends Command {
         myIndex = params.get(0);
     }
 
+    /**
+     * Set the background color to that of a given index
+     * @return The index set
+     */
     public double execute() {
         int index = (int)myIndex.execute();
         myStateManager.setBackgroundColor(index);

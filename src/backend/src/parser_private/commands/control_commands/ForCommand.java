@@ -18,6 +18,11 @@ public class ForCommand extends IterativeCommand {
         myBody = params.get(1);
     }
 
+
+    /**
+     * Run a body command multiple commands as if in a for loop, setting a variable each time
+     * @return The return value of the last command
+     */
     public double execute() {
         int start = (int) forParams.getParam(1).execute();
         int stop = (int) forParams.getParam(2).execute();

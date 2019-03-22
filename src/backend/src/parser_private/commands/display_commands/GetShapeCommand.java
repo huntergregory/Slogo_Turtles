@@ -15,6 +15,10 @@ public class GetShapeCommand extends TurtleCommand {
         super(params);
     }
 
+    /**
+     * Get the current shape
+     * @return The index of the current shape
+     */
     @Override
     public double execute() {
         return myStateManager.getTurtleManager().getImageIndex();

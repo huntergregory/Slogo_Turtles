@@ -17,6 +17,10 @@ public class SetPenColorCommand extends TurtleCommand {
         myIndex = params.get(0);
     }
 
+    /**
+     * Set the pen color for each turtle
+     * @return the index of the color chosen
+     */
     @Override
     public double execute() {
         int index = (int)myIndex.execute();

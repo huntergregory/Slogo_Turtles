@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * Class used to build commands
  * @author David Miron
  * @author Harry Ross
  */
@@ -67,6 +68,11 @@ public class CommandFactory {
         return myStateManager.getCommands().getCommand(commandName, args);
     }
 
+    /**
+     * Create a Constant Command
+     * @param value The value of the constant
+     * @return A command storing that constant
+     */
     private Command createConstantCommand(double value) {
         return new ConstantCommand(value);
     }

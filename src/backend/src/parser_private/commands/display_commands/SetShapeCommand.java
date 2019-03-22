@@ -18,6 +18,10 @@ public class SetShapeCommand extends TurtleCommand {
         myIndex = params.get(0);
     }
 
+    /**
+     * Set the current shape to a given index
+     * @return The index
+     */
     @Override
     public double execute() {
         int index = (int) myIndex.execute();

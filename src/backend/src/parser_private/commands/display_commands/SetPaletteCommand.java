@@ -23,6 +23,10 @@ public class SetPaletteCommand extends Command {
         myBlue = params.get(3);
     }
 
+    /**
+     * Set the values for a palette
+     * @return The index of the palette set
+     */
     @Override
     public double execute() {
         int index = (int)myIndex.execute();

@@ -14,6 +14,10 @@ public class GetPenColorCommand extends TurtleCommand {
         super(params);
     }
 
+    /**
+     * Get the current pen color
+     * @return The index of the current pen color
+     */
     public double execute() {
         return runTurtleCommand(turtle -> (double)turtle.getPen().getColor().getId());
     }

@@ -17,6 +17,10 @@ public class SetPenSizeCommand extends TurtleCommand {
         myPixels = params.get(0);
     }
 
+    /**
+     * Set the pen size for each active turtle
+     * @return The number of pixels
+     */
     public double execute() {
         int pixels = (int)myPixels.execute();
         runTurtleCommand(turtle -> {
