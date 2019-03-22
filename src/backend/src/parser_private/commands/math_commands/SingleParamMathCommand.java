@@ -6,6 +6,7 @@ import state.ICommand;
 import java.util.List;
 
 /**
+ * Class to represent math commands with a single parameter
  * @author David Miron
  */
 abstract class SingleParamMathCommand extends Command {

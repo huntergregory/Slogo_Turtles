@@ -13,6 +13,10 @@ public class MinusCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the negative of a number
+     * @return The negative of the number
+     */
     public double execute() {
         return -myExpression.execute();
     }

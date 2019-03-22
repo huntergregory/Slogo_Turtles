@@ -13,6 +13,10 @@ public class SineCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the sin of an angle
+     * @return The sin of an angle
+     */
     public double execute() {
         return Math.sin(Math.toRadians(myExpression.execute()));
     }

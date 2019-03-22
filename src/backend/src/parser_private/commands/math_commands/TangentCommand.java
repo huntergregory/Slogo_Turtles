@@ -13,6 +13,10 @@ public class TangentCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the tangent of an angle
+     * @return The tangent of the given angle
+     */
     public double execute() {
         return Math.tan(Math.toRadians(myExpression.execute()));
     }

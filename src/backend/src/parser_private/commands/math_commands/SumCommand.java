@@ -13,6 +13,10 @@ public class SumCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the sum of a list of arguments
+     * @return The sum of the arguments
+     */
     @Override
     public double execute() {
         double rtn = 0;

@@ -13,6 +13,10 @@ public class RemainderCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the remainder of two parameters
+     * @return The remainder
+     */
     @Override
     public double execute() {
         if (myExpressions.isEmpty()) {

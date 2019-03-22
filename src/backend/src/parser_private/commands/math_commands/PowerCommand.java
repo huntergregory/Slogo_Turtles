@@ -13,6 +13,10 @@ public class PowerCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the power of two params
+     * @return The power
+     */
     public double execute() {
         if (myExpressions.isEmpty()) {
             return 0;

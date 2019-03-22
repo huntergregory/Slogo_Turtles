@@ -13,6 +13,10 @@ public class ArcTangentCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the arctangent of a value
+     * @return the arctangent
+     */
     public double execute() {
         return Math.atan(Math.toRadians(myExpression.execute()));
     }

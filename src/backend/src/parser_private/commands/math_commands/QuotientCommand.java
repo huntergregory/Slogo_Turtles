@@ -13,6 +13,10 @@ public class QuotientCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the quotient of two commands
+     * @return The quotient
+     */
     @Override
     public double execute() {
         if (myExpressions.isEmpty()) {
