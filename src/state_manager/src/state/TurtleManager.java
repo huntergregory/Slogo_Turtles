@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
+ * Class to manage turtles and run commands on them
  * @author David Miron
  */
 public class TurtleManager {
@@ -34,27 +35,53 @@ public class TurtleManager {
         myNewTurtleProperty = new SimpleObjectProperty<>();
     }
 
+    /**
+     * Set the panel dimensions
+     * @param width The width
+     * @param height The height
+     */
     public void setPanelWidthHeight(double width, double height) {
         panelWidth = width;
         panelHeight = height;
     }
 
+    /**
+     * Get a list of turtles
+     * @return The turtles
+     */
     public List<Turtle> getTurtles() {
         return myTurtles;
     }
 
+    /**
+     * Get a specific turtle
+     * @param id The id of the turtle
+     * @return The turtle with the given ID
+     */
     public Turtle getTurtle(int id) {
         return myTurtles.stream().filter(turtle -> turtle.getID() == id).findFirst().get();
     }
 
+    /**
+     * Get the new turtle property
+     * @return The new turtle property
+     */
     public ObjectProperty<Turtle> getNewTurtleProperty() {
         return myNewTurtleProperty;
     }
 
+    /**
+     * Get the active turtles
+     * @return A list of active turtles
+     */
     public List<Turtle> getActiveTurtles() {
         return myTurtles.stream().filter(turtle -> turtle.getIsActive()).collect(Collectors.toList());
     }
 
+    /**
+     * Add a new turtle
+     * @param id The id of the new turtle
+     */
     public void addTurtle(int id) {
         if (myTurtles.stream().anyMatch(turtle -> turtle.getID() == id))
             return;
@@ -63,6 +90,11 @@ public class TurtleManager {
         myNewTurtleProperty.set(newTurtle);
     }
 
+    /**
+     * Run a turtle command for each active turtle, setting the ID to be valid for all subcommands
+     * @param func The function to run on each turtle
+     * @return The return value of the last run command
+     */
     public double runTurtleCommand(Function<Turtle, Double> func) {
         var retvalWrapper = new Object() { double retval = 0; };
         myTurtles.stream().filter(turtle -> turtle.getIsActive())
@@ -80,6 +112,11 @@ public class TurtleManager {
                                            .collect(Collectors.toList());
     }
 
+    /**
+     * Get a list of ids of turtles who satisfy some condition
+     * @param tester The function to determine if a turtle satisfies the condition
+     * @return A list of IDs
+     */
     public List<Integer> getTurtlesWithCondition(Predicate<Turtle> tester) {
         saveActiveTurtles();
         setAllTurtlesInactive();
@@ -97,6 +134,10 @@ public class TurtleManager {
         myTurtles.forEach(turtle -> turtle.setActive(false));
     }
 
+    /**
+     * Set the turtles with ids given to be active
+     * @param ids The IDs
+     */
     public void setTurtlesActive(List<Integer> ids) {
         saveActiveTurtles();
         setAllTurtlesInactive();
@@ -116,15 +157,26 @@ public class TurtleManager {
     }
 
 
+    /**
+     * Reset the active turtles to the previous state
+     */
     public void revertActiveTurtles() {
         setAllTurtlesInactive();
         setIDsActive(myPreviousActiveTurtles);
     }
 
+    /**
+     * Get the background color
+     * @return The background color
+     */
     public Palette getBackgroundColor() {
         return myBackgroundColor;
     }
 
+    /**
+     * Set the image index for all turtles
+     * @param index The index of the image
+     */
     public void setImageIndex(int index) {
         if (index > 0 && index <= 3)
             for (Turtle turtle : myTurtles) {
@@ -132,6 +184,10 @@ public class TurtleManager {
             }
     }
 
+    /**
+     * Get the index of the current image
+     * @return The index
+     */
     public double getImageIndex() {
         try {
             String shortened = myTurtles.get(0).getImageProperty().getValue().substring(myTurtles.get(0).getImageProperty().getValue().indexOf(" ") + 1);

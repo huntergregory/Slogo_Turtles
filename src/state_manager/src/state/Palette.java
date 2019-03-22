@@ -22,14 +22,26 @@ public class Palette {
         myColor = new SimpleObjectProperty<>(color);
     }
 
+    /**
+     * Get the ID of a palette
+     * @return The ID of a palette
+     */
     public SimpleIntegerProperty getIdProperty() {
         return myId;
     }
 
+    /**
+     * Get the color of a palette
+     * @return The color of a palette
+     */
     public SimpleObjectProperty<Color> getColorProperty() {
         return myColor;
     }
 
+    /**
+     * Get the ID of a palette
+     * @return The ID of a palette
+     */
     public int getId() {
         return myId.get();
     }
@@ -44,6 +56,10 @@ public class Palette {
                 + ", " + (int)(color.getBlue() * 255) + ")";
     }
 
+    /**
+     * Get the Color of a palette
+     * @return The color of a palette
+     */
     public Color getColor() {
         return myColor.get();
     }

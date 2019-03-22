@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ * Hold the history of commands run
  * @author David Miron
  */
 public class CommandHistory {
@@ -17,6 +18,10 @@ public class CommandHistory {
         myHistory.set(FXCollections.observableArrayList());
     }
 
+    /**
+     * Add a command that was run
+     * @param program The command
+     */
     public void addCommand(String program) {
         ObservableList<String> observableList = myHistory.getValue();
         observableList.remove(program);
@@ -24,6 +29,10 @@ public class CommandHistory {
         myHistory.set(observableList);
     }
 
+    /**
+     * Get the command history
+     * @return The command history
+     */
     public ListProperty getCommandsProperty() {
         return myHistory;
     }
