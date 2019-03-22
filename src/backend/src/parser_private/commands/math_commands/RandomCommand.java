@@ -13,6 +13,10 @@ public class RandomCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get a random number between 0 and the given parameter
+     * @return The random number
+     */
     public double execute() {
         return Math.random() * myExpression.execute();
     }

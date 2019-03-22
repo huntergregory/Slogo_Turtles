@@ -6,6 +6,7 @@ import state.ICommand;
 import java.util.List;
 
 /**
+ * Class to represent math commands with two params
  * @author David Miron
  */
 abstract class TwoParamMathCommand extends Command {

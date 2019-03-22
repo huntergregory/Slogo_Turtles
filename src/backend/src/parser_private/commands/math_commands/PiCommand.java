@@ -14,6 +14,10 @@ public class PiCommand extends Command {
         super(params);
     }
 
+    /**
+     * Get pi
+     * @return pi
+     */
     public double execute() {
         return Math.PI;
     }

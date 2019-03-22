@@ -13,6 +13,10 @@ public class NaturalLogCommand extends SingleParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the natural log of a param
+     * @return The natural log of the param
+     */
     public double execute() {
         return Math.log(myExpression.execute());
     }

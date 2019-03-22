@@ -13,6 +13,10 @@ public class DifferenceCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the difference of two params
+     * @return The difference
+     */
     @Override
     public double execute() {
         if (myExpressions.isEmpty()) {

@@ -13,10 +13,18 @@ public class TurtleImage {
         myImageFile = imageFile;
     }
 
+    /**
+     * Get the ID of the turtle image
+     * @return
+     */
     public int getID() {
         return myId;
     }
 
+    /**
+     * Get the image file of the turtle image
+     * @return The name of the file
+     */
     public String getImageFile() {
         return myImageFile;
     }

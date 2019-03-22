@@ -52,10 +52,18 @@ public class PaletteManager {
         myPaletteStrings.add(newPalette.toString());
     }
 
+    /**
+     * Get the default background color
+     * @return The default background color
+     */
     Palette getDefaultBackgroundColor() {
         return myPalettes.get(0);
     }
 
+    /**
+     * Get the default pen color
+     * @return The default pen color
+     */
     Palette getDefaultPenColor() {
         return myPalettes.get(1);
     }

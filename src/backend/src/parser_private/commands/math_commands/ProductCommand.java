@@ -13,6 +13,10 @@ public class ProductCommand extends MultiParamMathCommand {
         super(params);
     }
 
+    /**
+     * Get the product of two parameters
+     * @return The product
+     */
     @Override
     public double execute() {
         if (myExpressions.isEmpty()) {
