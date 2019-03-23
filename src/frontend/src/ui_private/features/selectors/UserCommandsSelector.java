@@ -5,11 +5,15 @@ import javafx.scene.Scene;
 import state.StateManager;
 
 /**
+ * This class is used to select user defined commands. The selected command populates the CommandTerminal
  * @author Carter Gay
- * @author Harry Ross
  */
 public class UserCommandsSelector extends Selector {
 
+    /**
+     * Creates binding between UserCommandsSelector and StateManager
+     * @param manager
+     */
     public UserCommandsSelector(StateManager manager) {
         super(manager);
     }

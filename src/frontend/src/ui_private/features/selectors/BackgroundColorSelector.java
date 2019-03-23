@@ -4,11 +4,15 @@ import javafx.collections.ObservableList;
 import state.StateManager;
 
 /**
+ * This class is used to select the background color of the TurtleDisplay
  * @author Carter Gay
- * @author Harry Ross
  */
 public class BackgroundColorSelector extends Selector {
 
+    /**
+     * Creates binding between BackgroundColorSelector and StateManager
+     * @param manager
+     */
     public BackgroundColorSelector(StateManager manager) {
         super(manager);
     }

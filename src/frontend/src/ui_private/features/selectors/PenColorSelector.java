@@ -5,11 +5,15 @@ import state.StateManager;
 import state.Turtle;
 
 /**
+ * This class is used to select the Pen color. The selected state applies to all actives Turtles
  * @author Carter Gay
- * @author Harry Ross
  */
 public class PenColorSelector extends Selector {
 
+    /**
+     * Creates binding between PenColorSelector and StateManager
+     * @param manager
+     */
     public PenColorSelector(StateManager manager) {
         super(manager);
     }

@@ -10,12 +10,18 @@ import ui_private.features.exceptions.NoFeatureException;
 import java.lang.reflect.Method;
 
 /**
+ * This class is used to toggle all active Turtles to move forward by a fixed amount
+ * @author Carter Gay
  * @author Harry Ross
  */
 public class MoveTurtleSelector extends Feature {
 
     private GridPane myControlPane;
 
+    /**
+     * Creates binding between MoveTurtleSelector and StateManager
+     * @param manager
+     */
     public MoveTurtleSelector(StateManager manager) {
         super(manager);
         myControlPane = new GridPane();

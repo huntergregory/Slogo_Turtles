@@ -8,6 +8,7 @@ import ui_private.features.Feature;
 
 /**
  * @author Hunter Gregory
+ * @author Carter Gay
  */
 public abstract class Selector extends Feature {
     private static final int NUM_OPTIONS_SHOWN = 4;

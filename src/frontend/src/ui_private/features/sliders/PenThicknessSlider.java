@@ -4,13 +4,17 @@ import state.StateManager;
 import state.Turtle;
 
 /**
- *
+ * This class is used to set the thickness of the pen. The selected thickness applies to all Turtles on the screen.
  * @author Carter Gay
  */
 public class PenThicknessSlider extends SlogoSlider {
 
     private static final String TITLE = "Pen Thickness";
 
+    /**
+     * Create binding between PenThicknessSlider and StateManager
+     * @param manager
+     */
     public PenThicknessSlider(StateManager manager) {
         super(manager);
     }

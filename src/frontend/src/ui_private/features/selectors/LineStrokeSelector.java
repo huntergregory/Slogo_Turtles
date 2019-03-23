@@ -7,6 +7,7 @@ import state.Turtle;
 import ui_private.ResourceBundleHelper;
 
 /**
+ * This class is used to select the LineStroke type of the Pens of all active Turtles
  * @author Carter Gay
  */
 public class LineStrokeSelector extends Selector {
@@ -14,6 +15,10 @@ public class LineStrokeSelector extends Selector {
     private static final ResourceBundleHelper myResourceHelper = new ResourceBundleHelper(STROKE_PROPERTIES);
     private static final ObservableList STROKES = FXCollections.observableArrayList(myResourceHelper.getAllLabels());
 
+    /**
+     * Creates binding between LineStrokeSelector and StateManager
+     * @param manager
+     */
     public LineStrokeSelector(StateManager manager) {
         super(manager);
     }
