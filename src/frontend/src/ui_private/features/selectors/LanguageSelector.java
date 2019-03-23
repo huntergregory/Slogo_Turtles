@@ -8,9 +8,9 @@ import state.StateManager;
  * @author Carter Gay
  * @author Harry Ross
  */
-class LanguageSelector extends Selector {
+public class LanguageSelector extends Selector {
 
-    LanguageSelector(StateManager manager) {
+    public LanguageSelector(StateManager manager) {
         super(manager);
         myDropBox.getSelectionModel().select("English");
     }

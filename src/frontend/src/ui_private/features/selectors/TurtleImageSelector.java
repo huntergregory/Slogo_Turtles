@@ -9,10 +9,10 @@ import state.Turtle;
  * @author Carter Gay
  * @author Hunter Gregory
  */
-class TurtleImageSelector extends Selector {
+public class TurtleImageSelector extends Selector {
     private static final ObservableList TURTLEIMAGES = FXCollections.observableArrayList("Turtle 1.png", "Turtle 2.png", "Turtle 3.png");
 
-    TurtleImageSelector(StateManager manager) {
+    public TurtleImageSelector(StateManager manager) {
         super(manager);
     }
 

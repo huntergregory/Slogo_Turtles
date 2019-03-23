@@ -8,15 +8,15 @@ import java.util.Map;
  *
  * @author Carter Gay
  */
-class VariablesWindow extends ScrollableWindow {
+public class VariablesWindow extends ScrollableWindow {
     private static final String TITLE = "Variables";
     private Map<String, Double> myVariablesMap;
 
-    VariablesWindow(StateManager manager) {
+    public VariablesWindow(StateManager manager) {
         super(manager);
     }
 
-    private void getVariables() {
+    protected void getVariables() {
         clearText();
         myVariablesMap = myStateManager.getVariables().getVariablesGroup().getMap();
         String myVariable = "";
@@ -27,7 +27,7 @@ class VariablesWindow extends ScrollableWindow {
     }
 
     @Override
-    void refreshWindow() {
+    public void refreshWindow() {
         getVariables();
     }
 

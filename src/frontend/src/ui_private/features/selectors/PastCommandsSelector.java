@@ -7,9 +7,9 @@ import state.StateManager;
  * @author Carter Gay
  * @author Harry Ross
  */
-class PastCommandsSelector extends Selector {
+public class PastCommandsSelector extends Selector {
 
-    PastCommandsSelector(StateManager manager) {
+    public PastCommandsSelector(StateManager manager) {
         super(manager);
     }
 

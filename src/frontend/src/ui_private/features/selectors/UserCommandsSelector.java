@@ -1,15 +1,16 @@
 package ui_private.features.selectors;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
 import state.StateManager;
 
 /**
  * @author Carter Gay
  * @author Harry Ross
  */
-class UserCommandsSelector extends Selector {
+public class UserCommandsSelector extends Selector {
 
-    UserCommandsSelector(StateManager manager) {
+    public UserCommandsSelector(StateManager manager) {
         super(manager);
     }
 

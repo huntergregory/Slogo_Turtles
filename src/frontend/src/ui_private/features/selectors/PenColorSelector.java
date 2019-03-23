@@ -8,9 +8,9 @@ import state.Turtle;
  * @author Carter Gay
  * @author Harry Ross
  */
-class PenColorSelector extends Selector {
+public class PenColorSelector extends Selector {
 
-    PenColorSelector(StateManager manager) {
+    public PenColorSelector(StateManager manager) {
         super(manager);
     }
 

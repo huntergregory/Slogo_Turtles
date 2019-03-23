@@ -9,12 +9,12 @@ import ui_private.ResourceBundleHelper;
 /**
  * @author Carter Gay
  */
-class LineStrokeSelector extends Selector {
+public class LineStrokeSelector extends Selector {
     private static final String STROKE_PROPERTIES = "line_stroke";
     private static final ResourceBundleHelper myResourceHelper = new ResourceBundleHelper(STROKE_PROPERTIES);
     private static final ObservableList STROKES = FXCollections.observableArrayList(myResourceHelper.getAllLabels());
 
-    LineStrokeSelector(StateManager manager) {
+    public LineStrokeSelector(StateManager manager) {
         super(manager);
     }
 
