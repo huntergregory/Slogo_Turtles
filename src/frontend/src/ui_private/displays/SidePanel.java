@@ -10,7 +10,8 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
 /**
- *
+ * This class represents a side panel that any Node can be added to.
+ * The side panel collapses if no items are contained in it.
  * @author Carter Gay
  * @author Hunter Gregory
  */
@@ -24,7 +25,10 @@ public class SidePanel {
     private double myNormalWidth;
     private int myNumRows;
 
-
+    /**
+     * Create a SidePanel
+     * @param width
+     */
     public SidePanel(double width) {
         initializeGridPane();
         myNormalWidth = width;
@@ -33,12 +37,17 @@ public class SidePanel {
         updatePanelSize();
     }
 
-
+    /**
+     * @return the Pane representation of the panel
+     */
     public Pane getPane() {
         return myPane;
     }
 
-
+    /**
+     * Add a Node to the panel
+     * @param node
+     */
     public void addRow(Node node) {
         myPane.addRow(myNumRows, node);
         myChildren.add(node);
@@ -46,6 +55,10 @@ public class SidePanel {
         updatePanelSize();
     }
 
+    /**
+     * Remove a Node from the panel
+     * @param index
+     */
     public void removeRow(int index) {
         myPane.getChildren().remove(index);
         myNumRows -= 1;

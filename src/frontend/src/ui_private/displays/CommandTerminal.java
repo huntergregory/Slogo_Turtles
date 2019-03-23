@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- * This class constructs the CommandTerminal and its various buttons
+ * This class constructs the CommandTerminal and its various buttons.
  * @author Carter Gay
  * @author Hunter Gregory
  */

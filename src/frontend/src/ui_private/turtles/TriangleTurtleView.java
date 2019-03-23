@@ -7,7 +7,7 @@ import javafx.scene.shape.Polygon;
 import state.Turtle;
 
 /**
- *
+ * A TurtleView where the display is a Triangle.
  * @author Hunter Gregory
  */
 public class TriangleTurtleView extends TurtleView {

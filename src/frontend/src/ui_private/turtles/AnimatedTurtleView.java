@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *
+ * A TurtleView that animates translation, rotation, and opacity changes.
  * @author Hunter Gregory
  */
 public abstract class AnimatedTurtleView extends TurtleView {

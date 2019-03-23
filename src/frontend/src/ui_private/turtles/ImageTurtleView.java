@@ -5,6 +5,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import state.Turtle;
 
+/**
+ * A TurtleView where the display is a user-selectable image.
+ * @author Hunter Gregory
+ */
 public class ImageTurtleView extends TurtleView {
 
     private ImageView myImageView;

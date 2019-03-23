@@ -13,7 +13,8 @@ import ui_private.turtles.TurtleView;
 import java.util.ArrayList;
 
 /**
- *
+ * Displays dynamic turtles with a dynamic background color.
+ * These dynamic properties are bound to properties in a state_manager/src/state/TurtleManager.
  * @author Hunter Gregory
  */
 public class TurtleDisplay {
@@ -24,6 +25,12 @@ public class TurtleDisplay {
     private double myWidth;
     private double myHeight;
 
+    /**
+     * Create a TurtleDisplay
+     * @param turtleManager
+     * @param width
+     * @param height
+     */
     public TurtleDisplay(TurtleManager turtleManager, double width, double height) { // FIXME
         myTurtleManager = turtleManager;
         myWidth = width;
@@ -62,6 +69,9 @@ public class TurtleDisplay {
         myTurtleViews.add(newTurtle);
     }
 
+    /**
+     * @return Pane representing the display
+     */
     public Pane getPane() {
         return myTurtlePane;
     }

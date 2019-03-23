@@ -4,7 +4,7 @@ import state.StateManager;
 import state.Turtle;
 
 /**
- *
+ * Slider UI Feature that changes the animation duration of turtle movement.
  * @author Hunter Gregory
  */
 public class AnimationDurationSlider extends SlogoSlider {

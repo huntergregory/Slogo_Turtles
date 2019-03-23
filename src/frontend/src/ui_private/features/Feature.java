@@ -11,7 +11,8 @@ import state.StateManager;
 import ui_private.displays.CommandTerminal;
 
 /**
- *
+ * A UI Feature with a Node representation.
+ * Each Feature is designed to interact with the turtle workspace based on user interaction.
  * @author Hunter Gregory
  */
 public abstract class Feature {

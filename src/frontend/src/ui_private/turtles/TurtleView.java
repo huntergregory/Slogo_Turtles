@@ -15,7 +15,7 @@ import java.util.Queue;
 
 
 /**
- * Represents a movable turtle with customizable image and drawing capabilities.
+ * Represents a movable turtle with drawing capabilities.
  * @author Hunter Gregory
  */
 public abstract class TurtleView {
