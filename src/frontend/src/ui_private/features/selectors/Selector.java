@@ -7,6 +7,7 @@ import state.StateManager;
 import ui_private.features.Feature;
 
 /**
+ * This abstract class defines the construction and behavior of the various types of Selectors
  * @author Hunter Gregory
  * @author Carter Gay
  */
@@ -15,6 +16,10 @@ public abstract class Selector extends Feature {
 
     ComboBox<String> myDropBox;
 
+    /**
+     * Constructor for Selector object. Creates binding between Selector and StateManager
+     * @param manager
+     */
     public Selector(StateManager manager) {
         super(manager);
         myDropBox = new ComboBox<>();
@@ -25,16 +30,14 @@ public abstract class Selector extends Feature {
         myDropBox.valueProperty().addListener((o, oldVal, newVal) -> handleItemSelected(newVal));
     }
 
-    /**
-     * @return Observable List that will be displayed as the options.
-     */
     abstract protected ObservableList<String> getItemList();
 
-    /**
-     * @param item
-     */
     abstract protected void handleItemSelected(String item);
 
+    /**
+     * Return the dropbox of the Selector
+     * @return
+     */
     @Override
     public Node getMainComponent() {
         return myDropBox;

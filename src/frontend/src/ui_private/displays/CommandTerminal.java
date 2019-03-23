@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- *
+ * This class constructs the CommandTerminal and its various buttons
  * @author Carter Gay
  * @author Hunter Gregory
  */
@@ -33,6 +33,10 @@ public class CommandTerminal {
     private String myCommand;
     private CommandParser myBackend;
 
+    /**
+     * Constructor for CommandTerminal and its buttons for parsing, help, and undo. Creates listeners for buttons
+     * @param backend
+     */
     public CommandTerminal(CommandParser backend) {
         myParseButton = new Button("PARSE");
         myParseButton.setOnAction((event) -> sendToParser());
@@ -43,14 +47,21 @@ public class CommandTerminal {
         myCommandInput = new TextArea();
         myCommandInput.setPrefRowCount(10);
         myCommandInput.setPrefColumnCount(10);
-        myCommandInput.setPromptText(PROMPT);//can barely ever see prompt, maybe we just set the text
+        myCommandInput.setPromptText(PROMPT);
         myBackend = backend;
     }
 
+    /**
+     * Populate the text of the CommandTerminal
+     * @param command
+     */
     public void setText(String command) {
         myCommandInput.setText(command);
     }
 
+    /**
+     * Send the text to the CommandParser when Parse button is pressed
+     */
     public void sendToParser() {
         myCommand = myCommandInput.getText();
         myCommandInput.setText("");
@@ -77,6 +88,10 @@ public class CommandTerminal {
         }
     }
 
+    /**
+     * Add the CommandTerminal and buttons to the GridPane
+     * @return
+     */
     public Pane getPane() {
         var gridPane = new GridPane();
         myCommandInput.setPrefWidth(COMMAND_STRETCH_WIDTH); //stretch out text area
