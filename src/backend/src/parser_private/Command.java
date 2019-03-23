@@ -38,13 +38,8 @@ public abstract class Command implements ICommand {
     }
 
     /**
-<<<<<<< HEAD
-     * Pass the state manager to this command when it is created in the factory
-     * @param stateManager The state manager
-=======
      * Injects StateManager object from parent command into all nested commands to share variables, command space.
      * @param stateManager StateManager object to be injected
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
      */
     @Override
     public void injectStateManager(StateManager stateManager) {
