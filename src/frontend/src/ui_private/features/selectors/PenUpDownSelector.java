@@ -8,11 +8,11 @@ import state.Turtle;
 /**
  * @author Carter Gay
  */
-public class PenUpDownSelector extends Selector {
+class PenUpDownSelector extends Selector {
     private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     private String myPenState;
 
-    public PenUpDownSelector(StateManager manager) {
+    PenUpDownSelector(StateManager manager) {
         super(manager);
         myDropBox.getSelectionModel().select("DOWN");
     }
@@ -36,7 +36,8 @@ public class PenUpDownSelector extends Selector {
         }
     }
 
-    protected String getPenColor() {
+    String getPenState() {
         return myPenState;
     }
+
 }

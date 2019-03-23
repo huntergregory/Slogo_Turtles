@@ -11,12 +11,13 @@ import java.lang.reflect.Method;
 
 /**
  * @author Harry Ross
+ * @author Carter Gay
  */
-public class MoveTurtleSelector extends Feature {
+class MoveTurtleSelector extends Feature {
 
     private GridPane myControlPane;
 
-    public MoveTurtleSelector(StateManager manager) {
+    MoveTurtleSelector(StateManager manager) {
         super(manager);
         myControlPane = new GridPane();
         myControlPane.add(makeButton("Up"), 1, 0);
