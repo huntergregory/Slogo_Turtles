@@ -11,7 +11,7 @@ import ui_private.features.Feature;
 import java.util.LinkedList;
 
 /**
- *
+ * This abstract class defines the construciton and behavior of scrollable windows
  * @author Carter Gay
  * @author Hunter Gregory
  */
@@ -25,6 +25,10 @@ public abstract class ScrollableWindow extends Feature {
     protected TextArea myTextArea;
     private LinkedList<String> myTextChain;
 
+    /**
+     * Constructer for a ScrollableWindow object
+     * @param manager
+     */
     public ScrollableWindow(StateManager manager) {
         super(manager);
         myHBox = new HBox();
@@ -46,23 +50,8 @@ public abstract class ScrollableWindow extends Feature {
     }
 
     protected void addText(String newString) {
-        //myTextChain.addFirst(newString);
-        //if (SORTS_ALPHABETICALLY)
-            //Collections.sort(myTextChain, Comparator.reverseOrder());
         myTextArea.setText(newString);
     }
-
-////    private String getText() {
-////        StringBuilder builder = new StringBuilder();
-////        int maxLines = MAX_LINES_DISPLAYED;
-////        for (String line : myTextChain) {
-////            if (maxLines <= 0)
-////                break;
-////            builder.append(line + "\n");
-////            maxLines -= 1;
-////        }
-////        return builder.toString();
-//    }
 
     abstract protected void refreshWindow();
 

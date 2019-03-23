@@ -6,16 +6,16 @@ import state.StateManager;
 import ui_private.features.Feature;
 
 /**
- *
+ * This abstract class defines the construction and behavior of various slider features.
  * @author Carter Gay
  * @author Hunter Gregory
  */
 public abstract class SlogoSlider extends Feature {
-    protected static final double[] DEFAULT_MIN_MAX_CURRENT = {0, 5, 1};
+    static final double[] DEFAULT_MIN_MAX_CURRENT = {0, 5, 1};
 
     private Slider mySlider;
 
-    public SlogoSlider(StateManager manager) {
+    SlogoSlider(StateManager manager) {
         super(manager);
         double[] minMaxCurrent = getMinMaxCurrentVals();
         if (minMaxCurrent == null || minMaxCurrent.length != 3)

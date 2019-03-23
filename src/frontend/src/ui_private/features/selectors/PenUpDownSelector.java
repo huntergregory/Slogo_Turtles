@@ -6,12 +6,17 @@ import state.StateManager;
 import state.Turtle;
 
 /**
+ * This class is used to select the Pen state. The selected state applies to all actives Turtles
  * @author Carter Gay
  */
 public class PenUpDownSelector extends Selector {
     private static final ObservableList PENSTATES = FXCollections.observableArrayList("", "UP", "DOWN");
     private String myPenState;
 
+    /**
+     * Creates binding between PenUpDownSelector and StateManager. Selects default pen state
+     * @param manager
+     */
     public PenUpDownSelector(StateManager manager) {
         super(manager);
         myDropBox.getSelectionModel().select("DOWN");
