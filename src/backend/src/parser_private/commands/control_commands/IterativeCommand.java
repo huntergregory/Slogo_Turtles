@@ -6,6 +6,7 @@ import state.ICommand;
 import java.util.List;
 
 /**
+ * General class for iterative commands
  * @author Harry Ross
  */
 abstract class IterativeCommand extends Command {
@@ -16,6 +17,10 @@ abstract class IterativeCommand extends Command {
         super(params);
     }
 
+    /**
+     * Executes an iterative command
+     * @return depends on exact implementation
+     */
     @Override
     abstract public double execute();
 

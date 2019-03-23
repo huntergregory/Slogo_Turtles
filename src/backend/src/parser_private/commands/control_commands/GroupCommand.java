@@ -9,14 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Command that handles grouping of commands and executes
  * @author Harry Ross
  */
 public class GroupCommand extends Command {
 
+    /**
+     * Creates new Group command, assigns parameters
+     * @param params parameters to be accessed for grouping
+     */
     public GroupCommand(List<ICommand> params) {
         super(params);
     }
 
+    /**
+     * Executes Group command, creates execution structure and executes based on which command is leading in grouping
+     * @return output of final item executed in group
+     */
     @Override
     public double execute() {
         ICommand model = mySubCommands.get(0);
