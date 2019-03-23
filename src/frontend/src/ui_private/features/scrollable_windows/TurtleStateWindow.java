@@ -6,16 +6,16 @@ import state.Turtle;
  *
  * @author Carter Gay
  */
-public class TurtleStateWindow extends ScrollableWindow {
+class TurtleStateWindow extends ScrollableWindow {
     private static final String TITLE = "Turtle State";
 
-    public TurtleStateWindow(StateManager manager) {
+    TurtleStateWindow(StateManager manager) {
         super(manager);
         getTurtleState();
     }
 
     // current state of a turtle (i.e., its ID, position, heading) and its pen (i.e., up/down, color, thickness)
-    protected void getTurtleState() {
+    void getTurtleState() {
         clearText();
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             String currentTurtleState = "";
@@ -32,7 +32,7 @@ public class TurtleStateWindow extends ScrollableWindow {
     }
 
     @Override
-    public void refreshWindow() {
+    void refreshWindow() {
         getTurtleState();
     }
 

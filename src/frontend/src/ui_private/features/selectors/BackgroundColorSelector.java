@@ -7,9 +7,9 @@ import state.StateManager;
  * @author Carter Gay
  * @author Harry Ross
  */
-public class BackgroundColorSelector extends Selector {
+class BackgroundColorSelector extends Selector {
 
-    public BackgroundColorSelector(StateManager manager) {
+    BackgroundColorSelector(StateManager manager) {
         super(manager);
     }
 

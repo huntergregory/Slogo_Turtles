@@ -15,17 +15,17 @@ import java.util.LinkedList;
  * @author Carter Gay
  * @author Hunter Gregory
  */
-public abstract class ScrollableWindow extends Feature {
+abstract class ScrollableWindow extends Feature {
     private static final boolean SORTS_ALPHABETICALLY = false;
     private static final int MAX_LINES_DISPLAYED = 50;
 
     private HBox myHBox;
     private Button refresh;
     private ScrollPane myScrollPane;
-    protected TextArea myTextArea;
+    private TextArea myTextArea;
     private LinkedList<String> myTextChain;
 
-    public ScrollableWindow(StateManager manager) {
+    ScrollableWindow(StateManager manager) {
         super(manager);
         myHBox = new HBox();
         myTextChain = new LinkedList<>();
@@ -41,30 +41,15 @@ public abstract class ScrollableWindow extends Feature {
         myHBox.getChildren().add(refresh);
     }
 
-    protected void clearText() {
+    void clearText() {
         myTextArea.setText("");
     }
 
-    protected void addText(String newString) {
-        //myTextChain.addFirst(newString);
-        //if (SORTS_ALPHABETICALLY)
-            //Collections.sort(myTextChain, Comparator.reverseOrder());
+    void addText(String newString) {
         myTextArea.setText(newString);
     }
 
-////    private String getText() {
-////        StringBuilder builder = new StringBuilder();
-////        int maxLines = MAX_LINES_DISPLAYED;
-////        for (String line : myTextChain) {
-////            if (maxLines <= 0)
-////                break;
-////            builder.append(line + "\n");
-////            maxLines -= 1;
-////        }
-////        return builder.toString();
-//    }
-
-    abstract protected void refreshWindow();
+    abstract void refreshWindow();
 
     @Override
     protected Node getMainComponent() {
