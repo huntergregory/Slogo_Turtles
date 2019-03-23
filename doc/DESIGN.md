@@ -1,9 +1,4 @@
 # Design
-#### REMOVE provides the high-level design goals of your project
-#### REMOVE explains, in detail, how to add new features to your project
-#### REMOVE justifies major design choices, including trade-offs (i.e., pros and cons), made in your project
-#### REMOVE states any assumptions or decisions made to simplify or resolve ambiguities in your the project's 
-
 
 ### High-Level Overview
 Our software system is composed of four different packages - control, frontend, state_manager, and backend. 
