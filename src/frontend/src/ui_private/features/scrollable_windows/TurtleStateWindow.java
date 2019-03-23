@@ -3,12 +3,16 @@ package ui_private.features.scrollable_windows;
 import state.StateManager;
 import state.Turtle;
 /**
- *
+ * This class is used to view the states of all active Turtles
  * @author Carter Gay
  */
 public class TurtleStateWindow extends ScrollableWindow {
     private static final String TITLE = "Turtle State";
 
+    /**
+     * Creates binding between TurtleStateWindow and StateManager
+     * @param manager
+     */
     public TurtleStateWindow(StateManager manager) {
         super(manager);
         getTurtleState();
@@ -31,6 +35,9 @@ public class TurtleStateWindow extends ScrollableWindow {
         }
     }
 
+    /**
+     * Update the turtle state window
+     */
     @Override
     public void refreshWindow() {
         getTurtleState();

@@ -5,13 +5,17 @@ import state.StateManager;
 import java.util.Map;
 
 /**
- *
+ * This class is used to view environment variables
  * @author Carter Gay
  */
 public class VariablesWindow extends ScrollableWindow {
     private static final String TITLE = "Variables";
     private Map<String, Double> myVariablesMap;
 
+    /**
+     * Creates binding between VariablesWindow and StateManager
+     * @param manager
+     */
     public VariablesWindow(StateManager manager) {
         super(manager);
     }
@@ -26,6 +30,9 @@ public class VariablesWindow extends ScrollableWindow {
         }
     }
 
+    /**
+     * Update the variables window
+     */
     @Override
     public void refreshWindow() {
         getVariables();
