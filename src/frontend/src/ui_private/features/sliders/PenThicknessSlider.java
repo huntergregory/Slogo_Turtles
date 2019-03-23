@@ -7,16 +7,16 @@ import state.Turtle;
  *
  * @author Carter Gay
  */
-class PenThicknessSlider extends SlogoSlider {
+public class PenThicknessSlider extends SlogoSlider {
 
     private static final String TITLE = "Pen Thickness";
 
-    PenThicknessSlider(StateManager manager) {
+    public PenThicknessSlider(StateManager manager) {
         super(manager);
     }
 
     @Override
-    void handleItemSelected(Number item) {
+    protected void handleItemSelected(Number item) {
         double myThickness = item.doubleValue();
         for(Turtle turtle : myStateManager.getTurtleManager().getTurtles()) {
             turtle.getPen().setThickness(myThickness);
@@ -24,7 +24,7 @@ class PenThicknessSlider extends SlogoSlider {
     }
 
     @Override
-    double[] getMinMaxCurrentVals() {
+    protected double[] getMinMaxCurrentVals() {
         return DEFAULT_MIN_MAX_CURRENT;
     }
 }
