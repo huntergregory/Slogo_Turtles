@@ -80,6 +80,25 @@ were required to carry indices, we opted for a set list of six colors to choose 
 to "draw" with. However, it would have been rather monotonous to construct indices for hundreds of colors for this project. 
 Furthermore, any additional colors can be added with relative ease if desired.
 
+Backend
+
+- For the backend, we made the design decision to have every command be executable and return a double with a common method between all implementations.
+We devised a system where command hierarchies would be stored in a nested format, where the inputs to one command would
+be commands in of themselves. Then, when it comes time to execute a command, it will have to execute the nested
+commands within the execution of the overarching command. This system provides lots of flexibility in what can be 
+considered a command and how inputs can be used in many differing ways between commands. In an input with multiple 
+commands, the parser executes one completed command hierarchy at a time, so, for example, the input ```fd sum 50 40 fd 3``` 
+will execute ```fd sum 50 40``` before ```fd 3``` is even parsed. With a system like this, the user can have custom commands
+defined and used in the same input string as long as they're not nested in one another.
+
+- Out of the possible extensions for the final implementation, we did not pursue undo/redo or recursive functionality.
+In the case of undo/redo, this decision was made because our system for keeping track of multiple workspaces as essentially
+collections of other objects with their own nested instance variables would have been incredibly difficult to store as a 
+simple state without adding hundreds of lines of copy code into all of our various state objects. In the case of recursion,
+the methodology for parsing that we had been using for every other aspect of the project would not have lent itself well
+to a recursive-enabled environment at all. To avoid changing too much of our original parser design, we decided to forgo
+implementing recursion and focus energy on implementing grouping, the other "Challenging Extension."
+
 --- 
 ### Assumptions/Simplifications
 
@@ -90,3 +109,22 @@ selected command then populates the command terminal, giving the user free reign
 
 - The user must refresh to see updated user states and variables rather than see changes immediately. We assumed that 
 these views did not have to appear immediately.
+
+Backend
+
+- For the SLogo environment, we made the assumption that all user defined variables are defined and accessible
+in a global scope within a given workspace. There is no concept of a variable only being defined a certain way within a
+sub-procedure of a program.
+
+- For the parser, we made no assumptions about the syntax of commands and parameters, so there is comprehensive error 
+checking in place to ensure that commands and variables are declared and populated in exactly the way they are described
+in the project write-up. One area where we did make some assumptions, however, was in our methodology for grouping.
+We divided up the entire list of commands into two smaller groups: commands that group in a multi-input fashion,
+and commands that group in a sequential fashion. 
+    - For example, a grouping for ```( sum 30 20 2 43 )``` will be treated essentially
+as a multi-input command, as the math commands and a couple others are flexible enough that they are not bound to a 
+finite number of parameters. However, in an example like ```( bk 2 6 2 9 )```, the input will be treated as if the user
+had entered a sequence of individual commands, i.e. ```bk 2 bk 6 bk 2 bk 9``` and will be executed as a list in that regard.
+    - In the case of a grouping for a multi-input command where the user inputs a number of parameters that is not a direct
+multiple of the argument count of that command, i.e. ```( goto 3 4 5 2 1 )```, the grouping command will populate the remaining parameters
+with 0's, so the previous example would translate to a sequence equivalent to ```goto 3 4 goto 5 2 goto 1 0```.
