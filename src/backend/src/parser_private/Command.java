@@ -6,16 +6,12 @@ import state.StateManager;
 import java.util.List;
 
 /**
-<<<<<<< HEAD
- * Class to represent an abstract command
-=======
  * Class for Command object supertype in SLogo environment, implements parameters and is able to execute itself when asked.
  * For the sake of this class and its children, a "subcommand" is a Command that is either a parameter
  * or a nested Command of a parent Command.
  * Dependencies: StateManager
  * Ex. Command command = new Command(new List<ICommand>());
  *     command.execute();
->>>>>>> adf14969360f39950cfce8a86eda3576c1036e41
  * @author David Miron
  * @author Harry Ross
  */
