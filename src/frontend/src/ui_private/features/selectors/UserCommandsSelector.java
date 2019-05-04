@@ -1,8 +1,7 @@
 package ui_private.features.selectors;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import state.StateManager;
+        import javafx.collections.ObservableList;
+        import state.StateManager;
 
 /**
  * This class is used to select user defined commands. The selected command populates the CommandTerminal
