@@ -11,5 +11,19 @@ Then I'll have to include the feature's display name in one of the properties fi
 
 
 ## After
+It took me an hour to complete this new feature, a little longer than I expected to figure out the JavaFX stuff. 
+As I guessed though, I only had to make one class, which I refactored to have a helper class (TurtleIcon which had a VBox of a Label, ImageView, and ComboBox).
+I also moved the list of image file names from a TurtleImageSelector we made in sprint three (modified all turtle images at once) to the TurtleManager class. 
 
-## Analysis
+I got it completely right on my first try, minus a typo in the features.properties file.
+
+It was easy to remember that I needed to add a Feature, and I remembered the properties file before I started coding or looking at the documentation.
+Even if I had forgotten, the documentation in the DESIGN.md explains how to do the process.
+
+This was honestly really fun to add because it was just adding a new whistle to the project by simply making a Feature. 
+This design is incredibly extendable. The only area I could see the design improving would be eliminating the need to even have a properties file 
+by using the ClassGrabber I made in vooga to get all Feature subclasses (the ones that aren't abstract) and converting their simple names into labels, and conversely creating the class from the label. 
+This would take a good amount of time refactoring for barely any reward though, since that would require bringing in the ClassGrabber and creating an equivalent of ResourceBundleHelper that uses the grabber. 
+
+If I wasn't familiar with my code, I think it would have taken a little time to realize that I should get the turtle's image property for each icon and get/set/add a change listener to it. 
+Still, I think if another programmer understood JavaFX bindings and JavaFX frontend basics, it would have taken them under an hour and a half to do the same task.
