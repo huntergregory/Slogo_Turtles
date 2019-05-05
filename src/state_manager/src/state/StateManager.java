@@ -79,4 +79,5 @@ public class StateManager {
     public void setBackgroundColor(int index) {
         myBackgroundColor.getColorProperty().set(myPaletteManager.getPalette(index).getColor());
     }
+
 }

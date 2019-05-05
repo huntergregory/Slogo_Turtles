@@ -1,4 +1,4 @@
-package ui_private.features.images_addition;
+package ui_private.features.addition;
 
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;

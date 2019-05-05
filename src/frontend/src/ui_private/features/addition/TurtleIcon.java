@@ -1,5 +1,6 @@
-package ui_private.features.images_addition;
+package ui_private.features.addition;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import state.TurtleManager;
 
 public class TurtleIcon {
     private static final String TURTLE = "Turtle ";
+    private static final double WIDTH = 30;
+    private static final double HEIGHT = 30;
 
     private Turtle myTurtle;
     private ImageView myImageView;
@@ -25,6 +28,7 @@ public class TurtleIcon {
         initImageView();
         initComboBox();
         myVBox = new VBox(myLabel, myImageView, myComboBox);
+        myVBox.setAlignment(Pos.CENTER);
     }
 
     private void initComboBox() {
@@ -37,6 +41,9 @@ public class TurtleIcon {
     private void initImageView() {
         var defaultImage = TurtleManager.TURTLE_IMAGE_FILES.get(0);
         myImageView = new ImageView(getImage(defaultImage));
+        myImageView.setPreserveRatio(false);
+        myImageView.setFitWidth(WIDTH);
+        myImageView.setFitHeight(HEIGHT);
         myTurtle.getImageProperty().addListener((o, old, neww) -> myImageView.setImage(getImage(neww)));
     }
 
