@@ -2,6 +2,8 @@ package state;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
  * @author David Miron
  */
 public class TurtleManager {
+    public static final ObservableList<String> TURTLE_IMAGE_FILES = FXCollections.observableArrayList("Turtle 1.png", "Turtle 2.png", "Turtle 3.png");
 
     public static final String ID_VARNAME = "ID";
 

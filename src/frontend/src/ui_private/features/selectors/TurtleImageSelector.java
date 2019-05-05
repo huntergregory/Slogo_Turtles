@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import state.StateManager;
 import state.Turtle;
+import state.TurtleManager;
 
 /**
  * This class is used to select an image for the turtle. The selected image applies to all active Turtles
@@ -11,7 +12,6 @@ import state.Turtle;
  * @author Hunter Gregory
  */
 public class TurtleImageSelector extends Selector {
-    private static final ObservableList TURTLEIMAGES = FXCollections.observableArrayList("Turtle 1.png", "Turtle 2.png", "Turtle 3.png");
 
     /**
      * Creates binding between TurtleImageSelector and StateManager
@@ -23,7 +23,7 @@ public class TurtleImageSelector extends Selector {
 
     @Override
     protected ObservableList getItemList() {
-        return TURTLEIMAGES;
+        return TurtleManager.TURTLE_IMAGE_FILES);
     }
 
     @Override
