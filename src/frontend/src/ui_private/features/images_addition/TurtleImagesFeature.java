@@ -1,10 +1,11 @@
-package ui_private.features;
+package ui_private.features.images_addition;
 
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import state.StateManager;
 import state.Turtle;
+import ui_private.features.Feature;
 
 public class TurtleImagesFeature extends Feature {
     private static final double V_GAP = 10;

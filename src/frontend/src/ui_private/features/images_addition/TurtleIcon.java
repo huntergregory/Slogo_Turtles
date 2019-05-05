@@ -1,6 +1,5 @@
-package ui_private.features;
+package ui_private.features.images_addition;
 
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;

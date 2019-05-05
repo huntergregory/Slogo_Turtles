@@ -23,7 +23,7 @@ public class TurtleImageSelector extends Selector {
 
     @Override
     protected ObservableList getItemList() {
-        return TurtleManager.TURTLE_IMAGE_FILES);
+        return TurtleManager.TURTLE_IMAGE_FILES;
     }
 
     @Override
