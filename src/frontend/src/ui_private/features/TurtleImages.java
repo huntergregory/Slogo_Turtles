@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import state.Turtle;
 
-public class TurtleImages {
+class TurtleImages {
 
     private static final ObservableList TURTLEIMAGES = FXCollections.observableArrayList("Turtle 1.png", "Turtle 2.png", "Turtle 3.png");
     private static final String DEFAULT_IMAGE = "Turtle 1.png";
@@ -22,7 +22,7 @@ public class TurtleImages {
     private Label myLabel;
     private ComboBox<String> myComboBox;
 
-    protected TurtleImages(Turtle turtle) {
+    TurtleImages(Turtle turtle) {
         myTurtle = turtle;
         build();
     }
@@ -59,7 +59,7 @@ public class TurtleImages {
         myHBox.getChildren().add(myComboBox);
     }
 
-    protected Node getMainComponent() {
+    Node getMainComponent() {
         return myHBox;
     }
 }
