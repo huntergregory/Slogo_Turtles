@@ -84,3 +84,8 @@ AskWith=multiple_turtle_commands.AskWithCommand:2
 #
 ListStart=control_commands.ListCommand:-1
 GroupStart=control_commands.GroupCommand:-1
+#
+# Added Commands
+#
+Stamp=turtle_commands.Stamp:0
+ClearStamps=turtle_commands.ClearStamps:0
