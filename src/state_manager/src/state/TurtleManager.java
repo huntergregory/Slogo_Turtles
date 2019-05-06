@@ -1,6 +1,8 @@
 package state;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class TurtleManager {
     private List<Integer> myPreviousActiveTurtles;
     private Palette myBackgroundColor;
     private ObjectProperty<Turtle> myNewTurtleProperty;
+    private BooleanProperty myStampProperty;
+    private BooleanProperty myClearStampsProperty;
+    private boolean myHasStamps;
 
     private double panelWidth;
     private double panelHeight;
@@ -33,6 +38,9 @@ public class TurtleManager {
         myTurtles = new ArrayList<>();
         myBackgroundColor = myPaletteManager.getDefaultBackgroundColor();
         myNewTurtleProperty = new SimpleObjectProperty<>();
+        myStampProperty = new SimpleBooleanProperty(false);
+        myClearStampsProperty = new SimpleBooleanProperty(false);
+        myHasStamps = false;
     }
 
     /**
@@ -196,5 +204,28 @@ public class TurtleManager {
         } catch (NullPointerException e) {
             return 1;
         }
+    }
+
+    public double addStamp() {
+        myStampProperty.setValue(true);
+        myStampProperty.setValue(false);
+        myHasStamps = true;
+        return this.getImageIndex();
+    }
+
+    public double clearStamps() {
+        myClearStampsProperty.setValue(true);
+        myClearStampsProperty.setValue(false);
+        int rtn = myHasStamps ? 1 : 0;
+        myHasStamps = false;
+        return rtn;
+    }
+
+    public BooleanProperty getStampProperty() {
+        return myStampProperty;
+    }
+
+    public BooleanProperty getClearStampsProperty() {
+        return myClearStampsProperty;
     }
 }

@@ -71,6 +71,8 @@ SetShape=display_commands.SetShapeCommand:1
 SetPalette=display_commands.SetPaletteCommand:4
 GetPenColor=display_commands.GetPenColorCommand:0
 GetShape=display_commands.GetShapeCommand:0
+Stamp=display_commands.StampCommand:0
+ClearStamps=display_commands.ClearStampsCommand:0
 #
 # Multiple Turtle Commands
 #

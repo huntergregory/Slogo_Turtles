@@ -8,6 +8,7 @@ import state.Turtle;
 import state.TurtleManager;
 import ui_private.turtles.ImageTurtleView;
 import ui_private.turtles.TriangleTurtleView;
+import ui_private.turtles.TurtleStamp;
 import ui_private.turtles.TurtleView;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class TurtleDisplay {
     private TurtleManager myTurtleManager;
     private Pane myTurtlePane;
     private ArrayList<TurtleView> myTurtleViews;
+    private ArrayList<TurtleView> myStamps;
     private double myWidth;
     private double myHeight;
 
@@ -39,7 +41,9 @@ public class TurtleDisplay {
         initializePane();
         bindBackground();
         bindNewTurtles();
+        bindStamps();
         myTurtleViews = new ArrayList<>();
+        myStamps = new ArrayList<>();
         myTurtleManager.addTurtle(1);
     }
 
@@ -67,6 +71,27 @@ public class TurtleDisplay {
     private void createTurtleView(Turtle turtleStates) {
         var newTurtle = new ImageTurtleView(myTurtlePane.getChildren(), turtleStates, getTurtleXOrigin(), getTurtleYOrigin());
         myTurtleViews.add(newTurtle);
+    }
+
+    private void bindStamps() {
+        myTurtleManager.getStampProperty().addListener((o, old, shouldStamp) -> createStamp(shouldStamp));
+        myTurtleManager.getClearStampsProperty().addListener((o, old, shouldClear) -> clearStamps(shouldClear));
+    }
+
+    private void createStamp(boolean shouldStamp) {
+        if (shouldStamp) {
+            TurtleStamp newStamp = new TurtleStamp(myTurtlePane.getChildren(), myTurtleManager.getTurtle(1),
+                    getTurtleXOrigin(), getTurtleYOrigin());
+            myStamps.add(newStamp);
+        }
+    }
+
+    private void clearStamps(boolean shouldClear) {
+        if (shouldClear) {
+            for (TurtleView stamp : myStamps)
+                stamp.removeFromScene();
+            myStamps = new ArrayList<>();
+        }
     }
 
     /**

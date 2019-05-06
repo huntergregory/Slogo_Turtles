@@ -4,6 +4,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.util.Duration;
@@ -32,6 +34,9 @@ public abstract class TurtleView {
     private double myDispXOffset;
     private double myDispYOffset;
 
+    private ChangeListener<? super Point2D> myPositionListener;
+    private ChangeListener<? super Number> myHeadingListener;
+    private ChangeListener<? super Boolean> myOpacityListener;
 
     /**
      * Assumes all double inputs are positive, and list input is nonnull.
@@ -87,9 +92,33 @@ public abstract class TurtleView {
     }
 
     private void addPropertyListeners() {
-        myTurtleStates.getPositionProperty().addListener((o, oldPosition, newPosition) -> move(oldPosition, newPosition));
-        myTurtleStates.getHeadingProperty().addListener((o, oldHeading, newHeading) -> rotate(oldHeading, newHeading));
-        myTurtleStates.getActiveProperty().addListener((o, oldActive, newActive) -> updateOpacity(newActive));
+        myPositionListener = new ChangeListener<Point2D>() {
+            @Override
+            public void changed(ObservableValue<? extends Point2D> observable, Point2D oldValue, Point2D newValue) {
+                move(oldValue, newValue);
+            }
+        };
+        myHeadingListener = new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldHeading, Number newHeading) {
+                rotate(oldHeading, newHeading);
+            }
+        };
+        myOpacityListener = new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldActive, Boolean newActive) {
+                updateOpacity(newActive);
+            }
+        };
+        myTurtleStates.getPositionProperty().addListener(myPositionListener);
+        myTurtleStates.getHeadingProperty().addListener(myHeadingListener);
+        myTurtleStates.getActiveProperty().addListener(myOpacityListener);
+    }
+
+    void removeListeners() {
+        myTurtleStates.getPositionProperty().removeListener(myPositionListener);
+        myTurtleStates.getHeadingProperty().removeListener(myHeadingListener);
+        myTurtleStates.getActiveProperty().removeListener(myOpacityListener);
     }
 
     protected void move(Point2D oldPoint, Point2D newPoint) {
